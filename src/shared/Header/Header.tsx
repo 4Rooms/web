@@ -1,16 +1,29 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ user }) {
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+  };
+
   return (
     <header>
       <ul style={{ listStyle: "none" }}>
         <li>
           <NavLink to={"/user-profile/1"}>User Profile</NavLink>
         </li>
-        <li>
-          <NavLink to={"/login"}>Login</NavLink>
-        </li>
+
+        {user ? (
+          <li>
+            <a href="/login" onClick={logout}>
+              Logout{" "}
+            </a>
+          </li>
+        ) : (
+          <li>
+            <NavLink to={"/login"}>Login</NavLink>
+          </li>
+        )}
       </ul>
     </header>
   );
