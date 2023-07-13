@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Header({ user }) {
+export default function Header({ user }: {user: string | null}) {
   const logout = () => {
     localStorage.removeItem("accessToken");
   };

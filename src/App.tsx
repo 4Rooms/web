@@ -1,33 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import UserProfile from "./pages/UserProfile.tsx";
 import Home from "./pages/Home.tsx";
-import Login from "./pages/Login.tsx";
 import Header from "./shared/Header/Header.tsx";
+import UserProfile from "./pages/UserProfile/UserProfile.tsx";
+import Login from "./pages/auth/Login.tsx";
+import { AuthContext, AuthProvider } from "./pages/auth/AuthContext/AuthContext.tsx";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+/*
+here is a function that will set username in the AuthContextand you can use it in any component
+    const {username, setUsername} = useContext(AuthContext)
+*/
 
-  useEffect(() => {
-    const user: any = localStorage.getItem("accessToken");
-    console.log(user);
+    const {username} = useContext(AuthContext)
 
-    if (user) {
-      setCurrentUser(user);
-    }
-  }, []);
+    useEffect(() => {
+        const user: any = localStorage.getItem("accessToken");
+        console.log(user);
 
-  return (
-    <Router>
-      <Header user={currentUser} />
-      <Routes>
-        <Route path="/user-profile/:id" element={<UserProfile />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
-  );
+        if (user) {
+/*
+            setUsername(user.username);
+*/
+        }
+    }, []);
+
+    return (
+        <Router>
+            <AuthProvider>
+                <Header user={username}/>
+                <Routes>
+                    <Route path="/user-profile/:id" element={<UserProfile/>}/>
+                    <Route path="/home" element={<Home/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                </Routes>
+            </AuthProvider>
+        </Router>
+    );
 }
 
 export default App;
