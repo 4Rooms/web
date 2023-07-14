@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home.tsx";
-import Header from "./shared/Header/Header.tsx";
-import UserProfile from "./pages/UserProfile/UserProfile.tsx";
-import Login from "./pages/auth/Login.tsx";
-import { AuthContext, AuthProvider } from "./pages/auth/AuthContext/AuthContext.tsx";
+import Home from './pages/Home';
+import Header from "./shared/Header/Header";
+import UserProfile from "./pages/UserProfile/UserProfile";
+import Login from "./pages/auth/Login/Login";
+import { AuthContext, AuthProvider } from "./pages/auth/AuthContext/AuthContext";
 
 function App() {
 /*
@@ -16,7 +16,7 @@ here is a function that will set username in the AuthContextand you can use it i
     const {username} = useContext(AuthContext)
 
     useEffect(() => {
-        const user: any = localStorage.getItem("accessToken");
+        const user: unknown = localStorage.getItem("accessToken");
         console.log(user);
 
         if (user) {

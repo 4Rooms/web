@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from './Login.module.scss';
+import styles from "./Login.module.scss";
 import jwtDecode from "jwt-decode";
 
 export default function Login() {
