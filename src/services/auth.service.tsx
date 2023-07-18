@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 const login = (url: any, data: any) => {
   return axios({
@@ -7,7 +8,7 @@ const login = (url: any, data: any) => {
     data: data,
   }).then((res) => {
     if (res.status !== 400 && res.status !== 401) {
-      //   console.log(jwtDecode(res.data.access), jwtDecode(res.data.refresh));
+      console.log(jwtDecode(res.data.access), jwtDecode(res.data.refresh));
       localStorage.setItem("accessToken", res.data.access);
       localStorage.setItem("refreshToken", res.data.refresh);
     }
