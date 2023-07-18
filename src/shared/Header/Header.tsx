@@ -1,9 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import authService from "../../services/auth.service";
 
-export default function Header({ user }: {user: string | null}) {
+export default function Header({ user }: { user: string | null }) {
+  // const logout = () => {
+  //   localStorage.removeItem("accessToken");
+  // };
+
   const logout = () => {
-    localStorage.removeItem("accessToken");
+    authService.logout();
   };
 
   return (
