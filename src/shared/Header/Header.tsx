@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../../services/auth.service";
+import {
+  AuthContext,
+  AuthProvider,
+} from "../../pages/auth/AuthContext/AuthContext";
 
 export default function Header({ user }: { user: string | null }) {
-  // const logout = () => {
-  //   localStorage.removeItem("accessToken");
-  // };
+  const { username, setUsername } = useContext(AuthContext);
 
   const logout = () => {
     authService.logout();
@@ -18,7 +20,7 @@ export default function Header({ user }: { user: string | null }) {
           <NavLink to={"/user-profile/1"}>User Profile</NavLink>
         </li>
 
-        {user ? (
+        {username ? (
           <li>
             <a href="/login" onClick={logout}>
               Logout{" "}

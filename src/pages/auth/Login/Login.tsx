@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
 import authService from "../../../services/auth.service";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 export default function Login() {
+  const { username, setUsername } = useContext(AuthContext);
+
   const [formState, setFormState] = useState({
     username: "",
     password: "",
@@ -22,7 +25,7 @@ export default function Login() {
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "https://prod-chat.duckdns.org/api/token/";
+    const url = "https://prod-chat.duckdns.org/api/login/";
 
     const data = {
       username: formState.username,
@@ -31,9 +34,11 @@ export default function Login() {
 
     try {
       await authService.login(url, data).then(
-        () => {
+        (user) => {
+          console.log(user);
+          setUsername(user.user.username);
           navigate("/home");
-          window.location.reload();
+          // window.location.reload();
         },
         (error) => {
           console.log(error);
@@ -44,8 +49,6 @@ export default function Login() {
       console.log(err);
     }
   };
-
-  const { username, password } = formState;
 
   return (
     <div className={styles.auth_form_wrapper}>
@@ -60,7 +63,7 @@ export default function Login() {
               required
               autoComplete="off"
               id="user"
-              value={username}
+              value={formState.username}
               onChange={(e) => onChange(e, "username")}
             />
           </label>
@@ -72,7 +75,7 @@ export default function Login() {
               required
               autoComplete="off"
               id="password"
-              value={password}
+              value={formState.password}
               onChange={(e) => onChange(e, "password")}
             />
           </label>

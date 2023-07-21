@@ -1,20 +1,24 @@
 import axios from "axios";
-import jwtDecode from "jwt-decode";
 
-const login = (url: any, data: any) => {
-  return axios({
-    url: url,
-    method: "POST",
-    data: data,
-  }).then((res) => {
-    if (res.status !== 400 && res.status !== 401) {
-      console.log(jwtDecode(res.data.access), jwtDecode(res.data.refresh));
-      localStorage.setItem("accessToken", res.data.access);
-      localStorage.setItem("refreshToken", res.data.refresh);
+const login = async (url: any, data: any) => {
+  try {
+    const res = await axios({
+      url: url,
+      method: "POST",
+      data: data,
+    });
+
+    console.log(res);
+
+    if (res.status !== 200) {
+      throw new Error("Response status is not 200");
     }
 
     return res.data;
-  });
+  } catch (error) {
+    console.error("Error occurred during login:", error);
+    throw error; // Rethrow the error to propagate it to the caller
+  }
 };
 
 const logout = () => {

@@ -11,23 +11,21 @@ import {
 } from "./pages/auth/AuthContext/AuthContext";
 
 function App() {
-  /*
-here is a function that will set username in the AuthContext and you can use it in any component
-    const {username, setUsername} = useContext(AuthContext)
-*/
+  // here is a function that will set username in the AuthContext and you can use it in any component
+  const { username, setUsername } = useContext(AuthContext);
 
-  //! the construction below is temporary
-  const [username, setUsername] = useState<string | null>(null);
+  // the construction below is temporary
+  // const [username, setUsername] = useState<string | null>(null);
 
-  useEffect(() => {
-    const user: unknown = localStorage.getItem("accessToken");
-    console.log(user);
+  // useEffect(() => {
+  //   const user: unknown = localStorage.getItem("accessToken");
+  //   console.log(user);
 
-    if (user) {
-      // setUsername(user.username);
-      setUsername("true");
-    }
-  }, []);
+  //   if (user) {
+  //     // setUsername(user.username);
+  //     setUsername("true");
+  //   }
+  // }, []);
 
   return (
     <Router>
