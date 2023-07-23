@@ -25,29 +25,45 @@ export default function Login() {
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "https://prod-chat.duckdns.org/api/login/";
+    const url = "https://test-chat.duckdns.org/api/login/";
 
     const data = {
       username: formState.username,
       password: formState.password,
     };
 
-    try {
-      await authService.login(url, data).then(
-        (user) => {
-          console.log(user);
-          setUsername(user.user.username);
-          navigate("/home");
-          // window.location.reload();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } catch (err: any) {
-      alert(err.response.data.detail);
-      console.log(err);
-    }
+    // try {
+
+    fetch(url, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log({ result });
+        navigate("/home");
+        //document.cookie = "token=kjkjkj";
+        console.log(document.cookie);
+      });
+    //   await authService.login(url, data).then(
+    //     (user) => {
+    //       console.log(user);
+    //       setUsername(user.user.username);
+    //       navigate("/home");
+    //       // window.location.reload();
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //     }
+    //   );
+    // } catch (err: any) {
+    //   alert(err.response.data.detail);
+    //   console.log(err);
+    // }
   };
 
   return (

@@ -8,6 +8,58 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <div>
+      <label for="server">server</label>
+      <input id="server" value="https://test-chat.duckdns.org/api" />
+    </div>
+    <div>
+      <label for="username">username</label>
+      <input id="username" value="user1" />
+    </div>
+    <div>
+      <label for="password">password</label>
+      <input id="password" value="user1@gmail.comuser1@gmail.com" />
+    </div>
+    <button onclick="login()">Login</button>
+    <script>
+      const login = () => {
+        const server = document.getElementById("server").value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        console.log({
+          username,
+          password,
+        });
+
+        fetch(`${server}/login/`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log({ result });
+            //document.cookie = "token=kjkjkj";
+            console.log(document.cookie);
+            fetch(`${server}/profile/avatar/`, {
+              method: "GET",
+              credentials: "include",
+            })
+              .then((response) => response.json())
+              .then((result) => {
+                console.log({ result });
+              });
+          });
+      };
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

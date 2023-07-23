@@ -6,9 +6,12 @@ const login = async (url: any, data: any) => {
       url: url,
       method: "POST",
       data: data,
+      // headers: {
+      //   "Content-Type": "application/json;charset=utf-8",
+      // },
     });
 
-    console.log(res);
+    console.log(res.data);
 
     if (res.status !== 200) {
       throw new Error("Response status is not 200");
