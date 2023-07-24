@@ -32,38 +32,22 @@ export default function Login() {
       password: formState.password,
     };
 
-    // try {
-
-    fetch(url, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log({ result });
-        navigate("/home");
-        //document.cookie = "token=kjkjkj";
-        console.log(document.cookie);
-      });
-    //   await authService.login(url, data).then(
-    //     (user) => {
-    //       console.log(user);
-    //       setUsername(user.user.username);
-    //       navigate("/home");
-    //       // window.location.reload();
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
-    // } catch (err: any) {
-    //   alert(err.response.data.detail);
-    //   console.log(err);
-    // }
+    try {
+      await authService.login(url, data).then(
+        (responseData) => {
+          console.log(responseData);
+          setUsername(responseData.user.username);
+          navigate("/home");
+          // window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } catch (err: any) {
+      alert(err.response.data.detail);
+      console.log(err);
+    }
   };
 
   return (
