@@ -37,6 +37,7 @@ export default function Login() {
         (responseData) => {
           console.log(responseData);
           setUsername(responseData.user.username);
+          localStorage.setItem("user", JSON.stringify(responseData.user));
           navigate("/home");
           // window.location.reload();
         },
@@ -85,5 +86,3 @@ export default function Login() {
     </div>
   );
 }
-
-// TODO : improve error handling

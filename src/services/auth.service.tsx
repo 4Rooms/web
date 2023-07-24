@@ -22,7 +22,7 @@ const login = async (url: any, data: any) => {
 
     const respData = await response.json();
 
-    if (response.status !== 200) {
+    if (!response.ok) {
       throw new Error("Response status is not 200");
     }
 
@@ -34,7 +34,7 @@ const login = async (url: any, data: any) => {
 };
 
 const logout = () => {
-  localStorage.removeItem("accessToken");
+  localStorage.clear();
 };
 
 const authService = {

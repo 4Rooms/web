@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../pages/auth/AuthContext/AuthContext";
 // import axios from "axios";
 
-export default function Home() {
-  const { username } = useContext(AuthContext);
+export default function Home({ username }: { username: string | null }) {
+  // const { username } = useContext(AuthContext);
 
   const getImg = () => {
     fetch("https://test-chat.duckdns.org/api/profile/avatar/", {
