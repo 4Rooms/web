@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
+import { testServerURL } from "../apiUrls/apiUrls";
 
 export default function Home({ username }: { username: string | null }) {
   const getImg = () => {
-    fetch("https://test-chat.duckdns.org/api/profile/avatar/", {
+    fetch(`${testServerURL}api/profile/avatar/`, {
       method: "GET",
       credentials: "include",
     })
@@ -15,6 +16,7 @@ export default function Home({ username }: { username: string | null }) {
   return (
     <div className="Home">
       <h1>This is a homepage, {username}</h1>
+      <button onClick={getImg}>Get img</button>
     </div>
   );
 }
