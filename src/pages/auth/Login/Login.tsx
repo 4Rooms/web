@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
 import authService from "../../../services/auth.service";
 import { AuthContext } from "../AuthContext/AuthContext";
+import { testServerURL } from "../../../apiUrls/apiUrls";
 
 export default function Login() {
   const { username, setUsername } = useContext(AuthContext);
@@ -25,7 +26,7 @@ export default function Login() {
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "https://prod-chat.duckdns.org/api/login/";
+    const url = `${testServerURL}api/login/`;
 
     const data = {
       username: formState.username,
@@ -34,9 +35,10 @@ export default function Login() {
 
     try {
       await authService.login(url, data).then(
-        (user) => {
-          console.log(user);
-          setUsername(user.user.username);
+        (responseData) => {
+          console.log(responseData);
+          setUsername(responseData.user.username);
+          localStorage.setItem("user", JSON.stringify(responseData.user));
           navigate("/home");
           // window.location.reload();
         },
@@ -85,5 +87,3 @@ export default function Login() {
     </div>
   );
 }
-
-// TODO : improve error handling
