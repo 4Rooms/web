@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
-import authService from "../../../services/auth.service";
 import { AuthContext } from "../AuthContext/AuthContext";
-import { testServerURL } from "../../../apiUrls/apiUrls";
+import authService from "../../../services/auth/auth.service.tsx";
+import { localStorageService } from "../../../services/local-storage/local-storage.ts";
 
 export default function Login() {
-  const { username, setUsername } = useContext(AuthContext);
+  const { setUsername } = useContext(AuthContext);
 
   const [formState, setFormState] = useState({
     username: "",
@@ -25,31 +25,17 @@ export default function Login() {
 
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const url = `${testServerURL}api/login/`;
+    const url = `${import.meta.env.BASE_URL}login/`;
 
     const data = {
       username: formState.username,
       password: formState.password,
     };
-
-    try {
-      await authService.login(url, data).then(
-        (responseData) => {
-          console.log(responseData);
-          setUsername(responseData.user.username);
-          localStorage.setItem("user", JSON.stringify(responseData.user));
-          navigate("/home");
-          // window.location.reload();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } catch (err: any) {
-      alert(err.response.data.detail);
-      console.log(err);
-    }
+    const response = await authService.login(url, data);
+    if (!response) throw new Error("Response is undefined");
+    setUsername(response.user.username);
+    localStorageService.set("user", response.user);
+    navigate("/home");
   };
 
   return (

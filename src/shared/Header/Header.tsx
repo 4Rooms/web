@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import authService from "../../services/auth.service";
+import authService from "../../services/auth/auth.service.tsx";
 
 export default function Header({ user }: { user: string | null }) {
   const logout = () => {
