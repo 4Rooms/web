@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import styles from './UserProfile.module.scss';
+import React,{ useState } from 'react';
+import styles from "./UserProfile.module.scss";
 
 export default function UserProfile() {
     const [user, setUser] = useState({
