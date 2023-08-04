@@ -3,7 +3,7 @@ import { testServerURL } from "../apiUrls/apiUrls";
 
 export default function Home({ username }: { username: string | null }) {
   const getImg = () => {
-    fetch(`${testServerURL}api/profile/avatar/`, {
+    fetch(`${import.meta.env.BASE_URL}api/profile/avatar/`, {
       method: "GET",
       credentials: "include",
     })
