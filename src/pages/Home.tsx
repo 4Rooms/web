@@ -1,16 +1,22 @@
 import React from "react";
-import { testServerURL } from "../apiUrls/apiUrls";
+// import { testServerURL } from "../apiUrls/apiUrls";
 
 export default function Home({ username }: { username: string | null }) {
   const getImg = () => {
-    fetch(`${import.meta.env.BASE_URL}api/profile/avatar/`, {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log({ result });
-      });
+    const URL = "https://test-chat.duckdns.org/api/profile/";
+    // const URL = `${import.meta.env.TEST_URL}profile/avatar/`;
+    try {
+      fetch(URL, {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log({ result });
+        });
+    } catch (err) {
+      console.error(`ERRROR: ${err}`);
+    }
   };
 
   return (

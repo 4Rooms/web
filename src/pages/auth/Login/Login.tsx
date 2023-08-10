@@ -25,7 +25,8 @@ export default function Login() {
 
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const url = `${import.meta.env.BASE_URL}login/`;
+    // const url = `${import.meta.env.TEST_URL}login/`;
+    const url = "https://test-chat.duckdns.org/api/login/";
 
     const data = {
       username: formState.username,
