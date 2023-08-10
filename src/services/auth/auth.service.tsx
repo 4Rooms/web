@@ -11,9 +11,15 @@ const signup = async (url: string, data: any) => {
   } catch (err: any) {
     console.error(err.response.data);
   }
-  // if (response.status !== 200) {
-  //   throw new Error("Response status is not 200");
-  // }
+};
+
+const confirmEmail = async (url: string) => {
+  try {
+    const response = await axios.get(url);
+    return response;
+  } catch (err: any) {
+    console.error(err.response.data);
+  }
 };
 
 const login = async (url: string, data: unknown) => {
@@ -37,6 +43,7 @@ const logout = () => {
 
 const authService = {
   signup,
+  confirmEmail,
   login,
   logout,
 };

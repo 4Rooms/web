@@ -7,6 +7,7 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 import Login from "./pages/auth/Login/Login";
 import Signup from "./pages/auth/Signup/Signup";
 import CheckYourEmail from "./pages/auth/Signup/CheckYourEmail";
+import ConfirmEmail from "./pages/auth/Signup/ConfirmEmail";
 import { AuthContext } from "./pages/auth/AuthContext/AuthContext";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/check-your-email" element={<CheckYourEmail />} />
+        <Route path="/confirm-email" element={<ConfirmEmail />} />
       </Routes>
     </Router>
   );
