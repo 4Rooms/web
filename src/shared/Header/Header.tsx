@@ -13,6 +13,9 @@ export default function Header({ user }: { user: string | null }) {
         <li>
           <NavLink to={"/user-profile/1"}>User Profile</NavLink>
         </li>
+        <li>
+          <NavLink to={"/signup"}>SignUp</NavLink>
+        </li>
 
         {user ? (
           <li>
