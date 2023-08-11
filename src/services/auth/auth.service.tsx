@@ -32,9 +32,15 @@ const login = async (url: string, data: unknown) => {
     body: JSON.stringify(data),
   });
 
-  if (!response.ok) throw new Error("Response status is not 200");
+  if (!response.ok) {
+    console.error(`An error occurred with the status: ${response.status}`);
+    const errorData = await response.json();
+    throw errorData;
+  }
+  return response.json();
 
-  return await response.json();
+  // if (!response.ok) throw new Error("Response status is not 200");
+  // return await response.json();
 };
 
 const logout = () => {
