@@ -9,7 +9,13 @@ const signup = async (url: string, data: any) => {
     });
     return response;
   } catch (err: any) {
-    console.error(err.response.data);
+    // console.error(err.response);
+    const errorResp = err.response.data;
+    const errors = [];
+    for (const err in errorResp) {
+      errors.push(errorResp[err]);
+    }
+    throw errors;
   }
 };
 

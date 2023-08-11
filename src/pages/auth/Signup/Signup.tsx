@@ -22,18 +22,32 @@ export default function Signup() {
 
   const handleSignup = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      const url = "https://test-chat.duckdns.org/api/register/";
+      const data = {
+        username: formState.username,
+        email: formState.email,
+        password: formState.password,
+      };
 
-    const url = "https://test-chat.duckdns.org/api/register/";
-    const data = {
-      username: formState.username,
-      email: formState.email,
-      password: formState.password,
-    };
-
-    const response = await authService.signup(url, data);
-    console.log(response);
-    if (!response) throw new Error("Response is undefined");
-    navigate("/check-your-email");
+      const response = await authService.signup(url, data);
+      console.log(response);
+      if (!response) throw new Error("Response is undefined");
+      navigate("/check-your-email");
+    } catch (error: any) {
+      if (error instanceof Array) {
+        // handle array of errors
+        error.forEach((err) => {
+          alert(err[0]);
+        });
+      } else if (error instanceof Error) {
+        // handle single error
+        console.error(error.message);
+      } else {
+        // handle unexpected error object
+        console.error(error);
+      }
+    }
   };
 
   return (
