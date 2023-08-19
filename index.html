@@ -47,7 +47,6 @@
           .then((response) => response.json())
           .then((result) => {
             console.log({ result });
-            //document.cookie = "token=kjkjkj";
             console.log(document.cookie);
             fetch(`${server}/profile/avatar/`, {
               method: "GET",

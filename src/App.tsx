@@ -1,10 +1,13 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./shared/Header/Header";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Login from "./pages/auth/Login/Login";
+import Signup from "./pages/auth/Signup/Signup";
+import CheckYourEmail from "./pages/auth/Signup/CheckYourEmail";
+import ConfirmEmail from "./pages/auth/Signup/ConfirmEmail";
 import { AuthContext } from "./pages/auth/AuthContext/AuthContext";
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
         <Route path="/user-profile/:id" element={<UserProfile />} />
         <Route path="/home" element={<Home username={username} />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/check-your-email" element={<CheckYourEmail />} />
+        <Route path="/confirm-email" element={<ConfirmEmail />} />
       </Routes>
     </Router>
   );

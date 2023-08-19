@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Login.module.scss";
 import { AuthContext } from "../AuthContext/AuthContext";
 import authService from "../../../services/auth/auth.service.tsx";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
+import styles from "./Login.module.scss";
 
 export default function Login() {
   const { setUsername } = useContext(AuthContext);
@@ -25,17 +25,24 @@ export default function Login() {
 
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const url = `${import.meta.env.BASE_URL}login/`;
+    // const url = `${import.meta.env.TEST_URL}login/`;
+    try {
+      const url = "https://test-chat.duckdns.org/api/login/";
 
-    const data = {
-      username: formState.username,
-      password: formState.password,
-    };
-    const response = await authService.login(url, data);
-    if (!response) throw new Error("Response is undefined");
-    setUsername(response.user.username);
-    localStorageService.set("user", response.user);
-    navigate("/home");
+      const data = {
+        username: formState.username,
+        password: formState.password,
+      };
+      const response = await authService.login(url, data);
+      // console.log(response);
+      // if (!response) throw new Error("Response is undefined");
+
+      setUsername(response.user.username);
+      localStorageService.set("user", response.user);
+      navigate("/home");
+    } catch (error: any) {
+      alert(error.Invalid);
+    }
   };
 
   return (
