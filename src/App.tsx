@@ -9,6 +9,7 @@ import Signup from "./pages/auth/Signup/Signup";
 import CheckYourEmail from "./pages/auth/Signup/CheckYourEmail";
 import ConfirmEmail from "./pages/auth/Signup/ConfirmEmail";
 import { AuthContext } from "./pages/auth/AuthContext/AuthContext";
+import GoogleOauth from "./pages/auth/GoogleOauth/GoggleOauth.tsx";
 
 function App() {
   // here is a function that will set username in the AuthContext and you can use it in any component
@@ -32,6 +33,7 @@ function App() {
         <Route path="/user-profile/:id" element={<UserProfile />} />
         <Route path="/home" element={<Home username={username} />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/google-login" element={<GoogleOauth />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/check-your-email" element={<CheckYourEmail />} />
         <Route path="/confirm-email" element={<ConfirmEmail />} />
