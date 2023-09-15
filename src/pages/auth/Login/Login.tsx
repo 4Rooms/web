@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthContext/AuthContext";
 import authService from "../../../services/auth/auth.service.tsx";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
@@ -75,6 +75,9 @@ export default function Login() {
             />
           </label>
         </div>
+        <NavLink className={"forget_psw_link"} to={"/forgot-password"}>
+          Forgot password?
+        </NavLink>
         <button type="submit">Log in</button>
       </form>
     </div>
