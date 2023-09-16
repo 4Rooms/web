@@ -1,0 +1,47 @@
+.container__filterFroups {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    display: grid;
+    margin-bottom: 24px;
+}
+
+.button__filter {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+    transition: text-decoration 250ms;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    color: var(--gray);
+
+    &:hover,
+    &:focus {
+        text-decoration-line: underline;
+        color: var(--button--color);
+    }
+}
+
+.button__new {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    width: 35%;
+    text-align: left;
+    color: var(--color--button);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%; 
+    border-radius: 5px;
+    background-color: var(--button--color);
+    box-shadow: var(--box-shadow-button);
+    padding: 4px 8px;
+    border: transparent;
+    cursor: pointer;
+}
+
+.icon__addNew {
+    width: 8px;
+    height: 5px;
+    fill: black;
+}

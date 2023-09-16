@@ -13,6 +13,7 @@ import CheckYourEmailResetPassword from "./pages/auth/ForgotPassword/CheckYourEm
 import PasswordReset from "./pages/auth/ForgotPassword/PasswordReset";
 import PasswIsUpdated from "./pages/auth/ForgotPassword/PasswordIsUpdated";
 import { AuthContext } from "./pages/auth/AuthContext/AuthContext";
+import Chats from "./pages/Chats/Chats";
 
 function App() {
   // here is a function that will set username in the AuthContext and you can use it in any component
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <Router>
-      <Header user={username} />
+      {/* <Header user={username} /> */}
       <Routes>
         <Route path="/user-profile/:id" element={<UserProfile />} />
         <Route path="/home" element={<Home username={username} />} />
@@ -46,6 +47,7 @@ function App() {
         />
         <Route path="/password-reset" element={<PasswordReset />} />
         <Route path="/password-updated" element={<PasswIsUpdated />} />
+        <Route path="/chat" element={<Chats />} />
       </Routes>
     </Router>
   );

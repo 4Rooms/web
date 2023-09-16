@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.container__chat {
+  height: 530px;
+  padding: 20px;
+  width: 100%;
+  background-color: var(--background-color-chat);
+  gap: 8px;
+  overflow-y: auto;
+}
+.container__chat::-webkit-scrollbar {
+  width: 1px; /* Ширина скролбару */
+}
+.container__chat::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0); /* Колір скролбару */
+}
+.container__chat::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0); /* Колір при наведенні на скролбар */
+}/*# sourceMappingURL=Chat.module.css.map */

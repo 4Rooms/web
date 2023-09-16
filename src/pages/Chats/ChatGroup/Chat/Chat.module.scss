@@ -1,0 +1,20 @@
+.container__chat {
+    height: 530px;
+    padding: 20px;
+    width: 100%;
+    background-color: var(--background-color-chat);
+    gap: 8px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 1px; /* Ширина скролбару */
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0); /* Колір скролбару */
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0, 0, 0, 0); /* Колір при наведенні на скролбар */
+    }
+}
