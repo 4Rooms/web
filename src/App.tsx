@@ -32,7 +32,7 @@ function App() {
 
   return (
     <Router>
-      {/* <Header user={username} /> */}
+      <Header user={username} />
       <Routes>
         <Route path="/user-profile/:id" element={<UserProfile />} />
         <Route path="/home" element={<Home username={username} />} />
