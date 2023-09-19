@@ -1,0 +1,37 @@
+.container__online {
+  padding: 10px 20px;
+  background-color: var(--background-color-chat);
+  flex-wrap: wrap;
+  display: flex;
+  gap: 9px;
+  width: 100%;
+  align-items: end;
+}
+
+.online__text {
+  font-size: 16px;
+  font-style: normal;
+  line-height: 150%;
+}
+
+.online__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 30%;
+}
+
+.online__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.online__button {
+  font-size: 16px;
+  cursor: pointer;
+  font-style: normal;
+  line-height: 150%;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--black);
+}/*# sourceMappingURL=Online.module.css.map */

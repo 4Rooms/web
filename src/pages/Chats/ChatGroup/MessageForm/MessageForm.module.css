@@ -1,0 +1,29 @@
+.form__message {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 0px 0px 20px 20px;
+  background-color: var(--background-color-chat);
+  width: 100%;
+  align-items: center;
+}
+
+.input__message {
+  width: 100%;
+  background-color: transparent;
+  font-family: Inter;
+  font-size: 16px;
+  line-height: 24px;
+  border-color: transparent;
+  caret-color: var(--gray);
+}
+.input__message:focus {
+  outline: none;
+}
+
+.button__message {
+  border-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
+}/*# sourceMappingURL=MessageForm.module.css.map */

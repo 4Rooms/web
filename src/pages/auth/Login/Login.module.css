@@ -3,4 +3,12 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+}
+
+input {
+  margin-left: 1em;
+}
+
+button {
+  margin-top: 1em;
 }/*# sourceMappingURL=Login.module.css.map */

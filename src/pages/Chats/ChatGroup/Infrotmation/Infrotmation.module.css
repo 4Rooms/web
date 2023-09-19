@@ -1,0 +1,64 @@
+.container__information {
+  background-color: var(--background-color-chat);
+  display: flex;
+  padding: 20px;
+  justify-content: left;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.group {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 9px;
+  padding-left: 0;
+  background-color: transparent;
+  border: transparent;
+  width: 100%;
+}
+
+.group__avatar {
+  width: 49px;
+  height: 49px;
+  border-radius: 49%;
+}
+
+.group__name {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.group__text {
+  color: #212121;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.group__additional {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time__additional {
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.container__button {
+  display: flex;
+  gap: 12px;
+}
+
+.button__additional {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}/*# sourceMappingURL=Infrotmation.module.css.map */

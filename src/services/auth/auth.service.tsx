@@ -49,6 +49,15 @@ const login = async (url: string, data: unknown) => {
   // return await response.json();
 };
 
+const resetPassword = async (url: string, data: any) => {
+  const response = await axios({
+    url,
+    method: "POST",
+    data,
+  });
+  return response;
+};
+
 const logout = () => {
   localStorage.clear();
 };
@@ -57,6 +66,7 @@ const authService = {
   signup,
   confirmEmail,
   login,
+  resetPassword,
   logout,
 };
 
