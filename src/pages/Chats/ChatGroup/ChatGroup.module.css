@@ -1,0 +1,5 @@
+.container__chatGroups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}/*# sourceMappingURL=ChatGroup.module.css.map */
