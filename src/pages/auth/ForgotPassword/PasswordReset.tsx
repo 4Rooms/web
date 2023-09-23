@@ -27,7 +27,7 @@ export default function PasswordReset() {
         const token_id: string = search.slice(10);
         console.log(token_id);
 
-        const url = "https://test-chat.duckdns.org/api/user/password/reset";
+        const url = "https://back.4rooms.pro/api/user/password/reset";
         const data: any = {
           password,
           token_id,

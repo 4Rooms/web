@@ -1,23 +1,21 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import Header from "./shared/Header/Header";
-import UserProfile from "./pages/UserProfile/UserProfile";
-import Login from "./pages/auth/Login/Login";
-import Signup from "./pages/auth/Signup/Signup";
-import CheckYourEmail from "./pages/auth/Signup/CheckYourEmail";
-import ConfirmEmail from "./pages/auth/Signup/ConfirmEmail";
-import ForgotPassword from "./pages/auth/ForgotPassword/ForgotPassword";
-import CheckYourEmailResetPassword from "./pages/auth/ForgotPassword/CheckYourEmailResetPassword";
-import PasswordReset from "./pages/auth/ForgotPassword/PasswordReset";
-import PasswIsUpdated from "./pages/auth/ForgotPassword/PasswordIsUpdated";
-import { AuthContext } from "./pages/auth/AuthContext/AuthContext";
+import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
+import { DashboardPage } from "./pages/dashboard/dashboard.tsx";
+import GuardRoutes from "./utils/guard-routes.tsx";
+import { useAuth } from "./pages/auth/auth-context/use-auth.tsx";
 import Chats from "./pages/Chats/Chats";
+import Login from "./pages/auth/Login/Login.tsx";
+import Signup from "./pages/auth/Signup/Signup.tsx";
+import PasswordReset from "./pages/auth/ForgotPassword/PasswordReset.tsx";
+import ForgotPassword from "./pages/auth/ForgotPassword/ForgotPassword.tsx";
+import CheckYourEmail from "./pages/auth/Signup/CheckYourEmail.tsx";
 
 function App() {
-  // here is a function that will set username in the AuthContext and you can use it in any component
-  const { username, setUsername } = useContext(AuthContext);
+  // here is a function that will set username in the auth-context and you can use it in any component
+  const { isAuthenticated, username, setUsername } = useAuth();
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -32,22 +30,20 @@ function App() {
 
   return (
     <Router>
-      <Header user={username} />
+      {isAuthenticated && <Header user={username} />}
       <Routes>
-        <Route path="/user-profile/:id" element={<UserProfile />} />
-        <Route path="/home" element={<Home username={username} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/check-your-email" element={<CheckYourEmail />} />
-        <Route path="/confirm-email" element={<ConfirmEmail />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route
-          path="/check-your-email-reset-password"
-          element={<CheckYourEmailResetPassword />}
-        />
+        <Route element={<GuardRoutes/>}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/chat" element={<Chats />} />
+        </Route>
+        <Route path="/auth" element={<AuthPage/>} />
+        <Route path="/authentication" element={<Login/>} />
+        <Route path="/create-account" element={<Signup/>} />
         <Route path="/password-reset" element={<PasswordReset />} />
-        <Route path="/password-updated" element={<PasswIsUpdated />} />
-        <Route path="/chat" element={<Chats />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/check-your-email" element={<CheckYourEmail />} />
+
+
       </Routes>
     </Router>
   );

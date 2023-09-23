@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Home({ username }: { username: string | null }) {
   const getImg = () => {
-    const URL = "https://test-chat.duckdns.org/api/profile/";
+    const URL = "https://back.4rooms.pro/api/profile/";
     // const URL = `${import.meta.env.TEST_URL}profile/avatar/`;
     try {
       fetch(URL, {

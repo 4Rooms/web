@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
-import { AuthContext } from "../AuthContext/AuthContext";
+import { useNavigate, NavLink, Link } from "react-router-dom";
+import { AuthContext } from "../auth-context/auth-context";
 import authService from "../../../services/auth/auth.service.tsx";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
 import styles from "./Login.module.scss";
@@ -27,7 +27,7 @@ export default function Login() {
     e.preventDefault();
     // const url = `${import.meta.env.TEST_URL}login/`;
     try {
-      const url = "https://test-chat.duckdns.org/api/login/";
+      const url = "https://back.4rooms.pro/api/login/";
 
       const data = {
         username: formState.username,
@@ -48,13 +48,19 @@ export default function Login() {
   return (
     <div className={styles.auth_form_wrapper}>
       <form onSubmit={onSubmit}>
-        <h3>Login</h3>
+        <h3>Authentication</h3>
+        <div>
+          Sign in with Google:
+          <Link to={'https://back.4rooms.pro/oauth/login/google-oauth2/'}>
+            <button type={"button"}>Google</button>
+          </Link>
+        </div>
         <div className={styles.auth_form_input_container}>
+          <h2>Or sign in with your username and password:</h2>
           <label htmlFor="user">
-            user name
             <input
               type="text"
-              placeholder="user name / email"
+              placeholder="Enter your username"
               required
               autoComplete="off"
               id="user"
@@ -63,10 +69,9 @@ export default function Login() {
             />
           </label>
           <label htmlFor="password">
-            password
             <input
               type="password"
-              placeholder="********"
+              placeholder="Enter your password"
               required
               autoComplete="off"
               id="password"
@@ -78,7 +83,7 @@ export default function Login() {
         <NavLink className={"forget_psw_link"} to={"/forgot-password"}>
           Forgot password?
         </NavLink>
-        <button type="submit">Log in</button>
+        <button type="submit">Sign in </button>
       </form>
     </div>
   );
