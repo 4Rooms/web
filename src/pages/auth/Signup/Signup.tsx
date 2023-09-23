@@ -23,7 +23,7 @@ export default function Signup() {
   const handleSignup = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const url = "https://test-chat.duckdns.org/api/register/";
+      const url = "https://back.4rooms.pro/api/register/";
       const data = {
         username: formState.username,
         email: formState.email,

@@ -13,7 +13,7 @@ export default function ConfirmEmail() {
         const currentUrl = window.location.href;
         const url = currentUrl.replace(
           origin,
-          "https://test-chat.duckdns.org/api"
+          "https://back.4rooms.pro/api"
         );
 
         const response = await authService.confirmEmail(url);

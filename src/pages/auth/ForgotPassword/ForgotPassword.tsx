@@ -18,7 +18,7 @@ export default function ForgotPassword() {
     // const url = `${import.meta.env.TEST_URL}user/password/request-reset`;
     try {
       const url =
-        "https://test-chat.duckdns.org/api/user/password/request-reset";
+        "https://back.4rooms.pro/api/user/password/request-reset";
 
       const data = {
         email,
