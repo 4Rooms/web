@@ -4,8 +4,10 @@ import { AuthContext } from "../auth-context/auth-context";
 import authService from "../../../services/auth/auth.service.tsx";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
 import styles from "./Login.module.scss";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
+  const { t } = useTranslation('translation', { keyPrefix: 'sign-in-page' });
   const { setUsername } = useContext(AuthContext);
 
   const [formState, setFormState] = useState({
@@ -48,19 +50,19 @@ export default function Login() {
   return (
     <div className={styles.auth_form_wrapper}>
       <form onSubmit={onSubmit}>
-        <h3>Authentication</h3>
+        <h3>{t('title')}</h3>
         <div>
-          Sign in with Google:
+          {t('signInWithGoogle')}
           <Link to={'https://back.4rooms.pro/oauth/login/google-oauth2/'}>
             <button type={"button"}>Google</button>
           </Link>
         </div>
         <div className={styles.auth_form_input_container}>
-          <h2>Or sign in with your username and password:</h2>
+          <h2>{t('orSignInWithCredentials')}</h2>
           <label htmlFor="user">
             <input
               type="text"
-              placeholder="Enter your username"
+              placeholder={t('enterUsername')}
               required
               autoComplete="off"
               id="user"
@@ -71,7 +73,7 @@ export default function Login() {
           <label htmlFor="password">
             <input
               type="password"
-              placeholder="Enter your password"
+              placeholder={t('enterPassword')}
               required
               autoComplete="off"
               id="password"
@@ -81,9 +83,9 @@ export default function Login() {
           </label>
         </div>
         <NavLink className={"forget_psw_link"} to={"/forgot-password"}>
-          Forgot password?
+          {t('forgotPassword')}
         </NavLink>
-        <button type="submit">Sign in </button>
+        <button type="submit">{t('signInButton')}</button>
       </form>
     </div>
   );

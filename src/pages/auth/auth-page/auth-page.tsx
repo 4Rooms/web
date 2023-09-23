@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export function AuthPage() {
+    const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
     return (
         <div>
-            <h1>Hi</h1>
-            <h2>welcome to the 4Rooms</h2>
-            <p>Have an account? Sign in or Sign up</p>
+            <h1>{t('hi')}</h1>
+            <h2>{t('welcome')}</h2>
+            <p>{t('account')}</p>
             <div>
-                <Link to="/authentication">Sign in</Link>
-                <Link to="/create-account">Sign up</Link>
+                <Link to="/authentication">{t('sign in')}</Link>
+                <Link to="/create-account">{t('sign up')}</Link>
             </div>
         </div>
     );
