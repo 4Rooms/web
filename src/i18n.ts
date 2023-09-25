@@ -49,11 +49,7 @@ let userLanguage = localStorage.getItem('language');
 if (!userLanguage) {
     const systemLanguage = navigator.language.split('-')[0];
 
-    if (systemLanguage === 'uk' || systemLanguage === 'en') {
-        userLanguage = systemLanguage;
-    } else {
-        userLanguage = 'en';
-    }
+    userLanguage = systemLanguage === 'ua' ? systemLanguage : 'en';
 }
 
 
