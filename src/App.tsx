@@ -12,6 +12,7 @@ import Signup from "./pages/auth/Signup/Signup.tsx";
 import PasswordReset from "./pages/auth/ForgotPassword/PasswordReset.tsx";
 import ForgotPassword from "./pages/auth/ForgotPassword/ForgotPassword.tsx";
 import CheckYourEmail from "./pages/auth/Signup/CheckYourEmail.tsx";
+import ChangeLanguage from "./shared/change-language.tsx";
 
 function App() {
   // here is a function that will set username in the auth-context and you can use it in any component
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <Router>
+      <ChangeLanguage/>
       {isAuthenticated && <Header user={username} />}
       <Routes>
         <Route element={<GuardRoutes/>}>
