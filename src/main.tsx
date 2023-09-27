@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { AuthProvider } from './pages/auth/auth-context/auth-provider';
 import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./pages/auth/auth-context/auth-provider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <AuthProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </AuthProvider>
+    </React.StrictMode>
 );

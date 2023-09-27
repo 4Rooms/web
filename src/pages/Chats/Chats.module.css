@@ -1,7 +1,8 @@
 .container__chatInformation {
-  grid-template-columns: 294px 1fr;
+  grid-template-columns: 294px 706px;
   -moz-column-gap: 60px;
        column-gap: 60px;
   display: grid;
-  padding: 48px 0;
+  padding: 22px 120.5px 67px 120.5px;
+  justify-content: center;
 }/*# sourceMappingURL=Chats.module.css.map */
