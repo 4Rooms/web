@@ -23,7 +23,8 @@ const authSchema = yup.object().shape({
     email: yup
         .string()
         .email("Enter a valid email address")
-        .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+        .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        "Must be a valid email address")
         .required("Email is required"),
     password: yup
         .string()
@@ -39,6 +40,7 @@ const authSchema = yup.object().shape({
 export default function Login() {
     const { setUsername } = useContext(AuthContext);
     const inputArray: string[] = ["email", "password", "name"];
+    const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
     const [formStateValue, setFormStateValue] = useState<Inputs>({
         name: "",
@@ -61,6 +63,8 @@ export default function Login() {
         register,
         handleSubmit,
         reset,
+        setError, 
+        clearErrors,
         formState: { errors },
     } = useForm<Inputs>({
         defaultValues: {
@@ -82,10 +86,12 @@ export default function Login() {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
         const value = e.target.value;
+
         setFormStateValue({
             ...formStateValue,
             [type]: value,
         });
+
         authSchema
             .validateAt(type, { [type]: value })
             .then(() => {
@@ -93,12 +99,19 @@ export default function Login() {
                     ...formStateValid,
                     [type]: true,
                 });
+                if (formSubmitted) {
+                    clearErrors(type as keyof Inputs);
+                }
             })
-            .catch(() => {
+            .catch((error) => {
                 setFormStateValid({
                     ...formStateValid,
                     [type]: false,
                 });
+                console.log(formSubmitted)
+                if (formSubmitted) {
+                    setError(type as keyof Inputs, { message: error.message});
+                }
             });
     };
 
@@ -154,10 +167,10 @@ export default function Login() {
                                             ? "true"
                                             : "false"
                                     }
-                                    placeholder="Enter your value"
+                                    placeholder={"Enter your " + value}
                                     type="value"
                                     style={{
-                                        border: errors[value as keyof Inputs]
+                                        border: errors[value as keyof Inputs] && !formStateValid[value as keyof Inputs]
                                             ? "1px solid red"
                                             : formStateValid[
                                                   value as keyof Inputs
@@ -193,152 +206,22 @@ export default function Login() {
                                     formStateValue[value as keyof Inputs]
                                         .length > 0 && (
                                         <div className={styles.focus__block}>
-                                            <p>value</p>
+                                            <p>{value as keyof Inputs}</p>
                                         </div>
                                     )}
-                                {errors[value as keyof Inputs] && (
+                                {errors[value as keyof Inputs] && !formStateValid[value as keyof Inputs] && (
                                     <p className={styles.text__error}>
                                         {errors[value as keyof Inputs]?.message}
                                     </p>
                                 )}
-                                {errors[value as keyof Inputs] && (
+                                {errors[value as keyof Inputs] && !formStateValid[value as keyof Inputs] && (
                                     <Error className={styles.error__auth} />
                                 )}
                             </label>
                         );
-                    })}
-                    <label htmlFor="email" className={styles.label__auth}>
-                        <input
-                            autoComplete="off"
-                            {...register("email")}
-                            aria-invalid={errors.email ? "true" : "false"}
-                            placeholder="Enter your email"
-                            type="email"
-                            style={{
-                                border: errors.email
-                                    ? "1px solid red"
-                                    : formStateValid.email && !errors.email
-                                    ? "1px solid green"
-                                    : !formStateValid.email &&
-                                      !errors.email &&
-                                      formStateFocus.email &&
-                                      formStateValue.email.length > 0
-                                    ? "1px solid var(--button-up)"
-                                    : "1px solid var(--gray)",
-                            }}
-                            className={styles.input__auth}
-                            onChange={(e) => onChange(e, "email")}
-                            onFocus={() => onFocusInput("email")}
-                        />
-                        {!errors.email && formStateValid.email && (
-                            <IconOkey className={styles.okey__auth} />
-                        )}
-                        {formStateFocus.email &&
-                            !formStateValid.email &&
-                            !errors.email &&
-                            formStateValue.email.length > 0 && (
-                                <div className={styles.focus__block}>
-                                    <p>email</p>
-                                </div>
-                            )}
-                        {errors.email && (
-                            <p className={styles.text__error}>
-                                {errors.email.message}
-                            </p>
-                        )}
-                        {errors.email && (
-                            <Error className={styles.error__auth} />
-                        )}
-                    </label>
-                    <label htmlFor="name" className={styles.label__auth}>
-                        <input
-                            autoComplete="off"
-                            {...register("name")}
-                            aria-invalid={errors.name ? "true" : "false"}
-                            placeholder="Enter your name"
-                            type="name"
-                            style={{
-                                border: errors.name
-                                    ? "1px solid red"
-                                    : formStateValid.name && !errors.name
-                                    ? "1px solid green"
-                                    : !formStateValid.name &&
-                                      !errors.name &&
-                                      formStateFocus.name &&
-                                      formStateValue.name.length > 0
-                                    ? "1px solid var(--button-up)"
-                                    : "1px solid var(--gray)",
-                            }}
-                            className={styles.input__auth}
-                            onChange={(e) => onChange(e, "name")}
-                            onFocus={() => onFocusInput("name")}
-                        />
-                        {!errors.name && formStateValid.name && (
-                            <IconOkey className={styles.okey__auth} />
-                        )}
-                        {formStateFocus.name &&
-                            !formStateValid.name &&
-                            !errors.name &&
-                            formStateValue.name.length > 0 && (
-                                <div className={styles.focus__block}>
-                                    <p>name</p>
-                                </div>
-                            )}
-                        {errors.name && (
-                            <p className={styles.text__error}>
-                                {errors.name.message}
-                            </p>
-                        )}
-                        {errors.name && (
-                            <Error className={styles.error__auth} />
-                        )}
-                    </label>
-                    <label htmlFor="email" className={styles.label__auth}>
-                        <input
-                            autoComplete="off"
-                            {...register("email")}
-                            aria-invalid={errors.email ? "true" : "false"}
-                            placeholder="Enter your email"
-                            type="email"
-                            style={{
-                                border: errors.email
-                                    ? "1px solid red"
-                                    : formStateValid.email && !errors.email
-                                    ? "1px solid green"
-                                    : !formStateValid.email &&
-                                      !errors.email &&
-                                      formStateFocus.email &&
-                                      formStateValue.email.length > 0
-                                    ? "1px solid var(--button-up)"
-                                    : "1px solid var(--gray)",
-                            }}
-                            className={styles.input__auth}
-                            onChange={(e) => onChange(e, "email")}
-                            onFocus={() => onFocusInput("email")}
-                        />
-                        {!errors.email && formStateValid.email && (
-                            <IconOkey className={styles.okey__auth} />
-                        )}
-                        {formStateFocus.email &&
-                            !formStateValid.email &&
-                            !errors.email &&
-                            formStateValue.email.length > 0 && (
-                                <div className={styles.focus__block}>
-                                    <p>email</p>
-                                </div>
-                            )}
-                        {errors.email && (
-                            <p className={styles.text__error}>
-                                {errors.email.message}
-                            </p>
-                        )}
-                        {errors.email && (
-                            <Error className={styles.error__auth} />
-                        )}
-                    </label>
-
+                    })} 
                     <div className={styles.wrapper__buttons}>
-                        <button type="submit" className={styles.button__next}>
+                        <button type="submit" onClick={() => setFormSubmitted(true)} className={styles.button__next}>
                             Sign in
                         </button>
                         <Link
