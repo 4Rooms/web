@@ -1,0 +1,29 @@
+.button {
+  --background: transparent;
+  --hover: transparent;
+
+  display: flex;
+  width: 148px;
+  height: 42px;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: var(--background);
+
+  &:hover {
+    background-color: var(--hover);
+  }
+
+  &.default {
+    --background: #212121;
+    --hover: #616161;
+  }
+
+  &.accent {
+    --background: #7B34D8;
+    --hover: #B187E8;
+  }
+}

@@ -1,0 +1,17 @@
+.authBox {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 768px;
+  max-height: calc(100vw - 20px);
+  margin: auto;
+  padding: 40px;
+  background: rgba(234, 234, 234, 0.70);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
