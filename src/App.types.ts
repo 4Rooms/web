@@ -1,12 +1,22 @@
-export type Inputs = {
-    email: string;
-    name: string;
+export type InputsLogin = {
+    username: string;
     password: string;
 };
 
-export type InputsValid = {
+export type InputsRegistraytion = {
+    email: string;
+    username: string;
+    password: string;
+};
+
+export type InputsValidRegistration = {
     email: boolean;
-    name: boolean;
+    username: boolean;
+    password: boolean;
+};
+
+export type InputsValidLogin = {
+    username: boolean;
     password: boolean;
 };
 

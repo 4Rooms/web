@@ -1,22 +1,14 @@
 import axios from "axios";
-import { Inputs } from "../../App.types";
+import { InputsLogin } from "../../App.types";
 
-const signup = async (url: string, data: any) => {
+axios.defaults.baseURL = 'https://back.4rooms.pro';
+
+const signup = async (dataForm: InputsLogin) => {
     try {
-        const response = await axios({
-            url,
-            method: "POST",
-            data,
-        });
-        return response;
-    } catch (err: any) {
-        // console.error(err.response);
-        const errorResp = err.response.data;
-        const errors = [];
-        for (const err in errorResp) {
-            errors.push(errorResp[err]);
-        }
-        throw errors;
+        const {data} = await axios.post("/api/login/", dataForm)
+        return data;
+    } catch (err) {
+        return err;
     }
 };
 
@@ -29,25 +21,13 @@ const confirmEmail = async (url: string) => {
     }
 };
 
-const login = async (data: Inputs) => {
-    // const response = await fetch(url, {
-    //     method: "POST",
-    //     credentials: "include",
-    //     headers: {
-    //         "Content-Type": "application/json;charset=utf-8",
-    //     },
-    //     body: JSON.stringify(data),
-    // });
-
-    // if (!response.ok) {
-    //     console.error(`An error occurred with the status: ${response.status}`);
-    //     const errorData = await response.json();
-    //     throw errorData;
-    // }
-    // return response.json();
-
-    // if (!response.ok) throw new Error("Response status is not 200");
-    // return await response.json();
+const login = async (dataForm: InputsLogin) => {
+    try {
+        const {data} = await axios.post("/api/login/", dataForm)
+        return data;
+    } catch (err) {
+        return err;
+    }
 };
 
 const resetPassword = async (url: string, data: any) => {

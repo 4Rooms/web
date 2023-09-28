@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import authService from "../../../services/auth/auth.service";
+import authService from "../../../../../services/auth/auth.service";
 
 export default function ConfirmEmail() {
   const [isVerified, setIsVerified] = useState(false);

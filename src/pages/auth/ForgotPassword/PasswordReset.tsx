@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../services/auth/auth.service";
-import styles from "../Login/Login.module.css";
 
 export default function PasswordReset() {
   const [password, setPassword] = useState("");
@@ -43,10 +42,10 @@ export default function PasswordReset() {
   };
 
   return (
-    <div className={styles.auth_form_wrapper}>
+    <div >
       <form onSubmit={onSubmit}>
         <h3>Reset Password</h3>
-        <div className={styles.auth_form_input_container}>
+        <div >
           <label htmlFor="newPassword">
             New Password
             <input

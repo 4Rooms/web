@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import Login from "./pages/auth/Login/Login";
-import Signup from "./pages/auth/Signup/Signup";
-import CheckYourEmail from "./pages/auth/Signup/CheckYourEmail";
+import Login from "./pages/auth/auth-context/sign/Login/Login.tsx";
+import Signup from "./pages/auth/auth-context/sign/Signup/Signup.tsx";
+import CheckYourEmail from "./pages/auth/auth-context/sign/Login/Login.tsx";
 import ForgotPassword from "./pages/auth/ForgotPassword/ForgotPassword";
 import PasswordReset from "./pages/auth/ForgotPassword/PasswordReset";
 import { useAuth } from "./pages/auth/auth-context/use-auth.tsx";
@@ -12,7 +12,6 @@ import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes } from "react-router-dom";
 import { DashboardPage } from "./pages/dashboard/dashboard.tsx";
 import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
-
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
     const { isAuthenticated, username, setUsername } = useAuth();

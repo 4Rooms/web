@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../services/auth/auth.service";
-import styles from "../Login/Login.module.css";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -32,10 +31,10 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className={styles.auth_form_wrapper}>
+    <div>
       <form onSubmit={onSubmit}>
         <h3>Forgot password?</h3>
-        <div className={styles.auth_form_input_container}>
+        <div>
           <label htmlFor="email">
             Email Address
             <input

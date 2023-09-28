@@ -1,17 +1,17 @@
-import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext, useRef } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { AuthContext } from "../auth-context/auth-context";
-import authService from "../../../services/auth/auth.service.tsx";
-import { localStorageService } from "../../../services/local-storage/local-storage.ts";
-import styles from "./Login.module.scss";
-import { Back, Error, Google, IconOkey } from "../../../assets/icons.tsx";
+import { AuthContext } from "../../auth-context.tsx";
+import authService from "../../../../../services/auth/auth.service";
+import { localStorageService } from "../../../../../services/local-storage/local-storage.ts";
+import styles from "../Sign.module.scss";
+import { Back, Error, Google, IconOkey } from "../../../../../assets/icons.tsx";
 import * as yup from "yup";
-import { Inputs, InputsValid } from "../../../App.types.ts";
+import { InputsRegistraytion, InputsValidRegistration } from "../../../../../App.types.ts";
 
 const authSchema = yup.object().shape({
-    name: yup
+    username: yup
         .string()
         .min(1, "Name should have at least 1 character")
         .max(20, "Name should not exceed 20 characters")
@@ -39,22 +39,25 @@ const authSchema = yup.object().shape({
 
 export default function Login() {
     const { setUsername } = useContext(AuthContext);
-    const inputArray: string[] = ["email", "password", "name"];
+    const navigate = useNavigate();
+    const location = useLocation();
+    const backLinkLocation = useRef(location.state?.from ?? '/');
+    const inputArray: string[] = ["username", "email" , "password"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
-    const [formStateValue, setFormStateValue] = useState<Inputs>({
-        name: "",
+    const [formStateValue, setFormStateValue] = useState<InputsRegistraytion>({
+        username: "",
         email: "",
         password: "",
     });
 
-    const [formStateValid, setFormStateValid] = useState<InputsValid>({
-        name: false,
+    const [formStateValid, setFormStateValid] = useState<InputsValidRegistration>({
+        username: false,
         email: false,
         password: false,
     });
-    const [formStateFocus, setFormStateFocus] = useState<InputsValid>({
-        name: false,
+    const [formStateFocus, setFormStateFocus] = useState<InputsValidRegistration>({
+        username: false,
         email: false,
         password: false,
     });
@@ -66,18 +69,16 @@ export default function Login() {
         setError, 
         clearErrors,
         formState: { errors },
-    } = useForm<Inputs>({
+    } = useForm<InputsRegistraytion>({
         defaultValues: {
             email: "",
-            name: "",
+            username: "",
             password: "",
         },
         resolver: yupResolver(authSchema),
     });
 
-    const navigate = useNavigate();
-
-    const onFocusInput = (type: keyof InputsValid) => {
+    const onFocusInput = (type: keyof InputsValidRegistration) => {
         setFormStateFocus((prevFocus) => ({
             ...prevFocus,
             [type]: true,
@@ -100,7 +101,7 @@ export default function Login() {
                     [type]: true,
                 });
                 if (formSubmitted) {
-                    clearErrors(type as keyof Inputs);
+                    clearErrors(type as keyof InputsRegistraytion);
                 }
             })
             .catch((error) => {
@@ -110,21 +111,25 @@ export default function Login() {
                 });
                 console.log(formSubmitted)
                 if (formSubmitted) {
-                    setError(type as keyof Inputs, { message: error.message});
+                    setError(type as keyof InputsRegistraytion, { message: error.message});
                 }
             });
     };
 
-    const deliveryFormAuth: SubmitHandler<Inputs> = async (data) => {
-        console.log(data);
-        console.log(formStateValid);
+    const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (data) => {
+        const response = await authService.login(data);
+        setUsername(response.user.username);
+        localStorageService.set("user", response.user);
+        navigate("/home");
     };
 
     return (
         <div className={styles.overlay}>
             <div className={styles.container__auth}>
                 <div className={styles.wrapper__title}>
-                    <Back />
+                    <Link to={backLinkLocation.current}>
+                        <Back />
+                    </Link>
                     <h3 className={styles.title__auth}>Authentication</h3>
                 </div>
                 <form
@@ -161,60 +166,60 @@ export default function Login() {
                             >
                                 <input
                                     autoComplete="off"
-                                    {...register(value as keyof Inputs)}
+                                    {...register(value as keyof InputsRegistraytion)}
                                     aria-invalid={
-                                        errors[value as keyof Inputs]
+                                        errors[value as keyof InputsRegistraytion]
                                             ? "true"
                                             : "false"
                                     }
                                     placeholder={"Enter your " + value}
                                     type="value"
                                     style={{
-                                        border: errors[value as keyof Inputs] && !formStateValid[value as keyof Inputs]
+                                        border: errors[value as keyof InputsRegistraytion] && !formStateValid[value as keyof InputsRegistraytion]
                                             ? "1px solid red"
                                             : formStateValid[
-                                                  value as keyof Inputs
+                                                  value as keyof InputsRegistraytion
                                               ] &&
-                                              !errors[value as keyof Inputs]
+                                              !errors[value as keyof InputsRegistraytion]
                                             ? "1px solid green"
                                             : !formStateValid[
-                                                  value as keyof Inputs
+                                                  value as keyof InputsRegistraytion
                                               ] &&
-                                              !errors[value as keyof Inputs] &&
+                                              !errors[value as keyof InputsRegistraytion] &&
                                               formStateFocus[
-                                                  value as keyof Inputs
+                                                  value as keyof InputsRegistraytion
                                               ] &&
                                               formStateValue[
-                                                  value as keyof Inputs
+                                                  value as keyof InputsRegistraytion
                                               ].length > 0
                                             ? "1px solid var(--button-up)"
                                             : "1px solid var(--gray)",
                                     }}
                                     className={styles.input__auth}
-                                    onChange={(e) => onChange(e, value as keyof Inputs)}
-                                    onFocus={() => onFocusInput(value as keyof Inputs)}
+                                    onChange={(e) => onChange(e, value as keyof InputsRegistraytion)}
+                                    onFocus={() => onFocusInput(value as keyof InputsRegistraytion)}
                                 />
-                                {!errors[value as keyof Inputs] &&
-                                    formStateValid[value as keyof Inputs] && (
+                                {!errors[value as keyof InputsRegistraytion] &&
+                                    formStateValid[value as keyof InputsRegistraytion] && (
                                         <IconOkey
                                             className={styles.okey__auth}
                                         />
                                     )}
-                                {formStateFocus[value as keyof Inputs] &&
-                                    !formStateValid[value as keyof Inputs] &&
-                                    !errors[value as keyof Inputs] &&
-                                    formStateValue[value as keyof Inputs]
+                                {formStateFocus[value as keyof InputsRegistraytion] &&
+                                    !formStateValid[value as keyof InputsRegistraytion] &&
+                                    !errors[value as keyof InputsRegistraytion] &&
+                                    formStateValue[value as keyof InputsRegistraytion]
                                         .length > 0 && (
                                         <div className={styles.focus__block}>
-                                            <p>{value as keyof Inputs}</p>
+                                            <p>{value as keyof InputsRegistraytion}</p>
                                         </div>
                                     )}
-                                {errors[value as keyof Inputs] && !formStateValid[value as keyof Inputs] && (
+                                {errors[value as keyof InputsRegistraytion] && !formStateValid[value as keyof InputsRegistraytion] && (
                                     <p className={styles.text__error}>
-                                        {errors[value as keyof Inputs]?.message}
+                                        {errors[value as keyof InputsRegistraytion]?.message}
                                     </p>
                                 )}
-                                {errors[value as keyof Inputs] && !formStateValid[value as keyof Inputs] && (
+                                {errors[value as keyof InputsRegistraytion] && !formStateValid[value as keyof InputsRegistraytion] && (
                                     <Error className={styles.error__auth} />
                                 )}
                             </label>

@@ -81,13 +81,37 @@
   border: 1px solid var(--gray);
 }
 .input__auth:focus {
-  outline: none;
+  outline: transparent;
 }
 
 .error__auth {
   position: absolute;
   right: 15px;
   top: 10.5px;
+}
+
+.okey__auth {
+  position: absolute;
+  right: 15px;
+  top: 18px;
+}
+
+.focus__block {
+  background-color: var(--button-up);
+  color: var(--color--button);
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: 500;
+  position: absolute;
+  top: -20%;
+  left: 15px;
+}
+
+.text__error {
+  color: var(--black);
+  font-size: 14px;
+  position: absolute;
 }
 
 .wrapper__buttons {
@@ -126,4 +150,4 @@
   width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;
-}/*# sourceMappingURL=Login.module.css.map */
+}/*# sourceMappingURL=Sign.module.css.map */
