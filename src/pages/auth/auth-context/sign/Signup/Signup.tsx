@@ -6,9 +6,19 @@ import { AuthContext } from "../../auth-context.tsx";
 import authService from "../../../../../services/auth/auth.service";
 import { localStorageService } from "../../../../../services/local-storage/local-storage.ts";
 import styles from "../Sign.module.scss";
-import { Back, Error, Google, IconOkey } from "../../../../../assets/icons.tsx";
+import {
+    Back,
+    Error,
+    Google,
+    HiddenPassword,
+    IconOkey,
+    OpenPassword,
+} from "../../../../../assets/icons.tsx";
 import * as yup from "yup";
-import { InputsRegistraytion, InputsValidRegistration } from "../../../../../App.types.ts";
+import {
+    InputsRegistraytion,
+    InputsValidRegistration,
+} from "../../../../../App.types.ts";
 
 const authSchema = yup.object().shape({
     username: yup
@@ -23,8 +33,10 @@ const authSchema = yup.object().shape({
     email: yup
         .string()
         .email("Enter a valid email address")
-        .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        "Must be a valid email address")
+        .matches(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            "Must be a valid email address"
+        )
         .required("Email is required"),
     password: yup
         .string()
@@ -37,13 +49,14 @@ const authSchema = yup.object().shape({
         .required("Password is required"),
 });
 
-export default function Login() {
+export default function Signup() {
     const { setUsername } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
-    const backLinkLocation = useRef(location.state?.from ?? '/');
-    const inputArray: string[] = ["username", "email" , "password"];
+    const backLinkLocation = useRef(location.state?.from ?? "/");
+    const inputArray: string[] = ["email", "username", "password"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const [formStateValue, setFormStateValue] = useState<InputsRegistraytion>({
         username: "",
@@ -51,22 +64,24 @@ export default function Login() {
         password: "",
     });
 
-    const [formStateValid, setFormStateValid] = useState<InputsValidRegistration>({
-        username: false,
-        email: false,
-        password: false,
-    });
-    const [formStateFocus, setFormStateFocus] = useState<InputsValidRegistration>({
-        username: false,
-        email: false,
-        password: false,
-    });
+    const [formStateValid, setFormStateValid] =
+        useState<InputsValidRegistration>({
+            username: false,
+            email: false,
+            password: false,
+        });
+    const [formStateFocus, setFormStateFocus] =
+        useState<InputsValidRegistration>({
+            username: false,
+            email: false,
+            password: false,
+        });
 
     const {
         register,
         handleSubmit,
         reset,
-        setError, 
+        setError,
         clearErrors,
         formState: { errors },
     } = useForm<InputsRegistraytion>({
@@ -83,6 +98,12 @@ export default function Login() {
             ...prevFocus,
             [type]: true,
         }));
+    };
+
+    const onClickChangeOpen = (): void => {
+        setOpen((prevOpen): boolean => {
+            return !prevOpen;
+        });
     };
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
@@ -109,18 +130,21 @@ export default function Login() {
                     ...formStateValid,
                     [type]: false,
                 });
-                console.log(formSubmitted)
                 if (formSubmitted) {
-                    setError(type as keyof InputsRegistraytion, { message: error.message});
+                    setError(type as keyof InputsRegistraytion, {
+                        message: error.message,
+                    });
                 }
             });
     };
 
-    const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (data) => {
-        const response = await authService.login(data);
-        setUsername(response.user.username);
-        localStorageService.set("user", response.user);
-        navigate("/home");
+    const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (
+        data
+    ) => {
+        const response = await authService.signup(data);
+        setUsername(response.username);
+        localStorageService.set("user", response);
+        navigate("/");
     };
 
     return (
@@ -130,7 +154,7 @@ export default function Login() {
                     <Link to={backLinkLocation.current}>
                         <Back />
                     </Link>
-                    <h3 className={styles.title__auth}>Authentication</h3>
+                    <h3 className={styles.title__auth}>Create an account</h3>
                 </div>
                 <form
                     className={styles.form__auth}
@@ -155,7 +179,7 @@ export default function Login() {
                         </Link>
                     </div>
                     <h2 className={styles.text__form}>
-                        Or sign in with your username and password:
+                    Or sign up with email:
                     </h2>
                     {inputArray.map((value) => {
                         return (
@@ -166,67 +190,136 @@ export default function Login() {
                             >
                                 <input
                                     autoComplete="off"
-                                    {...register(value as keyof InputsRegistraytion)}
+                                    {...register(
+                                        value as keyof InputsRegistraytion
+                                    )}
                                     aria-invalid={
-                                        errors[value as keyof InputsRegistraytion]
+                                        errors[
+                                            value as keyof InputsRegistraytion
+                                        ]
                                             ? "true"
                                             : "false"
                                     }
                                     placeholder={"Enter your " + value}
-                                    type="value"
+                                    type={
+                                        value === "password"
+                                            ? open
+                                                ? "text"
+                                                : "password"
+                                            : value
+                                    }
                                     style={{
-                                        border: errors[value as keyof InputsRegistraytion] && !formStateValid[value as keyof InputsRegistraytion]
-                                            ? "1px solid red"
-                                            : formStateValid[
-                                                  value as keyof InputsRegistraytion
-                                              ] &&
-                                              !errors[value as keyof InputsRegistraytion]
-                                            ? "1px solid green"
-                                            : !formStateValid[
-                                                  value as keyof InputsRegistraytion
-                                              ] &&
-                                              !errors[value as keyof InputsRegistraytion] &&
-                                              formStateFocus[
-                                                  value as keyof InputsRegistraytion
-                                              ] &&
-                                              formStateValue[
-                                                  value as keyof InputsRegistraytion
-                                              ].length > 0
-                                            ? "1px solid var(--button-up)"
-                                            : "1px solid var(--gray)",
+                                        border:
+                                            errors[
+                                                value as keyof InputsRegistraytion
+                                            ] &&
+                                            !formStateValid[
+                                                value as keyof InputsRegistraytion
+                                            ]
+                                                ? "1px solid red"
+                                                : formStateValid[
+                                                      value as keyof InputsRegistraytion
+                                                  ] &&
+                                                  !errors[
+                                                      value as keyof InputsRegistraytion
+                                                  ]
+                                                ? "1px solid green"
+                                                : !formStateValid[
+                                                      value as keyof InputsRegistraytion
+                                                  ] &&
+                                                  !errors[
+                                                      value as keyof InputsRegistraytion
+                                                  ] &&
+                                                  formStateFocus[
+                                                      value as keyof InputsRegistraytion
+                                                  ] &&
+                                                  formStateValue[
+                                                      value as keyof InputsRegistraytion
+                                                  ].length > 0
+                                                ? "1px solid var(--button-up)"
+                                                : "1px solid var(--gray)",
                                     }}
                                     className={styles.input__auth}
-                                    onChange={(e) => onChange(e, value as keyof InputsRegistraytion)}
-                                    onFocus={() => onFocusInput(value as keyof InputsRegistraytion)}
+                                    onChange={(e) =>
+                                        onChange(
+                                            e,
+                                            value as keyof InputsRegistraytion
+                                        )
+                                    }
+                                    onFocus={() =>
+                                        onFocusInput(
+                                            value as keyof InputsRegistraytion
+                                        )
+                                    }
                                 />
                                 {!errors[value as keyof InputsRegistraytion] &&
-                                    formStateValid[value as keyof InputsRegistraytion] && (
+                                    formStateValid[
+                                        value as keyof InputsRegistraytion
+                                    ] && (
                                         <IconOkey
                                             className={styles.okey__auth}
                                         />
                                     )}
-                                {formStateFocus[value as keyof InputsRegistraytion] &&
-                                    !formStateValid[value as keyof InputsRegistraytion] &&
-                                    !errors[value as keyof InputsRegistraytion] &&
-                                    formStateValue[value as keyof InputsRegistraytion]
-                                        .length > 0 && (
+                                {value === "password" &&
+                                    formStateValue.password?.length > 0 && !errors[value as keyof InputsRegistraytion] &&
+                                    !formStateValid[
+                                        value as keyof InputsRegistraytion
+                                    ] && (
+                                        <button className={styles.button__show} type="button" onClick={onClickChangeOpen}>
+                                            {open ? (
+                                                <OpenPassword />
+                                            ) : (
+                                                <HiddenPassword />
+                                            )}
+                                        </button>
+                                    )}
+                                {formStateFocus[
+                                    value as keyof InputsRegistraytion
+                                ] &&
+                                    !formStateValid[
+                                        value as keyof InputsRegistraytion
+                                    ] &&
+                                    !errors[
+                                        value as keyof InputsRegistraytion
+                                    ] &&
+                                    formStateValue[
+                                        value as keyof InputsRegistraytion
+                                    ].length > 0 && (
                                         <div className={styles.focus__block}>
-                                            <p>{value as keyof InputsRegistraytion}</p>
+                                            <p>
+                                                {
+                                                    value as keyof InputsRegistraytion
+                                                }
+                                            </p>
                                         </div>
                                     )}
-                                {errors[value as keyof InputsRegistraytion] && !formStateValid[value as keyof InputsRegistraytion] && (
-                                    <p className={styles.text__error}>
-                                        {errors[value as keyof InputsRegistraytion]?.message}
-                                    </p>
-                                )}
-                                {errors[value as keyof InputsRegistraytion] && !formStateValid[value as keyof InputsRegistraytion] && (
-                                    <Error className={styles.error__auth} />
-                                )}
+                                {errors[value as keyof InputsRegistraytion] &&
+                                    !formStateValid[
+                                        value as keyof InputsRegistraytion
+                                    ] && (
+                                        <p className={styles.text__error}>
+                                            {
+                                                errors[
+                                                    value as keyof InputsRegistraytion
+                                                ]?.message
+                                            }
+                                        </p>
+                                    )}
+                                {errors[value as keyof InputsRegistraytion] &&
+                                    !formStateValid[
+                                        value as keyof InputsRegistraytion
+                                    ] && (
+                                        <Error className={styles.error__auth} />
+                                    )}
                             </label>
                         );
-                    })} 
+                    })}
                     <div className={styles.wrapper__buttons}>
-                        <button type="submit" onClick={() => setFormSubmitted(true)} className={styles.button__next}>
+                        <button
+                            type="submit"
+                            onClick={() => setFormSubmitted(true)}
+                            className={styles.button__next}
+                        >
                             Sign in
                         </button>
                         <Link

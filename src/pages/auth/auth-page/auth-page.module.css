@@ -7,6 +7,7 @@
 .container__auth {
   background-color: var(--background-form-auth);
   padding: 180px 40px;
+  width: 500px;
   text-align: center;
   border-radius: 20px;
 }
@@ -57,6 +58,12 @@
   width: -moz-fit-content;
   width: fit-content;
 }
+.button__in > p {
+  transition: all 500ms;
+}
+.button__in > p:hover {
+  scale: 1.1;
+}
 
 .button__up {
   color: var(--color--button);
@@ -65,8 +72,14 @@
   line-height: 150%;
   padding: 4px 24px;
   border: transparent;
-  background: #7B34D8;
+  background: #7b34d8;
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
+}
+.button__up > p {
+  transition: all 500ms;
+}
+.button__up > p:hover {
+  scale: 1.1;
 }/*# sourceMappingURL=auth-page.module.css.map */

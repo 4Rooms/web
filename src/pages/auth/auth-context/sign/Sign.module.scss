@@ -9,10 +9,9 @@
     padding: 40px;
     text-align: center;
     border-radius: 20px;
-    display: flex;
     flex-wrap: wrap;
     width: 420px;
-    justify-content: left;
+    min-height: 680px;
     text-align: left;
 }
 
@@ -23,9 +22,10 @@
 
 .wrapper__title {
     display: flex;
-    gap: 66.5px;
+    gap: 40px;
     align-items: center;
     margin-bottom: 80px;
+    height: fit-content;
 }
 
 .title__auth {
@@ -64,9 +64,9 @@
 
 .label__auth {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 48px;
     position: relative;
-    &:last-child {
+    &:last-of-type{
         margin-bottom: 80px;
     }
 }
@@ -74,8 +74,9 @@
 .input__auth {
     color: var(--gray);
     font-size: 18px;
-    width: 93%;
+    width: 87%;
     padding: 10px 15px;
+    padding-right: 40px;
     margin-bottom: 4px;
     border-radius: 5px;
     border: 1px solid var(--gray);
@@ -147,5 +148,14 @@
     background: var(--color--button);
     border-radius: 10px;
     width: fit-content;
+    cursor: pointer;
+}
+
+.button__show {
+    background-color: transparent;
+    border-color: transparent;
+    position: absolute;
+    top: 30%;
+    right: 7px;
     cursor: pointer;
 }

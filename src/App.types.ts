@@ -9,6 +9,11 @@ export type InputsRegistraytion = {
     password: string;
 };
 
+export type InputsReset = {
+    email: string;
+    password: string;
+};
+
 export type InputsValidRegistration = {
     email: boolean;
     username: boolean;
@@ -17,6 +22,11 @@ export type InputsValidRegistration = {
 
 export type InputsValidLogin = {
     username: boolean;
+    password: boolean;
+};
+
+export type InputsValidReset = {
+    email: boolean;
     password: boolean;
 };
 

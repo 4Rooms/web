@@ -1,11 +1,11 @@
 import axios from "axios";
-import { InputsLogin } from "../../App.types";
+import { InputsLogin, InputsRegistraytion } from "../../App.types";
 
 axios.defaults.baseURL = 'https://back.4rooms.pro';
 
-const signup = async (dataForm: InputsLogin) => {
+const signup = async (dataForm: InputsRegistraytion) => {
     try {
-        const {data} = await axios.post("/api/login/", dataForm)
+        const {data} = await axios.post("/api/register/", dataForm)
         return data;
     } catch (err) {
         return err;
