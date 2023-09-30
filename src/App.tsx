@@ -12,6 +12,7 @@ import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes } from "react-router-dom";
 import { DashboardPage } from "./pages/dashboard/dashboard.tsx";
 import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
+import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page.tsx";
 
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
@@ -51,6 +52,8 @@ function App() {
                         path="/check-your-email"
                         element={<CheckYourEmail />}
                     />
+                    <Route path="/confirm-email" element={<EmailConfirmPage />} />
+
                 </Route>
             </Routes>
         </div>
