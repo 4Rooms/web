@@ -56,7 +56,9 @@ export default function Login() {
     const {
         register,
         handleSubmit,
+/*
         reset,
+*/
         setError,
         clearErrors,
         formState: { errors },

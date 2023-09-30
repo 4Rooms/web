@@ -80,7 +80,9 @@ export default function Signup() {
     const {
         register,
         handleSubmit,
+/*
         reset,
+*/
         setError,
         clearErrors,
         formState: { errors },

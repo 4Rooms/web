@@ -1,24 +1,16 @@
-import React, { useState, useContext, useRef } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { AuthContext } from "../../auth-context.tsx";
-import authService from "../../../../../services/auth/auth.service";
-import { localStorageService } from "../../../../../services/local-storage/local-storage.ts";
 import styles from "../Sign.module.scss";
 import {
     Back,
     Error,
-    Google,
-    HiddenPassword,
     IconOkey,
-    OpenPassword,
 } from "../../../../../assets/icons.tsx";
 import * as yup from "yup";
 import {
-    InputsRegistraytion,
     InputsReset,
-    InputsValidRegistration,
     InputsValidReset,
 } from "../../../../../App.types.ts";
 
@@ -43,7 +35,9 @@ const resetSchema = yup.object().shape({
 });
 
 export default function ForgotPassword() {
+/*
     const [email, setEmail] = useState("");
+*/
     const inputArray: string[] = ["email", "password"];
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
@@ -65,7 +59,9 @@ export default function ForgotPassword() {
     const {
         register,
         handleSubmit,
+/*
         reset,
+*/
         setError,
         clearErrors,
         formState: { errors },
@@ -77,7 +73,9 @@ export default function ForgotPassword() {
         resolver: yupResolver(resetSchema),
     });
 
+/*
     const navigate = useNavigate();
+*/
 
     const onFocusInput = (type: keyof InputsValidReset) => {
         setFormStateFocus((prevFocus) => ({
@@ -114,7 +112,7 @@ export default function ForgotPassword() {
             });
     };
 
-    const deliveryFormAuth: SubmitHandler<InputsReset> = async (data) => {
+    const deliveryFormAuth: SubmitHandler<InputsReset> = async (/*data*/) => {
         // const response = await authService.signup(data);
         // localStorageService.set("user", response);
         // navigate("/");
