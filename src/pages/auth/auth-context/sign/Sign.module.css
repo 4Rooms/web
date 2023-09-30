@@ -1,0 +1,164 @@
+.overlay {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.container__auth {
+  background-color: var(--background-form-auth);
+  padding: 40px;
+  text-align: center;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  width: 420px;
+  min-height: 680px;
+  text-align: left;
+}
+
+.form__auth {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrapper__title {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 80px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.title__auth {
+  color: var(--black);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.text__google {
+  color: var(--black);
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.button__google {
+  background-color: transparent;
+  padding: 10px 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--black);
+  cursor: pointer;
+  color: var(--black);
+  font-size: 20px;
+  margin-bottom: 60px;
+}
+
+.text__form {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.label__auth {
+  width: 100%;
+  margin-bottom: 48px;
+  position: relative;
+}
+.label__auth:last-of-type {
+  margin-bottom: 80px;
+}
+
+.input__auth {
+  color: var(--gray);
+  font-size: 18px;
+  width: 87%;
+  padding: 10px 15px;
+  padding-right: 40px;
+  margin-bottom: 4px;
+  border-radius: 5px;
+  border: 1px solid var(--gray);
+}
+.input__auth:focus {
+  outline: transparent;
+}
+
+.error__auth {
+  position: absolute;
+  right: 15px;
+  top: 10.5px;
+}
+
+.okey__auth {
+  position: absolute;
+  right: 15px;
+  top: 18px;
+}
+
+.focus__block {
+  background-color: var(--button-up);
+  color: var(--color--button);
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: 500;
+  position: absolute;
+  top: -20%;
+  left: 15px;
+}
+
+.text__error {
+  color: var(--black);
+  font-size: 14px;
+  position: absolute;
+}
+
+.wrapper__buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.button__next {
+  color: var(--color--button);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 150%;
+  padding: 4px 20px;
+  border: transparent;
+  background: var(--button-up);
+  border-radius: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.button__forgot {
+  color: var(--black);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 150%;
+  padding: 2px 10px;
+  border: 1px solid var(--black);
+  background: var(--color--button);
+  border-radius: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.button__show {
+  background-color: transparent;
+  border-color: transparent;
+  position: absolute;
+  top: 30%;
+  right: 7px;
+  cursor: pointer;
+}/*# sourceMappingURL=Sign.module.css.map */
