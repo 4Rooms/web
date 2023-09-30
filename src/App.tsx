@@ -11,7 +11,7 @@ import GuardRoutes from "./utils/guard-routes.tsx";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes } from "react-router-dom";
 import { DashboardPage } from "./pages/dashboard/dashboard.tsx";
-import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
+import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";import ChangeLanguage from "./shared/change-language.tsx";
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
     const { isAuthenticated, username, setUsername } = useAuth();

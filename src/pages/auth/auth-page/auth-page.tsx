@@ -1,17 +1,19 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./auth-page.module.css";
+import { useTranslation } from "react-i18next";
 
 export function AuthPage() {
+    const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
     const location = useLocation();
+
     return (
         <div className={styles.overlay}>
             <div className={styles.container__auth}>
-                <h1 className={styles.greeting__title}>Hi</h1>
-                <h2 className={styles.greeting__text}>welcome to the 4Rooms</h2>
+                <h1 className={styles.greeting__title}>{t('hi')}</h1>
+                <h2 className={styles.greeting__text}>{t('welcome')}</h2>
                 <p className={styles.another__text}>
-                    'Sign In' if you're have an account or 'Sign Up' to create
-                    one.
+                    {t('account')}
                 </p>
                 <div className={styles.wrapper__buttons}>
                     <Link
@@ -19,10 +21,10 @@ export function AuthPage() {
                         state={{ from: location }}
                         to="/authentication"
                     >
-                        <p>Sign in</p>
+                        <p>{t('sign in')}</p>
                     </Link>
                     <Link className={styles.button__up} to="/create-account">
-                        <p>Sign up</p>
+                        <p>{t('sign up')}</p>
                     </Link>
                 </div>
             </div>
