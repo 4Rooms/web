@@ -1,5 +1,5 @@
 import axios from "axios";
-import { InputsLogin, InputsRegistraytion } from "../../App.types";
+import { EmailConfirmationResponse, InputsLogin, InputsRegistraytion } from "../../App.types";
 
 axios.defaults.baseURL = 'https://back.4rooms.pro';
 
@@ -9,15 +9,6 @@ const signup = async (dataForm: InputsRegistraytion) => {
         return data;
     } catch (err) {
         return err;
-    }
-};
-
-const confirmEmail = async (url: string) => {
-    try {
-        const response = await axios.get(url);
-        return response;
-    } catch (err: any) {
-        console.error(err.response.data);
     }
 };
 
@@ -43,12 +34,21 @@ const logout = () => {
     localStorage.clear();
 };
 
+async function confirmEmail(token: string): Promise<EmailConfirmationResponse> {
+        const response = await axios.get<EmailConfirmationResponse>('https://back.4rooms.pro/api/confirm-email/', {
+            params: {
+                token_id: token
+            }
+        });
+        return response.data;
+}
+
 const authService = {
     signup,
-    confirmEmail,
     login,
     resetPassword,
     logout,
+    confirmEmail,
 };
 
 export default authService;

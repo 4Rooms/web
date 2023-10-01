@@ -19,6 +19,11 @@ const resources = {
                 'enterPassword': 'Enter your password',
                 'forgotPassword': 'Forgot password?',
                 'signInButton': 'Sign in'
+            },
+            'confirm-email': {
+                'initial': 'Please wait for confirmation...',
+                'success': 'Email address successfully confirmed',
+                'fail': 'Failed to confirm email address'
             }
         }
     },
@@ -39,6 +44,11 @@ const resources = {
                 'enterPassword': 'Введіть ваш пароль',
                 'forgotPassword': 'Забули пароль?',
                 'signInButton': 'Увійти'
+            },
+            'confirm-email': {
+                'initial': 'Будь ласка, почекайте йде підтвердженя...',
+                'success': 'Електронну адресу успішно підтверджено',
+                'fail': 'Не вдалося підтвердити електронну адресу'
             }
         }
     }

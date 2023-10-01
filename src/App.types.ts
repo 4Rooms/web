@@ -33,3 +33,6 @@ export type InputsValidReset = {
 export interface ErrorProps {
     className: string;
 }
+export type EmailConfirmationResponse = {
+    is_email_confirmed: boolean;
+}
