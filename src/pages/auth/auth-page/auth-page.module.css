@@ -59,7 +59,7 @@
   width: fit-content;
 }
 .button__in > p {
-  transition: all 500ms;
+  transition: all 250ms;
 }
 .button__in > p:hover {
   scale: 1.1;
@@ -78,7 +78,7 @@
   width: fit-content;
 }
 .button__up > p {
-  transition: all 500ms;
+  transition: all 250ms;
 }
 .button__up > p:hover {
   scale: 1.1;
