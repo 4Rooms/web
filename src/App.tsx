@@ -41,9 +41,10 @@ function App() {
                         />
                     }
                 >
-                    <Route path="/dashbord" element={<DashboardPage />} />
-                    <Route path="/chat" element={<Chats />} />
-                    <Route element={<GuardRoutes />}></Route>
+                    <Route element={<GuardRoutes />}>
+                        <Route path="/dashbord" element={<DashboardPage />} />
+                        <Route path="/chat" element={<Chats />} />
+                    </Route>
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/authentication" element={<Login />} />
                     <Route path="/create-account" element={<Signup />} />

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -6,9 +6,17 @@ import { AuthContext } from "../../auth-context.tsx";
 import authService from "../../../../../services/auth/auth.service.tsx";
 import { localStorageService } from "../../../../../services/local-storage/local-storage.ts";
 import styles from "../Sign.module.scss";
-import { Back, Error, Google, IconOkey } from "../../../../../assets/icons.tsx";
+import {
+    Back,
+    Error,
+    Google,
+    HiddenPassword,
+    IconOkey,
+    OpenPassword,
+} from "../../../../../assets/icons.tsx";
 import * as yup from "yup";
 import { InputsLogin, InputsValidLogin } from "../../../../../App.types.ts";
+import { createPortal } from "react-dom";
 
 const authSchema = yup.object().shape({
     username: yup
@@ -31,6 +39,8 @@ const authSchema = yup.object().shape({
         .required("Password is required"),
 });
 
+const modalRoot: null | Element = document.querySelector("#modal-root");
+
 export default function Login() {
     const { setUsername } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -38,6 +48,8 @@ export default function Login() {
     const backLinkLocation = useRef(location.state?.from ?? "/");
     const inputArray: string[] = ["username", "password"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
+    const [openModal, setOpenModal] = useState<boolean>(false);
 
     const [formStateValue, setFormStateValue] = useState<InputsLogin>({
         username: "",
@@ -56,7 +68,7 @@ export default function Login() {
     const {
         register,
         handleSubmit,
-/*
+        /*
         reset,
 */
         setError,
@@ -76,6 +88,43 @@ export default function Login() {
             [type]: true,
         }));
     };
+
+    const onClickChangeOpen = (): void => {
+        setOpen((prevOpen): boolean => {
+            return !prevOpen;
+        });
+    };
+
+    const onClickChangeOpenModal = (): void => {
+        setOpenModal((prevOpen): boolean => {
+            return !prevOpen;
+        });
+    };
+
+    const onClose = () => {
+        setOpenModal(!open);
+        console.log(321)
+    };
+
+    const handleKeyDown = (e: any) => {
+        if (e.code === "Escape") {
+            onClose();
+        }
+    };
+
+    const handleBackdropClick = (event: any) => {
+        if (event.target === event.currentTarget) {
+            onClose();
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
         const value = e.target.value;
@@ -101,7 +150,6 @@ export default function Login() {
                     ...formStateValid,
                     [type]: false,
                 });
-                console.log(formSubmitted);
                 if (formSubmitted) {
                     setError(type as keyof InputsLogin, {
                         message: error.message,
@@ -113,6 +161,7 @@ export default function Login() {
     const deliveryFormAuth: SubmitHandler<InputsLogin> = async (data) => {
         try {
             const response = await authService.login(data);
+            console.log(response);
             setUsername(response.user.username);
             localStorageService.set("user", response.user);
             navigate("/");
@@ -171,7 +220,13 @@ export default function Login() {
                                             : "false"
                                     }
                                     placeholder={"Enter your " + value}
-                                    type="value"
+                                    type={
+                                        value === "password"
+                                            ? open
+                                                ? "text"
+                                                : "password"
+                                            : value
+                                    }
                                     style={{
                                         border:
                                             errors[
@@ -211,6 +266,24 @@ export default function Login() {
                                         onFocusInput(value as keyof InputsLogin)
                                     }
                                 />
+                                {value === "password" &&
+                                    formStateValue.password?.length > 0 &&
+                                    !errors[value as keyof InputsLogin] &&
+                                    !formStateValid[
+                                        value as keyof InputsLogin
+                                    ] && (
+                                        <button
+                                            className={styles.button__show}
+                                            type="button"
+                                            onClick={onClickChangeOpen}
+                                        >
+                                            {open ? (
+                                                <OpenPassword />
+                                            ) : (
+                                                <HiddenPassword />
+                                            )}
+                                        </button>
+                                    )}
                                 {!errors[value as keyof InputsLogin] &&
                                     formStateValid[
                                         value as keyof InputsLogin
@@ -251,6 +324,9 @@ export default function Login() {
                             </label>
                         );
                     })}
+                    {openModal && createPortal(<div className={styles.overlay__modal}>
+                        <div className={styles.widnow__mondal}></div>
+                    </div>, modalRoot as Element)}
                     <div className={styles.wrapper__buttons}>
                         <button
                             type="submit"
@@ -259,12 +335,12 @@ export default function Login() {
                         >
                             Sign in
                         </button>
-                        <Link
-                            className={styles.button__forgot}
-                            to={"/forgot-password"}
+                        <button
+                            className={styles.button__forgot}type="button"
+                            onClick={onClose}
                         >
                             Forgot password
-                        </Link>
+                        </button>
                     </div>
                 </form>
             </div>

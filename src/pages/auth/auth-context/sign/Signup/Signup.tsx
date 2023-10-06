@@ -144,6 +144,7 @@ export default function Signup() {
         data
     ) => {
         const response = await authService.signup(data);
+        console.log(data);
         setUsername(response.username);
         localStorageService.set("user", response);
         navigate("/");
