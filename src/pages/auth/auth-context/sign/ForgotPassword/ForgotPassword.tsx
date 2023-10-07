@@ -41,7 +41,6 @@ export default function ForgotPassword() {
     const inputArray: string[] = ["email", "password"];
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
-
     const [formStateValue, setFormStateValue] = useState<InputsReset>({
         email: "",
         password: "",
