@@ -325,12 +325,6 @@ export default function Signup() {
                         >
                             Sign in
                         </button>
-                        <Link
-                            className={styles.button__forgot}
-                            to={"/forgot-password"}
-                        >
-                            Forgot password
-                        </Link>
                     </div>
                 </form>
             </div>

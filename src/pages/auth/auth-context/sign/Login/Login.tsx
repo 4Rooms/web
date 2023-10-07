@@ -8,6 +8,7 @@ import { localStorageService } from "../../../../../services/local-storage/local
 import styles from "../Sign.module.scss";
 import {
     Back,
+    CloseModal,
     Error,
     Google,
     HiddenPassword,
@@ -50,6 +51,7 @@ export default function Login() {
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const [email, setEmail] = useState<string>("");
 
     const [formStateValue, setFormStateValue] = useState<InputsLogin>({
         username: "",
@@ -101,20 +103,15 @@ export default function Login() {
         });
     };
 
-    const onClose = () => {
-        setOpenModal(!open);
-        console.log(321)
-    };
-
     const handleKeyDown = (e: any) => {
         if (e.code === "Escape") {
-            onClose();
+            onClickChangeOpenModal();
         }
     };
 
     const handleBackdropClick = (event: any) => {
         if (event.target === event.currentTarget) {
-            onClose();
+            onClickChangeOpenModal();
         }
     };
 
@@ -156,6 +153,10 @@ export default function Login() {
                     });
                 }
             });
+    };
+
+    const onSubmitModal = () => {
+        onClickChangeOpenModal();
     };
 
     const deliveryFormAuth: SubmitHandler<InputsLogin> = async (data) => {
@@ -324,9 +325,45 @@ export default function Login() {
                             </label>
                         );
                     })}
-                    {openModal && createPortal(<div className={styles.overlay__modal}>
-                        <div className={styles.widnow__mondal}></div>
-                    </div>, modalRoot as Element)}
+                    {openModal &&
+                        createPortal(
+                            <div
+                                onClick={handleBackdropClick}
+                                className={styles.overlay__modal}
+                            >
+                                <div className={styles.widnow__mondal}>
+                                    <button
+                                        className={styles.close__modal}
+                                        onClick={onClickChangeOpenModal}
+                                    >
+                                        <CloseModal />
+                                    </button>
+                                    <form>
+                                        <p className={styles.text__modal}>
+                                            Enter your email to reset password
+                                        </p>
+                                        <input
+                                            placeholder={"Enter your email"}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }}
+                                            style={{ marginBottom: 60 }}
+                                            className={styles.input__auth}
+                                            type="email"
+                                        />
+                                        <button
+                                            className={styles.button__next}
+                                            type="button"
+                                            onClick={onSubmitModal}
+                                            style={{ fontSize: 16, marginLeft: "auto", marginRight: "auto" }}
+                                        >
+                                            Send
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>,
+                            modalRoot as Element
+                        )}
                     <div className={styles.wrapper__buttons}>
                         <button
                             type="submit"
@@ -336,8 +373,9 @@ export default function Login() {
                             Sign in
                         </button>
                         <button
-                            className={styles.button__forgot}type="button"
-                            onClick={onClose}
+                            className={styles.button__forgot}
+                            type="button"
+                            onClick={onClickChangeOpenModal}
                         >
                             Forgot password
                         </button>

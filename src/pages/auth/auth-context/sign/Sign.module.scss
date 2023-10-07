@@ -66,7 +66,7 @@
     width: 100%;
     margin-bottom: 48px;
     position: relative;
-    &:last-of-type{
+    &:last-of-type {
         margin-bottom: 80px;
     }
 }
@@ -130,12 +130,14 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 150%;
-    padding: 4px 20px;
+    padding: 4px 47px;
     border: transparent;
     background: var(--button-up);
     border-radius: 10px;
     width: fit-content;
+    font-weight: 500;
     cursor: pointer;
+    display: block;
 }
 
 .button__forgot {
@@ -171,11 +173,28 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 2;
-};
+}
 .widnow__mondal {
-    background-color: #EEEBF1;
+    background-color: #eeebf1;
     padding: 80px 60px;
     border-radius: 20px;
     position: relative;
     width: 420px;
+}
+
+.close__modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+}
+
+.text__modal {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: 80px;
 }

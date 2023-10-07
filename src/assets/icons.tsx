@@ -278,3 +278,18 @@ export const Messenger = () => (
         />
     </svg>
 );
+
+export const CloseModal = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="17"
+        height="16"
+        viewBox="0 0 17 16"
+        fill="none"
+    >
+        <path
+            d="M1.62095 15.1032L0 13.5929L6.48381 7.55159L0 1.51032L1.62095 0L8.10476 6.04128L14.5886 0L16.2095 1.51032L9.72572 7.55159L16.2095 13.5929L14.5886 15.1032L8.10476 9.06191L1.62095 15.1032Z"
+            fill="#212121"
+        />
+    </svg>
+);
