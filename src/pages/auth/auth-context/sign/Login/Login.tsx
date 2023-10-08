@@ -31,13 +31,13 @@ const authSchema = yup.object().shape({
         .required("Name is required"),
     password: yup
         .string()
-        .min(8, "Password must be at least 8 characters")
-        .max(128, "Password cannot exceed 128 characters")
+        .min(8, "Password must be at least 8 characters.")
+        .max(128, "Password cannot exceed 128 characters.")
         .matches(
             /^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)[a-zA-Zа-яА-Я0-9!@#$%^&*()-_=+]+$/,
-            "Password must contain at least one letter, one digit, and one special character"
+            "Password must contain at least one letter, one digit, and one special character."
         )
-        .required("Password is required"),
+        .required("Password is required."),
 });
 
 const modalRoot: null | Element = document.querySelector("#modal-root");
@@ -156,13 +156,17 @@ export default function Login() {
     };
 
     const onSubmitModal = () => {
-        onClickChangeOpenModal();
+        if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            onClickChangeOpenModal();
+            navigate("/forgot-password", { state: { from: location } });
+        } else {
+            console.log("error");
+        }
     };
 
     const deliveryFormAuth: SubmitHandler<InputsLogin> = async (data) => {
         try {
             const response = await authService.login(data);
-            console.log(response);
             setUsername(response.user.username);
             localStorageService.set("user", response.user);
             navigate("/");
@@ -273,18 +277,30 @@ export default function Login() {
                                     !formStateValid[
                                         value as keyof InputsLogin
                                     ] && (
-                                        <button
-                                            className={styles.button__show}
-                                            type="button"
-                                            onClick={onClickChangeOpen}
-                                        >
-                                            {open ? (
-                                                <OpenPassword />
-                                            ) : (
-                                                <HiddenPassword />
-                                            )}
-                                        </button>
+                                        <>
+                                            <button
+                                                className={styles.button__show}
+                                                type="button"
+                                                onClick={onClickChangeOpen}
+                                            >
+                                                {open ? (
+                                                    <OpenPassword />
+                                                ) : (
+                                                    <HiddenPassword />
+                                                )}
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className={
+                                                    styles.forgot__password
+                                                }
+                                                onClick={onClickChangeOpenModal}
+                                            >
+                                                Forgot Password?
+                                            </button>
+                                        </>
                                     )}
+
                                 {!errors[value as keyof InputsLogin] &&
                                     formStateValid[
                                         value as keyof InputsLogin
@@ -304,7 +320,30 @@ export default function Login() {
                                             <p>{value as keyof InputsLogin}</p>
                                         </div>
                                     )}
-                                {errors[value as keyof InputsLogin] &&
+                                {value === "password" &&
+                                    errors[value as keyof InputsLogin] &&
+                                    !formStateValid[
+                                        value as keyof InputsLogin
+                                    ] && (
+                                        <p className={styles.text__error}>
+                                            {
+                                                errors[
+                                                    value as keyof InputsLogin
+                                                ]?.message
+                                            }{" "}
+                                            <button
+                                                type="button"
+                                                className={
+                                                    styles.forgot__password__error
+                                                }
+                                                onClick={onClickChangeOpenModal}
+                                            >
+                                                Forgot Password?
+                                            </button>
+                                        </p>
+                                    )}
+                                {value !== "password" &&
+                                    errors[value as keyof InputsLogin] &&
                                     !formStateValid[
                                         value as keyof InputsLogin
                                     ] && (
@@ -347,6 +386,7 @@ export default function Login() {
                                             onChange={(e) => {
                                                 setEmail(e.target.value);
                                             }}
+                                            value={email}
                                             style={{ marginBottom: 60 }}
                                             className={styles.input__auth}
                                             type="email"
@@ -355,7 +395,11 @@ export default function Login() {
                                             className={styles.button__next}
                                             type="button"
                                             onClick={onSubmitModal}
-                                            style={{ fontSize: 16, marginLeft: "auto", marginRight: "auto" }}
+                                            style={{
+                                                fontSize: 16,
+                                                marginLeft: "auto",
+                                                marginRight: "auto",
+                                            }}
                                         >
                                             Send
                                         </button>
@@ -371,13 +415,6 @@ export default function Login() {
                             className={styles.button__next}
                         >
                             Sign in
-                        </button>
-                        <button
-                            className={styles.button__forgot}
-                            type="button"
-                            onClick={onClickChangeOpenModal}
-                        >
-                            Forgot password
                         </button>
                     </div>
                 </form>

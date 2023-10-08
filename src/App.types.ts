@@ -10,7 +10,6 @@ export type InputsRegistraytion = {
 };
 
 export type InputsReset = {
-    email: string;
     password: string;
 };
 
@@ -26,13 +25,16 @@ export type InputsValidLogin = {
 };
 
 export type InputsValidReset = {
-    email: boolean;
     password: boolean;
 };
+
+export interface LogoProps {
+    className?: string;
+}
 
 export interface ErrorProps {
     className: string;
 }
 export type EmailConfirmationResponse = {
     is_email_confirmed: boolean;
-}
+};

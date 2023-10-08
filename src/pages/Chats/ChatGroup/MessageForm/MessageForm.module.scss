@@ -2,11 +2,12 @@
     display: flex;
     flex-wrap: nowrap;
     gap: 8px;
-    padding: 20px;
+    padding: 9px 20px;
     border-radius: 0px 0px 20px 20px;
-    background-color: var(--background-color-chat);
+    background-color: var(--color--button);
     width: 100%;
     align-items: center;
+    height: 100%;
 }
 
 .input__message {

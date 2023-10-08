@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorProps } from "../App.types";
+import { ErrorProps, LogoProps } from "../App.types";
 
 export const RowBelow = () => (
     <svg
@@ -76,8 +76,9 @@ export const AddFile = () => (
     </svg>
 );
 
-export const Logo = () => (
+export const Logo: React.FC<LogoProps> = ({ className }) => (
     <svg
+        className={className}
         xmlns="http://www.w3.org/2000/svg"
         width="40"
         height="32"
@@ -289,6 +290,29 @@ export const CloseModal = () => (
     >
         <path
             d="M1.62095 15.1032L0 13.5929L6.48381 7.55159L0 1.51032L1.62095 0L8.10476 6.04128L14.5886 0L16.2095 1.51032L9.72572 7.55159L16.2095 13.5929L14.5886 15.1032L8.10476 9.06191L1.62095 15.1032Z"
+            fill="#212121"
+        />
+    </svg>
+);
+
+export const MoreInformation = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="26"
+        height="6"
+        viewBox="0 0 26 6"
+        fill="none"
+    >
+        <path
+            d="M6 3C6 4.65685 4.65685 6 3 6C1.34315 6 0 4.65685 0 3C0 1.34315 1.34315 0 3 0C4.65685 0 6 1.34315 6 3Z"
+            fill="#212121"
+        />
+        <path
+            d="M16 3C16 4.65685 14.6569 6 13 6C11.3431 6 10 4.65685 10 3C10 1.34315 11.3431 0 13 0C14.6569 0 16 1.34315 16 3Z"
+            fill="#212121"
+        />
+        <path
+            d="M26 3C26 4.65685 24.6569 6 23 6C21.3431 6 20 4.65685 20 3C20 1.34315 21.3431 0 23 0C24.6569 0 26 1.34315 26 3Z"
             fill="#212121"
         />
     </svg>

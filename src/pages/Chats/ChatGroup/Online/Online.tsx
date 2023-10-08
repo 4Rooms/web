@@ -7,9 +7,9 @@ export default function Online() {
         <div className={styles.container__online}>
             <p className={styles.online__text}>Online now:</p>
             <ul className={styles.online__list}>
-                {users.map(() => {
+                {users.map((_, index) => {
                     return (
-                        <li>
+                        <li key={index}>
                     <img
                         className={styles.online__avatar}
                         src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"

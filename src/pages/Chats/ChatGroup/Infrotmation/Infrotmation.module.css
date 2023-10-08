@@ -1,11 +1,12 @@
 .container__information {
-  background-color: var(--background-color-chat);
+  background-color: var(--color--button);
   display: flex;
-  padding: 20px;
+  padding: 12px 20px;
   justify-content: left;
   gap: 20px;
   flex-wrap: wrap;
   border-radius: 20px 20px 0px 0px;
+  width: 100%;
 }
 
 .group {
@@ -13,8 +14,6 @@
   flex-wrap: nowrap;
   gap: 16px;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 9px;
   padding-left: 0;
   background-color: transparent;
   border: transparent;
@@ -31,6 +30,13 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;
+  margin-right: auto;
+}
+
+.group__button__more {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
 }
 
 .group__text {

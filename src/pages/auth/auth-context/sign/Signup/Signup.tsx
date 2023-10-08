@@ -80,7 +80,7 @@ export default function Signup() {
     const {
         register,
         handleSubmit,
-/*
+        /*
         reset,
 */
         setError,
@@ -143,11 +143,14 @@ export default function Signup() {
     const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (
         data
     ) => {
-        const response = await authService.signup(data);
-        console.log(data);
-        setUsername(response.username);
-        localStorageService.set("user", response);
-        navigate("/");
+        try {
+            const response = await authService.signup(data);
+            setUsername(response.username);
+            localStorageService.set("user", response);
+            navigate("/confirm-email", { state: { from: location } });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -182,7 +185,7 @@ export default function Signup() {
                         </Link>
                     </div>
                     <h2 className={styles.text__form}>
-                    Or sign up with email:
+                        Or sign up with email:
                     </h2>
                     {inputArray.map((value) => {
                         return (
@@ -264,11 +267,18 @@ export default function Signup() {
                                         />
                                     )}
                                 {value === "password" &&
-                                    formStateValue.password?.length > 0 && !errors[value as keyof InputsRegistraytion] &&
+                                    formStateValue.password?.length > 0 &&
+                                    !errors[
+                                        value as keyof InputsRegistraytion
+                                    ] &&
                                     !formStateValid[
                                         value as keyof InputsRegistraytion
                                     ] && (
-                                        <button className={styles.button__show} type="button" onClick={onClickChangeOpen}>
+                                        <button
+                                            className={styles.button__show}
+                                            type="button"
+                                            onClick={onClickChangeOpen}
+                                        >
                                             {open ? (
                                                 <OpenPassword />
                                             ) : (

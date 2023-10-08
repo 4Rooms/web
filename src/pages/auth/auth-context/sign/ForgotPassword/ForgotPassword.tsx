@@ -3,16 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "../Sign.module.scss";
-import {
-    Back,
-    Error,
-    IconOkey,
-} from "../../../../../assets/icons.tsx";
+import { Back, Error, IconOkey } from "../../../../../assets/icons.tsx";
 import * as yup from "yup";
-import {
-    InputsReset,
-    InputsValidReset,
-} from "../../../../../App.types.ts";
+import { InputsReset, InputsValidReset } from "../../../../../App.types.ts";
 
 const resetSchema = yup.object().shape({
     password: yup
@@ -24,41 +17,27 @@ const resetSchema = yup.object().shape({
             "Password must contain at least one letter, one digit, and one special character"
         )
         .required("Password is required"),
-    email: yup
-        .string()
-        .email("Enter a valid email address")
-        .matches(
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            "Must be a valid email address"
-        )
-        .required("Email is required"),
 });
 
 export default function ForgotPassword() {
-/*
-    const [email, setEmail] = useState("");
-*/
-    const inputArray: string[] = ["email", "password"];
+    const inputArray: string[] = ["password"];
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
     const [formStateValue, setFormStateValue] = useState<InputsReset>({
-        email: "",
         password: "",
     });
 
     const [formStateValid, setFormStateValid] = useState<InputsValidReset>({
-        email: false,
         password: false,
     });
     const [formStateFocus, setFormStateFocus] = useState<InputsValidReset>({
-        email: false,
         password: false,
     });
 
     const {
         register,
         handleSubmit,
-/*
+        /*
         reset,
 */
         setError,
@@ -66,15 +45,10 @@ export default function ForgotPassword() {
         formState: { errors },
     } = useForm<InputsReset>({
         defaultValues: {
-            email: "",
             password: "",
         },
         resolver: yupResolver(resetSchema),
     });
-
-/*
-    const navigate = useNavigate();
-*/
 
     const onFocusInput = (type: keyof InputsValidReset) => {
         setFormStateFocus((prevFocus) => ({
@@ -131,7 +105,7 @@ export default function ForgotPassword() {
                     onSubmit={handleSubmit(deliveryFormAuth)}
                 >
                     <h2 className={styles.text__form}>
-                        Enter your email to reset password
+                    Please create new password:
                     </h2>
                     {inputArray.map((value) => {
                         return (

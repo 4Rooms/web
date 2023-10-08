@@ -2,6 +2,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  height: 90vh;
 }
 
 .container__auth {
@@ -111,7 +112,7 @@
 }
 
 .text__error {
-  color: var(--black);
+  color: red;
   font-size: 14px;
   position: absolute;
 }
@@ -162,6 +163,27 @@
   position: absolute;
   top: 30%;
   right: 7px;
+  cursor: pointer;
+}
+
+.forgot__password {
+  color: var(--black);
+  font-size: 14px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.forgot__password__error {
+  color: red;
+  font-size: 14px;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration-line: underline;
   cursor: pointer;
 }
 

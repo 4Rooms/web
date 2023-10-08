@@ -1,14 +1,12 @@
 .container__filterFroups {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 20px;
-       column-gap: 20px;
-  display: grid;
+  display: flex;
+  gap: 20px;
   margin-bottom: 24px;
 }
 
 .button__filter {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 150%;
   transition: -webkit-text-decoration 250ms;
   transition: text-decoration 250ms;

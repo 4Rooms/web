@@ -12,7 +12,7 @@ import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes } from "react-router-dom";
 import { DashboardPage } from "./pages/dashboard/Dassboard.tsx";
 import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
-import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page.tsx";
+import EmailConfirmPage from "./pages/auth/auth-context/sign/email-confirm-page/email-confirm-page.tsx";
 
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
@@ -22,9 +22,7 @@ function App() {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
-            console.log(foundUser);
             const loggedInUsername = foundUser.username;
-            console.log(username);
             setUsername(loggedInUsername);
         }
     }, []);
@@ -41,10 +39,9 @@ function App() {
                         />
                     }
                 >
-                    <Route element={<GuardRoutes />}>
-                        <Route path="/dashbord" element={<DashboardPage />} />
-                        <Route path="/chat" element={<Chats />} />
-                    </Route>
+                    <Route index element={<DashboardPage />} />
+                    <Route path="/chat" element={<Chats />} />
+                    <Route element={<GuardRoutes />}></Route>
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/authentication" element={<Login />} />
                     <Route path="/create-account" element={<Signup />} />

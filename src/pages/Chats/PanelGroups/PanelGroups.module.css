@@ -1,5 +1,11 @@
 .container__chatGroups {
   display: flex;
+  max-width: 307px;
   flex-wrap: wrap;
-  gap: 38.5px;
+  gap: 24.5px;
+  padding: 16px 20px;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  background-color: var(--color--button);
 }/*# sourceMappingURL=PanelGroups.module.css.map */
