@@ -39,7 +39,6 @@ export default function Infrotmation() {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
         });
-        console.log(modalRoot);
     };
     return (
         <>

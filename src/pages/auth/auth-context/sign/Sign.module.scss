@@ -39,7 +39,7 @@
 .text__google {
     color: var(--black);
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 40px;
 }
 
@@ -104,7 +104,7 @@
     border-radius: 3px;
     padding: 2px 5px;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
     position: absolute;
     top: -20%;
     left: 15px;
@@ -129,14 +129,14 @@
 .button__next {
     color: var(--color--button);
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 150%;
     padding: 4px 47px;
     border: transparent;
     background: var(--button-up);
     border-radius: 10px;
     width: fit-content;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     display: block;
 }
@@ -144,7 +144,7 @@
 .button__forgot {
     color: var(--black);
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 150%;
     padding: 2px 10px;
     border: 1px solid var(--black);
@@ -215,7 +215,7 @@
 
 .text__modal {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--black);
     text-align: center;
     margin-bottom: 80px;

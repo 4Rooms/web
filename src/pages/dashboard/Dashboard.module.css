@@ -35,7 +35,7 @@
 }
 .item__dashboard:hover > a > div > .text__dashboard {
   margin-bottom: 24px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 28px;
 }
 
@@ -67,6 +67,7 @@
   position: absolute;
   font-size: 16px;
   line-height: 150%;
+  font-weight: 500;
   left: 0%;
   top: 50%;
   transition: all 250ms;
