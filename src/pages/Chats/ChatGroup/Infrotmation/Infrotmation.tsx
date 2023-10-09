@@ -9,7 +9,7 @@ import {
 import { createPortal } from "react-dom";
 
 const modalRoot: null | Element = document.querySelector(
-    "#modal-root-information"
+    "#modal-root"
 );
 
 export default function Infrotmation() {
