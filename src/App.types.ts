@@ -9,6 +9,9 @@ export type InputsRegistraytion = {
     password: string;
 };
 
+export type InputSignupKeys = "email" | "username" | "password";
+export type InputLoginKeys = "username" | "password";
+
 export type InputsReset = {
     email: string;
     password: string;

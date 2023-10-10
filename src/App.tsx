@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import Login from "./pages/auth/auth-context/sign/Login/Login.tsx";
-import Signup from "./pages/auth/auth-context/sign/Signup/Signup.tsx";
-import CheckYourEmail from "./pages/auth/auth-context/sign/Login/Login.tsx";
 import ForgotPassword from "./pages/auth/auth-context/sign/ForgotPassword/ForgotPassword.tsx";
 import PasswordReset from "./pages/auth/auth-context/sign/ForgotPassword/PasswordReset.tsx";
 import { useAuth } from "./pages/auth/auth-context/use-auth.tsx";
@@ -13,6 +10,9 @@ import { Route, Routes } from "react-router-dom";
 import { DashboardPage } from "./pages/dashboard/dashboard.tsx";
 import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
 import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page.tsx";
+import SignupPage from "./pages/auth/signup-page/signup-page.tsx";
+import SignupConfirmation from "./pages/auth/signup-page/signup-confirmation/signup-confirmation.tsx";
+import LoginPage from "./pages/auth/login-page/login-page.tsx";
 
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
@@ -22,9 +22,7 @@ function App() {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
-            console.log(foundUser);
             const loggedInUsername = foundUser.username;
-            console.log(username);
             setUsername(loggedInUsername);
         }
     }, []);
@@ -41,16 +39,18 @@ function App() {
                         <Route path="/chat" element={<Chats />} />
                     </Route>
                     <Route path="/auth" element={<AuthPage />} />
-                    <Route path="/authentication" element={<Login />} />
-                    <Route path="/create-account" element={<Signup />} />
+                    <Route path="/authentication" element={<LoginPage />} />
+                    <Route path="/create-account" element={<SignupPage />}>
+
+                    </Route>
                     <Route path="/password-reset" element={<PasswordReset />} />
                     <Route
                         path="/forgot-password"
                         element={<ForgotPassword />}
                     />
                     <Route
-                        path="/check-your-email"
-                        element={<CheckYourEmail />}
+                        path="/account-confirmation"
+                        element={<SignupConfirmation />}
                     />
                     <Route path="/confirm-email" element={<EmailConfirmPage />} />
 
