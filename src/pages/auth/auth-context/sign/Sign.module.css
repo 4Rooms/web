@@ -2,7 +2,6 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 90vh;
 }
 
 .container__auth {
@@ -79,7 +78,6 @@
   width: 87%;
   padding: 10px 15px;
   padding-right: 40px;
-  margin-bottom: 4px;
   border-radius: 5px;
   border: 1px solid var(--gray);
 }
@@ -115,6 +113,7 @@
   color: red;
   font-size: 14px;
   position: absolute;
+  top: 110%;
 }
 
 .wrapper__buttons {
@@ -170,7 +169,7 @@
   color: var(--black);
   font-size: 14px;
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 0;
   background-color: transparent;
   border-color: transparent;

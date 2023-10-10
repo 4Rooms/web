@@ -8,4 +8,86 @@
   line-height: 150%;
   cursor: pointer;
   margin: 0 auto;
+}
+
+.overlay__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.widnow__mondal {
+  background-color: #eeebf1;
+  padding: 80px 60px;
+  border-radius: 20px;
+  position: relative;
+  width: 420px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+}
+
+.close__modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.title__modal {
+  color: var(--black);
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.button__create {
+  color: var(--color--button);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 150%;
+  padding: 4px 47px;
+  border: transparent;
+  background: var(--button-up);
+  border-radius: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+}
+
+.input__auth {
+  color: var(--gray);
+  font-size: 18px;
+  width: 90%;
+  padding: 10px 15px;
+  padding-right: 40px;
+  border-radius: 5px;
+  border: 1px solid var(--gray);
+}
+.input__auth:focus {
+  outline: transparent;
+}
+
+.label__auth {
+  width: 100%;
+  position: relative;
+}
+
+.form__auth {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
 }/*# sourceMappingURL=CreateChat.module.css.map */

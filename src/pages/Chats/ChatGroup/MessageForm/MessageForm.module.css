@@ -1,8 +1,8 @@
 .form__message {
   display: flex;
   flex-wrap: nowrap;
-  gap: 8px;
-  padding: 9px 20px;
+  gap: 16px;
+  padding: 8px 20px;
   border-radius: 0px 0px 20px 20px;
   background-color: var(--color--button);
   width: 100%;
@@ -16,8 +16,12 @@
   font-family: Inter;
   font-size: 16px;
   line-height: 24px;
+  padding: 10.5px 16px;
   border-color: transparent;
-  caret-color: var(--gray);
+  color: var(--black);
+  caret-color: var(--black);
+  border-radius: 12px;
+  background-color: var(--background-color-chat);
 }
 .input__message:focus {
   outline: none;
@@ -27,4 +31,9 @@
   border-color: transparent;
   background-color: transparent;
   cursor: pointer;
+}
+
+.wrapper__icon {
+  display: flex;
+  gap: 8px;
 }/*# sourceMappingURL=MessageForm.module.css.map */

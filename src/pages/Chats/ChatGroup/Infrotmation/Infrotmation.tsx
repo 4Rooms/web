@@ -64,6 +64,12 @@ export default function Infrotmation() {
                         className={styles.overlay__modal}
                     >
                         <div className={styles.widnow__mondal} style={{padding: "40px 32px"}}>
+                            <button
+                                className={styles.close__modal}
+                                onClick={onClickChangeOpenModal}
+                            >
+                                <CloseModal />
+                            </button>
                             <div className={styles.group__modal}>
                                 <img
                                     className={styles.group__avatar__modal}
@@ -71,12 +77,6 @@ export default function Infrotmation() {
                                 />
                                 <p className={styles.group__name__modal}>Spanch Bob</p>
                             </div>
-                            <button
-                                className={styles.close__modal}
-                                onClick={onClickChangeOpenModal}
-                            >
-                                <CloseModal />
-                            </button>
                             <p style={{marginBottom: 20}} className={styles.group__text}>
                                 What are your impressions of the series "Game of
                                 Thrones"? Do you recommend watching with
