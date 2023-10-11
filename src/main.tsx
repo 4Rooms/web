@@ -12,7 +12,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <AuthProvider>
             <BrowserRouter>
                 <I18nextProvider i18n={i18n}>
-
                     <App/>
                 </I18nextProvider>
             </BrowserRouter>
