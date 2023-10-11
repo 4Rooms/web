@@ -177,7 +177,7 @@ export default function LoginPage() {
                             <p className={styles.text__modal}>
                                 Enter your email to reset password
                             </p>
-                            <я
+                            <input
                                 placeholder={"Enter your email"}
                                 onChange={(e) => {
                                     setEmail(e.target.value);
