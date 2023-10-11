@@ -1,0 +1,15 @@
+.inputError {
+  border: 1px solid red;
+}
+
+.inputValid {
+  border: 1px solid green;
+}
+
+.inputFocus {
+  border: 1px solid var(--button-up);
+}
+
+.inputDefault {
+  border: 1px solid var(--gray);
+}/*# sourceMappingURL=input-styles-helper.module.css.map */

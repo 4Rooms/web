@@ -18,6 +18,7 @@ import {
 import * as yup from "yup";
 import { InputsLogin, InputsValidLogin } from "../../../../../App.types.ts";
 import { createPortal } from "react-dom";
+import Modal from "../../../../../Components/Modal/Modal.tsx";
 
 const authSchema = yup.object().shape({
     username: yup
@@ -364,50 +365,37 @@ export default function Login() {
                             </label>
                         );
                     })}
-                    {openModal &&
-                        createPortal(
-                            <div
-                                onClick={handleBackdropClick}
-                                className={styles.overlay__modal}
-                            >
-                                <div className={styles.widnow__mondal}>
-                                    <button
-                                        className={styles.close__modal}
-                                        onClick={onClickChangeOpenModal}
-                                    >
-                                        <CloseModal />
-                                    </button>
-                                    <form>
-                                        <p className={styles.text__modal}>
-                                            Enter your email to reset password
-                                        </p>
-                                        <input
-                                            placeholder={"Enter your email"}
-                                            onChange={(e) => {
-                                                setEmail(e.target.value);
-                                            }}
-                                            value={email}
-                                            style={{ marginBottom: 60 }}
-                                            className={styles.input__auth}
-                                            type="email"
-                                        />
-                                        <button
-                                            className={styles.button__next}
-                                            type="button"
-                                            onClick={onSubmitModal}
-                                            style={{
-                                                fontSize: 16,
-                                                marginLeft: "auto",
-                                                marginRight: "auto",
-                                            }}
-                                        >
-                                            Send
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>,
-                            modalRoot as Element
-                        )}
+                    {openModal && (
+                        <Modal onOpen={onClickChangeOpenModal}>
+                            <form>
+                                <p className={styles.text__modal}>
+                                    Enter your email to reset password
+                                </p>
+                                <input
+                                    placeholder={"Enter your email"}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value);
+                                    }}
+                                    value={email}
+                                    style={{ marginBottom: 60 }}
+                                    className={styles.input__auth}
+                                    type="email"
+                                />
+                                <button
+                                    className={styles.button__next}
+                                    type="button"
+                                    onClick={onSubmitModal}
+                                    style={{
+                                        fontSize: 16,
+                                        marginLeft: "auto",
+                                        marginRight: "auto",
+                                    }}
+                                >
+                                    Send
+                                </button>
+                            </form>
+                        </Modal>
+                    )}
                     <div className={styles.wrapper__buttons}>
                         <button
                             type="submit"

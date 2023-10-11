@@ -1,0 +1,38 @@
+.button {
+  --background: transparent;
+  --hover: transparent;
+  display: flex;
+  width: 148px;
+  height: 42px;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: var(--background);
+}
+.button:hover {
+  background-color: var(--hover);
+}
+.button.default {
+  --background: #212121;
+  --hover: #616161;
+}
+.button.accent {
+  --background: #7B34D8;
+  --hover: #B187E8;
+}
+.button.google {
+  background-color: transparent;
+  padding: 10px 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--black);
+  cursor: pointer;
+  color: var(--black);
+  font-size: 20px;
+  margin-bottom: 60px;
+}/*# sourceMappingURL=button.module.css.map */

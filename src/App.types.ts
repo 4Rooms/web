@@ -41,3 +41,9 @@ export interface ErrorProps {
 export type EmailConfirmationResponse = {
     is_email_confirmed: boolean;
 };
+
+export type ChildrenModal = {
+    children: React.ReactElement;
+    onOpen: () => void;
+    className?: string;
+};

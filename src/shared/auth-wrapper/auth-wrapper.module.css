@@ -1,0 +1,33 @@
+.overlay {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.container__auth {
+  background-color: var(--background-form-auth);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  width: 420px;
+  min-height: 680px;
+  text-align: left;
+}
+
+.wrapper__title {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 80px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.title__auth {
+  color: var(--black);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 150%;
+}/*# sourceMappingURL=auth-wrapper.module.css.map */
