@@ -15,6 +15,7 @@ export default function EmailConfirmPage() {
     const [text, setText] = useState<string>(t("initial"));
 
     useEffect(() => {
+        console.log(text);
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get("token_id");
 
