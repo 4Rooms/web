@@ -1,5 +1,12 @@
-.header {
+.header__stanger {
     display: flex;
     padding: 0 80px;
     background-color: transparent;
+}
+
+.header__user {
+    background-color: var(--background-color-chat);
+    display: flex;
+    padding: 0 80px;
+    justify-content: space-between;
 }

@@ -80,9 +80,6 @@ export default function Signup() {
     const {
         register,
         handleSubmit,
-        /*
-                reset,
-        */
         setError,
         clearErrors,
         formState: {errors},
@@ -143,10 +140,14 @@ export default function Signup() {
     const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (
         data
     ) => {
-        const response = await authService.signup(data);
-        setUsername(response.username);
-        localStorageService.set("user", response);
-        navigate("/");
+        try {
+            const response = await authService.signup(data);
+            setUsername(response.username);
+            localStorageService.set("user", response);
+            navigate("/confirm-email", { state: { from: location } });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -258,7 +259,10 @@ export default function Signup() {
                                         />
                                     )}
                                 {value === "password" &&
-                                    formStateValue.password?.length > 0 && !errors[value as keyof InputsRegistraytion] &&
+                                    formStateValue.password?.length > 0 &&
+                                    !errors[
+                                        value as keyof InputsRegistraytion
+                                    ] &&
                                     !formStateValid[
                                         value as keyof InputsRegistraytion
                                         ] && (

@@ -2,6 +2,7 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    height: 90vh;
 }
 
 .container__auth {
@@ -57,7 +58,7 @@
     border-radius: 10px;
     width: fit-content;
     & > p {
-        transition: all 500ms;
+        transition: all 250ms;
         &:hover {
             scale: 1.1;
         }
@@ -75,7 +76,7 @@
     border-radius: 10px;
     width: fit-content;
     & > p {
-        transition: all 500ms;
+        transition: all 250ms;
         &:hover {
             scale: 1.1;
         }

@@ -2,12 +2,33 @@ import React from "react";
 import styles from "./Groups.module.css";
 
 export default function Groups() {
-    const groups: string[] = ["SpanchBob", "SpanchBob", "SpanchBob", "SpanchBob", "SpanchBob", "SpanchBob", "SpanchBob", "SpanchBob", "SpanchBob", "SpanchBob"];
+    const groups: string[] = [
+        "SpanchBob1",
+        "SpanchBob2",
+        "SpanchBob3",
+        "SpanchBob4",
+        "SpanchBob5",
+        "SpanchBob6",
+        "SpanchBob7",
+        "SpanchBob8",
+        "SpanchBob9",
+        "SpanchBob32",
+        "SpanchBobfew",
+        "SpanchBobqw",
+        "SpanchBobvvfd",
+        "SpanchBobvd",
+        "SpanchBobqwfd",
+        "SpanchBob23",
+        "SpanchBob11",
+        "SpanchBobds",
+        "SpanchBobgh",
+        "SpanchBobkj",
+    ];
     return (
         <ul className={styles.container__groups}>
             {groups.map((group) => {
                 return (
-                    <li className={styles.item__group}>
+                    <li className={styles.item__group} key={group}>
                         <button type="button" className={styles.group}>
                             <img
                                 className={styles.group__avatar}

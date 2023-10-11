@@ -10,10 +10,13 @@ type Props = {
 
 // eslint-disable-next-line
 // @ts-ignore
-export default function SharedLayout({user, isAuthenticated}: Props) {
+export default function SharedLayout({ user, isAuthenticated }: Props) {
     return (
         <>
-            <header className={styles.header}>
+            {/* <header className={styles.header__stanger}>
+                <Navigation />
+            </header> */}
+            <header className={styles.header__user}>
                 <Navigation />
             </header>
             <Outlet />

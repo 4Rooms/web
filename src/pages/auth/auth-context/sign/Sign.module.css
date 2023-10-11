@@ -2,6 +2,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  height: 90vh;
 }
 
 .container__auth {
@@ -39,7 +40,7 @@
 .text__google {
   color: var(--black);
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 40px;
 }
 
@@ -104,14 +105,14 @@
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
   position: absolute;
   top: -20%;
   left: 15px;
 }
 
 .text__error {
-  color: var(--black);
+  color: red;
   font-size: 14px;
   position: absolute;
 }
@@ -129,21 +130,23 @@
 .button__next {
   color: var(--color--button);
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 150%;
-  padding: 4px 20px;
+  padding: 4px 47px;
   border: transparent;
   background: var(--button-up);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
+  font-weight: 600;
   cursor: pointer;
+  display: block;
 }
 
 .button__forgot {
   color: var(--black);
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 150%;
   padding: 2px 10px;
   border: 1px solid var(--black);
@@ -161,4 +164,63 @@
   top: 30%;
   right: 7px;
   cursor: pointer;
+}
+
+.forgot__password {
+  color: var(--black);
+  font-size: 14px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.forgot__password__error {
+  color: red;
+  font-size: 14px;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.overlay__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.widnow__mondal {
+  background-color: #eeebf1;
+  padding: 80px 60px;
+  border-radius: 20px;
+  position: relative;
+  width: 420px;
+}
+
+.close__modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.text__modal {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 80px;
 }/*# sourceMappingURL=Sign.module.css.map */

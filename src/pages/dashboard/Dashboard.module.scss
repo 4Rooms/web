@@ -1,0 +1,75 @@
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 81px;
+}
+
+.title__dashboard {
+    color: var(--black);
+    font-size: 36px;
+    line-height: 150%;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.list__dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    gap: 40px;
+}
+
+.item__dashboard {
+    width: calc((100% - 120px) / 2);
+    height: 200px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 250ms;
+    &:hover > a > div > p {
+        opacity: 1;
+        color: var(--black);
+        position: static;
+    }
+    &:hover > a > div > .text__dashboard  {
+        margin-bottom: 24px;
+        font-weight: 600;
+        font-size: 28px;
+    }
+}
+
+.link__dashboard {
+    text-align: center;
+    width:  calc(100% + 40px);
+    gap: 20px;
+    height: calc(100% + 20px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.text__dashboard {
+    color: var(--gray);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 150%;
+    transition: all 250ms;
+}
+
+.wrapper__dashboard {
+    text-align: center;
+}
+
+.text__dashboard__desctiption {
+    position: absolute;
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 500;
+    left: 0%;
+    top: 50%;
+    transition: all 250ms;
+    opacity: 0;
+}

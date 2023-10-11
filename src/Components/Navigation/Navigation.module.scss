@@ -12,3 +12,21 @@
     font-weight: 700;
     line-height: 150%;
 }
+
+.navigation__link {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    cursor: pointer;
+}
+
+.link__button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.avatar__user {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}

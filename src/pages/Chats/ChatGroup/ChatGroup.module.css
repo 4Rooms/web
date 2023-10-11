@@ -2,4 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-width: 706px;
 }/*# sourceMappingURL=ChatGroup.module.css.map */

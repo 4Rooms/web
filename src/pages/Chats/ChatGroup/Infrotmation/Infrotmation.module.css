@@ -1,11 +1,12 @@
 .container__information {
-  background-color: var(--background-color-chat);
+  background-color: var(--color--button);
   display: flex;
-  padding: 20px;
+  padding: 12px 20px;
   justify-content: left;
   gap: 20px;
   flex-wrap: wrap;
   border-radius: 20px 20px 0px 0px;
+  width: 100%;
 }
 
 .group {
@@ -13,8 +14,6 @@
   flex-wrap: nowrap;
   gap: 16px;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 9px;
   padding-left: 0;
   background-color: transparent;
   border: transparent;
@@ -31,6 +30,13 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;
+  margin-right: auto;
+}
+
+.group__button__more {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
 }
 
 .group__text {
@@ -61,4 +67,57 @@
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
+}
+
+.overlay__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.widnow__mondal {
+  background-color: #eeebf1;
+  padding: 80px 60px;
+  border-radius: 20px;
+  position: relative;
+  width: 420px;
+}
+
+.close__modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.group__avatar__modal {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.group__name__modal {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 150%;
+  margin-right: auto;
+}
+
+.group__modal {
+  gap: 20px;
+  text-align: center;
+  margin-bottom: 40px;
 }/*# sourceMappingURL=Infrotmation.module.css.map */

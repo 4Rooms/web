@@ -3,7 +3,8 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 1280px;
-    min-height: 1000px;
+    padding-bottom: 0;
+    height: 100vh;
     background-color: var(--gray);
     background-image: url(./assets/background_image@1x.png);
     background-repeat: no-repeat;

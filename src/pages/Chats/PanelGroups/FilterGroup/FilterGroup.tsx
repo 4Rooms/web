@@ -9,7 +9,7 @@ export default function FilterGroup() {
             <ul className={styles.container__filterFroups}>
                 {filterButton.map((text) => {
                     return (
-                        <li>
+                        <li key={text}>
                             <button
                                 type="button"
                                 className={styles.button__filter}

@@ -1,8 +1,19 @@
 .container__chatInformation {
-  grid-template-columns: 294px 706px;
-  -moz-column-gap: 60px;
-       column-gap: 60px;
-  display: grid;
-  padding: 22px 120.5px 67px 120.5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 27px;
+  padding: 22px 0 47px 0;
   justify-content: center;
+}
+
+.chats__footer {
+  background-color: var(--background-color-chat);
+  text-align: center;
+  justify-content: center;
+  padding: 34px 0;
+}
+
+.footer__icon {
+  width: 68px;
+  height: 48px;
 }/*# sourceMappingURL=Chats.module.css.map */

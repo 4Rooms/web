@@ -7,7 +7,7 @@ import Chats from "./pages/Chats/Chats";
 import GuardRoutes from "./utils/guard-routes.tsx";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes } from "react-router-dom";
-import { DashboardPage } from "./pages/dashboard/dashboard.tsx";
+import { DashboardPage } from "./pages/dashboard/Dassboard.tsx";
 import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
 import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page.tsx";
 import SignupPage from "./pages/auth/signup-page/signup-page.tsx";
@@ -30,14 +30,18 @@ function App() {
     return (
         <div className="container">
             <Routes>
-                <Route path="/" element={<SharedLayout user={username} isAuthenticated={isAuthenticated} />}>
-                    <Route element={<GuardRoutes />}>
-                        <Route
-                            index
-                            element={<DashboardPage />}
+                <Route
+                    path="/"
+                    element={
+                        <SharedLayout
+                            user={username}
+                            isAuthenticated={isAuthenticated}
                         />
-                        <Route path="/chat" element={<Chats />} />
-                    </Route>
+                    }
+                >
+                    <Route index element={<DashboardPage />} />
+                    <Route path="/chat" element={<Chats />} />
+                    <Route element={<GuardRoutes />}></Route>
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/authentication" element={<LoginPage />} />
                     <Route path="/create-account" element={<SignupPage />}>
@@ -52,8 +56,10 @@ function App() {
                         path="/account-confirmation"
                         element={<SignupConfirmation />}
                     />
-                    <Route path="/confirm-email" element={<EmailConfirmPage />} />
-
+                    <Route
+                        path="/confirm-email"
+                        element={<EmailConfirmPage />}
+                    />
                 </Route>
             </Routes>
         </div>
