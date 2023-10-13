@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import styles from "../auth-context/sign/Sign.module.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Error, IconOkey } from "../../../assets/icons.tsx";
@@ -5,6 +6,8 @@ import {
     InputLoginKeys,
     InputsLogin,
     InputsValidLogin,
+    ResetEmail,
+    ResetEmailKeys,
 } from "../../../App.types.ts";
 import React, { useContext, useRef, useState } from "react";
 import GoogleAuthButton from "../../../shared/google-auth-button/google-auth-button.tsx";
@@ -17,9 +20,10 @@ import useValidation from "../../../shared/use-validate/use-validate.tsx";
 import authSchema from "../signup-page/signup-schema.ts";
 import authService from "../../../services/auth/auth.service.tsx";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
-import AuthInput from "../../../shared/auth-input/auth-Input.tsx";
+import FormInput from "../../../shared/auth-input/form-Input.tsx";
 import Modal from "../../../Components/Modal/Modal.tsx";
 import Button from "../../../shared/button/button.tsx";
+import loginSchema from "./login-schema.ts";
 
 export default function LoginPage() {
     const { setUsername } = useContext(AuthContext);
@@ -29,8 +33,9 @@ export default function LoginPage() {
     const inputArray: InputLoginKeys[] = ["username", "password"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const [email, setEmail] = useState<string>("");
-
+    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
+    let resetEmail: string = "";
+    
     const [formStateValue, setFormStateValue] = useState<InputsLogin>({
         username: "",
         password: "",
@@ -52,9 +57,10 @@ export default function LoginPage() {
             username: "",
             password: "",
         },
-        resolver: yupResolver(LoginSchema),
+        resolver: yupResolver(loginSchema),
     });
-
+    
+    
     const onFocusInput = (type: keyof InputsValidLogin) => {
         setFormStateFocus((prevFocus) => ({
             ...prevFocus,
@@ -72,7 +78,7 @@ export default function LoginPage() {
             password: false,
         },
     });
-
+    
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -80,13 +86,19 @@ export default function LoginPage() {
     };
 
     const onSubmitModal = () => {
-        if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+        if (
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(resetEmail)
+        ) {
             onClickChangeOpenModal();
             navigate("/forgot-password", { state: { from: location } });
         } else {
             console.log("error");
         }
     };
+
+    const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        resetEmail = e.target.value;
+    }
 
     const onChange = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -132,7 +144,7 @@ export default function LoginPage() {
                             className={styles.label__auth}
                             key={value}
                         >
-                            <AuthInput<InputLoginKeys, InputsLogin>
+                            <FormInput<InputLoginKeys, InputsLogin>
                                 value={value}
                                 register={register}
                                 errors={errors}
@@ -156,7 +168,8 @@ export default function LoginPage() {
                                     </div>
                                 )}
                             {errors[value as keyof InputsLogin] &&
-                                !formStateValid[value as keyof InputsLogin] && (
+                                !formStateValid[value as keyof InputsLogin] &&
+                                value !== "password" && (
                                     <p className={styles.text__error}>
                                         {
                                             errors[value as keyof InputsLogin]
@@ -168,6 +181,25 @@ export default function LoginPage() {
                                 !formStateValid[value as keyof InputsLogin] && (
                                     <Error className={styles.error__auth} />
                                 )}
+                            {value === "password" &&
+                                errors[value as keyof InputsLogin] &&
+                                !formStateValid[value as keyof InputsLogin] && (
+                                    <p className={styles.text__error}>
+                                        {
+                                            errors[value as keyof InputsLogin]
+                                                ?.message
+                                        }{" "}
+                                        <button
+                                            type="button"
+                                            className={
+                                                styles.forgot__password__error
+                                            }
+                                            onClick={onClickChangeOpenModal}
+                                        >
+                                            Forgot Password?
+                                        </button>
+                                    </p>
+                                )}
                         </label>
                     );
                 })}
@@ -177,45 +209,35 @@ export default function LoginPage() {
                             <p className={styles.text__modal}>
                                 Enter your email to reset password
                             </p>
-                            <input
-                                placeholder={"Enter your email"}
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                }}
-                                value={email}
-                                style={{ marginBottom: 60 }}
-                                className={styles.input__auth}
-                                type="email"
-                            />
-                            <button
-                                className={styles.button__next}
+                            <label
+                                htmlFor={resetEmail}
+                                className={`${styles.label__auth} ${styles.label__modal}`}
+                                key={resetEmail}
+                            >
+                                <FormInput<ResetEmailKeys, ResetEmail>
+                                    value="resetEmail"
+                                    onChangeInputValue={onChangeInputValue}
+                                />
+                            </label>
+
+                            <Button
                                 type="button"
+                                className="accent"
                                 onClick={onSubmitModal}
-                                style={{
-                                    fontSize: 16,
-                                    marginLeft: "auto",
-                                    marginRight: "auto",
-                                }}
                             >
                                 Send
-                            </button>
+                            </Button>
                         </form>
                     </Modal>
                 )}
                 <div className={styles.wrapper__buttons}>
-                    <button
+                    <Button
+                        className="accent"
                         type="submit"
                         onClick={() => setFormSubmitted(true)}
-                        className={styles.button__next}
                     >
                         Sign in
-                    </button>
-                    <button
-                        onClick={onClickChangeOpenModal}
-                        className={styles.button__forgot}
-                    >
-                        Forgot password
-                    </button>
+                    </Button>
                 </div>
             </form>
         </AuthWrapper>

@@ -9,8 +9,16 @@ export type InputsRegistraytion = {
     password: string;
 };
 
+export type ResetEmail = {
+    resetEmail: string;
+};
+
+
 export type InputSignupKeys = "email" | "username" | "password";
 export type InputLoginKeys = "username" | "password";
+export type ResetEmailKeys = "resetEmail";
+export type ForgotKeys = "password";
+
 
 export type InputsReset = {
     password: string;
@@ -22,14 +30,24 @@ export type InputsValidRegistration = {
     password: boolean;
 };
 
+export type InputsForgotValid = {
+    password: boolean;
+}
+
 export type InputsValidLogin = {
     username: boolean;
     password: boolean;
 };
 
+export type ConfirmPasswordValid = {
+    confirmPassword: boolean;
+}
+
 export type InputsValidReset = {
     password: boolean;
 };
+
+
 
 export interface LogoProps {
     className?: string;

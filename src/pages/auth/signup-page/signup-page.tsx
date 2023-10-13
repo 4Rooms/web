@@ -13,7 +13,7 @@ import GoogleAuthButton from "../../../shared/google-auth-button/google-auth-but
 import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
 import useValidation from "../../../shared/use-validate/use-validate.tsx";
 import Button from "../../../shared/button/button.tsx";
-import AuthInput from "../../../shared/auth-input/auth-Input.tsx";
+import FormInput from "../../../shared/auth-input/form-Input.tsx";
 
 export default function SignupPage() {
     const {setUsername} = useContext(AuthContext);
@@ -109,7 +109,7 @@ export default function SignupPage() {
                     htmlFor={value}
                     className={styles.label__auth}
                     key={value}>
-                    <AuthInput<InputSignupKeys, InputsRegistraytion>
+                    <FormInput<InputSignupKeys, InputsRegistraytion>
                         value={value}
                         register={register}
                         errors={errors}

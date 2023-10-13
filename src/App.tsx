@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import ForgotPassword from "./pages/auth/auth-context/sign/ForgotPassword/ForgotPassword.tsx";
+import ForgotPassword from "./pages/auth/login-page/forgot-password/forgot-password.tsx";
 import PasswordReset from "./pages/auth/auth-context/sign/ForgotPassword/PasswordReset.tsx";
 import { useAuth } from "./pages/auth/auth-context/use-auth.tsx";
 import Chats from "./pages/Chats/Chats";

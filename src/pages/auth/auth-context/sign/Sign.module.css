@@ -65,11 +65,15 @@
 
 .label__auth {
   width: 100%;
+  display: inline-block;
   margin-bottom: 48px;
   position: relative;
 }
 .label__auth:last-of-type {
   margin-bottom: 80px;
+}
+.label__auth.label__modal {
+  margin-bottom: 60px;
 }
 
 .input__auth {
