@@ -5,7 +5,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "../../auth.module.css";
 import {
     ForgotKeys,
-    InputsForgotValid,
     InputsReset,
     InputsValidReset,
 } from "../../../../App.types.ts";
@@ -13,6 +12,8 @@ import { Error, IconOkey } from "../../../../assets/icons.tsx";
 import AuthWrapper from "../../../../shared/auth-wrapper/auth-wrapper.tsx";
 import forgotSchema from "./forgot-schema.tsx";
 import useValidation from "../../../../shared/use-validate/use-validate.tsx";
+import FormInput from "../../../../shared/auth-input/form-Input.tsx";
+import Button from "../../../../shared/button/button.tsx";
 
 export default function ForgotPassword() {
     const inputArray: string[] = ["password"];
@@ -50,6 +51,7 @@ export default function ForgotPassword() {
             password: false,
         },
     });
+    console.log(formStateValid);
 
     const onFocusInput = (type: keyof InputsValidReset) => {
         setFormStateFocus((prevFocus) => ({
@@ -95,26 +97,15 @@ export default function ForgotPassword() {
                             className={styles.label__auth}
                             key={value}
                         >
-                            <input
-                                autoComplete="off"
-                                {...register(value as keyof InputsReset)}
-                                aria-invalid={
-                                    errors[value as keyof InputsReset]
-                                        ? "true"
-                                        : "false"
-                                }
-                                placeholder={"Enter your " + value}
-                                type="value"
-                                className={styles.input__auth}
-                                onChange={(e) =>
-                                    onChange(e, value as keyof InputsReset)
-                                }
+                            <FormInput<"password", InputsReset>
+                                value="password"
+                                register={register}
+                                errors={errors}
                                 formStateValid={formStateValid}
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
-                                onFocus={() =>
-                                    onFocusInput(value as keyof InputsReset)
-                                }
+                                onChange={onChange}
+                                onFocusInput={onFocusInput}
                             />
                             {!errors[value as keyof InputsReset] &&
                                 formStateValid[value as keyof InputsReset] && (
@@ -147,9 +138,13 @@ export default function ForgotPassword() {
                     );
                 })}
                 <div className={styles.wrapper__buttons}>
-                    <button type="submit" className={styles.button__next}>
+                    <Button
+                        type="submit"
+                        className="accent"
+                        onClick={() => setFormSubmitted(true)}
+                    >
                         Confirm
-                    </button>
+                    </Button>
                 </div>
             </form>
         </AuthWrapper>

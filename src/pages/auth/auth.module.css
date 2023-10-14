@@ -112,9 +112,10 @@
 }
 
 .text__error {
-  color: var(--black);
+  color: red;
   font-size: 14px;
   position: absolute;
+  top: 110%;
 }
 
 .wrapper__buttons {
@@ -174,5 +175,11 @@
 .body h3 {
   text-align: center;
   margin-top: -80px;
+  margin-bottom: 40px;
+}
+
+.text__confirm {
+  font-size: 24px;
+  font-weight: 600;
   margin-bottom: 40px;
 }/*# sourceMappingURL=auth.module.css.map */

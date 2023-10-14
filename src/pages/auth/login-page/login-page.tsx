@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import styles from "../auth-context/sign/Sign.module.scss";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Error, IconOkey } from "../../../assets/icons.tsx";
 import {
     InputLoginKeys,
@@ -15,7 +15,6 @@ import { AuthContext } from "../auth-context/auth-context.tsx";
 import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import LoginSchema from "./login-schema.ts";
 import useValidation from "../../../shared/use-validate/use-validate.tsx";
 import authSchema from "../signup-page/signup-schema.ts";
 import authService from "../../../services/auth/auth.service.tsx";

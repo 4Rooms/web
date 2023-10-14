@@ -17,6 +17,18 @@
     position: relative;
     width: 420px;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &.information {
+        padding: 40px 32px;
+    }
+
+    &.create__chat {
+        gap: 60px;
+        width: 800px;
+    }
 }
 
 .close {

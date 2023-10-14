@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 
 const modalRoot: null | Element = document.querySelector("#modal-root");
 
-export default function Modal({ children, onOpen, className }: ChildrenModal) {
+export default function Modal({ children, onOpen, className="" }: ChildrenModal) {
     function handleKeyDown(event: KeyboardEvent) {
         if (event.code === "Escape") {
             onOpen();
@@ -27,7 +27,7 @@ export default function Modal({ children, onOpen, className }: ChildrenModal) {
     }, []);
     return createPortal(
         <div onClick={handleBackdropClick} className={styles.overlay} >
-            <div className={styles.window}>
+            <div className={`${styles.window} ${styles[className]}`}>
                 <button className={styles.close} onClick={onOpen}>
                     <CloseModal />
                 </button>
