@@ -8,7 +8,6 @@ import { localStorageService } from "../../../../../services/local-storage/local
 import styles from "../Sign.module.scss";
 import {
     Back,
-    CloseModal,
     Error,
     Google,
     HiddenPassword,
@@ -17,7 +16,6 @@ import {
 } from "../../../../../assets/icons.tsx";
 import * as yup from "yup";
 import { InputsLogin, InputsValidLogin } from "../../../../../App.types.ts";
-import { createPortal } from "react-dom";
 import Modal from "../../../../../Components/Modal/Modal.tsx";
 
 const authSchema = yup.object().shape({
@@ -40,8 +38,6 @@ const authSchema = yup.object().shape({
         )
         .required("Password is required."),
 });
-
-const modalRoot: null | Element = document.querySelector("#modal-root");
 
 export default function Login() {
     const { setUsername } = useContext(AuthContext);
@@ -106,12 +102,6 @@ export default function Login() {
 
     const handleKeyDown = (e: any) => {
         if (e.code === "Escape") {
-            onClickChangeOpenModal();
-        }
-    };
-
-    const handleBackdropClick = (event: any) => {
-        if (event.target === event.currentTarget) {
             onClickChangeOpenModal();
         }
     };
