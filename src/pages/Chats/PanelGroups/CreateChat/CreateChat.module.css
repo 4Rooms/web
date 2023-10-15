@@ -77,9 +77,44 @@
   width: 100%;
 }
 
+.wrapper__add {
+  width: 100%;
+}
+
 .add__image {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   opacity: 0;
+}
+
+.text__error {
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  top: 110%;
+}
+
+.error__auth {
+  position: absolute;
+  right: 15px;
+  top: 10.5px;
+}
+
+.focus__block {
+  background-color: var(--button-up);
+  color: var(--color--button);
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: 600;
+  position: absolute;
+  top: -20%;
+  left: 15px;
+}
+
+.okey__auth {
+  position: absolute;
+  right: 15px;
+  top: 18px;
 }/*# sourceMappingURL=CreateChat.module.css.map */

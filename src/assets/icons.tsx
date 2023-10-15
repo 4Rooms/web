@@ -344,7 +344,7 @@ export const AddPhoto = () => (
         height="81"
         viewBox="0 0 80 81"
         fill="none"
-        style={{ left: "45%", position: "absolute", cursor: "pointer" }}
+        style={{ left: "0", position: "absolute", cursor: "pointer" }}
     >
         <circle cx="40" cy="40.5" r="40" fill="white" />
         <path

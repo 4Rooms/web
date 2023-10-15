@@ -86,6 +86,9 @@
     border: 1px solid var(--gray);
     &:focus {
         outline: transparent;
+    }  
+    &.create {
+        width: 93%;
     }
 }
 

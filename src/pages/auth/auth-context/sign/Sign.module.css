@@ -88,6 +88,9 @@
 .input__auth:focus {
   outline: transparent;
 }
+.input__auth.create {
+  width: 93%;
+}
 
 .error__auth {
   position: absolute;

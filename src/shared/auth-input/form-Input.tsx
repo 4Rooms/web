@@ -19,6 +19,7 @@ interface FormInput<T extends Path<U>, U extends FieldValues> {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>, value: T) => void;
     onChangeInputValue?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocusInput?: (type: T) => void;
+    className?: string | undefined;
 }
 
 export default function FormInput<T extends Path<U>, U extends FieldValues>({
@@ -31,7 +32,8 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     open = false,
     onChange,
     onFocusInput,
-    onChangeInputValue
+    onChangeInputValue,
+    className=""
 }: FormInput<T, U>) {
     return (
         <input
@@ -53,7 +55,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                 formStateValid || {},
                 formStateFocus || {},
                 formStateValue || {}
-            )}`}
+            )} ${styles[className]}`}
             onChange={(e) => {
                 onChange && onChange(e, value);
                 onChangeInputValue && onChangeInputValue(e);
