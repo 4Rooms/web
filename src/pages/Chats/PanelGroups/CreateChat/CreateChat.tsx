@@ -80,7 +80,7 @@ export default function CreateChat() {
     };
 
     const deliveryFormAuth: SubmitHandler<InputsCreate> = async (data) => {
-        console.log(321321);
+        console.log(data);
         setFormSubmitted(true);
         // await authService
         //     .login(data)
