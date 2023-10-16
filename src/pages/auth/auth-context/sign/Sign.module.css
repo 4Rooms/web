@@ -75,6 +75,9 @@
 .label__auth.label__modal {
   margin-bottom: 60px;
 }
+.label__auth.textarea {
+  height: 94px;
+}
 
 .input__auth {
   color: var(--gray);
@@ -90,6 +93,23 @@
 }
 .input__auth.create {
   width: 93%;
+  padding: 20px 24px;
+}
+.input__auth.textarea {
+  width: 93%;
+  padding: 20px 24px;
+  background-color: white;
+  resize: none;
+  overflow-x: hidden;
+}
+.input__auth.textarea::-webkit-scrollbar {
+  width: 1px;
+}
+.input__auth.textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+.input__auth.textarea::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .error__auth {

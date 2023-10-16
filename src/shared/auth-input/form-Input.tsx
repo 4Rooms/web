@@ -16,10 +16,11 @@ interface FormInput<T extends Path<U>, U extends FieldValues> {
     formStateFocus?: Record<string, any>;
     formStateValue?: Record<string, any>;
     open?: boolean;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>, value: T) => void;
-    onChangeInputValue?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: T) => void;
+    onChangeInputValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: T) => void;
     onFocusInput?: (type: T) => void;
     className?: string | undefined;
+    textarea?: boolean;
 }
 
 export default function FormInput<T extends Path<U>, U extends FieldValues>({
@@ -33,15 +34,44 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     onChange,
     onFocusInput,
     onChangeInputValue,
-    className=""
+    className = "",
+    textarea = false,
 }: FormInput<T, U>) {
-    return (
+    return textarea ? (
+        <textarea
+            id={String(value)}
+            autoComplete="off"
+            {...(register && register(value))}
+            aria-invalid={errors && errors[value] ? "true" : "false"}
+            placeholder={
+                value !== "resetEmail"
+                    ? `Enter your ${String(value)}`
+                    : "Enter your email"
+            }
+            className={`${styles.input__auth} ${getInputClass(
+                String(value),
+                errors || {},
+                formStateValid || {},
+                formStateFocus || {},
+                formStateValue || {}
+            )} ${styles[className]}`}
+            onChange={(e) => {
+                onChange && onChange(e as React.ChangeEvent<HTMLTextAreaElement>, value);
+                onChangeInputValue && onChangeInputValue(e as React.ChangeEvent<HTMLTextAreaElement>, value);
+            }}
+            onFocus={() => onFocusInput && onFocusInput(value)}
+        />
+    ) : (
         <input
             id={String(value)}
             autoComplete="off"
             {...(register && register(value))}
             aria-invalid={errors && errors[value] ? "true" : "false"}
-            placeholder={value !== "resetEmail" ? `Enter your ${String(value)}` : "Enter your email"}
+            placeholder={
+                value !== "resetEmail"
+                    ? `Enter your ${String(value)}`
+                    : "Enter your email"
+            }
             type={
                 value === "password"
                     ? open
@@ -58,7 +88,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             )} ${styles[className]}`}
             onChange={(e) => {
                 onChange && onChange(e, value);
-                onChangeInputValue && onChangeInputValue(e);
+                onChangeInputValue && onChangeInputValue(e as React.ChangeEvent<HTMLInputElement>, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />

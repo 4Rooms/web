@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import styles from "./CreateChat.module.scss";
 import Modal from "../../../../Components/Modal/Modal";
 import { AddPhoto, Error, IconOkey } from "../../../../assets/icons";
@@ -18,6 +18,8 @@ export default function CreateChat() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+    const [imageURL, setImageURL] = useState<string>("");
+    const [imageError, setImageError] = useState<null | string>(null);
 
     const [formStateValue, setFormStateValue] = useState<InputsCreate>({
         title: "",
@@ -34,7 +36,7 @@ export default function CreateChat() {
         setError,
         clearErrors,
         formState: { errors },
-    } = useForm<InputsCreate>({
+    } = useForm({
         defaultValues: {
             title: "",
             description: "",
@@ -59,19 +61,31 @@ export default function CreateChat() {
         },
     });
 
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement> | null) => {
+        if (e && e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0];
+            if (file.size > 3 * 1024 * 1024) {
+                setImageError("Image size should be less than 3MB");
+            } else {
+                setImageError(null);
+                setImageURL(URL.createObjectURL(file));
+            }
+        }
+    };
+
     const onChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         type: InputsCreateKeys
     ) => {
         const value = e.target.value;
-
+    
         setFormStateValue({
             ...formStateValue,
             [type]: value,
         });
-
+    
         validateField(type, value);
-    };
+    };    
 
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
@@ -81,7 +95,12 @@ export default function CreateChat() {
 
     const deliveryFormAuth: SubmitHandler<InputsCreate> = async (data) => {
         console.log(data);
-        setFormSubmitted(true);
+        // const image = imageURL[0];
+        // const formData = new FormData();
+        // for (const key in { image, ...data }) {
+        //     formData.append(key, ...data[key]);
+        // }
+        // console.log(formData);
         // await authService
         //     .login(data)
         //     .then((response) => {
@@ -105,15 +124,6 @@ export default function CreateChat() {
             {openModal && (
                 <Modal className="create__chat" onOpen={onClickChangeOpenModal}>
                     <>
-                        <div className={styles.wrapper__add}>
-                            <label className={styles.label__auth}>
-                                <input
-                                    className={styles.add__image}
-                                    type="file"
-                                />
-                                <AddPhoto />
-                            </label>
-                        </div>
                         <h1 className={styles.title__modal}>
                             Create a new chat
                         </h1>
@@ -121,10 +131,22 @@ export default function CreateChat() {
                             onSubmit={handleSubmit(deliveryFormAuth)}
                             className={styles.form__auth}
                         >
+                            <div className={styles.wrapper__add}>
+                                <label className={styles.label__auth}>
+                                    <input
+                                        className={styles.add__image}
+                                        type="file"
+                                        onChange={handleImageChange}
+                                        required
+                                    />
+                                    <AddPhoto />
+                                </label>
+                            </div>
                             {inputArray.map((value) => (
                                 <label
-                                    className={styles.label__auth}
+                                className={styles.label__auth}
                                     key={value}
+                                    htmlFor={value}
                                 >
                                     <FormInput<InputsCreateKeys, InputsCreate>
                                         value={value}
@@ -134,7 +156,8 @@ export default function CreateChat() {
                                         formStateFocus={formStateFocus}
                                         formStateValue={formStateValue}
                                         onChange={onChange}
-                                        className="create"
+                                        textarea={value === "description" ? true : false}
+                                        className={value === "description" ? "textarea" : "create"}
                                         onFocusInput={onFocusInput}
                                     />
                                     {!errors[value as keyof InputsCreate] &&
@@ -165,22 +188,35 @@ export default function CreateChat() {
                                                 </p>
                                             </div>
                                         )}
-                                    {errors[value as keyof InputsCreate] &&
-                                        !formStateValid[
-                                            value as keyof InputsCreate
-                                        ] && (
-                                            <Error
-                                                className={styles.error__auth}
-                                            />
+                                    {errors[value] &&
+                                        !formStateValid[value] && (
+                                            <>
+                                                <p
+                                                    className={
+                                                        styles.text__error
+                                                    }
+                                                >
+                                                    {errors[value]?.message}
+                                                </p>
+                                                <Error
+                                                    className={
+                                                        styles.error__auth
+                                                    }
+                                                />
+                                            </>
                                         )}
                                 </label>
                             ))}
+                            <Button
+                                onClick={() => {
+                                    setFormSubmitted(true);
+                                }}
+                                type="submit"
+                                className="accent"
+                            >
+                                Create
+                            </Button>
                         </form>
-                        <Button onClick={() => {
-                            setFormSubmitted(true)
-                        }} type="submit" className="accent">
-                            Create
-                        </Button>
                     </>
                 </Modal>
             )}

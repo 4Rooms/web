@@ -74,6 +74,10 @@
     &.label__modal {
         margin-bottom: 60px;
     }
+
+    &.textarea {
+        height: 94px;
+    }
 }
 
 .input__auth {
@@ -89,6 +93,25 @@
     }  
     &.create {
         width: 93%;
+        padding: 20px 24px;
+    }
+    &.textarea {
+        width: 93%;
+        padding: 20px 24px;
+        background-color: white;
+        resize: none;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: 1px; 
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0);
+        }
     }
 }
 
