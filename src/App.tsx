@@ -13,6 +13,7 @@ import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page
 import SignupPage from "./pages/auth/signup-page/signup-page.tsx";
 import SignupConfirmation from "./pages/auth/signup-page/signup-confirmation/signup-confirmation.tsx";
 import LoginPage from "./pages/auth/login-page/login-page.tsx";
+import Profile from "./pages/profile/Profile.tsx";
 
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
@@ -44,9 +45,10 @@ function App() {
                     <Route element={<GuardRoutes />}></Route>
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/authentication" element={<LoginPage />} />
-                    <Route path="/create-account" element={<SignupPage />}>
-
-                    </Route>
+                    <Route
+                        path="/create-account"
+                        element={<SignupPage />}
+                    ></Route>
                     <Route path="/password-reset" element={<PasswordReset />} />
                     <Route
                         path="/forgot-password"
@@ -60,6 +62,7 @@ function App() {
                         path="/confirm-email"
                         element={<EmailConfirmPage />}
                     />
+                    <Route path="/profile" element={<Profile />} />
                 </Route>
             </Routes>
         </div>

@@ -66,6 +66,7 @@ export default function CreateChat() {
             const file = e.target.files[0];
             if (file.size > 3 * 1024 * 1024) {
                 setImageError("Image size should be less than 3MB");
+                console.log(imageError);
             } else {
                 setImageError(null);
                 setImageURL(URL.createObjectURL(file));
