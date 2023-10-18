@@ -24,6 +24,15 @@ const resources = {
                 'initial': 'Please wait for confirmation...',
                 'success': 'Email address successfully confirmed',
                 'fail': 'Failed to confirm email address'
+            },
+            'consent': {
+                'header': 'Consent to use files cookies',
+                'acceptAll': 'Accept all',
+                'description': {
+                    'firstPart': 'We use files cookies only to collect information for functional. By clicking',
+                    'boldPart': '"Accept All"',
+                    'lastPart': ', you consent to data collection for the above purposes'
+                }
             }
         }
     },
@@ -49,6 +58,15 @@ const resources = {
                 'initial': 'Будь ласка, почекайте йде підтвердженя...',
                 'success': 'Електронну адресу успішно підтверджено',
                 'fail': 'Не вдалося підтвердити електронну адресу'
+            },
+            'consent': {
+                'header': 'Згода на використання файлів cookie',
+                'acceptAll': 'Прийняти всі',
+                'description': {
+                    'firstPart': 'Ми використовуємо файли cookie лише для збору інформації з функціональною метою. Натискаючи',
+                    'boldPart': '«Прийняти всі»',
+                    'lastPart': ', ви даєте згоду на збір даних для вказаних цілей'
+                }
             }
         }
     }
