@@ -77,7 +77,7 @@ export default function SignupPage() {
     });
 
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>, type: InputSignupKeys) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputSignupKeys) => {
         const value = e.target.value;
 
         setFormStateValue({

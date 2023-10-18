@@ -95,12 +95,12 @@ export default function LoginPage() {
         }
     };
 
-    const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         resetEmail = e.target.value;
     }
 
     const onChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         type: InputLoginKeys
     ) => {
         const value = e.target.value;
