@@ -61,7 +61,7 @@ export default function ForgotPassword() {
     };
 
     const onChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         type: ForgotKeys
     ) => {
         const value = e.target.value;
@@ -95,8 +95,7 @@ export default function ForgotPassword() {
                         <label
                             htmlFor={value}
                             className={styles.label__auth}
-                            key={value}
-                        >
+                            key={value}>
                             <FormInput<"password", InputsReset>
                                 value="password"
                                 register={register}
