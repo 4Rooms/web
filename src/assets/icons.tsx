@@ -4,9 +4,9 @@ import { ErrorProps, LogoProps } from "../App.types";
 export const RowBelow = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="8"
-        height="6"
-        viewBox="0 0 8 6"
+        width="10"
+        height="10"
+        viewBox="0 0 10 8"
         fill="none"
     >
         <path

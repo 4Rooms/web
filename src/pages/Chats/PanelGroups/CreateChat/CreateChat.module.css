@@ -9,39 +9,17 @@
   cursor: pointer;
   margin: 0 auto;
 }
-
-.overlay__modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 2;
+.button__addChat.books {
+  background-color: #CC9C00;
 }
-
-.widnow__mondal {
-  background-color: #eeebf1;
-  padding: 80px 60px;
-  border-radius: 20px;
-  position: relative;
-  width: 420px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 60px;
+.button__addChat.games {
+  background-color: #C00;
 }
-
-.close__modal {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background-color: transparent;
-  border-color: transparent;
-  cursor: pointer;
+.button__addChat.cinema {
+  background-color: #349878;
+}
+.button__addChat.music {
+  background-color: #8B03C9;
 }
 
 .title__modal {

@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Chats.module.css";
-import styles__logo from './../../Components/Navigation/Navigation.module.css'
+import styles__logo from "./../../Components/Navigation/Navigation.module.css";
 import PanelGroups from "./PanelGroups/PanelGroups";
 import ChatGroup from "./ChatGroup/ChatGroup";
 import { Link, useParams } from "react-router-dom";
 import { Logo } from "../../assets/icons";
 import { useChat } from "./chat-context/use-chat";
+import { getChatsRoom } from "../../services/chat/chat.service";
 
 export default function Chats() {
     const { room } = useParams();
     const { setRoomName } = useChat();
     setRoomName(room);
+    useEffect(() => {
+        const getAllChatsRoom = async () => {
+            try {
+                const data = await getChatsRoom(room);
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getAllChatsRoom();
+    }, [room]);
     return (
         <>
             <div className={styles.container__chatInformation}>
@@ -22,7 +34,9 @@ export default function Chats() {
                     <Link to="/" className={styles.link__logo}>
                         <Logo className={styles.footer__icon} />
                         <div>
-                            <span className={styles__logo.logo__name}>4ROOMS</span>
+                            <span className={styles__logo.logo__name}>
+                                4ROOMS
+                            </span>
                         </div>
                     </Link>
                 </div>
@@ -30,4 +44,3 @@ export default function Chats() {
         </>
     );
 }
-

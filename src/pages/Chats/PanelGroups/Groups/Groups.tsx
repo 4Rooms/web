@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./Groups.module.css";
+import { useChat } from "../../chat-context/use-chat";
 
 export default function Groups() {
+    const { roomName } = useChat();
     const groups: string[] = [
         "SpanchBob1",
         "SpanchBob2",
@@ -29,7 +31,12 @@ export default function Groups() {
             {groups.map((group) => {
                 return (
                     <li className={styles.item__group} key={group}>
-                        <button type="button" className={styles.group}>
+                        <button
+                            type="button"
+                            className={`${styles.group} ${
+                                roomName ? styles[roomName] : ""
+                            }`}
+                        >
                             <img
                                 className={styles.group__avatar}
                                 src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"

@@ -9,21 +9,33 @@
     font-weight: 600;
     line-height: 150%;
     transition: text-decoration 250ms;
-    background-color: transparent;
-    border: transparent;
     cursor: pointer;
     color: var(--gray);
-
-    &:hover,
-    &:focus {
+    &.books:hover,
+    &.books.active{
         text-decoration-line: underline;
-        color: var(--button--color);
+        color: #CC9C00;
+    }
+    &.games:hover,
+    &.games.active {
+        text-decoration-line: underline;
+        color: #C00;
+    }
+    &.cinema:hover,
+    &.cinema.active {
+        text-decoration-line: underline;
+        color: #349878;
+    }
+    &.music:hover,
+    &.music.active {
+        text-decoration-line: underline;
+        color: #8B03C9;
     }
 }
 
 .button__new {
     display: flex;
-    gap: 50px;
+    gap: 45px;
     align-items: center;
     width: 35%;
     text-align: left;
@@ -37,10 +49,18 @@
     padding: 4px 8px;
     border: transparent;
     cursor: pointer;
-}
 
-.icon__addNew {
-    width: 8px;
-    height: 5px;
-    fill: black;
+    
+    &.books {
+        background-color: #CC9C00;
+    }
+    &.games {
+        background-color: #C00;
+    }
+    &.cinema {
+        background-color: #349878;
+    }
+    &.music {
+        background-color: #8B03C9;
+    }
 }

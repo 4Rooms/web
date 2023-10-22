@@ -1,8 +1,12 @@
 import React from "react";
 import styles from "./FilterGroup.module.css";
+import { useChat } from "../../chat-context/use-chat";
 import { RowBelow } from "../../../../assets/icons";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function FilterGroup() {
+    const { roomName } = useChat();
+    const location = useLocation();
     const filterButton: string[] = ["Cinema", "Books", "Music", "Games"];
     return (
         <div>
@@ -10,20 +14,31 @@ export default function FilterGroup() {
                 {filterButton.map((text) => {
                     return (
                         <li key={text}>
-                            <button
-                                type="button"
-                                className={styles.button__filter}
+                            <NavLink
+                                to={`/chat/${text.toLocaleLowerCase()}`}
+                                className={`${styles.button__filter} ${
+                                    roomName ? styles[roomName] : ""
+                                } ${
+                                    location.pathname ===
+                                    `/chat/${text.toLocaleLowerCase()}`
+                                        ? styles.active
+                                        : ""
+                                }`}
                             >
                                 {text}
-                            </button>
+                            </NavLink>
                         </li>
                     );
                 })}
             </ul>
-            <div style={{ position: "relative" }}>
-                <button type="button" className={styles.button__new}>
-                    New
-                    <RowBelow />
+            <div>
+                <button
+                    type="button"
+                    className={`${styles.button__new} ${
+                        roomName ? styles[roomName] : ""
+                    }`}
+                >
+                    New <RowBelow />
                 </button>
             </div>
         </div>

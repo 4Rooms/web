@@ -12,14 +12,13 @@ export function DashboardPage() {
                 </h1>
                 <ul className={styles.dashboard__list}>
                     {optionDashboard.map((option) => {
-                        const nameRoom = option.name.toLowerCase();
                         return (
                             <li
-                                className={`${styles.dashboard__item} ${styles[nameRoom]}`}
+                                className={`${styles.dashboard__item} ${styles[option.name.toLowerCase()]}`}
                                 key={option.name}
                             >
                                 <Link
-                                    to={`/chat/${nameRoom}`}
+                                    to={`/chat/${option.name.toLowerCase()}`}
                                     style={{ width: "100%" }}
                                     className={styles.dashboard__link}
                                 >

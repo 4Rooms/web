@@ -37,9 +37,17 @@
     border: transparent;
     width: 100%;
     cursor: pointer;
-    &:hover {
-        border-radius: 5px;
-        color: #61C9A8;
+    &.books:hover {
+        color: #CC9C00;
+    }
+    &.games:hover {
+        color: #C00;
+    }
+    &.cinema:hover {
+        color: #349878;
+    }
+    &.music:hover {
+        color: #8B03C9;
     }
 }
 

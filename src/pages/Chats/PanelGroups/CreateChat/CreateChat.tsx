@@ -13,8 +13,10 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import useValidation from "../../../../shared/use-validate/use-validate";
 import FormInput from "../../../../shared/auth-input/form-Input";
+import { useChat } from "../../chat-context/use-chat";
 
 export default function CreateChat() {
+    const { roomName } = useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -78,14 +80,14 @@ export default function CreateChat() {
         type: InputsCreateKeys
     ) => {
         const value = e.target.value;
-    
+
         setFormStateValue({
             ...formStateValue,
             [type]: value,
         });
-    
+
         validateField(type, value);
-    };    
+    };
 
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
@@ -95,29 +97,15 @@ export default function CreateChat() {
 
     const deliveryFormAuth: SubmitHandler<InputsCreate> = async (data) => {
         console.log(data);
-        // const image = imageURL[0];
-        // const formData = new FormData();
-        // for (const key in { image, ...data }) {
-        //     formData.append(key, ...data[key]);
-        // }
-        // console.log(formData);
-        // await authService
-        //     .login(data)
-        //     .then((response) => {
-        //         setUsername(response.user.username);
-        //         localStorageService.set("user", response.user);
-        //         navigate("/");
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
     };
 
     return (
         <>
             <button
                 onClick={onClickChangeOpenModal}
-                className={styles.button__addChat}
+                className={`${styles.button__addChat} ${
+                    roomName ? styles[roomName] : ""
+                }`}
             >
                 Create chat
             </button>
@@ -144,7 +132,7 @@ export default function CreateChat() {
                             </div>
                             {inputArray.map((value) => (
                                 <label
-                                className={styles.label__auth}
+                                    className={styles.label__auth}
                                     key={value}
                                     htmlFor={value}
                                 >
@@ -156,8 +144,16 @@ export default function CreateChat() {
                                         formStateFocus={formStateFocus}
                                         formStateValue={formStateValue}
                                         onChange={onChange}
-                                        textarea={value === "description" ? true : false}
-                                        className={value === "description" ? "textarea" : "create"}
+                                        textarea={
+                                            value === "description"
+                                                ? true
+                                                : false
+                                        }
+                                        className={
+                                            value === "description"
+                                                ? "textarea"
+                                                : "create"
+                                        }
                                         onFocusInput={onFocusInput}
                                     />
                                     {!errors[value as keyof InputsCreate] &&
