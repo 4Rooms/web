@@ -3,10 +3,14 @@ import styles from "./Chats.module.css";
 import styles__logo from './../../Components/Navigation/Navigation.module.css'
 import PanelGroups from "./PanelGroups/PanelGroups";
 import ChatGroup from "./ChatGroup/ChatGroup";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Logo } from "../../assets/icons";
+import { useChat } from "./chat-context/use-chat";
 
 export default function Chats() {
+    const { room } = useParams();
+    const { setRoomName } = useChat();
+    setRoomName(room);
     return (
         <>
             <div className={styles.container__chatInformation}>
@@ -26,3 +30,4 @@ export default function Chats() {
         </>
     );
 }
+

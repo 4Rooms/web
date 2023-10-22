@@ -7,11 +7,11 @@ import MessageForm from "./MessageForm/MessageForm";
 import Welcome from "./Welcome/Welcome";
 
 export default function ChatGroup() {
-    const [text] = useState<boolean>(false);
+    const [text] = useState<boolean>(true);
     return (
         <div className={styles.container__chatGroups}>
             {text ? (
-                <Welcome />
+                <Welcome/>
             ) : (
                 <>
                     <Infrotmation />

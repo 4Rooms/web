@@ -1,26 +1,23 @@
-.overlay {
+.dashboard {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 81px;
 }
-
-.title__dashboard {
+.dashboard__title {
   color: var(--black);
   font-size: 36px;
   line-height: 150%;
   margin-bottom: 60px;
   text-align: center;
 }
-
-.list__dashboard {
+.dashboard__list {
   display: flex;
   flex-wrap: wrap;
   width: 600px;
   gap: 40px;
 }
-
-.item__dashboard {
+.dashboard__item {
   width: calc((100% - 120px) / 2);
   height: 200px;
   border-radius: 20px;
@@ -28,42 +25,59 @@
   cursor: pointer;
   transition: all 250ms;
 }
-.item__dashboard:hover > a > div > p {
+.dashboard__item:hover > a > div > p {
   opacity: 1;
   color: var(--black);
   position: static;
 }
-.item__dashboard:hover > a > div > .text__dashboard {
+.dashboard__item:hover > a > div > .dashboard__text {
   margin-bottom: 24px;
   font-weight: 600;
   font-size: 28px;
 }
-
-.link__dashboard {
+.dashboard__item.books {
+  background-color: #eed78c;
+}
+.dashboard__item.books:hover {
+  background-color: #f5bb00;
+}
+.dashboard__item.games {
+  background-color: #F2B5B5;
+}
+.dashboard__item.games:hover {
+  background-color: #F66;
+}
+.dashboard__item.cinema {
+  background-color: #B3DCCF;
+}
+.dashboard__item.cinema:hover {
+  background-color: #61C9A8;
+}
+.dashboard__item.music {
+  background-color: #DFB8F1;
+}
+.dashboard__item.music:hover {
+  background-color: #D06EFD;
+}
+.dashboard__link {
   text-align: center;
   width: calc(100% + 40px);
   gap: 20px;
-  height: calc(100% + 20px);
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   position: relative;
 }
-
-.text__dashboard {
+.dashboard__text {
   color: var(--gray);
   font-size: 20px;
   font-weight: 500;
   line-height: 150%;
   transition: all 250ms;
 }
-
-.wrapper__dashboard {
-  text-align: center;
-}
-
-.text__dashboard__desctiption {
+.dashboard__text_description {
   position: absolute;
   font-size: 16px;
   line-height: 150%;
