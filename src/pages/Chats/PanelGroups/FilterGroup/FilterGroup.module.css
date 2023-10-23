@@ -16,11 +16,11 @@
 }
 .button__filter.books:hover, .button__filter.books.active {
   text-decoration-line: underline;
-  color: #CC9C00;
+  color: #cc9c00;
 }
 .button__filter.games:hover, .button__filter.games.active {
   text-decoration-line: underline;
-  color: #C00;
+  color: #c00;
 }
 .button__filter.cinema:hover, .button__filter.cinema.active {
   text-decoration-line: underline;
@@ -28,14 +28,13 @@
 }
 .button__filter.music:hover, .button__filter.music.active {
   text-decoration-line: underline;
-  color: #8B03C9;
+  color: #8b03c9;
 }
 
 .button__new {
   display: flex;
-  gap: 45px;
   align-items: center;
-  width: 35%;
+  width: 103px;
   text-align: left;
   color: var(--color--button);
   font-size: 12px;
@@ -49,14 +48,42 @@
   cursor: pointer;
 }
 .button__new.books {
-  background-color: #CC9C00;
+  background-color: #cc9c00;
 }
 .button__new.games {
-  background-color: #C00;
+  background-color: #c00;
 }
 .button__new.cinema {
   background-color: #349878;
 }
 .button__new.music {
-  background-color: #8B03C9;
+  background-color: #8b03c9;
+}
+
+.wrapper__new {
+  position: relative;
+}
+
+.list__new {
+  position: absolute;
+  z-index: 1;
+  flex-direction: column;
+  width: 87px;
+  cursor: pointer;
+  display: flex;
+  padding: 4px 8px;
+  gap: 8px;
+  border-radius: 0px 0px 4px 4px;
+  background-color: white;
+}
+
+.button__category_change {
+  text-align: left;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--black);
+  font-size: 12px;
+  line-height: 150%;
+  cursor: pointer;
+  width: 100%;
 }/*# sourceMappingURL=FilterGroup.module.css.map */
