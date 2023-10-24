@@ -1,12 +1,21 @@
 .header__stanger {
   display: flex;
-  padding: 0 80px;
   background-color: transparent;
+  padding: 0 20px;
+
+  @media (min-width: 376px) {
+    padding: 0 80px;
+  }
 }
 
 .header__user {
+  box-sizing: border-box;
   background-color: var(--background-color-chat);
   display: flex;
-  padding: 0 80px;
   justify-content: space-between;
+  padding: 0 20px;
+
+  @media (min-width: 376px) {
+    padding: 0 80px;
+  }
 }/*# sourceMappingURL=SharedLayout.module.css.map */
