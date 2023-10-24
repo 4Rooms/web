@@ -7,15 +7,14 @@ import Chats from "./pages/Chats/Chats.tsx";
 import GuardRoutes from "./utils/guard-routes.tsx";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes } from "react-router-dom";
-import { DashboardPage } from "./pages/dashboard/Dassboard.tsx";
 import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
 import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page.tsx";
 import SignupPage from "./pages/auth/signup-page/signup-page.tsx";
 import SignupConfirmation from "./pages/auth/signup-page/signup-confirmation/signup-confirmation.tsx";
 import LoginPage from "./pages/auth/login-page/login-page.tsx";
-import Profile from "./pages/profile/Profile.tsx";
 import CookieConsent from "./shared/cookie-consent/cookie-consent.tsx";
 import { getInitialCookieConsent, updateCookieConsent } from "./utils/cookie-consent/cookie-consent.tsx";
+import { DashboardPage } from "./pages/dashboard/Dashboard.tsx";
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
     const { isAuthenticated, username, setUsername } = useAuth();
