@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding-top: 81px;
 
   &__title {
@@ -20,12 +21,12 @@
     width: 100%;
     gap: 40px;
 
-    @media (min-width: 376px) {
+    @media (min-width: 768px) {
       padding: 0;
       flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
-      width: 600px;
+      width: 800px;
       max-width: 100vw;
     }
   }
@@ -39,7 +40,7 @@
     cursor: pointer;
     transition: all 250ms;
 
-    @media (min-width: 376px) {
+    @media (min-width: 768px) {
       width: calc((100% - 120px) / 2);
       aspect-ratio: 1;
     }
@@ -103,7 +104,7 @@
       font-size: 16px;
       line-height: 150%;
       font-weight: 500;
-      left: 0%;
+      left: 0;
       top: 50%;
       transition: all 250ms;
       opacity: 0;
