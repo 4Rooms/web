@@ -3,9 +3,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 81px;
+  padding: 80px 0;
+  @media (min-width: 768px) {
+    padding: 20px 0;
+  }
 
-  &__title {
+    &__title {
     color: var(--black);
     font-size: 36px;
     line-height: 150%;
