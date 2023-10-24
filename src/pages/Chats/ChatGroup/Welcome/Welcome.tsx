@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Welcome.module.css";
-import { useChat } from "../../chat-context/use-chat";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Welcome() {
     const { roomName } = useChat();

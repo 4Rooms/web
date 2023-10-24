@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./FilterGroup.module.css";
-import { useChat } from "../../chat-context/use-chat";
 import { RowBelow } from "../../../../assets/icons";
 import { NavLink, useLocation } from "react-router-dom";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function FilterGroup() {
     const { roomName } = useChat();

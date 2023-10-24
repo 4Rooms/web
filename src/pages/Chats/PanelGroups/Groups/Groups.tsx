@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Groups.module.css";
-import { useChat } from "../../chat-context/use-chat";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Groups() {
     const { roomName } = useChat();

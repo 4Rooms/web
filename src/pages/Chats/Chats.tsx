@@ -5,8 +5,8 @@ import PanelGroups from "./PanelGroups/PanelGroups";
 import ChatGroup from "./ChatGroup/ChatGroup";
 import { Link, useParams } from "react-router-dom";
 import { Logo } from "../../assets/icons";
-import { useChat } from "./chat-context/use-chat";
 import { getChatsRoom } from "../../services/chat/chat.service";
+import { useChat } from "../chats/chat-context/use-chat.tsx";
 
 export default function Chats() {
     const { room } = useParams();

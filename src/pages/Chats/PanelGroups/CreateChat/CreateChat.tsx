@@ -13,7 +13,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import useValidation from "../../../../shared/use-validate/use-validate";
 import FormInput from "../../../../shared/auth-input/form-Input";
-import { useChat } from "../../chat-context/use-chat";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function CreateChat() {
     const { roomName } = useChat();
@@ -146,8 +146,6 @@ export default function CreateChat() {
                                         onChange={onChange}
                                         textarea={
                                             value === "description"
-                                                ? true
-                                                : false
                                         }
                                         className={
                                             value === "description"
