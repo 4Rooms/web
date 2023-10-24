@@ -2,7 +2,6 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 90vh;
 }
 
 .container__auth {
@@ -65,10 +64,19 @@
 
 .label__auth {
     width: 100%;
+    display: inline-block;
     margin-bottom: 48px;
     position: relative;
     &:last-of-type {
         margin-bottom: 80px;
+    }
+
+    &.label__modal {
+        margin-bottom: 60px;
+    }
+
+    &.textarea {
+        height: 94px;
     }
 }
 
@@ -78,11 +86,32 @@
     width: 87%;
     padding: 10px 15px;
     padding-right: 40px;
-    margin-bottom: 4px;
     border-radius: 5px;
     border: 1px solid var(--gray);
     &:focus {
         outline: transparent;
+    }  
+    &.create {
+        width: 93%;
+        padding: 20px 24px;
+    }
+    &.textarea {
+        width: 93%;
+        padding: 20px 24px;
+        background-color: white;
+        resize: none;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: 1px; 
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0);
+        }
     }
 }
 
@@ -114,6 +143,7 @@
     color: red;
     font-size: 14px;
     position: absolute;
+    top: 110%;
 }
 
 .wrapper__buttons {
@@ -167,7 +197,7 @@
     color: var(--black);
     font-size: 14px;
     position: absolute;
-    top: 100%;
+    top: 110%;
     left: 0;
     background-color: transparent;
     border-color: transparent;

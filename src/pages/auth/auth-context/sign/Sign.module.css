@@ -2,7 +2,6 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 90vh;
 }
 
 .container__auth {
@@ -66,11 +65,18 @@
 
 .label__auth {
   width: 100%;
+  display: inline-block;
   margin-bottom: 48px;
   position: relative;
 }
 .label__auth:last-of-type {
   margin-bottom: 80px;
+}
+.label__auth.label__modal {
+  margin-bottom: 60px;
+}
+.label__auth.textarea {
+  height: 94px;
 }
 
 .input__auth {
@@ -79,12 +85,31 @@
   width: 87%;
   padding: 10px 15px;
   padding-right: 40px;
-  margin-bottom: 4px;
   border-radius: 5px;
   border: 1px solid var(--gray);
 }
 .input__auth:focus {
   outline: transparent;
+}
+.input__auth.create {
+  width: 93%;
+  padding: 20px 24px;
+}
+.input__auth.textarea {
+  width: 93%;
+  padding: 20px 24px;
+  background-color: white;
+  resize: none;
+  overflow-x: hidden;
+}
+.input__auth.textarea::-webkit-scrollbar {
+  width: 1px;
+}
+.input__auth.textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+.input__auth.textarea::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .error__auth {
@@ -115,6 +140,7 @@
   color: red;
   font-size: 14px;
   position: absolute;
+  top: 110%;
 }
 
 .wrapper__buttons {
@@ -170,7 +196,7 @@
   color: var(--black);
   font-size: 14px;
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 0;
   background-color: transparent;
   border-color: transparent;

@@ -1,0 +1,43 @@
+.welcome {
+    width: 100%;
+    background-color: #b3dccf;
+    gap: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 277.5px 79px;
+    &.books {
+        background-color: #eed78c;
+    }
+    &.games {
+        background-color: #F2B5B5;
+    }
+    &.cinema {
+        background-color: #B3DCCF;
+    }
+    &.music {
+        background-color: #DFB8F1;
+    }
+    &__title {
+        color: var(--black);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 150%;
+    }
+    &__text {
+        color: var(--black);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 150%;
+    }
+    &__span {
+        color: var(--black);
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 150%;
+    }
+}

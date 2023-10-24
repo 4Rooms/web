@@ -19,7 +19,7 @@ export default function SignupConfirmation() {
 
     return <AuthWrapper title={'Create an account'} link={'/create-account'}>
         <div className={styles.body}>
-            <h3>We sent a message to your email.<br/>
+            <h3 className={styles.text__confirm}>We sent a message to your email.<br/>
                 Please confirm your identity.
             </h3>
             <Button className='accent' onClick={() => deliveryFormAuth()}>send again</Button>

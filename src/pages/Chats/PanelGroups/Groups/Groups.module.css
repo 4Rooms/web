@@ -36,9 +36,17 @@
   width: 100%;
   cursor: pointer;
 }
-.group:hover {
-  border-radius: 5px;
-  color: #61C9A8;
+.group.books:hover {
+  color: #CC9C00;
+}
+.group.games:hover {
+  color: #C00;
+}
+.group.cinema:hover {
+  color: #349878;
+}
+.group.music:hover {
+  color: #8B03C9;
 }
 
 .group__avatar {

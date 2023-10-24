@@ -55,8 +55,7 @@ export default function EmailConfirmPage() {
                 </div>
                 <div className={styles.wrapper__buttons} style={{ textAlign: "center", marginTop: "50%", marginBottom: "50%" }}>
                     <p className={styles.text__form}>
-                        We sent a message to your email. Please confirm your
-                        identity.
+                        {text}
                     </p>
                     <button
                         type="submit"

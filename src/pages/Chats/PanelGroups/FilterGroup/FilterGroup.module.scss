@@ -9,38 +9,84 @@
     font-weight: 600;
     line-height: 150%;
     transition: text-decoration 250ms;
-    background-color: transparent;
-    border: transparent;
     cursor: pointer;
     color: var(--gray);
-
-    &:hover,
-    &:focus {
+    &.books:hover,
+    &.books.active {
         text-decoration-line: underline;
-        color: var(--button--color);
+        color: #cc9c00;
+    }
+    &.games:hover,
+    &.games.active {
+        text-decoration-line: underline;
+        color: #c00;
+    }
+    &.cinema:hover,
+    &.cinema.active {
+        text-decoration-line: underline;
+        color: #349878;
+    }
+    &.music:hover,
+    &.music.active {
+        text-decoration-line: underline;
+        color: #8b03c9;
     }
 }
 
 .button__new {
     display: flex;
-    gap: 50px;
     align-items: center;
-    width: 35%;
+    width: 103px;
     text-align: left;
     color: var(--color--button);
     font-size: 12px;
     font-weight: 400;
-    line-height: 150%; 
+    line-height: 150%;
     border-radius: 5px;
     background-color: var(--button--color);
     box-shadow: var(--box-shadow-button);
     padding: 4px 8px;
     border: transparent;
     cursor: pointer;
+
+    &.books {
+        background-color: #cc9c00;
+    }
+    &.games {
+        background-color: #c00;
+    }
+    &.cinema {
+        background-color: #349878;
+    }
+    &.music {
+        background-color: #8b03c9;
+    }
 }
 
-.icon__addNew {
-    width: 8px;
-    height: 5px;
-    fill: black;
+.wrapper__new {
+    position: relative;
+}
+
+.list__new {
+    position: absolute;
+    z-index: 1;
+    flex-direction: column;
+    width: 87px;
+    cursor: pointer;
+    display: flex;
+    padding: 4px 8px;
+    gap: 8px;
+    border-radius: 0px 0px 4px 4px;
+    background-color: white;
+}
+
+.button__category_change {
+    text-align: left;
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--black);
+    font-size: 12px;
+    line-height: 150%;
+    cursor: pointer;
+    width: 100%;
 }

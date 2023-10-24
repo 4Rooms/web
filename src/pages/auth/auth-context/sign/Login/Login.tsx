@@ -8,7 +8,6 @@ import { localStorageService } from "../../../../../services/local-storage/local
 import styles from "../Sign.module.scss";
 import {
     Back,
-    CloseModal,
     Error,
     Google,
     HiddenPassword,
@@ -17,7 +16,7 @@ import {
 } from "../../../../../assets/icons.tsx";
 import * as yup from "yup";
 import { InputsLogin, InputsValidLogin } from "../../../../../App.types.ts";
-import { createPortal } from "react-dom";
+import Modal from "../../../../../Components/Modal/Modal.tsx";
 
 const authSchema = yup.object().shape({
     username: yup
@@ -39,8 +38,6 @@ const authSchema = yup.object().shape({
         )
         .required("Password is required."),
 });
-
-const modalRoot: null | Element = document.querySelector("#modal-root");
 
 export default function Login() {
     const { setUsername } = useContext(AuthContext);
@@ -105,12 +102,6 @@ export default function Login() {
 
     const handleKeyDown = (e: any) => {
         if (e.code === "Escape") {
-            onClickChangeOpenModal();
-        }
-    };
-
-    const handleBackdropClick = (event: any) => {
-        if (event.target === event.currentTarget) {
             onClickChangeOpenModal();
         }
     };
@@ -364,50 +355,37 @@ export default function Login() {
                             </label>
                         );
                     })}
-                    {openModal &&
-                        createPortal(
-                            <div
-                                onClick={handleBackdropClick}
-                                className={styles.overlay__modal}
-                            >
-                                <div className={styles.widnow__mondal}>
-                                    <button
-                                        className={styles.close__modal}
-                                        onClick={onClickChangeOpenModal}
-                                    >
-                                        <CloseModal />
-                                    </button>
-                                    <form>
-                                        <p className={styles.text__modal}>
-                                            Enter your email to reset password
-                                        </p>
-                                        <input
-                                            placeholder={"Enter your email"}
-                                            onChange={(e) => {
-                                                setEmail(e.target.value);
-                                            }}
-                                            value={email}
-                                            style={{ marginBottom: 60 }}
-                                            className={styles.input__auth}
-                                            type="email"
-                                        />
-                                        <button
-                                            className={styles.button__next}
-                                            type="button"
-                                            onClick={onSubmitModal}
-                                            style={{
-                                                fontSize: 16,
-                                                marginLeft: "auto",
-                                                marginRight: "auto",
-                                            }}
-                                        >
-                                            Send
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>,
-                            modalRoot as Element
-                        )}
+                    {openModal && (
+                        <Modal onOpen={onClickChangeOpenModal}>
+                            <form>
+                                <p className={styles.text__modal}>
+                                    Enter your email to reset password
+                                </p>
+                                <input
+                                    placeholder={"Enter your email"}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value);
+                                    }}
+                                    value={email}
+                                    style={{ marginBottom: 60 }}
+                                    className={styles.input__auth}
+                                    type="email"
+                                />
+                                <button
+                                    className={styles.button__next}
+                                    type="button"
+                                    onClick={onSubmitModal}
+                                    style={{
+                                        fontSize: 16,
+                                        marginLeft: "auto",
+                                        marginRight: "auto",
+                                    }}
+                                >
+                                    Send
+                                </button>
+                            </form>
+                        </Modal>
+                    )}
                     <div className={styles.wrapper__buttons}>
                         <button
                             type="submit"

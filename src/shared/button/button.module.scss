@@ -1,20 +1,20 @@
 .button {
   --background: transparent;
   --hover: transparent;
-
-  display: flex;
-  width: 148px;
-  height: 42px;
-  padding: 12px 24px;
+  display: inline-block;
+  padding: 12px 44px;
   justify-content: center;
   align-items: center;
   border: none;
-  gap: 10px;
   border-radius: 10px;
   background-color: var(--background);
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 500ms;
 
   &:hover {
     background-color: var(--hover);
+    transform: scale(1.05);
   }
 
   &.default {
@@ -23,8 +23,8 @@
   }
 
   &.accent {
-    --background: #7B34D8;
-    --hover: #B187E8;
+    --background: #B187E8;
+    --hover: #7B34D8;
   }
 
   &.google {
