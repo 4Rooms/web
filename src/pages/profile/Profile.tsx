@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Profile.module.css";
 import { profileSections } from "../../utils/profileSections";
 import TitleProfile from "../../shared/title-profile/TitleProfile";
+import { NavLink, Outlet } from "react-router-dom";
 
 export default function Profile() {
     return (
@@ -10,13 +11,22 @@ export default function Profile() {
                 <div className={styles.profile_sections}>
                     <h2>My Profile:</h2>
                     <ul>
-                        {profileSections.map(value => (
-                            <li key={value.name}>{value.icon} {value.name}</li>
+                        {profileSections.map((value) => (
+                            <li key={value.name}>
+                                <NavLink
+                                    to={value.name
+                                        .replace(/\s/g, "")
+                                        .toLowerCase()}
+                                >
+                                    {value.icon} {value.name}
+                                </NavLink>
+                            </li>
                         ))}
                     </ul>
                 </div>
                 <div className={styles.profile_section}>
                     <TitleProfile title="Edit Your Profile" />
+                    <Outlet />
                 </div>
             </div>
         </div>

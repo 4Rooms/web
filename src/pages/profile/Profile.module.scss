@@ -9,6 +9,7 @@
         display: flex;
         gap: 52px;
         flex-wrap: nowrap;
+        height: 600px;
     }
 
     &_sections {
@@ -39,11 +40,25 @@
                 margin-bottom: 8px;
             }
 
-            &:hover {
-                svg > g > path {
-                    fill: #7b34d8;
+            a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 400;
+                font-size: 24px;
+                color: var(--black);
+                line-height: 150%;
+                cursor: pointer;
+
+                &:hover {
+                    svg > g > path {
+                        fill: #7b34d8;
+                    }
+                    svg > path {
+                        fill: #7b34d8;
+                    }
+                    color: #7b34d8;
                 }
-                color: #7b34d8;
             }
         }
     }

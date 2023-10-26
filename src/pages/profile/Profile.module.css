@@ -9,6 +9,7 @@
   display: flex;
   gap: 52px;
   flex-wrap: nowrap;
+  height: 600px;
 }
 .profile_sections {
   background: rgba(234, 234, 234, 0.7);
@@ -36,10 +37,23 @@
 .profile_sections ul > li:not(:last-child) {
   margin-bottom: 8px;
 }
-.profile_sections ul > li:hover {
+.profile_sections ul > li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--black);
+  line-height: 150%;
+  cursor: pointer;
+}
+.profile_sections ul > li a:hover {
   color: #7b34d8;
 }
-.profile_sections ul > li:hover svg > g > path {
+.profile_sections ul > li a:hover svg > g > path {
+  fill: #7b34d8;
+}
+.profile_sections ul > li a:hover svg > path {
   fill: #7b34d8;
 }
 .profile_section {
