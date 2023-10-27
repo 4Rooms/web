@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-export default function TitleProfile({title}: {title: string}){
+export default function TitleProfile({ title }: { title: string | null }) {
   return (
-    <h2>{title}</h2>
-  )
+    <h2>{title || "Edit your profile"}</h2>
+  );
 }

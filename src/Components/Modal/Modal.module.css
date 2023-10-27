@@ -29,6 +29,9 @@
   gap: 60px;
   width: 800px;
 }
+.window.profile {
+  padding: 40px 60px;
+}
 
 .close {
   position: absolute;

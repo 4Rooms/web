@@ -17,6 +17,9 @@ export default function Profile() {
                                     to={value.name
                                         .replace(/\s/g, "")
                                         .toLowerCase()}
+                                    onClick={() =>
+                                        localStorage.setItem("profile", value.name)
+                                    }
                                 >
                                     {value.icon} {value.name}
                                 </NavLink>
@@ -25,7 +28,7 @@ export default function Profile() {
                     </ul>
                 </div>
                 <div className={styles.profile_section}>
-                    <TitleProfile title="Edit Your Profile" />
+                    <TitleProfile title={localStorage.getItem("profile")}/>
                     <Outlet />
                 </div>
             </div>
