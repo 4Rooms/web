@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import styles from "../auth-context/sign/Sign.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error, IconOkey } from "../../../assets/icons.tsx";
@@ -23,9 +22,10 @@ import FormInput from "../../../shared/auth-input/form-Input.tsx";
 import Modal from "../../../Components/Modal/Modal.tsx";
 import Button from "../../../shared/button/button.tsx";
 import loginSchema from "./login-schema.ts";
+import Toaster from "../../../shared/toaster/toaster.tsx";
 
 export default function LoginPage() {
-    const { setUsername } = useContext(AuthContext);
+    const { setUsername, setIsAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
@@ -34,7 +34,9 @@ export default function LoginPage() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     // eslint-disable-next-line @typescript-eslint/no-inferrable-types
     let resetEmail: string = "";
-    
+    const [endpointsError, setEndpointsError] = useState<string[]>([''])
+    const [showToaster, setShowToaster] = useState(false);
+
     const [formStateValue, setFormStateValue] = useState<InputsLogin>({
         username: "",
         password: "",
@@ -118,11 +120,16 @@ export default function LoginPage() {
             .login(data)
             .then((response) => {
                 setUsername(response.user.username);
+                setIsAuthenticated(true);
                 localStorageService.set("user", response.user);
                 navigate("/");
+                console.log(document.cookie);
             })
             .catch((error) => {
-                console.log(error);
+                if (error.response && error.response.status === 400) {
+                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                    setShowToaster(true);
+                }
             });
     };
 
@@ -190,11 +197,8 @@ export default function LoginPage() {
                                         }{" "}
                                         <button
                                             type="button"
-                                            className={
-                                                styles.forgot__password__error
-                                            }
-                                            onClick={onClickChangeOpenModal}
-                                        >
+                                            className={styles.forgot__password__error}
+                                            onClick={onClickChangeOpenModal}>
                                             Forgot Password?
                                         </button>
                                     </p>
@@ -238,6 +242,11 @@ export default function LoginPage() {
                         Sign in
                     </Button>
                 </div>
+                <Toaster
+                    messages={endpointsError}
+                    isVisible={showToaster}
+                    onHide={() => setShowToaster(false)}
+                />
             </form>
         </AuthWrapper>
     );

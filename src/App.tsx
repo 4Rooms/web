@@ -15,6 +15,7 @@ import LoginPage from "./pages/auth/login-page/login-page.tsx";
 import CookieConsent from "./shared/cookie-consent/cookie-consent.tsx";
 import { getInitialCookieConsent, updateCookieConsent } from "./utils/cookie-consent/cookie-consent.tsx";
 import { DashboardPage } from "./pages/dashboard/Dashboard.tsx";
+
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
     const { isAuthenticated, username, setUsername } = useAuth();
@@ -38,9 +39,10 @@ function App() {
         <div className="container">
             <Routes>
                 <Route path="/" element={ <SharedLayout user={username} isAuthenticated={isAuthenticated}/> }>
-                    <Route index element={<DashboardPage />} />
-                    <Route path="/chat/:room" element={<Chats />} />
-                    <Route element={<GuardRoutes />}></Route>
+                    <Route element={<GuardRoutes />}>
+                        <Route index element={<DashboardPage />} />
+                        <Route path="/chat/:room" element={<Chats />} />
+                    </Route>
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/authentication" element={<LoginPage />} />
                     <Route path="/create-account" element={<SignupPage />}/>

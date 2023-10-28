@@ -3,7 +3,7 @@
   background-color: transparent;
   padding: 0 20px;
 
-  @media (min-width: 376px) {
+  @media (min-width: 768px) {
     padding: 0 80px;
   }
 }
@@ -15,7 +15,7 @@
   justify-content: space-between;
   padding: 0 20px;
 
-  @media (min-width: 376px) {
+  @media (min-width: 768px) {
     padding: 0 80px;
   }
 }/*# sourceMappingURL=SharedLayout.module.css.map */

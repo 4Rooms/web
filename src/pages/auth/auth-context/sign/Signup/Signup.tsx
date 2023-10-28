@@ -142,7 +142,7 @@ export default function Signup() {
     ) => {
         try {
             const response = await authService.signup(data);
-            setUsername(response.username);
+            setUsername(response.data.username);
             localStorageService.set("user", response);
             navigate("/confirm-email", { state: { from: location } });
         } catch (error) {
