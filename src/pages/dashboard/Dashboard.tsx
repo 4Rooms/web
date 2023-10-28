@@ -1,12 +1,11 @@
 import React from "react";
-import styles from "./Dashboard.module.css";
+import styles from "./Dashboard.module.scss";
 import { optionDashboard } from "../../utils/optionDashboard";
 import { Link } from "react-router-dom";
 
 export function DashboardPage() {
     return (
         <div className={styles.dashboard}>
-            <div>
                 <h1 className={styles.dashboard__title}>
                     Choose a room for chatting
                 </h1>
@@ -41,7 +40,6 @@ export function DashboardPage() {
                         );
                     })}
                 </ul>
-            </div>
         </div>
     );
 }

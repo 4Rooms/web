@@ -1,10 +1,19 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 100vh;
+}
+
 .container {
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
     max-width: 1280px;
     padding-bottom: 0;
-    height: 100vh;
     background-color: var(--gray);
     background-image: url(./assets/background_image@1x.png);
     background-repeat: no-repeat;

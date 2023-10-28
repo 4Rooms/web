@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import "./App.scss";
 import ForgotPassword from "./pages/auth/login-page/forgot-password/forgot-password.tsx";
 import PasswordReset from "./pages/auth/auth-context/sign/ForgotPassword/PasswordReset.tsx";
 import { useAuth } from "./pages/auth/auth-context/use-auth.tsx";
