@@ -14,6 +14,7 @@ import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
 import useValidation from "../../../shared/use-validate/use-validate.tsx";
 import Button from "../../../shared/button/button.tsx";
 import FormInput from "../../../shared/auth-input/form-Input.tsx";
+import Toaster from "../../../shared/toaster/toaster.tsx";
 
 export default function SignupPage() {
     const {setUsername} = useContext(AuthContext);
@@ -28,7 +29,7 @@ export default function SignupPage() {
         email: "",
         password: "",
     });
-
+    const [endpointsError, setEndpointsError] = useState<string[]>([''])
     const [formStateFocus, setFormStateFocus] =
         useState<InputsValidRegistration>({
             username: false,
@@ -64,7 +65,7 @@ export default function SignupPage() {
         });
     };
 
-    const { formStateValid, validateField } = useValidation<InputsValidRegistration>({
+    const {formStateValid, validateField} = useValidation<InputsValidRegistration>({
         schema: authSchema,
         formSubmitted,
         setError,
@@ -92,12 +93,21 @@ export default function SignupPage() {
     const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (
         data
     ) => {
-        await authService.signup(data).then((response) => {
-            setUsername(response.username);
-            localStorageService.set("user", response);
-            navigate("/account-confirmation", {state: {formData: data}});
-        });
+        await authService.signup(data)
+            .then((response) => {
+                setUsername(response.data.username);
+                localStorageService.set("user", response);
+                navigate("/account-confirmation", {state: {formData: data}});
+            })
+            .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                    setShowToaster(true);
+                }
+            });
     };
+    const [showToaster, setShowToaster] = useState(false);
+
     return <AuthWrapper title={'Create an account'} link={backLinkLocation.current}>
         <form
             className={styles.form__auth}
@@ -152,6 +162,12 @@ export default function SignupPage() {
                     Sign in
                 </Button>
             </div>
+
+            <Toaster
+                messages={endpointsError}
+                isVisible={showToaster}
+                onHide={() => setShowToaster(false)}
+            />
         </form>
     </AuthWrapper>
 }

@@ -3,6 +3,9 @@
   align-items: center;
   display: flex;
   min-height: calc(100% - 48px);
+  margin: auto;
+  max-width: 100vw;
+
 }
 
 .container__auth {
@@ -56,7 +59,6 @@
   border: 1px solid var(--black);
   background-color: var(--black);
   border-radius: 10px;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .button__in > p {
@@ -75,7 +77,6 @@
   border: transparent;
   background: #7b34d8;
   border-radius: 10px;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .button__up > p {
