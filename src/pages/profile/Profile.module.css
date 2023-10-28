@@ -45,6 +45,7 @@
   font-size: 24px;
   color: var(--black);
   line-height: 150%;
+  font-weight: 500;
   cursor: pointer;
 }
 .profile_sections ul > li a:hover {
@@ -56,10 +57,19 @@
 .profile_sections ul > li a:hover svg > path {
   fill: #7b34d8;
 }
+.profile_sections ul > li a.active {
+  color: #7b34d8;
+}
+.profile_sections ul > li a.active svg > g > path {
+  fill: #7b34d8;
+}
+.profile_sections ul > li a.active svg > path {
+  fill: #7b34d8;
+}
 .profile_section {
   background: rgba(234, 234, 234, 0.7);
   border-radius: 20px;
-  padding: 24px 80px 60px;
+  padding: 24px 60px 80px;
   flex: 1;
 }
 .profile_section > h2 {

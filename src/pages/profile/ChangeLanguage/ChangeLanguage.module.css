@@ -1,0 +1,26 @@
+.language__container {
+  height: 100%;
+  margin-top: 130px;
+  text-align: left;
+}
+.language__container_title {
+  color: var(--black);
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+.language__container_wrapper {
+  gap: 24px;
+  margin-bottom: 105px;
+}
+.language__container_wrapper > div > p {
+  font-size: 20px;
+}
+.language__container_wrapper > div:first-child {
+  margin-bottom: 24px;
+}
+.language__container > button {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}/*# sourceMappingURL=ChangeLanguage.module.css.map */

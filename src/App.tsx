@@ -20,6 +20,7 @@ import { DashboardPage } from "./pages/dashboard/Dashboard.tsx";
 import Profile from "./pages/profile/Profile.tsx";
 import Chats from "./pages/chats/Chats.tsx";
 import LogOut from "./pages/profile/LogOut/LogOut.tsx";
+import ChangeLanguage from "./pages/profile/ChangeLanguage/ChangeLanguage.tsx";
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
     const { isAuthenticated, username, setUsername } = useAuth();
@@ -74,6 +75,7 @@ function App() {
                     />
                     <Route path="/profile" element={<Profile />}>
                         <Route path="logout" element={<LogOut />} />
+                        <Route path="language" element={<ChangeLanguage />} />
                     </Route>
                 </Route>
             </Routes>
