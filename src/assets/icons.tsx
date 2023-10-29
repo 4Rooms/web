@@ -456,3 +456,32 @@ export const PasswordReset = () => (
         />
     </svg>
 );
+
+export const BlackTheme = () => (
+    <svg
+        width="121"
+        height="120"
+        viewBox="0 0 121 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <rect x="0.5" width="120" height="120" rx="12" fill="url(#pattern0)" />
+        <defs>
+            <pattern
+                id="pattern0"
+                patternContentUnits="objectBoundingBox"
+                width="1"
+                height="1"
+            >
+                <use
+                    transform="scale(0.00248756)"
+                />
+            </pattern>
+            <image
+                id="image0_2513_15772"
+                width="402"
+                height="402"
+            />
+        </defs>
+    </svg>
+);

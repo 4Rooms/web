@@ -13,8 +13,12 @@
         gap: 24px;
         margin-bottom: 105px;
         & > div {
+            display: flex;
+            align-items: center;
+            width: 224px;
             & > p {
                 font-size: 20px;
+                margin-right: auto;
             }
             &:first-child {
                 margin-bottom: 24px;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./ChangeLanguage.module.css";
+import styles from "./ChangeTheme.module.css";
 import Button from "../../../shared/button/button";
 import Switch from "../../../Components/Switch/Switch";
 export default function ChangeLanguage() {

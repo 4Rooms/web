@@ -13,8 +13,14 @@
   gap: 24px;
   margin-bottom: 105px;
 }
+.language__container_wrapper > div {
+  display: flex;
+  align-items: center;
+  width: 224px;
+}
 .language__container_wrapper > div > p {
   font-size: 20px;
+  margin-right: auto;
 }
 .language__container_wrapper > div:first-child {
   margin-bottom: 24px;
