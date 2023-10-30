@@ -3,10 +3,11 @@ import { ValidationError } from "yup";
 import LoginSchema from "../../pages/auth/login-page/login-schema.ts";
 import SignupSchema from "../../pages/auth/signup-page/signup-schema.ts";
 import ForgetSchema from './../../pages/auth/login-page/forgot-password/forgot-schema.tsx';
-import createSchema from "../../pages/Chats/PanelGroups/CreateChat/create-schema.tsx";
+import resetPasswordSchema from "../../pages/profile/ResetPassword/resetPassword-schema.ts";
+import createSchema from "../../pages/chats/PanelGroups/CreateChat/create-schema.tsx";
 
 type ValidationProps<T> = {
-    schema: typeof LoginSchema | typeof SignupSchema | typeof ForgetSchema | typeof createSchema;
+    schema: typeof LoginSchema | typeof SignupSchema | typeof ForgetSchema | typeof createSchema | typeof resetPasswordSchema;
     formSubmitted: boolean;
     setError: (name: keyof T, error: { message: string }) => void;
     clearErrors: (name: keyof T) => void;

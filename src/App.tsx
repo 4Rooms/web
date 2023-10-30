@@ -22,6 +22,8 @@ import Chats from "./pages/chats/Chats.tsx";
 import LogOut from "./pages/profile/LogOut/LogOut.tsx";
 import ChangeLanguage from "./pages/profile/ChangeLanguage/ChangeLanguage.tsx";
 import ChangeTheme from "./pages/profile/ChangeTheme/ChangeTheme.tsx";
+import ResetPassword from "./pages/profile/ResetPassword/ResetPassword.tsx";
+import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
     const { isAuthenticated, username, setUsername } = useAuth();
@@ -78,6 +80,8 @@ function App() {
                         <Route path="logout" element={<LogOut />} />
                         <Route path="language" element={<ChangeLanguage />} />
                         <Route path="theme" element={<ChangeTheme />} />
+                        <Route path="password" element={<ResetPassword />} />
+                        <Route path="editprofile" element={<ChangeUserData />} />
                     </Route>
                 </Route>
             </Routes>
