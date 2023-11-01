@@ -1,20 +1,35 @@
 .reset__container {
-    margin-top: 140px;
+    margin-top: 45px;
     display: flex;
     justify-content: center;
-    
+
     & > form {
         width: 420px;
         flex-wrap: wrap;
         text-align: center;
+        & > div {
+            margin-bottom: 32px;
+            & > label {
+                position: relative;
+                & > input {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    opacity: 0;
+                }
+            }
+        }
         & > label {
             width: 100%;
             display: block;
             margin-bottom: 48px;
             position: relative;
             &:last-of-type {
-                margin-bottom: 130px;
+                margin-bottom: 45px;
             }
+        }
+        & > button {
+            margin-bottom: 45px;
         }
     }
 }

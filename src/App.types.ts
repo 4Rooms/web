@@ -23,12 +23,18 @@ export type InputsResetPassword = {
     newPassword: string;
 };
 
+export type InputsChangeData = {
+    email: string;
+    username: string;
+};
+
 export type InputSignupKeys = "email" | "username" | "password";
 export type InputLoginKeys = "username" | "password";
 export type ResetEmailKeys = "resetEmail";
 export type ForgotKeys = "password";
 export type InputsCreateKeys = "title" | "description";
 export type InputResetPasswordKeys = "oldPassword" | "newPassword";
+export type InputChangeDataKeys = "username" | "email";
 
 export type InputsReset = {
     password: string;
@@ -65,6 +71,11 @@ export type InputsValidResetPassword = {
 export type InputsCreateValid = {
     title: boolean;
     description: boolean;
+};
+
+export type InputsValidChangeData = {
+    email: boolean;
+    username: boolean;
 };
 
 export interface LogoProps {
