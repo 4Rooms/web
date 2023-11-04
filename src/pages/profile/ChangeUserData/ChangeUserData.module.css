@@ -51,6 +51,27 @@
   margin-bottom: 40px;
 }
 
+.data__user {
+  position: relative;
+}
+.data__user > div {
+  color: var(--gray);
+  text-align: left;
+  font-size: 18px;
+  width: 87%;
+  padding: 7px 15px;
+  padding-right: 40px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--gray);
+}
+.data__user > div:focus {
+  outline: transparent;
+}
+.data__user > div > p {
+  font-size: 18px;
+}
+
 .delete__button {
   color: var(--black);
   font-size: 18px;
@@ -101,5 +122,14 @@
   position: absolute;
   top: 30%;
   right: 7px;
+  cursor: pointer;
+}
+
+.edit__button {
+  background-color: transparent;
+  border: transparent;
+  position: absolute;
+  right: 12px;
+  top: 8.5px;
   cursor: pointer;
 }/*# sourceMappingURL=ChangeUserData.module.css.map */

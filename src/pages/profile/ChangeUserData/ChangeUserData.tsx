@@ -10,12 +10,7 @@ import useValidation from "../../../shared/use-validate/use-validate";
 import changeDataSchema from "./changeData-schema";
 import styles from "./ChangeUserData.module.css";
 import Button from "../../../shared/button/button";
-import {
-    AddPhoto,
-    Delete,
-    Error,
-    IconOkey,
-} from "../../../assets/icons";
+import { AddPhoto, Delete, Edit, Error, IconOkey } from "../../../assets/icons";
 import FormInput from "../../../shared/auth-input/form-Input";
 import Modal from "../../../Components/Modal/Modal";
 
@@ -153,6 +148,14 @@ export default function ChangeUserData() {
                                 )}
                         </label>
                     ))}
+                    <div className={styles.data__user}>
+                        <div>
+                            <p>Macksim</p>
+                        </div>
+                        <button type="button" className={styles.edit__button}>
+                            <Edit />
+                        </button>
+                    </div>
                     <Button
                         className="accent"
                         type="submit"
