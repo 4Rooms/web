@@ -18,7 +18,7 @@ import {
 } from "./utils/cookie-consent/cookie-consent.tsx";
 import { DashboardPage } from "./pages/dashboard/Dashboard.tsx";
 import Profile from "./pages/profile/Profile.tsx";
-import Chats from "./pages/chats/Chats.tsx";
+import Chats from "./pages/chats/Chats.tsx"
 import LogOut from "./pages/profile/LogOut/LogOut.tsx";
 import ChangeLanguage from "./pages/profile/ChangeLanguage/ChangeLanguage.tsx";
 import ChangeTheme from "./pages/profile/ChangeTheme/ChangeTheme.tsx";
