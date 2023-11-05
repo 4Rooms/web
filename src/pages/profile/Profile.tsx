@@ -15,9 +15,15 @@ export default function Profile() {
                         {profileSections.map((value) => (
                             <li key={value.name}>
                                 <NavLink
-                                    to={value.name
-                                        .replace(/\s/g, "")
-                                        .toLowerCase()}
+                                    to={
+                                        value.name
+                                            .replace(/\s/g, "")
+                                            .toLowerCase() === "editprofile"
+                                            ? "/profile/"
+                                            : value.name
+                                                  .replace(/\s/g, "")
+                                                  .toLowerCase()
+                                    }
                                     onClick={() =>
                                         localStorage.setItem(
                                             "profile",

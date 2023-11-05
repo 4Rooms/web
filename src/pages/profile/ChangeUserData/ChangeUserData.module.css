@@ -2,19 +2,20 @@
   margin-top: 45px;
   display: flex;
   justify-content: center;
+  margin-bottom: 45px;
 }
 .reset__container > form {
   width: 420px;
   flex-wrap: wrap;
   text-align: center;
 }
-.reset__container > form > div {
+.reset__container > form > .wrapper__photo {
   margin-bottom: 32px;
 }
-.reset__container > form > div > label {
+.reset__container > form > .wrapper__photo > label {
   position: relative;
 }
-.reset__container > form > div > label > input {
+.reset__container > form > .wrapper__photo > label > input {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -27,9 +28,6 @@
   position: relative;
 }
 .reset__container > form > label:last-of-type {
-  margin-bottom: 45px;
-}
-.reset__container > form > button {
   margin-bottom: 45px;
 }
 
@@ -53,6 +51,10 @@
 
 .data__user {
   position: relative;
+  margin-bottom: 48px;
+}
+.data__user_last {
+  margin-bottom: 45px;
 }
 .data__user > div {
   color: var(--gray);

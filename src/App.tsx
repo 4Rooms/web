@@ -81,7 +81,7 @@ function App() {
                         <Route path="language" element={<ChangeLanguage />} />
                         <Route path="theme" element={<ChangeTheme />} />
                         <Route path="password" element={<ResetPassword />} />
-                        <Route path="editprofile" element={<ChangeUserData />} />
+                        <Route index element={<ChangeUserData />} />
                     </Route>
                 </Route>
             </Routes>

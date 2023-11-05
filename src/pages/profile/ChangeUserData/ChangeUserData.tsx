@@ -19,6 +19,10 @@ export default function ChangeUserData() {
     const [, setImageURL] = useState<string>("");
     const [, setImageError] = useState<null | string>(null);
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+    const [openInput, setOpenInput] = useState<InputsValidChangeData>({
+        username: false,
+        email: false,
+    });
     const [formStateValue, setFormStateValue] = useState<InputsChangeData>({
         username: "",
         email: "",
@@ -95,15 +99,18 @@ export default function ChangeUserData() {
     };
     const deliveryFormAuth: SubmitHandler<InputsChangeData> = async (data) => {
         console.log(data);
+        setOpenInput({
+            username: false,
+            email: false,
+        });
     };
     return (
         <>
             <div className={styles.reset__container}>
                 <form onSubmit={handleSubmit(deliveryFormAuth)}>
-                    <div>
-                        <label className={styles.label__auth}>
+                    <div className={styles.wrapper__photo}>
+                        <label>
                             <input
-                                className={styles.add__image}
                                 type="file"
                                 onChange={handleImageChange}
                                 required
@@ -111,51 +118,67 @@ export default function ChangeUserData() {
                             <AddPhoto />
                         </label>
                     </div>
-                    {inputArray.map((value) => (
-                        <label htmlFor={value} key={value}>
-                            <FormInput<InputChangeDataKeys, InputsChangeData>
-                                value={value}
-                                register={register}
-                                errors={errors}
-                                formStateValid={formStateValid}
-                                formStateFocus={formStateFocus}
-                                formStateValue={formStateValue}
-                                open={open}
-                                className="reset"
-                                onChange={onChange}
-                                onFocusInput={onFocusInput}
-                            />
+                    {inputArray.map((value) =>
+                        openInput[value] ? (
+                            <label htmlFor={value} key={value}>
+                                <FormInput
+                                    value={value}
+                                    register={register}
+                                    errors={errors}
+                                    formStateValid={formStateValid}
+                                    formStateFocus={formStateFocus}
+                                    formStateValue={formStateValue}
+                                    open={open}
+                                    className="reset"
+                                    onChange={onChange}
+                                    onFocusInput={onFocusInput}
+                                />
 
-                            {!errors[value] && formStateValid[value] && (
-                                <IconOkey className={styles.okey} />
-                            )}
-
-                            {errors[value] && !formStateValid[value] && (
-                                <>
-                                    <p className={styles.text__error}>
-                                        {errors[value]?.message}
-                                    </p>
-                                    <Error className={styles.error} />
-                                </>
-                            )}
-                            {formStateFocus[value] &&
-                                !formStateValid[value] &&
-                                !errors[value] &&
-                                formStateValue[value].length > 0 && (
-                                    <div className={styles.focus}>
-                                        <p>{value}</p>
-                                    </div>
+                                {!errors[value] && formStateValid[value] && (
+                                    <IconOkey className={styles.okey} />
                                 )}
-                        </label>
-                    ))}
-                    <div className={styles.data__user}>
-                        <div>
-                            <p>Macksim</p>
-                        </div>
-                        <button type="button" className={styles.edit__button}>
-                            <Edit />
-                        </button>
-                    </div>
+
+                                {errors[value] && !formStateValid[value] && (
+                                    <>
+                                        <p className={styles.text__error}>
+                                            {errors[value]?.message}
+                                        </p>
+                                        <Error className={styles.error} />
+                                    </>
+                                )}
+
+                                {formStateFocus[value] &&
+                                    !formStateValid[value] &&
+                                    !errors[value] &&
+                                    formStateValue[value].length > 0 && (
+                                        <div className={styles.focus}>
+                                            <p>{value}</p>
+                                        </div>
+                                    )}
+                            </label>
+                        ) : (
+                            <div
+                            className={`${styles.data__user} ${value === "email" ? `${styles.data__user_last}` : ""}`}
+                                key={value}
+                            >
+                                <div>
+                                    <p>{value}</p>
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        setOpenInput((prevState) => ({
+                                            ...prevState,
+                                            [value]: true,
+                                        }));
+                                    }}
+                                    type="button"
+                                    className={styles.edit__button}
+                                >
+                                    <Edit />
+                                </button>
+                            </div>
+                        )
+                    )}
                     <Button
                         className="accent"
                         type="submit"

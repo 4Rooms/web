@@ -2,12 +2,13 @@
     margin-top: 45px;
     display: flex;
     justify-content: center;
+    margin-bottom: 45px;
 
     & > form {
         width: 420px;
         flex-wrap: wrap;
         text-align: center;
-        & > div {
+        & > .wrapper__photo {
             margin-bottom: 32px;
             & > label {
                 position: relative;
@@ -27,9 +28,6 @@
             &:last-of-type {
                 margin-bottom: 45px;
             }
-        }
-        & > button {
-            margin-bottom: 45px;
         }
     }
 }
@@ -55,6 +53,11 @@
 
 .data__user {
     position: relative;
+    margin-bottom: 48px;
+    &_last {
+        margin-bottom: 45px;
+    }
+
     & > div {
         color: var(--gray);
         text-align: left;
@@ -65,14 +68,17 @@
         border-radius: 5px;
         background-color: transparent;
         border: 1px solid var(--gray);
+        
         &:focus {
             outline: transparent;
         }
+        
         & > p {
             font-size: 18px;
         }
     }
 }
+
 
 .delete__button {
     color: var(--black);
