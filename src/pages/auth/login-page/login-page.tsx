@@ -29,7 +29,9 @@ import { getInitialCookieConsent, updateCookieConsent } from "../../../utils/coo
 
 export default function LoginPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'sign-in-page' });
-
+    const allFieldsValid = () => {
+        return Object.values(formStateValid).every(value => value);
+    };
     const { setUsername, setIsAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -241,6 +243,7 @@ export default function LoginPage() {
                 )}
                 <div className={styles.wrapper__buttons}>
                     <Button
+                        disabled={!allFieldsValid()}
                         className="accent"
                         type="submit"
                         onClick={() => setFormSubmitted(true)}>
