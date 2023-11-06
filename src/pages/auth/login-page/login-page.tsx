@@ -23,8 +23,11 @@ import Modal from "../../../Components/Modal/Modal.tsx";
 import Button from "../../../shared/button/button.tsx";
 import loginSchema from "./login-schema.ts";
 import Toaster from "../../../shared/toaster/toaster.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function LoginPage() {
+    const { t } = useTranslation('translation', { keyPrefix: 'sign-in-page' });
+
     const { setUsername, setIsAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -134,22 +137,21 @@ export default function LoginPage() {
     };
 
     return (
-        <AuthWrapper title={"Authentication"} link={backLinkLocation.current}>
+        <AuthWrapper title={t('title')} link={backLinkLocation.current}>
             <form
                 className={styles.form__auth}
                 onSubmit={handleSubmit(deliveryFormAuth)}
             >
-                <GoogleAuthButton />
+                <GoogleAuthButton translation={t('signInButton')}/>
                 <h2 className={styles.text__form}>
-                    Or sign in with your username and password:
+                    {t('orSignInWithCredentials')}
                 </h2>
                 {inputArray.map((value) => {
                     return (
                         <label
                             htmlFor={value}
                             className={styles.label__auth}
-                            key={value}
-                        >
+                            key={value}>
                             <FormInput<InputLoginKeys, InputsLogin>
                                 value={value}
                                 register={register}
@@ -158,11 +160,10 @@ export default function LoginPage() {
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
                                 onChange={onChange}
-                                onFocusInput={onFocusInput}
-                            />
+                                onFocusInput={onFocusInput}/>
                             {!errors[value as keyof InputsLogin] &&
                                 formStateValid[value as keyof InputsLogin] && (
-                                    <IconOkey className={styles.okey__auth} />
+                                    <IconOkey className={styles.okey__auth}/>
                                 )}
                             {formStateFocus[value as keyof InputsLogin] &&
                                 !formStateValid[value as keyof InputsLogin] &&
@@ -215,8 +216,7 @@ export default function LoginPage() {
                             <label
                                 htmlFor={resetEmail}
                                 className={`${styles.label__auth} ${styles.label__modal}`}
-                                key={resetEmail}
-                            >
+                                key={resetEmail}>
                                 <FormInput<ResetEmailKeys, ResetEmail>
                                     value="resetEmail"
                                     onChangeInputValue={onChangeInputValue}
@@ -226,8 +226,7 @@ export default function LoginPage() {
                             <Button
                                 type="button"
                                 className="accent"
-                                onClick={onSubmitModal}
-                            >
+                                onClick={onSubmitModal}>
                                 Send
                             </Button>
                         </form>
@@ -237,9 +236,8 @@ export default function LoginPage() {
                     <Button
                         className="accent"
                         type="submit"
-                        onClick={() => setFormSubmitted(true)}
-                    >
-                        Sign in
+                        onClick={() => setFormSubmitted(true)}>
+                        {t('signInButton')}
                     </Button>
                 </div>
                 <Toaster
