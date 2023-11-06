@@ -15,8 +15,10 @@ import useValidation from "../../../shared/use-validate/use-validate.tsx";
 import Button from "../../../shared/button/button.tsx";
 import FormInput from "../../../shared/auth-input/form-Input.tsx";
 import Toaster from "../../../shared/toaster/toaster.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function SignupPage() {
+    const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
     const {setUsername} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -112,7 +114,7 @@ export default function SignupPage() {
         <form
             className={styles.form__auth}
             onSubmit={handleSubmit(deliveryFormAuth)}>
-            <GoogleAuthButton/>
+            <GoogleAuthButton translation={t('sign up')}/>
             <h2 className={styles.text__form}>Or sign up with email:</h2>
             {inputArray.map((value) =>
                 <label
@@ -159,7 +161,7 @@ export default function SignupPage() {
             )}
             <div className={styles.wrapper__buttons}>
                 <Button className='accent' type='submit' onClick={() => setFormSubmitted(true)}>
-                    Sign in
+                    {t('sign up')}
                 </Button>
             </div>
 
