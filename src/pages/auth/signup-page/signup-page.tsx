@@ -23,6 +23,9 @@ export default function SignupPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
     const [cookieConsent, setCookieConsent] = useState(() => getInitialCookieConsent());
 
+    const allFieldsValid = () => {
+        return Object.values(formStateValid).every(value => value);
+    };
     const {setUsername} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -167,7 +170,7 @@ export default function SignupPage() {
                 </label>
             )}
             <div className={styles.wrapper__buttons}>
-                <Button className='accent' type='submit' onClick={() => setFormSubmitted(true)}>
+                <Button disabled={!allFieldsValid()} className='accent' type='submit' onClick={() => setFormSubmitted(true)}>
                     {t('sign up')}
                 </Button>
             </div>
