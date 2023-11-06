@@ -6,12 +6,13 @@ import styles from "./SharedLayout.module.css";
 type Props = {
     user: string | null;
     isAuthenticated?: boolean;
+    showHeader: boolean;
 };
 
-export default function SharedLayout({user}: Props) {
+export default function SharedLayout({user, showHeader}: Props) {
     return <>
         <header className={styles.header__user}>
-            <Navigation user={user}/>
+            {showHeader && <Navigation user={user}/>}
         </header>
         <Outlet/>
     </>
