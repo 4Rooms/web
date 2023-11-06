@@ -8,7 +8,7 @@ import {
     ResetEmail,
     ResetEmailKeys,
 } from "../../../App.types.ts";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import GoogleAuthButton from "../../../shared/google-auth-button/google-auth-button.tsx";
 import { AuthContext } from "../auth-context/auth-context.tsx";
 import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
@@ -24,6 +24,8 @@ import Button from "../../../shared/button/button.tsx";
 import loginSchema from "./login-schema.ts";
 import Toaster from "../../../shared/toaster/toaster.tsx";
 import { useTranslation } from "react-i18next";
+import CookieConsent from "../../../shared/cookie-consent/cookie-consent.tsx";
+import { getInitialCookieConsent, updateCookieConsent } from "../../../utils/cookie-consent/cookie-consent.tsx";
 
 export default function LoginPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'sign-in-page' });
@@ -49,6 +51,11 @@ export default function LoginPage() {
         username: false,
         password: false,
     });
+    const [cookieConsent, setCookieConsent] = useState(() => getInitialCookieConsent());
+
+    useEffect(() => {
+        updateCookieConsent(cookieConsent);
+    }, [cookieConsent]);
 
     const {
         register,
@@ -246,6 +253,8 @@ export default function LoginPage() {
                     onHide={() => setShowToaster(false)}
                 />
             </form>
+            {!cookieConsent && <CookieConsent setConsent={setCookieConsent} />}
+
         </AuthWrapper>
     );
 }

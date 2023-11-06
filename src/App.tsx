@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import ForgotPassword from "./pages/auth/login-page/forgot-password/forgot-password.tsx";
 import PasswordReset from "./pages/auth/auth-context/sign/ForgotPassword/PasswordReset.tsx";
@@ -12,19 +12,11 @@ import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page
 import SignupPage from "./pages/auth/signup-page/signup-page.tsx";
 import SignupConfirmation from "./pages/auth/signup-page/signup-confirmation/signup-confirmation.tsx";
 import LoginPage from "./pages/auth/login-page/login-page.tsx";
-import CookieConsent from "./shared/cookie-consent/cookie-consent.tsx";
-import { getInitialCookieConsent, updateCookieConsent } from "./utils/cookie-consent/cookie-consent.tsx";
 import { DashboardPage } from "./pages/dashboard/Dashboard.tsx";
 
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
     const { isAuthenticated, username, setUsername } = useAuth();
-
-    const [cookieConsent, setCookieConsent] = useState(() => getInitialCookieConsent());
-
-    useEffect(() => {
-        updateCookieConsent(cookieConsent);
-    }, [cookieConsent]);
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -52,7 +44,6 @@ function App() {
                     <Route path="/confirm-email" element={<EmailConfirmPage />}/>
                 </Route>
             </Routes>
-            {!cookieConsent && <CookieConsent setConsent={setCookieConsent} />}
         </div>
     );
 }
