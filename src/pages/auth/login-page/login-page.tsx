@@ -1,6 +1,6 @@
 import styles from "../auth-context/sign/Sign.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Error, IconOkey } from "../../../assets/icons.tsx";
+import { Error, HiddenPassword, IconOkey, OpenPassword } from "../../../assets/icons.tsx";
 import {
     InputLoginKeys,
     InputsLogin,
@@ -36,6 +36,7 @@ export default function LoginPage() {
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
+    const [open, setOpen] = useState<boolean>(false);
     const inputArray: InputLoginKeys[] = ["username", "password"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -79,6 +80,12 @@ export default function LoginPage() {
             ...prevFocus,
             [type]: true,
         }));
+    };
+
+    const onClickChangeOpen = (): void => {
+        setOpen((prevOpen): boolean => {
+            return !prevOpen;
+        });
     };
 
     const { formStateValid, validateField } = useValidation<InputsValidLogin>({
@@ -169,6 +176,7 @@ export default function LoginPage() {
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
                                 onChange={onChange}
+                                open={open}
                                 onFocusInput={onFocusInput}/>
                             {!errors[value as keyof InputsLogin] &&
                                 formStateValid[value as keyof InputsLogin] && (
@@ -197,6 +205,13 @@ export default function LoginPage() {
                                 !formStateValid[value as keyof InputsLogin] && (
                                     <Error className={styles.error__auth} />
                                 )}
+                                                    {value === "password" && formStateValue.password?.length > 0 && !errors[value] &&
+                        !formStateValid[value] &&
+                        <button className={styles.button__show} type="button"
+                                onClick={onClickChangeOpen}>
+                            {open ? <OpenPassword/> : <HiddenPassword/>}
+                        </button>
+                    }
                             {value === "password" &&
                                 errors[value as keyof InputsLogin] &&
                                 !formStateValid[value as keyof InputsLogin] && (

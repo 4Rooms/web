@@ -3,7 +3,7 @@ import "./App.scss";
 import ForgotPassword from "./pages/auth/login-page/forgot-password/forgot-password.tsx";
 import PasswordReset from "./pages/auth/auth-context/sign/ForgotPassword/PasswordReset.tsx";
 import { useAuth } from "./pages/auth/auth-context/use-auth.tsx";
-import Chats from "./pages/Chats/Chats.tsx";
+import Chats from "./pages/chats/Chats.tsx";
 import GuardRoutes from "./utils/guard-routes.tsx";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes, useLocation } from "react-router-dom";
