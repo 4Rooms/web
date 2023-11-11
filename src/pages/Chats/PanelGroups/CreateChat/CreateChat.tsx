@@ -3,7 +3,6 @@ import styles from "./CreateChat.module.scss";
 import Modal from "../../../../Components/Modal/Modal";
 import { AddPhoto, Error, IconOkey } from "../../../../assets/icons";
 import Button from "../../../../shared/button/button";
-import createSchema from "./create-schema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
     InputsCreate,
@@ -14,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import useValidation from "../../../../shared/use-validate/use-validate";
 import FormInput from "../../../../shared/auth-input/form-Input";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import createSchema from "./create-schema.tsx";
 
 export default function CreateChat() {
     const { roomName } = useChat();

@@ -1,0 +1,33 @@
+.language__container {
+    height: 100%;
+    margin-top: 130px;
+    text-align: left;
+
+    &_title {
+        color: var(--black);
+        font-size: 23px;
+        font-weight: 600;
+        margin-bottom: 50px;
+    }
+    &_wrapper {
+        gap: 24px;
+        margin-bottom: 105px;
+        & > div {
+            display: flex;
+            align-items: center;
+            width: 224px;
+            & > p {
+                font-size: 20px;
+                margin-right: auto;
+            }
+            &:first-child {
+                margin-bottom: 24px;
+            }
+        }
+    }
+    & > button {
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+    }
+}

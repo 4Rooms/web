@@ -1,0 +1,36 @@
+.theme__container {
+    height: 100%;
+    margin-top: 120px;
+    text-align: left;
+    &_wrapper {
+        gap: 80px;
+        margin-bottom: 105px;
+        display: flex;
+        justify-content: center;
+        & > div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            & > img {
+                border-radius: 15px;
+                margin-bottom: 24px;
+            }
+            & > .wrapper__option {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+
+                & > p {
+                    font-size: 20px;
+                    font-weight: 400;
+                    line-height: 150%;
+                }
+            }
+        }
+    }
+    & > button {
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+    }
+}

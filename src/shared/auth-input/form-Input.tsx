@@ -16,8 +16,14 @@ interface FormInput<T extends Path<U>, U extends FieldValues> {
     formStateFocus?: Record<string, any>;
     formStateValue?: Record<string, any>;
     open?: boolean;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: T) => void;
-    onChangeInputValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: T) => void;
+    onChange?: (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        value: T
+    ) => void;
+    onChangeInputValue?: (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        value: T
+    ) => void;
     onFocusInput?: (type: T) => void;
     className?: string | undefined;
     textarea?: boolean;
@@ -56,8 +62,16 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                 formStateValue || {}
             )} ${styles[className]}`}
             onChange={(e) => {
-                onChange && onChange(e as React.ChangeEvent<HTMLTextAreaElement>, value);
-                onChangeInputValue && onChangeInputValue(e as React.ChangeEvent<HTMLTextAreaElement>, value);
+                onChange &&
+                    onChange(
+                        e as React.ChangeEvent<HTMLTextAreaElement>,
+                        value
+                    );
+                onChangeInputValue &&
+                    onChangeInputValue(
+                        e as React.ChangeEvent<HTMLTextAreaElement>,
+                        value
+                    );
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />
@@ -68,12 +82,17 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             {...(register && register(value))}
             aria-invalid={errors && errors[value] ? "true" : "false"}
             placeholder={
-                value !== "resetEmail"
-                    ? `Enter your ${String(value)}`
-                    : "Enter your email"
-            }
+                value === "newPassword"
+                  ? "Enter your new password"
+                  : value !== "resetEmail"
+                  ? value === "oldPassword"
+                    ? "Confirm your old password"
+                    : `Enter your ${String(value)}`
+                  : "Enter your email"
+              }
+              
             type={
-                value === "password"
+                value === "password" || value === "newPassword"
                     ? open
                         ? "text"
                         : "password"
@@ -88,7 +107,11 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             )} ${styles[className]}`}
             onChange={(e) => {
                 onChange && onChange(e, value);
-                onChangeInputValue && onChangeInputValue(e as React.ChangeEvent<HTMLInputElement>, value);
+                onChangeInputValue &&
+                    onChangeInputValue(
+                        e as React.ChangeEvent<HTMLInputElement>,
+                        value
+                    );
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />

@@ -1,0 +1,28 @@
+.logout__container {
+  height: 100%;
+  margin-top: 120px;
+  text-align: center;
+}
+.logout__container p {
+  color: var(--gray);
+  font-size: 20px;
+  line-height: 150%;
+  margin-bottom: 48px;
+}
+.logout__container_modal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.logout__container_modal > h2 {
+  color: var(--black);
+  font-size: 24px;
+  line-height: 150%;
+  margin-bottom: 20px;
+}
+.logout__container_modal > p {
+  font-size: 18px;
+  line-height: 150%;
+  color: var(--gray);
+  margin-bottom: 40px;
+}/*# sourceMappingURL=LogOut.module.css.map */

@@ -1,0 +1,35 @@
+.theme__container {
+  height: 100%;
+  margin-top: 120px;
+  text-align: left;
+}
+.theme__container_wrapper {
+  gap: 80px;
+  margin-bottom: 105px;
+  display: flex;
+  justify-content: center;
+}
+.theme__container_wrapper > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.theme__container_wrapper > div > img {
+  border-radius: 15px;
+  margin-bottom: 24px;
+}
+.theme__container_wrapper > div > .wrapper__option {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.theme__container_wrapper > div > .wrapper__option > p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 150%;
+}
+.theme__container > button {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}/*# sourceMappingURL=ChangeTheme.module.css.map */

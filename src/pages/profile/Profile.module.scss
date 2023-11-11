@@ -3,12 +3,13 @@
     justify-content: center;
     align-items: center;
     height: calc(100% - 48px);
-    
+
     &_container {
         width: 1040px;
         display: flex;
         gap: 52px;
         flex-wrap: nowrap;
+        height: 600px;
     }
 
     &_sections {
@@ -39,11 +40,35 @@
                 margin-bottom: 8px;
             }
 
-            &:hover {
-                svg > g > path {
-                    fill: #7b34d8;
+            a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 400;
+                font-size: 24px;
+                color: var(--black);
+                line-height: 150%;
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover {
+                    svg > g > path {
+                        fill: #7b34d8;
+                    }
+                    svg > path {
+                        fill: #7b34d8;
+                    }
+                    color: #7b34d8;
                 }
-                color: #7b34d8;
+                &.active {
+                    color: #7b34d8;
+                    svg > g > path {
+                        fill: #7b34d8;
+                    }
+                    svg > path {
+                        fill: #7b34d8;
+                    }
+                }
             }
         }
     }
@@ -51,7 +76,7 @@
     &_section {
         background: rgba(234, 234, 234, 0.7);
         border-radius: 20px;
-        padding: 24px 80px 60px;
+        padding: 24px 60px 80px;
         flex: 1;
 
         & > h2 {
@@ -63,4 +88,3 @@
         }
     }
 }
-

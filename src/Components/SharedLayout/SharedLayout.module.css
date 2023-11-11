@@ -9,7 +9,6 @@
 }
 
 .header__user {
-  box-sizing: border-box;
   background-color: var(--background-color-chat);
   display: flex;
   justify-content: space-between;

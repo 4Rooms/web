@@ -13,6 +13,12 @@ import SignupPage from "./pages/auth/signup-page/signup-page.tsx";
 import SignupConfirmation from "./pages/auth/signup-page/signup-confirmation/signup-confirmation.tsx";
 import LoginPage from "./pages/auth/login-page/login-page.tsx";
 import { DashboardPage } from "./pages/dashboard/Dashboard.tsx";
+import Profile from "./pages/profile/Profile.tsx";
+import LogOut from "./pages/profile/LogOut/LogOut.tsx";
+import ChangeLanguage from "./pages/profile/ChangeLanguage/ChangeLanguage.tsx";
+import ChangeTheme from "./pages/profile/ChangeTheme/ChangeTheme.tsx";
+import ResetPassword from "./pages/profile/ResetPassword/ResetPassword.tsx";
+import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
 
 function App() {
     // here is a function that will set username in the AuthContext and you can use it in any component
@@ -38,6 +44,7 @@ function App() {
                     <Route element={<GuardRoutes />}>
                         <Route index element={<DashboardPage />} />
                         <Route path="/chat/:room" element={<Chats />} />
+
                     </Route>
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/authentication" element={<LoginPage />} />
@@ -46,6 +53,13 @@ function App() {
                     <Route path="/forgot-password" element={<ForgotPassword />}/>
                     <Route path="/account-confirmation" element={<SignupConfirmation />}/>
                     <Route path="/confirm-email" element={<EmailConfirmPage />}/>
+                    <Route path="/profile" element={<Profile />}>
+                        <Route path="logout" element={<LogOut />} />
+                        <Route path="language" element={<ChangeLanguage />} />
+                        <Route path="theme" element={<ChangeTheme />} />
+                        <Route path="password" element={<ResetPassword />} />
+                        <Route index element={<ChangeUserData />} />
+                    </Route>
                 </Route>
             </Routes>
         </div>
