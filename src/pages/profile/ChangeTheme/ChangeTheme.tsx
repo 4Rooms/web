@@ -3,7 +3,7 @@ import styles from "./ChangeTheme.module.css";
 import Button from "../../../shared/button/button";
 import Switch from "../../../Components/Switch/Switch";
 import WhiteTheme from "../../../assets/whiteTheme.jpg";
-import BlackTheme from "../../../assets/BlackTheme.jpg";
+import BlackTheme from "../../../assets/blackTheme.jpg";
 export default function ChangeTheme() {
     const [selectedOption, setSelectedOption] = useState("White");
 
@@ -25,7 +25,7 @@ export default function ChangeTheme() {
         <div className={styles.theme__container}>
             <div className={styles.theme__container_wrapper}>
                 <div>
-                    <img src={WhiteTheme} />
+                    <img src={WhiteTheme} alt=""/>
                     <div className={styles.wrapper__option}>
                         <p>Light theme</p>
                         <Switch
@@ -36,7 +36,7 @@ export default function ChangeTheme() {
                     </div>
                 </div>
                 <div>
-                    <img src={BlackTheme} />
+                    <img src={BlackTheme} alt=""/>
                     <div className={styles.wrapper__option}>
                         <p>Dark theme</p>
                         <Switch
