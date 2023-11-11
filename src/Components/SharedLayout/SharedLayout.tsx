@@ -5,21 +5,16 @@ import styles from "./SharedLayout.module.css";
 
 type Props = {
     user: string | null;
-    isAuthenticated: boolean;
+    isAuthenticated?: boolean;
+    showHeader: boolean;
 };
 
-// eslint-disable-next-line
-// @ts-ignore
-export default function SharedLayout({ user, isAuthenticated }: Props) {
-    return (
-        <>
-            {/* <header className={styles.header__stanger}>
-                <Navigation />
-            </header> */}
-            <header className={styles.header__user}>
-                <Navigation />
-            </header>
-            <Outlet />
-        </>
-    );
+export default function SharedLayout({user, showHeader}: Props) {
+    return <>
+        <header className={styles.header__user}>
+            {showHeader && <Navigation user={user}/>}
+        </header>
+        <Outlet/>
+    </>
+
 }

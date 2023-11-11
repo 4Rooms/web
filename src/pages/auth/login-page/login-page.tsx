@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import styles from "../auth-context/sign/Sign.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error, IconOkey } from "../../../assets/icons.tsx";
@@ -9,7 +8,7 @@ import {
     ResetEmail,
     ResetEmailKeys,
 } from "../../../App.types.ts";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import GoogleAuthButton from "../../../shared/google-auth-button/google-auth-button.tsx";
 import { AuthContext } from "../auth-context/auth-context.tsx";
 import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
@@ -23,9 +22,17 @@ import FormInput from "../../../shared/auth-input/form-Input.tsx";
 import Modal from "../../../Components/Modal/Modal.tsx";
 import Button from "../../../shared/button/button.tsx";
 import loginSchema from "./login-schema.ts";
+import Toaster from "../../../shared/toaster/toaster.tsx";
+import { useTranslation } from "react-i18next";
+import CookieConsent from "../../../shared/cookie-consent/cookie-consent.tsx";
+import { getInitialCookieConsent, updateCookieConsent } from "../../../utils/cookie-consent/cookie-consent.tsx";
 
 export default function LoginPage() {
-    const { setUsername } = useContext(AuthContext);
+    const { t } = useTranslation('translation', { keyPrefix: 'sign-in-page' });
+    const allFieldsValid = () => {
+        return Object.values(formStateValid).every(value => value);
+    };
+    const { setUsername, setIsAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
@@ -34,7 +41,9 @@ export default function LoginPage() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     // eslint-disable-next-line @typescript-eslint/no-inferrable-types
     let resetEmail: string = "";
-    
+    const [endpointsError, setEndpointsError] = useState<string[]>([''])
+    const [showToaster, setShowToaster] = useState(false);
+
     const [formStateValue, setFormStateValue] = useState<InputsLogin>({
         username: "",
         password: "",
@@ -44,6 +53,11 @@ export default function LoginPage() {
         username: false,
         password: false,
     });
+    const [cookieConsent, setCookieConsent] = useState(() => getInitialCookieConsent());
+
+    useEffect(() => {
+        updateCookieConsent(cookieConsent);
+    }, [cookieConsent]);
 
     const {
         register,
@@ -118,31 +132,35 @@ export default function LoginPage() {
             .login(data)
             .then((response) => {
                 setUsername(response.user.username);
+                setIsAuthenticated(true);
                 localStorageService.set("user", response.user);
                 navigate("/");
+                console.log(document.cookie);
             })
             .catch((error) => {
-                console.log(error);
+                if (error.response && error.response.status === 400) {
+                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                    setShowToaster(true);
+                }
             });
     };
 
     return (
-        <AuthWrapper title={"Authentication"} link={backLinkLocation.current}>
+        <AuthWrapper title={t('title')} link={backLinkLocation.current}>
             <form
                 className={styles.form__auth}
                 onSubmit={handleSubmit(deliveryFormAuth)}
             >
-                <GoogleAuthButton />
+                <GoogleAuthButton translation={t('signInButton')}/>
                 <h2 className={styles.text__form}>
-                    Or sign in with your username and password:
+                    {t('orSignInWithCredentials')}
                 </h2>
                 {inputArray.map((value) => {
                     return (
                         <label
                             htmlFor={value}
                             className={styles.label__auth}
-                            key={value}
-                        >
+                            key={value}>
                             <FormInput<InputLoginKeys, InputsLogin>
                                 value={value}
                                 register={register}
@@ -151,11 +169,10 @@ export default function LoginPage() {
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
                                 onChange={onChange}
-                                onFocusInput={onFocusInput}
-                            />
+                                onFocusInput={onFocusInput}/>
                             {!errors[value as keyof InputsLogin] &&
                                 formStateValid[value as keyof InputsLogin] && (
-                                    <IconOkey className={styles.okey__auth} />
+                                    <IconOkey className={styles.okey__auth}/>
                                 )}
                             {formStateFocus[value as keyof InputsLogin] &&
                                 !formStateValid[value as keyof InputsLogin] &&
@@ -190,11 +207,8 @@ export default function LoginPage() {
                                         }{" "}
                                         <button
                                             type="button"
-                                            className={
-                                                styles.forgot__password__error
-                                            }
-                                            onClick={onClickChangeOpenModal}
-                                        >
+                                            className={styles.forgot__password__error}
+                                            onClick={onClickChangeOpenModal}>
                                             Forgot Password?
                                         </button>
                                     </p>
@@ -211,8 +225,7 @@ export default function LoginPage() {
                             <label
                                 htmlFor={resetEmail}
                                 className={`${styles.label__auth} ${styles.label__modal}`}
-                                key={resetEmail}
-                            >
+                                key={resetEmail}>
                                 <FormInput<ResetEmailKeys, ResetEmail>
                                     value="resetEmail"
                                     onChangeInputValue={onChangeInputValue}
@@ -222,8 +235,7 @@ export default function LoginPage() {
                             <Button
                                 type="button"
                                 className="accent"
-                                onClick={onSubmitModal}
-                            >
+                                onClick={onSubmitModal}>
                                 Send
                             </Button>
                         </form>
@@ -231,14 +243,21 @@ export default function LoginPage() {
                 )}
                 <div className={styles.wrapper__buttons}>
                     <Button
+                        disabled={!allFieldsValid()}
                         className="accent"
                         type="submit"
-                        onClick={() => setFormSubmitted(true)}
-                    >
-                        Sign in
+                        onClick={() => setFormSubmitted(true)}>
+                        {t('signInButton')}
                     </Button>
                 </div>
+                <Toaster
+                    messages={endpointsError}
+                    isVisible={showToaster}
+                    onHide={() => setShowToaster(false)}
+                />
             </form>
+            {!cookieConsent && <CookieConsent setConsent={setCookieConsent} />}
+
         </AuthWrapper>
     );
 }

@@ -4,12 +4,7 @@ import { EmailConfirmationResponse, InputsLogin, InputsRegistraytion } from "../
 axios.defaults.baseURL = 'https://back.4rooms.pro';
 
 const signup = async (dataForm: InputsRegistraytion) => {
-    try {
-        const {data} = await axios.post("/api/register/", dataForm)
-        return data;
-    } catch (err) {
-        return err;
-    }
+    return await axios.post("/api/register/", dataForm);
 };
 
 const login = async (dataForm: InputsLogin) => {
@@ -21,13 +16,12 @@ const login = async (dataForm: InputsLogin) => {
     }
 };
 
-const resetPassword = async (url: string, data: any) => {
-    const response = await axios({
+const resetPassword = async (url: string, data: unknown) => {
+    return axios({
         url,
         method: "POST",
         data,
     });
-    return response;
 };
 
 const logout = () => {

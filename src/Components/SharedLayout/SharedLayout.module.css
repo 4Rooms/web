@@ -2,9 +2,8 @@
   display: flex;
   background-color: transparent;
   padding: 0 20px;
-}
-@media (min-width: 376px) {
-  .header__stanger {
+
+  @media (min-width: 768px) {
     padding: 0 80px;
   }
 }
@@ -14,9 +13,8 @@
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-}
-@media (min-width: 376px) {
-  .header__user {
+
+  @media (min-width: 768px) {
     padding: 0 80px;
   }
 }/*# sourceMappingURL=SharedLayout.module.css.map */
