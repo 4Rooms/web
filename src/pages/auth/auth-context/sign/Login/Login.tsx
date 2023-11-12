@@ -185,7 +185,7 @@ export default function Login() {
                         </p>
                         <Link
                             to={
-                                "https://back.4rooms.pro/oauth/login/google-oauth2/"
+                                "https://back.4rooms.pro/oauth/login/google-oauth2/?next=" + import.meta.env.VITE_GOOGLE_AUTH_REDIRECT_URL
                             }
                         >
                             <button
