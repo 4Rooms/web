@@ -4,7 +4,7 @@ export default yup.object().shape({
     username: yup
         .string()
         .min(1, "Name should have at least 1 character")
-        .max(20, "Name should not exceed 20 characters")
+        .max(20, "Сreate a username up to 20 characters")
         .matches(
             /^[a-zA-Zа-яА-Я0-9\s]+$/,
             "Name should contain only letters, digits, and spaces"
