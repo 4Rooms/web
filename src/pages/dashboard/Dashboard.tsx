@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Dashboard.module.scss";
 import { optionDashboard } from "../../utils/optionDashboard";
 import { Link } from "react-router-dom";
+import CookieConsent from "../../shared/cookie-consent/cookie-consent.tsx";
+import { getInitialCookieConsent, updateCookieConsent } from "../../utils/cookie-consent/cookie-consent.tsx";
 
 export function DashboardPage() {
+    const [cookieConsent, setCookieConsent] = useState(() => getInitialCookieConsent());
+
+    useEffect(() => {
+        updateCookieConsent(cookieConsent);
+    }, [cookieConsent]);
+
     return (
         <div className={styles.dashboard}>
                 <h1 className={styles.dashboard__title}>
@@ -40,6 +48,7 @@ export function DashboardPage() {
                         );
                     })}
                 </ul>
+            {!cookieConsent && <CookieConsent setConsent={setCookieConsent} />}
         </div>
     );
 }
