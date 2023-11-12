@@ -39,8 +39,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    # Runs on pushes targeting the default branch
-    if: github.ref == 'refs/heads/master'
+    # Runs on pushes targeting the default branch or this is a dispatch event
+    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
 
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
