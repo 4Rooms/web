@@ -10,6 +10,7 @@ const signup = async (dataForm: InputsRegistraytion) => {
 const login = async (dataForm: InputsLogin) => {
     try {
         const {data} = await axios.post("/api/login/", dataForm)
+        console.log(data)
         return data;
     } catch (err) {
         return err;
