@@ -1,6 +1,6 @@
 import styles from "../auth-context/sign/Sign.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Error, IconOkey } from "../../../assets/icons.tsx";
+import { Error, HiddenPassword, IconOkey, OpenPassword } from "../../../assets/icons.tsx";
 import {
     InputLoginKeys,
     InputsLogin,
@@ -8,7 +8,7 @@ import {
     ResetEmail,
     ResetEmailKeys,
 } from "../../../App.types.ts";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import GoogleAuthButton from "../../../shared/google-auth-button/google-auth-button.tsx";
 import { AuthContext } from "../auth-context/auth-context.tsx";
 import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
@@ -24,8 +24,6 @@ import Button from "../../../shared/button/button.tsx";
 import loginSchema from "./login-schema.ts";
 import Toaster from "../../../shared/toaster/toaster.tsx";
 import { useTranslation } from "react-i18next";
-import CookieConsent from "../../../shared/cookie-consent/cookie-consent.tsx";
-import { getInitialCookieConsent, updateCookieConsent } from "../../../utils/cookie-consent/cookie-consent.tsx";
 
 export default function LoginPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'sign-in-page' });
@@ -36,6 +34,7 @@ export default function LoginPage() {
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
+    const [open, setOpen] = useState<boolean>(false);
     const inputArray: InputLoginKeys[] = ["username", "password"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -53,12 +52,6 @@ export default function LoginPage() {
         username: false,
         password: false,
     });
-    const [cookieConsent, setCookieConsent] = useState(() => getInitialCookieConsent());
-
-    useEffect(() => {
-        updateCookieConsent(cookieConsent);
-    }, [cookieConsent]);
-
     const {
         register,
         handleSubmit,
@@ -79,6 +72,12 @@ export default function LoginPage() {
             ...prevFocus,
             [type]: true,
         }));
+    };
+
+    const onClickChangeOpen = (): void => {
+        setOpen((prevOpen): boolean => {
+            return !prevOpen;
+        });
     };
 
     const { formStateValid, validateField } = useValidation<InputsValidLogin>({
@@ -169,6 +168,7 @@ export default function LoginPage() {
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
                                 onChange={onChange}
+                                open={open}
                                 onFocusInput={onFocusInput}/>
                             {!errors[value as keyof InputsLogin] &&
                                 formStateValid[value as keyof InputsLogin] && (
@@ -197,6 +197,13 @@ export default function LoginPage() {
                                 !formStateValid[value as keyof InputsLogin] && (
                                     <Error className={styles.error__auth} />
                                 )}
+                                                    {value === "password" && formStateValue.password?.length > 0 && !errors[value] &&
+                        !formStateValid[value] &&
+                        <button className={styles.button__show} type="button"
+                                onClick={onClickChangeOpen}>
+                            {open ? <OpenPassword/> : <HiddenPassword/>}
+                        </button>
+                    }
                             {value === "password" &&
                                 errors[value as keyof InputsLogin] &&
                                 !formStateValid[value as keyof InputsLogin] && (
@@ -256,8 +263,6 @@ export default function LoginPage() {
                     onHide={() => setShowToaster(false)}
                 />
             </form>
-            {!cookieConsent && <CookieConsent setConsent={setCookieConsent} />}
-
         </AuthWrapper>
     );
 }
