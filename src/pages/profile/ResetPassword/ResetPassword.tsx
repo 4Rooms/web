@@ -8,9 +8,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useValidation from "../../../shared/use-validate/use-validate";
 import resetPasswordSchema from "./resetPassword-schema";
-import styles from './ResetPassword.module.css'
+import styles from "./ResetPassword.module.css";
 import Button from "../../../shared/button/button";
-import { Error, HiddenPassword, IconOkey, OpenPassword } from "../../../assets/icons";
+import {
+    Error,
+    HiddenPassword,
+    IconOkey,
+    OpenPassword,
+} from "../../../assets/icons";
 import FormInput from "../../../shared/auth-input/form-Input";
 
 export default function ResetPassword() {
@@ -82,57 +87,87 @@ export default function ResetPassword() {
     ) => {
         console.log(data);
     };
-    return <div className={styles.reset__container}>
-        <form
-            onSubmit={handleSubmit(deliveryFormAuth)}>
-            {inputArray.map((value) =>
-                <label
-                    htmlFor={value}
-                    key={value}>
-                    <FormInput<InputResetPasswordKeys, InputsResetPassword>
-                        value={value}
-                        register={register}
-                        errors={errors}
-                        formStateValid={formStateValid}
-                        formStateFocus={formStateFocus}
-                        formStateValue={formStateValue}
-                        open={open}
-                        className="reset"
-                        onChange={onChange}
-                        onFocusInput={onFocusInput}
-                    />
+    return (
+        <>
+                <p className={styles.reset__warning}>
+                    To change your password, enter your old password and create
+                    a new one.
+                </p>
+            <div className={styles.reset__container}>
+                <form onSubmit={handleSubmit(deliveryFormAuth)}>
+                    {inputArray.map((value) => (
+                        <label htmlFor={value} key={value}>
+                            <FormInput<
+                                InputResetPasswordKeys,
+                                InputsResetPassword
+                            >
+                                value={value}
+                                register={register}
+                                errors={errors}
+                                formStateValid={formStateValid}
+                                formStateFocus={formStateFocus}
+                                formStateValue={formStateValue}
+                                open={open}
+                                className="reset"
+                                onChange={onChange}
+                                onFocusInput={onFocusInput}
+                            />
 
-                    {!errors[value] && formStateValid[value] && <IconOkey className={styles.okey}/>}
+                            {!errors[value] && formStateValid[value] && (
+                                <IconOkey className={styles.okey} />
+                            )}
 
-                    {value === "newPassword" && formStateValue.newPassword?.length > 0 && !errors[value] &&
-                        !formStateValid[value] &&
-                        <button className={styles.button__show} type="button"
-                                onClick={onClickChangeOpen}>
-                            {open ? <OpenPassword/> : <HiddenPassword/>}
-                        </button>
-                    }
+                            {value === "newPassword" &&
+                                formStateValue.newPassword?.length > 0 &&
+                                !errors[value] &&
+                                !formStateValid[value] && (
+                                    <button
+                                        className={styles.button__show}
+                                        type="button"
+                                        onClick={onClickChangeOpen}
+                                    >
+                                        {open ? (
+                                            <OpenPassword />
+                                        ) : (
+                                            <HiddenPassword />
+                                        )}
+                                    </button>
+                                )}
 
-                    {formStateFocus[value] && !formStateValid[value] && !errors[value] &&
-                        formStateValue[value].length > 0 &&
-                        <div className={styles.focus}>
-                            <p>{value !== "oldPassword" ? "New Password" : "Old Password"}
-                            </p>
-                        </div>
-                    }
+                            {formStateFocus[value] &&
+                                !formStateValid[value] &&
+                                !errors[value] &&
+                                formStateValue[value].length > 0 && (
+                                    <div className={styles.focus}>
+                                        <p>
+                                            {value !== "oldPassword"
+                                                ? "New Password"
+                                                : "Old Password"}
+                                        </p>
+                                    </div>
+                                )}
 
-                    {errors[value] && !formStateValid[value] &&
-                        <>
-                            <p className={styles.text__error}>{errors[value]?.message}</p>
-                            <Error className={styles.error}/>
-                        </>
-                    }
-                </label>
-            )}
-            <div className={styles.wrapper__buttons}>
-                <Button className='accent' type='submit' onClick={() => setFormSubmitted(true)}>
-                    Sign in
-                </Button>
+                            {errors[value] && !formStateValid[value] && (
+                                <>
+                                    <p className={styles.text__error}>
+                                        {errors[value]?.message}
+                                    </p>
+                                    <Error className={styles.error} />
+                                </>
+                            )}
+                        </label>
+                    ))}
+                    <div className={styles.wrapper__buttons}>
+                        <Button
+                            className="accent"
+                            type="submit"
+                            onClick={() => setFormSubmitted(true)}
+                        >
+                            Sign in
+                        </Button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>;
+        </>
+    );
 }

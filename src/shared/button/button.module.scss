@@ -12,6 +12,11 @@
   font-size: 16px;
   transition: all 500ms;
 
+  &:disabled {
+    background-color: #C7C7C7;
+    color: white;
+  }
+
   &:hover {
     background-color: var(--hover);
     transform: scale(1.05);

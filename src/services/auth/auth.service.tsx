@@ -1,7 +1,7 @@
 import axios from "axios";
 import { EmailConfirmationResponse, InputsLogin, InputsRegistraytion } from "../../App.types";
 
-axios.defaults.baseURL = 'https://back.4rooms.pro';
+axios.defaults.baseURL = 'https://back.4rooms.pro/api/';
 
 const signup = async (dataForm: InputsRegistraytion) => {
     return await axios.post("/api/register/", dataForm);
@@ -36,6 +36,9 @@ async function confirmEmail(token: string): Promise<EmailConfirmationResponse> {
         });
         return response.data;
 }
+const sendSecondEmail = async (email: string) => {
+    return await axios.post("send-confirmation-email/", {email});
+};
 
 const authService = {
     signup,
@@ -43,6 +46,7 @@ const authService = {
     resetPassword,
     logout,
     confirmEmail,
+    sendSecondEmail
 };
 
 export default authService;

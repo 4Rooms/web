@@ -1,12 +1,18 @@
 .logout__container {
-  height: 100%;
-  margin-top: 120px;
   text-align: center;
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+@media (max-width: 360px) {
+  .logout__container {
+    width: 100%;
+  }
 }
 .logout__container p {
-  color: var(--gray);
+  color: var(--black);
   font-size: 20px;
-  line-height: 150%;
+  font-weight: 600;
   margin-bottom: 48px;
 }
 .logout__container_modal {

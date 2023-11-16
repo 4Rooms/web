@@ -14,13 +14,16 @@ import useValidation from "../../../../shared/use-validate/use-validate";
 import FormInput from "../../../../shared/auth-input/form-Input";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import createSchema from "./create-schema.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function CreateChat() {
+    const { t } = useTranslation('translation', { keyPrefix: 'welcome' });
+
     const { roomName } = useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
-    const [, setImageURL] = useState<string>("");
+    const [imageURL, setImageURL] = useState<string>("");
     const [, setImageError] = useState<null | string>(null);
 
     const [formStateValue, setFormStateValue] = useState<InputsCreate>({
@@ -107,7 +110,7 @@ export default function CreateChat() {
                     roomName ? styles[roomName] : ""
                 }`}
             >
-                Create chat
+                {t("createChat")}
             </button>
             {openModal && (
                 <Modal className="create__chat" onOpen={onClickChangeOpenModal}>
@@ -127,7 +130,10 @@ export default function CreateChat() {
                                         onChange={handleImageChange}
                                         required
                                     />
+                                    {!imageURL && (
                                     <AddPhoto />
+                                )}
+                                {imageURL && <img className={styles.user__img} src={imageURL} />}
                                 </label>
                             </div>
                             {inputArray.map((value) => (

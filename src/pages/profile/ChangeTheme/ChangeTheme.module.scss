@@ -1,12 +1,19 @@
 .theme__container {
-    height: 100%;
-    margin-top: 120px;
+    margin-top: 125px;
+    @media (max-width: 520px) {
+        margin-top: 75px;
+    }
     text-align: left;
     &_wrapper {
         gap: 80px;
         margin-bottom: 105px;
         display: flex;
         justify-content: center;
+        @media (max-width: 520px) {
+            margin-bottom: 75px;
+            flex-wrap: wrap;
+            gap: 48px;
+        }
         & > div {
             display: flex;
             flex-wrap: wrap;
@@ -14,11 +21,18 @@
             & > img {
                 border-radius: 15px;
                 margin-bottom: 24px;
+                @media (max-width: 520px) {
+                    margin-bottom: 18px;
+                }
             }
             & > .wrapper__option {
                 display: flex;
                 gap: 20px;
                 align-items: center;
+                @media (max-width: 520px) {
+                    width: 100%;
+                    justify-content: center;
+                }
 
                 & > p {
                     font-size: 20px;

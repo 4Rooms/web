@@ -7,6 +7,7 @@ import {
     UseFormRegister,
 } from "react-hook-form";
 import getInputClass from "./input-style-helper/input-style-helper.ts";
+import { useTranslation } from "react-i18next";
 
 interface FormInput<T extends Path<U>, U extends FieldValues> {
     value: T;
@@ -43,6 +44,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     className = "",
     textarea = false,
 }: FormInput<T, U>) {
+    const { t } = useTranslation('translation', { keyPrefix: 'shared' });
     return textarea ? (
         <textarea
             id={String(value)}
@@ -51,8 +53,8 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             aria-invalid={errors && errors[value] ? "true" : "false"}
             placeholder={
                 value !== "resetEmail"
-                    ? `Enter your ${String(value)}`
-                    : "Enter your email"
+                    ? t(String(value))
+                    : t('default')
             }
             className={`${styles.input__auth} ${getInputClass(
                 String(value),
@@ -83,12 +85,12 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             aria-invalid={errors && errors[value] ? "true" : "false"}
             placeholder={
                 value === "newPassword"
-                  ? "Enter your new password"
+                  ? "Create new password"
                   : value !== "resetEmail"
                   ? value === "oldPassword"
-                    ? "Confirm your old password"
-                    : `Enter your ${String(value)}`
-                  : "Enter your email"
+                    ? t('password')
+                    : t(String(value))
+                  : t('default')
               }
               
             type={

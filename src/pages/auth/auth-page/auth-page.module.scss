@@ -2,40 +2,46 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    min-height: calc(100% - 48px);
+    padding: 0 8px;
+
+    &.padding__top {
+        padding-top: 50px;
+    }
 }
 
 .container__auth {
-    background-color: var(--background-form-auth);
-    padding: 180px 40px;
-    width: 500px;
+    background-color: rgba(234, 234, 234, 0.70);
+    padding: 205.5px 12px;
+    max-width: 374px;
     text-align: center;
     border-radius: 20px;
-}
-
-.greeting__title {
-    color: var(--black);
-    font-size: 60px;
-    font-style: normal;
-    line-height: 150%;
-    margin-bottom: 40px;
+    @media (min-width: 391px) {
+        max-width: 500px;
+        padding: 220px 40px;
+    }
 }
 
 .greeting__text {
     color: var(--black);
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 700;
     font-style: normal;
     line-height: 150%;
+    margin-bottom: 32px;
+    @media (min-width: 391px) {
+        font-size: 36px;
+    }
 }
 
 .another__text {
     color: var(--black);
-    font-size: 24px;
+    width: 280px;
+    font-size: 20px;
     font-weight: 400;
     font-style: normal;
     line-height: 150%;
     margin-bottom: 80px;
+    display: inline-block;
 }
 
 .wrapper__buttons {
@@ -49,10 +55,10 @@
 
 .button__in {
     color: var(--color--button);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 150%;
-    padding: 4px 24px;
+    padding: 4px 43px;
     border: 1px solid var(--black);
     background-color: var(--black);
     border-radius: 10px;
@@ -63,14 +69,17 @@
             scale: 1.1;
         }
     }
+    @media (min-width: 391px) {
+        font-size: 20px;
+    }
 }
 
 .button__up {
     color: var(--color--button);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 150%;
-    padding: 4px 24px;
+    padding: 4px 43px;
     border: transparent;
     background: #7b34d8;
     border-radius: 10px;
@@ -80,5 +89,8 @@
         &:hover {
             scale: 1.1;
         }
+    }
+    @media (min-width: 391px) {
+        font-size: 20px;
     }
 }

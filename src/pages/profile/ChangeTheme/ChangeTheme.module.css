@@ -1,13 +1,24 @@
 .theme__container {
-  height: 100%;
-  margin-top: 120px;
+  margin-top: 125px;
   text-align: left;
+}
+@media (max-width: 520px) {
+  .theme__container {
+    margin-top: 75px;
+  }
 }
 .theme__container_wrapper {
   gap: 80px;
   margin-bottom: 105px;
   display: flex;
   justify-content: center;
+}
+@media (max-width: 520px) {
+  .theme__container_wrapper {
+    margin-bottom: 75px;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
 }
 .theme__container_wrapper > div {
   display: flex;
@@ -18,10 +29,21 @@
   border-radius: 15px;
   margin-bottom: 24px;
 }
+@media (max-width: 520px) {
+  .theme__container_wrapper > div > img {
+    margin-bottom: 18px;
+  }
+}
 .theme__container_wrapper > div > .wrapper__option {
   display: flex;
   gap: 20px;
   align-items: center;
+}
+@media (max-width: 520px) {
+  .theme__container_wrapper > div > .wrapper__option {
+    width: 100%;
+    justify-content: center;
+  }
 }
 .theme__container_wrapper > div > .wrapper__option > p {
   font-size: 20px;

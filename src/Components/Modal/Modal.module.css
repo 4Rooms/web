@@ -12,7 +12,7 @@
 }
 
 .window {
-  background-color: #eeebf1;
+  background-color: #EAEAEA;
   padding: 80px 60px;
   border-radius: 20px;
   position: relative;
@@ -21,6 +21,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+@media (max-width: 460px) {
+  .window {
+    width: 100%;
+  }
 }
 .window.information {
   padding: 40px 32px;

@@ -113,7 +113,6 @@ export default function ChangeUserData() {
                             <input
                                 type="file"
                                 onChange={handleImageChange}
-                                required
                             />
                             <AddPhoto />
                         </label>

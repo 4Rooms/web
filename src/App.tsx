@@ -19,13 +19,24 @@ import ChangeLanguage from "./pages/profile/ChangeLanguage/ChangeLanguage.tsx";
 import ChangeTheme from "./pages/profile/ChangeTheme/ChangeTheme.tsx";
 import ResetPassword from "./pages/profile/ResetPassword/ResetPassword.tsx";
 import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
+import { setInitialLanguage } from "./utils/language-selector/language-selector.ts";
 
-function App() {
-    // here is a function that will set username in the AuthContext and you can use it in any component
+export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();
-    const location = useLocation()
-    const pathsToHideHeader = ['/authentication', '/auth', '/create-account', '/password-reset', '/forgot-password', '/account-confirmation', '/confirm-email'];
-
+    const location = useLocation();
+    const pathsToHideHeader = [
+        "/authentication",
+        "/auth",
+        "/create-account",
+        "/password-reset",
+        "/forgot-password",
+        "/account-confirmation",
+        "/confirm-email",
+    ];
+    const pathsForShowBackGround = [
+        "cinema", "books", "games", "music"
+    ]
+    setInitialLanguage();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
 
     useEffect(() => {
@@ -38,21 +49,46 @@ function App() {
     }, []);
 
     return (
-        <div className="container">
+        <div
+            className={
+                pathsForShowBackGround.includes(location.pathname.split('/').pop() ?? "")
+                    ? `container ${location.pathname.split('/').pop()}` 
+                    : !isAuthenticated
+                    ? "container padding"
+                    : "container"
+            }
+        >
             <Routes>
-                <Route path="/" element={ <SharedLayout user={username} isAuthenticated={isAuthenticated} showHeader={showHeader}/> }>
+                <Route
+                    path="/"
+                    element={
+                        <SharedLayout
+                            user={username}
+                            isAuthenticated={isAuthenticated}
+                            showHeader={showHeader}
+                        />
+                    }
+                >
                     <Route element={<GuardRoutes />}>
                         <Route index element={<DashboardPage />} />
                         <Route path="/chat/:room" element={<Chats />} />
-
                     </Route>
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/authentication" element={<LoginPage />} />
-                    <Route path="/create-account" element={<SignupPage />}/>
+                    <Route path="/create-account" element={<SignupPage />} />
                     <Route path="/password-reset" element={<PasswordReset />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />}/>
-                    <Route path="/account-confirmation" element={<SignupConfirmation />}/>
-                    <Route path="/confirm-email" element={<EmailConfirmPage />}/>
+                    <Route
+                        path="/forgot-password"
+                        element={<ForgotPassword />}
+                    />
+                    <Route
+                        path="/account-confirmation"
+                        element={<SignupConfirmation />}
+                    />
+                    <Route
+                        path="/confirm-email"
+                        element={<EmailConfirmPage />}
+                    />
                     <Route path="/profile" element={<Profile />}>
                         <Route path="logout" element={<LogOut />} />
                         <Route path="language" element={<ChangeLanguage />} />
@@ -65,5 +101,3 @@ function App() {
         </div>
     );
 }
-
-export default App;

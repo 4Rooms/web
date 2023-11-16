@@ -9,6 +9,11 @@
   flex-wrap: wrap;
   text-align: center;
 }
+@media (max-width: 520px) {
+  .reset__container > form {
+    width: 100%;
+  }
+}
 .reset__container > form > .wrapper__photo {
   margin-bottom: 32px;
 }
@@ -16,7 +21,7 @@
   position: relative;
 }
 .reset__container > form > .wrapper__photo > label > input {
-  width: 80px;
+  width: 100px;
   height: 80px;
   border-radius: 50%;
   opacity: 0;
@@ -56,11 +61,16 @@
 .data__user_last {
   margin-bottom: 45px;
 }
+@media (max-width: 520px) {
+  .data__user_last {
+    margin-bottom: 96px;
+  }
+}
 .data__user > div {
   color: var(--gray);
   text-align: left;
   font-size: 18px;
-  width: 87%;
+  width: 100%;
   padding: 7px 15px;
   padding-right: 40px;
   border-radius: 5px;
