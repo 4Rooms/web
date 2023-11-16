@@ -10,7 +10,6 @@ export default function Profile() {
         <div className={styles.profile}>
             <div className={styles.profile_container}>
                 <div className={styles.profile_sections}>
-                    <h2>My Profile:</h2>
                     <ul>
                         {profileSections.map((value) => (
                             <li key={value.name}>
@@ -20,6 +19,11 @@ export default function Profile() {
                                             .replace(/\s/g, "")
                                             .toLowerCase() === "editprofile"
                                             ? "/profile/"
+                                            : value.name
+                                                  .replace(/\s/g, "")
+                                                  .toLowerCase() ===
+                                              "editpassword"
+                                            ? "password"
                                             : value.name
                                                   .replace(/\s/g, "")
                                                   .toLowerCase()
@@ -36,6 +40,13 @@ export default function Profile() {
                                             .replace(/\s/g, "")
                                             .toLowerCase()}`
                                             ? styles.active
+                                            : value.name === "Edit Profile" &&
+                                              location.pathname === `/profile/`
+                                            ? styles.active
+                                            : value.name === "Edit Password" &&
+                                              location.pathname ===
+                                                  `/profile/password`
+                                            ? styles.active
                                             : ""
                                     }`}
                                 >
@@ -46,7 +57,7 @@ export default function Profile() {
                     </ul>
                 </div>
                 <div className={styles.profile_section}>
-                    <TitleProfile title={localStorage.getItem("profile")} />
+                    <TitleProfile />
                     <Outlet />
                 </div>
             </div>

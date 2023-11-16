@@ -83,10 +83,10 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             aria-invalid={errors && errors[value] ? "true" : "false"}
             placeholder={
                 value === "newPassword"
-                  ? "Enter your new password"
+                  ? "Create new password"
                   : value !== "resetEmail"
                   ? value === "oldPassword"
-                    ? "Confirm your old password"
+                    ? "Enter your password"
                     : `Enter your ${String(value)}`
                   : "Enter your email"
               }

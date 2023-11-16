@@ -24,22 +24,24 @@ export default function ChangeLanguage() {
             <p className={styles.language__container_title}>
                 Pick which language to use for 4ROOMS’s website.
             </p>
-            <div className={styles.language__container_wrapper}>
-                <div>
-                    <p>English</p>
-                    <Switch
-                        handleChange={handleLanguageChange}
-                        selectedOption={selectedOption}
-                        value="English"
-                    />
-                </div>
-                <div>
-                    <p>Ukrainian</p>
-                    <Switch
-                        handleChange={handleLanguageChange}
-                        selectedOption={selectedOption}
-                        value="Ukrainian"
-                    />
+            <div className={styles.language__container_switch}>
+                <div className={styles.language__container_wrapper}>
+                    <div>
+                        <p>English</p>
+                        <Switch
+                            handleChange={handleLanguageChange}
+                            selectedOption={selectedOption}
+                            value="English"
+                        />
+                    </div>
+                    <div>
+                        <p>Ukrainian</p>
+                        <Switch
+                            handleChange={handleLanguageChange}
+                            selectedOption={selectedOption}
+                            value="Ukrainian"
+                        />
+                    </div>
                 </div>
             </div>
             <Button className="accent" type="button">

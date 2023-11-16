@@ -18,13 +18,6 @@
   padding: 24px 32px;
   display: inline-block;
 }
-.profile_sections h2 {
-  color: var(--black);
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 150%;
-  margin-bottom: 48px;
-}
 .profile_sections ul > li {
   display: flex;
   align-items: center;
@@ -35,7 +28,7 @@
   cursor: pointer;
 }
 .profile_sections ul > li:not(:last-child) {
-  margin-bottom: 8px;
+  margin-bottom: 32px;
 }
 .profile_sections ul > li a {
   display: flex;
@@ -71,6 +64,7 @@
   border-radius: 20px;
   padding: 24px 60px 80px;
   flex: 1;
+  text-align: center;
 }
 .profile_section > h2 {
   color: var(--black);
