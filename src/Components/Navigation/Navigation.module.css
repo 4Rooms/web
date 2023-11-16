@@ -21,8 +21,6 @@
 }
 
 .link__button {
-  display: flex;
-  gap: 6px;
   background-color: transparent;
   border-color: transparent;
 }
