@@ -10,7 +10,6 @@ export function AuthPage() {
     return (
         <div className={styles.overlay}>
             <div className={styles.container__auth}>
-                <h1 className={styles.greeting__title}>{t('hi')}</h1>
                 <h2 className={styles.greeting__text}>{t('welcome')}</h2>
                 <p className={styles.another__text}>
                     {t('account')}

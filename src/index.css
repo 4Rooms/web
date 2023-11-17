@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: #EBE8FA;
   --black: #212121;
   --background-color-group: rgba(194, 224, 215, 0.35);
   --gray: #616161;
@@ -20,6 +20,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 a {

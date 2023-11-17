@@ -2,23 +2,14 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  min-height: calc(100% - 48px);
 }
 
 .container__auth {
-  background-color: var(--background-form-auth);
-  padding: 180px 40px;
+  background-color: rgb(234, 234, 234);
+  padding: 220px 40px;
   width: 500px;
   text-align: center;
   border-radius: 20px;
-}
-
-.greeting__title {
-  color: var(--black);
-  font-size: 60px;
-  font-style: normal;
-  line-height: 150%;
-  margin-bottom: 40px;
 }
 
 .greeting__text {
@@ -27,15 +18,18 @@
   font-weight: 700;
   font-style: normal;
   line-height: 150%;
+  margin-bottom: 32px;
 }
 
 .another__text {
   color: var(--black);
-  font-size: 24px;
+  width: 280px;
+  font-size: 20px;
   font-weight: 400;
   font-style: normal;
   line-height: 150%;
   margin-bottom: 80px;
+  display: inline-block;
 }
 
 .wrapper__buttons {

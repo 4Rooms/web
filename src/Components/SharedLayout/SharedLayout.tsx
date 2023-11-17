@@ -12,7 +12,7 @@ type Props = {
 export default function SharedLayout({user, showHeader}: Props) {
     return <>
         <header className={styles.header__user}>
-            {showHeader && <Navigation user={user}/>}
+            <Navigation user={user} showHeader={showHeader}/>
         </header>
         <Outlet/>
     </>

@@ -2,16 +2,15 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  height: calc(100vh - 48px);;
 }
 .container__auth {
-  background-color: var(--background-form-auth);
+  background-color: rgba(234, 234, 234);
   padding: 40px;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   flex-wrap: wrap;
-  width: 420px;
+  width: 500px;
   min-height: 680px;
   text-align: left;
 }

@@ -10,13 +10,13 @@
 }
 
 .header__user {
-  background-color: var(--background-color-chat);
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
 }
 @media (min-width: 376px) {
   .header__user {
-    padding: 0 80px;
+    padding: 5px 80px;
   }
 }/*# sourceMappingURL=SharedLayout.module.css.map */

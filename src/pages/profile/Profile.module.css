@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100% - 48px);
 }
 .profile_container {
   width: 1040px;
