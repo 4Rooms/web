@@ -27,7 +27,8 @@ export default function Navigation({
                     )}
                 </Link>
                 {showHeader && (
-                    <input className={styles.navigation__input} type="text" />
+                    <input 
+                    placeholder="Search" className={styles.navigation__input} type="text" />
                 )}
                 {showHeader && (
                     <button className={styles.search__button}>
