@@ -8,11 +8,9 @@ export function AuthProvider({children}: { children: ReactNode }) {
 
     useEffect(() => {
         const user = localStorage.getItem("user");
-        console.log(user);
         if (user) {
             setIsAuthenticated(true);
             setUsername(JSON.parse(user).username);
-            console.log('user', user, isAuthenticated);
         }
         setIsLoading(false);
     }, []);

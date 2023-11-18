@@ -5,6 +5,7 @@ import {
     MyChats,
     Notifications,
     SavedChats,
+    SearchRooms,
 } from "../../assets/icons";
 import styles from "./Navigation.module.css";
 import { Link } from "react-router-dom";
@@ -18,10 +19,22 @@ export default function Navigation({
 }) {
     return (
         <>
-            <Link to="/" className={styles.link__logo}>
-                <Logo />
-                <span className={styles.logo__name}>4ROOMS</span>
-            </Link>
+            <div className={styles.wrapper__logo}>
+                <Link to="/" className={styles.link__logo}>
+                    <Logo />
+                    {!showHeader && (
+                        <span className={styles.logo__name}>4ROOMS</span>
+                    )}
+                </Link>
+                {showHeader && (
+                    <input className={styles.navigation__input} type="text" />
+                )}
+                {showHeader && (
+                    <button className={styles.search__button}>
+                        <SearchRooms />
+                    </button>
+                )}
+            </div>
             {showHeader && (
                 <nav className={styles.navigation__link}>
                     <MyChats />

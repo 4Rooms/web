@@ -1,3 +1,11 @@
+.logo__name {
+    color: #212121;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
 .container__chatInformation {
     display: flex;
     flex-wrap: wrap;
@@ -7,7 +15,7 @@
 }
 
 .chats__footer {
-    background-color: #EAEAEA;
+    background-color: #eaeaea;
     text-align: center;
     justify-content: center;
     padding: 34px 0;

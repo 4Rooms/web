@@ -9,9 +9,9 @@ type Props = {
     showHeader: boolean;
 };
 
-export default function SharedLayout({user, showHeader}: Props) {
+export default function SharedLayout({user, showHeader, isAuthenticated}: Props) {
     return <>
-        <header className={styles.header__user}>
+        <header className={`${styles.header__user} ${isAuthenticated && styles.authenticated}`}>
             <Navigation user={user} showHeader={showHeader}/>
         </header>
         <Outlet/>

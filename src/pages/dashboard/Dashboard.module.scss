@@ -4,9 +4,6 @@
   align-items: center;
   flex-direction: column;
   padding: 80px 0;
-  @media (min-width: 768px) {
-    padding: 20px 0;
-  }
 
     &__title {
     color: var(--black);
@@ -44,7 +41,8 @@
     transition: all 250ms;
 
     @media (min-width: 768px) {
-      width: calc((100% - 120px) / 2);
+      width: calc((100% - 240px) / 2);
+      height: 200px;
       aspect-ratio: 1;
     }
 

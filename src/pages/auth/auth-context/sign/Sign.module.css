@@ -82,7 +82,7 @@
 .input__auth {
   color: var(--gray);
   font-size: 18px;
-  width: 87%;
+  width: 100%;
   padding: 10px 15px;
   padding-right: 40px;
   border-radius: 5px;
@@ -93,13 +93,14 @@
   outline: transparent;
 }
 .input__auth.create {
-  width: 93%;
+  width: 100%;
   padding: 20px 24px;
 }
 .input__auth.textarea {
-  width: 93%;
+  width: 100%;
   padding: 20px 24px;
-  background-color: white;
+  background-color: transparent;
+  font-family: Roboto, sans-serif;
   resize: none;
   overflow-x: hidden;
 }

@@ -14,7 +14,6 @@ export default function FilterGroup() {
     const changeNameCategory = arrayCategory.filter(
         (category) => category !== categotyChat
     );
-    console.log(changeNameCategory);
     return (
         <div>
             <ul className={styles.container__filterFroups}>

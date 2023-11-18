@@ -1,14 +1,3 @@
-.header__stanger {
-  display: flex;
-  background-color: transparent;
-  padding: 0 20px;
-}
-@media (min-width: 376px) {
-  .header__stanger {
-    padding: 0 80px;
-  }
-}
-
 .header__user {
   background-color: transparent;
   display: flex;
@@ -19,4 +8,7 @@
   .header__user {
     padding: 5px 80px;
   }
+}
+.header__user.authenticated {
+  background-color: #EAEAEA;
 }/*# sourceMappingURL=SharedLayout.module.css.map */
