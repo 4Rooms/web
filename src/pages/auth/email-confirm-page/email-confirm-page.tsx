@@ -37,7 +37,7 @@ export default function EmailConfirmPage() {
     }, []);
 
     return (
-        <div className={styles.overlay}>
+        <div className={`${styles.overlay} ${styles.padding__top}`}>
             <div className={styles.container__auth}>
                 <h3>{text}</h3>
             </div>

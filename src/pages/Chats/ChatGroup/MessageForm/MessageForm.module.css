@@ -1,39 +1,39 @@
 .form__message {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 16px;
-    padding: 8px 20px;
-    border-radius: 0px 0px 20px 20px;
-    background-color: var(--color--button);
-    width: 100%;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  padding: 8px 20px;
+  border-radius: 0px 0px 20px 20px;
+  background-color: var(--color--button);
+  width: 100%;
+  align-items: center;
+  height: 100%;
 }
 
 .input__message {
-    width: 100%;
-    background-color: transparent;
-    font-family: Inter;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 10.5px 16px;
-    border-color: transparent;
-    color: var(--black);
-    caret-color: var(--black);
-    border-radius: 12px;
-    background-color: #c7c7c7;
+  width: 100%;
+  background-color: transparent;
+  font-family: Inter;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 10.5px 16px;
+  border-color: transparent;
+  color: var(--black);
+  caret-color: var(--black);
+  border-radius: 12px;
+  background-color: var(--background-color-chat);
 }
 .input__message:focus {
-    outline: none;
+  outline: none;
 }
 
 .button__message {
-    border-color: transparent;
-    background-color: transparent;
-    cursor: pointer;
+  border-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .wrapper__icon {
-    display: flex;
-    gap: 8px;
-} /*# sourceMappingURL=MessageForm.module.css.map */
+  display: flex;
+  gap: 8px;
+}/*# sourceMappingURL=MessageForm.module.css.map */

@@ -2,23 +2,35 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    padding: 0 8px;
+
+    &.padding__top {
+        padding-top: 50px;
+    }
 }
 
 .container__auth {
     background-color: rgba(234, 234, 234, 0.70);
-    padding: 220px 40px;
-    width: 500px;
+    padding: 205.5px 12px;
+    max-width: 374px;
     text-align: center;
     border-radius: 20px;
+    @media (min-width: 391px) {
+        max-width: 500px;
+        padding: 220px 40px;
+    }
 }
 
 .greeting__text {
     color: var(--black);
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 700;
     font-style: normal;
     line-height: 150%;
     margin-bottom: 32px;
+    @media (min-width: 391px) {
+        font-size: 36px;
+    }
 }
 
 .another__text {
@@ -43,7 +55,7 @@
 
 .button__in {
     color: var(--color--button);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 150%;
     padding: 4px 43px;
@@ -57,11 +69,14 @@
             scale: 1.1;
         }
     }
+    @media (min-width: 391px) {
+        font-size: 20px;
+    }
 }
 
 .button__up {
     color: var(--color--button);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 150%;
     padding: 4px 43px;
@@ -74,5 +89,8 @@
         &:hover {
             scale: 1.1;
         }
+    }
+    @media (min-width: 391px) {
+        font-size: 20px;
     }
 }

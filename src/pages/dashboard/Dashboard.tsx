@@ -38,9 +38,7 @@ export function DashboardPage() {
                                                 styles.dashboard__text_description
                                             }
                                         >
-                                            You can chat about any movies or
-                                            series you've already watched or
-                                            plan to watch.
+                                            {option.text}
                                         </p>
                                     </div>
                                 </Link>

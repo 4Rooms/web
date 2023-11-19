@@ -26,17 +26,17 @@ export default function Navigation({
                         <span className={styles.logo__name}>4ROOMS</span>
                     )}
                 </Link>
-                {showHeader && (
+                {!showHeader && (
                     <input 
                     placeholder="Search" className={styles.navigation__input} type="text" />
                 )}
-                {showHeader && (
+                {!showHeader && (
                     <button className={styles.search__button}>
                         <SearchRooms />
                     </button>
                 )}
             </div>
-            {showHeader && (
+            {!showHeader && (
                 <nav className={styles.navigation__link}>
                     <MyChats />
                     <SavedChats />

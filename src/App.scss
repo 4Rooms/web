@@ -3,23 +3,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 100vh;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    max-width: 100%;
-    background-color: #EBE8FA;
     background: url(./assets/background_image@1x.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    box-sizing: border-box;
-    color: var(--active-color);
     @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
@@ -41,6 +25,20 @@
             background: url(./assets/background_image@2x.png);
         }
     }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 376px) {
+        width: 100%;
+    }
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-sizing: border-box;
+    color: var(--active-color);
     &.padding {
         padding-bottom: 20px;
     }
