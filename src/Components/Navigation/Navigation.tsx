@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Logo,
     Messenger,
+    MobileMenu,
     MyChats,
     Notifications,
     SavedChats,
@@ -17,6 +18,18 @@ export default function Navigation({
     user: string | null;
     showHeader: boolean;
 }) {
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsSmallScreen(window.innerWidth < 871);
+        };
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+        return () => {
+            window.removeEventListener("resize", checkScreenSize);
+        };
+    }, []);
     return (
         <>
             <div className={styles.wrapper__logo}>
@@ -26,17 +39,17 @@ export default function Navigation({
                         <span className={styles.logo__name}>4ROOMS</span>
                     )}
                 </Link>
-                {!showHeader && (
+                {showHeader && !isSmallScreen && (
                     <input 
                     placeholder="Search" className={styles.navigation__input} type="text" />
                 )}
-                {!showHeader && (
+                {showHeader && !isSmallScreen && (
                     <button className={styles.search__button}>
                         <SearchRooms />
                     </button>
                 )}
             </div>
-            {!showHeader && (
+            {showHeader && !isSmallScreen && (
                 <nav className={styles.navigation__link}>
                     <MyChats />
                     <SavedChats />
@@ -51,6 +64,11 @@ export default function Navigation({
                         />
                     </Link>
                 </nav>
+            )}
+            {showHeader && isSmallScreen && (
+                <button type="button" className={styles.mobile__button}>
+                     <MobileMenu />
+                </button>
             )}
         </>
     );

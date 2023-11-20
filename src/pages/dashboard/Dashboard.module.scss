@@ -24,13 +24,18 @@
     width: 100%;
     gap: 40px;
 
-    @media (min-width: 768px) {
+    
+    @media (min-width: 391px) {
       padding: 0;
       flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
-      width: 800px;
+      width: 370px;
       max-width: 100vw;
+    }
+
+    @media (min-width: 815px) {
+      width: 800px;
     }
   }
 

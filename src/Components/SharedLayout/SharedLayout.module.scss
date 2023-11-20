@@ -1,5 +1,6 @@
 .header__user {
     background-color: transparent;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     padding: 40px 16px 16px;
@@ -7,7 +8,7 @@
     @media (min-width: 391px) {
         padding: 5px 40px;
     }
-    @media (min-width: 768px) {
+    @media (min-width: 1280px) {
         padding: 5px 80px;
     }
     &.authenticated {
