@@ -20,6 +20,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    @media (max-width: 460px) {
+        width: 100%;
+    }
 
     &.information {
         padding: 40px 32px;

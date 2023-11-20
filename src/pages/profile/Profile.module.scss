@@ -32,7 +32,7 @@
         &.mobile {
             padding: 20px 40px;
             width: 100%;
-            @media (min-width: 391px) and (max-width: 1280px) {
+            @media (min-width: 420px) and (max-width: 1280px) {
                 width: 390px;
             }
         }
@@ -86,9 +86,21 @@
     &_section {
         background: rgba(234, 234, 234, 0.7);
         border-radius: 20px;
-        padding: 24px 60px 80px;
+        padding: 20px 8px;
         flex: 1;
         text-align: center;
+        @media (min-width: 420px) and (max-width: 520px) {
+            width: 390px;
+            padding: 20px 8px;
+            flex: none;
+        }
+        @media (min-width: 520px) and (max-width: 871px) {
+            width: 500px;
+            flex: none;
+        }
+        @media (min-width: 871px) {
+            padding: 24px 60px 80px;
+        }
 
         & > h2 {
             color: var(--black);
@@ -96,6 +108,17 @@
             font-weight: 700;
             line-height: 150%;
             text-align: center;
+        }
+
+    }
+    &_wrapper {
+        display: flex;
+        align-items: center;
+        & > button {
+            margin-right: 35%;
+            background-color: transparent;
+            border: transparent;
+            cursor: pointer;
         }
     }
 }

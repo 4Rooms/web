@@ -3,6 +3,9 @@
     margin: 0 auto;
     margin-top: 107px;
     text-align: center;
+    @media (max-width: 360px) {
+        width: 100%;
+    }
 
     &_title {
         color: var(--black);

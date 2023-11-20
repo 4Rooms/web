@@ -4,6 +4,11 @@
   margin-top: 107px;
   text-align: center;
 }
+@media (max-width: 360px) {
+  .language__container {
+    width: 100%;
+  }
+}
 .language__container_title {
   color: var(--black);
   font-size: 20px;

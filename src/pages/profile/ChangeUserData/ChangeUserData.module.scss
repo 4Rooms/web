@@ -6,6 +6,9 @@
 
     & > form {
         width: 420px;
+        @media (max-width: 520px) {
+            width: 100%;
+        }
         flex-wrap: wrap;
         text-align: center;
         & > .wrapper__photo {
@@ -56,6 +59,9 @@
     margin-bottom: 48px;
     &_last {
         margin-bottom: 45px;
+        @media (max-width: 520px) {
+            margin-bottom: 96px;
+        }
     }
 
     & > div {

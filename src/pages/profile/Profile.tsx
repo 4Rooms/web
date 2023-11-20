@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import { profileSections } from "../../utils/profileSections";
 import TitleProfile from "../../shared/title-profile/TitleProfile";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
+import { Back } from "../../assets/icons";
 
 export default function Profile() {
     const location = useLocation();
@@ -32,7 +33,7 @@ export default function Profile() {
                     className={`${styles.profile_container} ${
                         isSmallScreen && styles.mobile
                     }`}
-                    >
+                >
                     {((isSmallScreen && !navigationMobile) ||
                         (!isSmallScreen && true)) && (
                         <div
@@ -108,7 +109,16 @@ export default function Profile() {
                     {((isSmallScreen && navigationMobile) ||
                         (!isSmallScreen && true)) && (
                         <div className={styles.profile_section}>
-                            <TitleProfile />
+                            {isSmallScreen && navigationMobile ? (
+                                <div className={styles.profile_wrapper}>
+                                    <button onClick={() => setNavigationMobile(false)}>
+                                        <Back />
+                                    </button>
+                                    <TitleProfile />
+                                </div>
+                            ) : (
+                                <TitleProfile />
+                            )}
                             <Outlet />
                         </div>
                     )}

@@ -1,6 +1,9 @@
 .logout__container {
     text-align: center;
     width: 320px;
+    @media (max-width: 360px) {
+        width: 100%;
+    }
     margin: 0 auto;
     margin-top: 120px;
 
