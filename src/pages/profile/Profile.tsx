@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import { profileSections } from "../../utils/profileSections";
 import TitleProfile from "../../shared/title-profile/TitleProfile";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { Back } from "../../assets/icons";
 
