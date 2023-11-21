@@ -2,33 +2,53 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  height: calc(100vh - 48px);
 }
 
 .container__auth {
-  background-color: var(--background-form-auth);
-  padding: 40px;
+  background-color: rgba(234, 234, 234, 0.7);
+  padding: 40px 8px;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   flex-wrap: wrap;
-  width: 420px;
+  max-width: 374px;
   min-height: 680px;
   text-align: left;
+}
+@media (min-width: 391px) {
+  .container__auth {
+    max-width: 500px;
+    padding: 40px;
+  }
 }
 
 .wrapper__title {
   display: flex;
   gap: 40px;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 48px;
   height: -moz-fit-content;
   height: fit-content;
+}
+@media (min-width: 391px) {
+  .wrapper__title {
+    margin-bottom: 80px;
+  }
 }
 
 .title__auth {
   color: var(--black);
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 150%;
+}
+@media (min-width: 391px) and (max-width: 472px) {
+  .title__auth {
+    font-size: 26px;
+  }
+}
+@media (min-width: 473px) {
+  .title__auth {
+    font-size: 36px;
+  }
 }/*# sourceMappingURL=auth-wrapper.module.css.map */

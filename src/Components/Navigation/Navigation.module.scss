@@ -13,6 +13,36 @@
     line-height: 150%;
 }
 
+.wrapper__logo {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+    position: relative;
+}
+
+.navigation__input {
+    height: 42px;
+    border-radius: 12px;
+    width: 360px;
+    padding: 12px 16px;
+    padding-right: 36px;
+    background:  transparent;
+    border: #616161 1px solid;
+    color: var(--gray);
+    font-size: 16px;
+    &:focus {
+        outline: transparent;
+    }  
+}
+
+.search__button {
+    background-color: transparent;
+    border-color: transparent;
+    position: absolute;
+    right: 12px;
+    top: 15px;
+}
+
 .navigation__link {
     display: flex;
     align-items: center;
@@ -23,10 +53,18 @@
 .link__button {
     background-color: transparent;
     border-color: transparent;
+    display: flex;
+    gap: 10px;
 }
 
 .avatar__user {
     width: 20px;
     height: 20px;
     border-radius: 50%;
+}
+
+.mobile__button {
+    cursor: pointer;
+    background-color: transparent;
+    border: transparent;
 }

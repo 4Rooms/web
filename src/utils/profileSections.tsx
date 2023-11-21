@@ -9,7 +9,7 @@ export const profileSections: { icon: ReactElement; name: string }[] = [
     },
     {
         icon: <PasswordReset />,
-        name: "Password"
+        name: "Edit Password"
     },
     {
         icon: <LanguageProfile />,

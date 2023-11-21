@@ -1,0 +1,83 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+  background: url(./assets/background_image@1x.png);
+}
+@media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  #root {
+    background: url(./assets/background_image@2x.png);
+  }
+}
+@media screen and (min-width: 768px) {
+  #root {
+    background: url(./assets/background_image@1x.png);
+  }
+}
+@media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
+  #root {
+    background: url(./assets/background_image@2x.png);
+  }
+}
+@media screen and (min-width: 1280px) {
+  #root {
+    background: url(./assets/background_image@1x.png);
+  }
+}
+@media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (min-resolution: 192dpi), screen and (min-width: 1280px) and (min-resolution: 2dppx) {
+  #root {
+    background: url(./assets/background_image@2x.png);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+  color: var(--active-color);
+}
+@media screen and (min-width: 376px) {
+  .container {
+    width: 100%;
+  }
+}
+.container.padding {
+  padding-bottom: 20px;
+}
+.container.books {
+  background: url(./assets/background_books@1x.png);
+}
+@media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .container.books {
+    background: url(./assets/background_books@1x.png);
+  }
+}
+.container.cinema {
+  background: url(./assets/background_cinema@1x.png);
+}
+@media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .container.cinema {
+    background: url(./assets/background_cinema@1x.png);
+  }
+}
+.container.music {
+  background: url(./assets/background_music@1x.png);
+}
+@media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .container.music {
+    background: url(./assets/background_music@1x.png);
+  }
+}
+.container.games {
+  background: url(./assets/background_games@1x.png);
+}
+@media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .container.games {
+    background: url(./assets/background_games@1x.png);
+  }
+}/*# sourceMappingURL=App.css.map */

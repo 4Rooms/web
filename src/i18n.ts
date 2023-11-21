@@ -6,8 +6,8 @@ const resources = {
         translation: {
             'auth-page': {
                 'hi': 'Hi',
-                'welcome': 'welcome to the 4Rooms',
-                'account': 'Have an account? Sign in or Sign up',
+                'welcome': 'Hi, welcome to 4Rooms!',
+                'account': 'Sign In if you have an account or Sign Up to create one.',
                 'sign in': 'Sign in',
                 'sign up': 'Sign up',
             },

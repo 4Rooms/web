@@ -1,20 +1,20 @@
-.header__stanger {
-  display: flex;
-  background-color: transparent;
-  padding: 0 20px;
-
-  @media (min-width: 768px) {
-    padding: 0 80px;
-  }
-}
-
 .header__user {
-  background-color: var(--background-color-chat);
+  background-color: transparent;
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
-
-  @media (min-width: 768px) {
-    padding: 0 80px;
+  padding: 40px 16px 16px;
+}
+@media (min-width: 391px) {
+  .header__user {
+    padding: 5px 40px;
   }
+}
+@media (min-width: 1280px) {
+  .header__user {
+    padding: 5px 80px;
+  }
+}
+.header__user.authenticated {
+  background-color: #EAEAEA;
 }/*# sourceMappingURL=SharedLayout.module.css.map */

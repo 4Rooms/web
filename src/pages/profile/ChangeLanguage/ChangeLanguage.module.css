@@ -1,13 +1,23 @@
 .language__container {
-  height: 100%;
-  margin-top: 130px;
-  text-align: left;
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 107px;
+  text-align: center;
+}
+@media (max-width: 360px) {
+  .language__container {
+    width: 100%;
+  }
 }
 .language__container_title {
   color: var(--black);
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 600;
-  margin-bottom: 50px;
+  margin-bottom: 48px;
+}
+.language__container_switch {
+  display: flex;
+  justify-content: center;
 }
 .language__container_wrapper {
   gap: 24px;
@@ -21,6 +31,8 @@
 .language__container_wrapper > div > p {
   font-size: 20px;
   margin-right: auto;
+  align-self: stretch;
+  text-align: center;
 }
 .language__container_wrapper > div:first-child {
   margin-bottom: 24px;

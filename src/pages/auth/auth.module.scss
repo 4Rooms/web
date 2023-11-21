@@ -2,17 +2,17 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    height: calc(100% - 48px);
+    padding: 0 8px;
 }
 
 .container__auth {
-    background-color: var(--background-form-auth);
+    background-color: rgba(234, 234, 234, 0.70);
     padding: 40px;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
+    width: 500px;
     flex-wrap: wrap;
-    width: 420px;
     min-height: 680px;
     text-align: left;
 }
@@ -41,7 +41,10 @@
     color: var(--black);
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
+    @media (min-width: 391px) {
+        margin-bottom: 40px;
+    }
 }
 
 .button__google {
@@ -55,21 +58,33 @@
     cursor: pointer;
     color: var(--black);
     font-size: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 48px;
+    @media (min-width: 391px) {
+        margin-bottom: 60px;
+    }
 }
 
 .text__form {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
+    @media (min-width: 391px) {
+        margin-bottom: 40px;
+    }
 }
 
 .label__auth {
     width: 100%;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
+    @media (min-width: 391px) {
+        margin-bottom: 48px;
+    }
     position: relative;
     &:last-of-type {
-        margin-bottom: 80px;
+        margin-bottom: 48px;
+        @media (min-width: 391px) {
+            margin-bottom: 80px;
+        }
     }
 }
 

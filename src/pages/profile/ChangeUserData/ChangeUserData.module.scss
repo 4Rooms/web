@@ -6,6 +6,9 @@
 
     & > form {
         width: 420px;
+        @media (max-width: 520px) {
+            width: 100%;
+        }
         flex-wrap: wrap;
         text-align: center;
         & > .wrapper__photo {
@@ -13,7 +16,7 @@
             & > label {
                 position: relative;
                 & > input {
-                    width: 80px;
+                    width: 100px;
                     height: 80px;
                     border-radius: 50%;
                     opacity: 0;
@@ -56,13 +59,16 @@
     margin-bottom: 48px;
     &_last {
         margin-bottom: 45px;
+        @media (max-width: 520px) {
+            margin-bottom: 96px;
+        }
     }
 
     & > div {
         color: var(--gray);
         text-align: left;
         font-size: 18px;
-        width: 87%;
+        width: 100%;
         padding: 7px 15px;
         padding-right: 40px;
         border-radius: 5px;
