@@ -23,6 +23,11 @@
 .profile_container.mobile {
   justify-content: center;
 }
+@media (max-width: 520px) {
+  .profile_container {
+    height: 755px;
+  }
+}
 .profile_sections {
   background: rgba(234, 234, 234, 0.7);
   border-radius: 20px;
@@ -117,10 +122,20 @@
   align-items: center;
 }
 .profile_wrapper > button {
-  margin-right: 35%;
+  margin-right: 15%;
   background-color: transparent;
   border: transparent;
   cursor: pointer;
+}
+@media (min-width: 420px) and (max-width: 520px) {
+  .profile_wrapper > button {
+    margin-right: 18%;
+  }
+}
+@media (min-width: 520px) and (max-width: 871px) {
+  .profile_wrapper > button {
+    margin-right: 27%;
+  }
 }
 
 .title {

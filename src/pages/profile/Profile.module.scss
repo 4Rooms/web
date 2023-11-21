@@ -21,6 +21,9 @@
         &.mobile {
             justify-content: center;
         }
+        @media (max-width: 520px) {
+            height: 755px;
+        }
     }
 
     &_sections {
@@ -115,10 +118,16 @@
         display: flex;
         align-items: center;
         & > button {
-            margin-right: 35%;
+            margin-right: 15%;
             background-color: transparent;
             border: transparent;
             cursor: pointer;
+            @media (min-width: 420px) and (max-width: 520px) {
+                margin-right: 18%;
+            }
+            @media (min-width: 520px) and (max-width: 871px) {
+                margin-right: 27%;
+            }
         }
     }
 }
