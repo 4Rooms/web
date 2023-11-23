@@ -9,19 +9,19 @@ import Footer from "../../Components/Footer/Footer.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { setRoomName } = useChat();
+    const { setRoomName, setRoomsList } = useChat();
     setRoomName(room);
     useEffect(() => {
         const getAllChatsRoom = async () => {
             try {
                 const data = await getChatsRoom(room);
-                console.log(data);
+                setRoomsList(data.results);
             } catch (error) {
                 console.log(error);
             }
         };
         getAllChatsRoom();
-    }, [room]);
+    }, [room, setRoomsList]);
     return (
         <>
             <div className={styles.container__chatInformation}>
