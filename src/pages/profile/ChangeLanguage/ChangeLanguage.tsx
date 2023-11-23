@@ -2,23 +2,22 @@ import React, { useState } from "react";
 import styles from "./ChangeLanguage.module.css";
 import Button from "../../../shared/button/button";
 import Switch from "../../../Components/Switch/Switch";
+import { changeLanguage } from "../../../utils/language-selector/language-selector.ts";
+import { localStorageService } from "../../../services/local-storage/local-storage.ts";
+
 export default function ChangeLanguage() {
-    const [selectedOption, setSelectedOption] = useState("English");
+    const [selectedOption, setSelectedOption] = useState(localStorageService.get("4RoomLanguage") || "en");
 
     const handleLanguageChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        if (event.target.value === "English" && selectedOption === "English") {
-            setSelectedOption("Ukrainian");
-        } else if (
-            event.target.value === "Ukrainian" &&
-            selectedOption === "Ukrainian"
-        ) {
-            setSelectedOption("English");
-        } else {
-            setSelectedOption(event.target.value);
+        const newLanguage = event.target.value;
+        if (newLanguage !== selectedOption) {
+            setSelectedOption(newLanguage);
+            changeLanguage(newLanguage);
         }
     };
+
     return (
         <div className={styles.language__container}>
             <p className={styles.language__container_title}>
@@ -31,7 +30,7 @@ export default function ChangeLanguage() {
                         <Switch
                             handleChange={handleLanguageChange}
                             selectedOption={selectedOption}
-                            value="English"
+                            value="en"
                         />
                     </div>
                     <div>
@@ -39,7 +38,7 @@ export default function ChangeLanguage() {
                         <Switch
                             handleChange={handleLanguageChange}
                             selectedOption={selectedOption}
-                            value="Ukrainian"
+                            value="ua"
                         />
                     </div>
                 </div>

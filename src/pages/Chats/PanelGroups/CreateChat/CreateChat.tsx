@@ -14,8 +14,11 @@ import useValidation from "../../../../shared/use-validate/use-validate";
 import FormInput from "../../../../shared/auth-input/form-Input";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import createSchema from "./create-schema.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function CreateChat() {
+    const { t } = useTranslation('translation', { keyPrefix: 'welcome' });
+
     const { roomName } = useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
@@ -107,7 +110,7 @@ export default function CreateChat() {
                     roomName ? styles[roomName] : ""
                 }`}
             >
-                Create chat
+                {t("createChat")}
             </button>
             {openModal && (
                 <Modal className="create__chat" onOpen={onClickChangeOpenModal}>

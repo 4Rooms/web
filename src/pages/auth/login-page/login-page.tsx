@@ -132,6 +132,9 @@ export default function LoginPage() {
             .then((response) => {
                 setUsername(response.user.username);
                 setIsAuthenticated(true);
+                const token = response.token;
+                const maxAge = 30 * 24 * 60 * 60;
+                document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
                 localStorageService.set("user", response.user);
                 navigate("/");
                 console.log(document.cookie);
@@ -150,7 +153,7 @@ export default function LoginPage() {
                 className={styles.form__auth}
                 onSubmit={handleSubmit(deliveryFormAuth)}
             >
-                <GoogleAuthButton translation={t('signInButton')}/>
+                <GoogleAuthButton translation={t('googleSignIn')}/>
                 <h2 className={styles.text__form}>
                     {t('orSignInWithCredentials')}
                 </h2>
