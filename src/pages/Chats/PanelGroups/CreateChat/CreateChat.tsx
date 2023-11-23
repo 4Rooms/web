@@ -21,7 +21,7 @@ export default function CreateChat() {
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [imageURL, setImageURL] = useState<string>("");
-    const [imageError, setImageError] = useState<null | string>(null);
+    const [, setImageError] = useState<null | string>(null);
 
     const [formStateValue, setFormStateValue] = useState<InputsCreate>({
         title: "",
