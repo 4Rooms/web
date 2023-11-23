@@ -20,8 +20,8 @@ export default function CreateChat() {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
-    const [, setImageURL] = useState<string>("");
-    const [, setImageError] = useState<null | string>(null);
+    const [imageURL, setImageURL] = useState<string>("");
+    const [imageError, setImageError] = useState<null | string>(null);
 
     const [formStateValue, setFormStateValue] = useState<InputsCreate>({
         title: "",
@@ -127,7 +127,10 @@ export default function CreateChat() {
                                         onChange={handleImageChange}
                                         required
                                     />
+                                    {!imageURL && (
                                     <AddPhoto />
+                                )}
+                                {imageURL && <img className={styles.user__img} src={imageURL} />}
                                 </label>
                             </div>
                             {inputArray.map((value) => (

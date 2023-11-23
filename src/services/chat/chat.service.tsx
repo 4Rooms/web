@@ -18,6 +18,18 @@ export const getChatsRoom = async (room: string | undefined) => {
     }
 };
 
+export const createChat = async (room: string) => {
+    try {
+        setAuthHeader(
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNDIxMDUxLCJpYXQiOjE2OTk4MjkwNTEsImp0aSI6ImZjYzBjNDViYzM0MTQ4NWY4OWIyMDYxZDYyY2RkMTVkIiwidXNlcl9pZCI6NTF9.YVLEbMJ9zG03_MEBA5Usubz3WRMtSagVl63BLe1X6ww"
+        );
+        const { data } = await axios.post(`/api/chat/post/${room}/`);
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
 export const chatService = {
     getChatsRoom,
 };

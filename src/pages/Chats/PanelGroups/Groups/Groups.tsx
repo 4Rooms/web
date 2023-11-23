@@ -4,6 +4,16 @@ import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Groups() {
     const { roomName, roomsList } = useChat();
+    const cutTextFunction = (text: string) => {
+        let modifiedText = "";
+
+        if (text.length > 15) {
+            modifiedText = text.substring(0, 20) + "...";
+        } else {
+            modifiedText = text;
+        }
+        return modifiedText;
+    };
     return (
         <ul className={styles.container__groups}>
             {roomsList?.map((group) => {
@@ -20,7 +30,7 @@ export default function Groups() {
                                 src={group.img}
                                 alt=""
                             />
-                            <p className={styles.group__text}>{group.title}</p>
+                            <p className={styles.group__text}>{cutTextFunction(group.title)}</p>
                         </button>
                     </li>
                 );

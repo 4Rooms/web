@@ -1,9 +1,6 @@
 .container__groups {
-  max-height: 550px;
+  height: 550px;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
   padding-right: 12px;
   overflow-y: auto;
   position: relative;
@@ -22,6 +19,9 @@
 
 .item__group {
   width: 100%;
+}
+.item__group:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .group {
