@@ -3,16 +3,22 @@ import styles from "./FilterGroup.module.css";
 import { RowBelow } from "../../../../assets/icons";
 import { NavLink, useLocation } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function FilterGroup() {
+    const { t } = useTranslation('translation', { keyPrefix: 'filter' });
+
     const { roomName } = useChat();
-    const arrayCategory: string[] = ["New", "Popular", "Old"];
+    const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
-    const [categotyChat, setCategotyChat] = useState<string>("New");
+    const [categoryChat, setCategoryChat] = useState<string>("New");
     const filterButton: string[] = ["Cinema", "Books", "Music", "Games"];
     const changeNameCategory = arrayCategory.filter(
-        (category) => category !== categotyChat
+        (category) => {
+            console.log(categoryChat, category)
+            return category !== categoryChat
+        }
     );
     return (
         <div>
@@ -31,7 +37,7 @@ export default function FilterGroup() {
                                         : ""
                                 }`}
                             >
-                                {text}
+                                {t(text.toLocaleLowerCase())}
                             </NavLink>
                         </li>
                     );
@@ -47,7 +53,8 @@ export default function FilterGroup() {
                         roomName ? styles[roomName] : ""
                     }`}
                 >
-                    {categotyChat} <RowBelow />
+                    {t(`${categoryChat}`).replace('filter.', '')}
+                    <RowBelow />
                 </button>
                 {show && (
                     <ul className={styles.list__new}>
@@ -55,14 +62,14 @@ export default function FilterGroup() {
                             <li key={category} className={styles.item__new}>
                                 <button
                                     onClick={(e: React.MouseEvent) => {
-                                        setCategotyChat(
+                                        setCategoryChat(
                                             (e.target as HTMLButtonElement)
                                                 .innerText
                                         );
                                     }}
                                     className={styles.button__category_change}
                                 >
-                                    {category}
+                                    {t(category).replace('filter.', '')}
                                 </button>
                             </li>
                         ))}

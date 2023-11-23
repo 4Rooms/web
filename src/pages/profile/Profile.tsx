@@ -21,6 +21,7 @@ export default function Profile() {
             window.removeEventListener("resize", checkScreenSize);
         };
     }, []);
+
     return (
         <>
             {!isSmallScreen && <h1 className={styles.title}>My profile</h1>}
