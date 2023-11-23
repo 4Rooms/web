@@ -8,7 +8,7 @@ export default function TitleProfile() {
     console.log(rightPart)
     return (
         <h2>
-            {rightPart === "" 
+            {rightPart === "" || rightPart === "profile"
                 ? "Edit Profile" : rightPart === "password" ? "Edit Password"
                 : rightPart === "logout" ? "Logout" : "Change" + " " + rightPart}
         </h2>
