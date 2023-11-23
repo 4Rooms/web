@@ -19,8 +19,9 @@ import ChangeLanguage from "./pages/profile/ChangeLanguage/ChangeLanguage.tsx";
 import ChangeTheme from "./pages/profile/ChangeTheme/ChangeTheme.tsx";
 import ResetPassword from "./pages/profile/ResetPassword/ResetPassword.tsx";
 import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
+import { setInitialLanguage } from "./utils/language-selector/language-selector.ts";
 
-function App() {
+export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();
     const location = useLocation();
     const pathsToHideHeader = [
@@ -35,7 +36,7 @@ function App() {
     const pathsForShowBackGround = [
         "cinema", "books", "games", "music"
     ]
-
+    setInitialLanguage();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
 
     useEffect(() => {
@@ -100,5 +101,3 @@ function App() {
         </div>
     );
 }
-
-export default App;

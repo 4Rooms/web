@@ -113,12 +113,12 @@ export default function SignupPage() {
     };
     const [showToaster, setShowToaster] = useState(false);
 
-    return <AuthWrapper title={'Create an account'} link={backLinkLocation.current}>
+    return <AuthWrapper title={t('createAccount')} link={backLinkLocation.current}>
         <form
             className={styles.form__auth}
             onSubmit={handleSubmit(deliveryFormAuth)}>
             <GoogleAuthButton translation={t('sign up')}/>
-            <h2 className={styles.text__form}>Or sign up with email:</h2>
+            <h2 className={styles.text__form}>{t('googleSignUp')}</h2>
             {inputArray.map((value) =>
                 <label
                     htmlFor={value}
