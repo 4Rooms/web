@@ -1,5 +1,6 @@
 export const localStorageService = {
     set: (key: string, value: unknown) => {
+        console.log(key, value);
         localStorage.setItem(key, JSON.stringify(value));
     },
 
