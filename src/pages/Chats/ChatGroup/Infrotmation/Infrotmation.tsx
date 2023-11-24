@@ -1,15 +1,37 @@
 import React, { useState } from "react";
 import styles from "./Infrotmation.module.css";
-import {
-    Favorite,
-    MoreInformation,
-    Saved,
-} from "../../../../assets/icons";
+import { Favorite, MoreInformation, Saved } from "../../../../assets/icons";
 import Modal from "../../../../Components/Modal/Modal";
 
-export default function Infrotmation() {
-    const [openModal, setOpenModal] = useState<boolean>(false);
+interface InfrotmationProps {
+    title: string | undefined;
+    description: string | undefined;
+    timestamp: string | undefined;
+    avatar: string | undefined;
+}
 
+export default function Infrotmation({
+    title,
+    description,
+    timestamp,
+    avatar
+}: InfrotmationProps) {
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    function formatDate(inputDate: string | undefined): string {
+        if (!inputDate) {
+            return "";
+        }
+        const date = new Date(inputDate);
+
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+
+        const formattedDay = day < 10 ? `0${day}` : day;
+        const formattedMonth = month < 10 ? `0${month}` : month;
+
+        return `${formattedDay}.${formattedMonth}.${year}`;
+    }
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -21,9 +43,9 @@ export default function Infrotmation() {
                 <div className={styles.group}>
                     <img
                         className={styles.group__avatar}
-                        src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                        src={avatar}
                     />
-                    <p className={styles.group__name}>Spanch Bob</p>
+                    <p className={styles.group__name}>{title}</p>
                     <button
                         onClick={onClickChangeOpenModal}
                         className={styles.group__button__more}
@@ -38,22 +60,19 @@ export default function Infrotmation() {
                         <div className={styles.group__modal}>
                             <img
                                 className={styles.group__avatar__modal}
-                                src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                                src={avatar}
                             />
-                            <p className={styles.group__name__modal}>
-                                Spanch Bob
-                            </p>
+                            <p className={styles.group__name__modal}>{title}</p>
                         </div>
                         <p
                             style={{ marginBottom: 20 }}
                             className={styles.group__text}
                         >
-                            What are your impressions of the series "Game of
-                            Thrones"? Do you recommend watching with children?
+                            {description}
                         </p>
                         <div className={styles.group__additional}>
                             <p className={styles.time__additional}>
-                                18.08.2023
+                                {    formatDate(timestamp)}
                             </p>
                             <div className={styles.container__button}>
                                 <button className={styles.button__additional}>

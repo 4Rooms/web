@@ -16,10 +16,12 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             likes: number;
         }> | undefined
     >(undefined);
+    const [chatOpen, setChatOpen] = useState(false);
+    const [chatId, setChatId] = useState<number>(0)
 
     return (
         <ChatContext.Provider
-            value={{ roomName, setRoomName, roomsList, setRoomsList }}
+            value={{ roomName, setRoomName, roomsList, setRoomsList, chatOpen, setChatOpen, chatId, setChatId }}
         >
             {children}
         </ChatContext.Provider>
