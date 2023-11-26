@@ -18,9 +18,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     >(undefined);
 
     return (
-        <ChatContext.Provider
-            value={{ roomName, setRoomName, roomsList, setRoomsList }}
-        >
+        <ChatContext.Provider value={{ roomName, setRoomName, roomsList, setRoomsList }}>
             {children}
         </ChatContext.Provider>
     );

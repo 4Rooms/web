@@ -1,17 +1,11 @@
 import axios from "axios";
+import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 
 axios.defaults.baseURL = "https://back.4rooms.pro";
 
-const setAuthHeader = (token: string) => {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
 export const getChatsRoom = async (room: string | undefined) => {
     try {
-        setAuthHeader(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNDIxMDUxLCJpYXQiOjE2OTk4MjkwNTEsImp0aSI6ImZjYzBjNDViYzM0MTQ4NWY4OWIyMDYxZDYyY2RkMTVkIiwidXNlcl9pZCI6NTF9.YVLEbMJ9zG03_MEBA5Usubz3WRMtSagVl63BLe1X6ww"
-        );
-        const { data } = await axios.get(`/api/chat/get/${room === "cinema" ? "films" : room}/popular/`);
+        const { data } = await secureApi.get(`/chat/get/${room}/popular/`);
         return data;
     } catch (error) {
         return error;
@@ -20,10 +14,7 @@ export const getChatsRoom = async (room: string | undefined) => {
 
 export const createChat = async (room: string) => {
     try {
-        setAuthHeader(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNDIxMDUxLCJpYXQiOjE2OTk4MjkwNTEsImp0aSI6ImZjYzBjNDViYzM0MTQ4NWY4OWIyMDYxZDYyY2RkMTVkIiwidXNlcl9pZCI6NTF9.YVLEbMJ9zG03_MEBA5Usubz3WRMtSagVl63BLe1X6ww"
-        );
-        const { data } = await axios.post(`/api/chat/post/${room}/`);
+        const { data } = await secureApi.post(`/chat/post/${room}/`);
         return data;
     } catch (error) {
         return error;

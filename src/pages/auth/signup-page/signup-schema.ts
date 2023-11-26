@@ -6,8 +6,8 @@ export default yup.object().shape({
         .min(1, "Name should have at least 1 character")
         .max(20, "Name should not exceed 20 characters")
         .matches(
-            /^[@#$_]*[a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9@#$_\s]+[@#$_]*$/,
-        "Name should contain only letters, digits, and spaces"
+            /^([@#$_]*[a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9@#$_\s]+[@#$_]*)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
+            "Username can be either a name or an email address"
         )
         .required("Name is required"),
     email: yup
