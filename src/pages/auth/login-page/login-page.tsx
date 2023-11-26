@@ -145,7 +145,6 @@ export default function LoginPage() {
                 document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
                 localStorageService.set("user", response.user);
                 navigate("/");
-                console.log(document.cookie);
             })
             .catch((error) => {
                 if (error.response && error.response.status === 400) {
