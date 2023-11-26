@@ -24,13 +24,14 @@ import Button from "../../../shared/button/button.tsx";
 import loginSchema from "./login-schema.ts";
 import Toaster from "../../../shared/toaster/toaster.tsx";
 import { useTranslation } from "react-i18next";
+import { ISchema, reach } from 'yup';
 
 export default function LoginPage() {
-    const { t } = useTranslation('translation', { keyPrefix: 'sign-in-page' });
+    const {t} = useTranslation('translation', {keyPrefix: 'sign-in-page'});
     const allFieldsValid = () => {
         return Object.values(formStateValid).every(value => value);
     };
-    const { setUsername, setIsAuthenticated } = useContext(AuthContext);
+    const {setUsername, setIsAuthenticated} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
@@ -57,16 +58,17 @@ export default function LoginPage() {
         handleSubmit,
         setError,
         clearErrors,
-        formState: { errors },
+        formState: {errors},
     } = useForm<InputsLogin>({
+        mode: 'onChange',
         defaultValues: {
             username: "",
             password: "",
         },
         resolver: yupResolver(loginSchema),
     });
-    
-    
+
+
     const onFocusInput = (type: keyof InputsValidLogin) => {
         setFormStateFocus((prevFocus) => ({
             ...prevFocus,
@@ -80,7 +82,7 @@ export default function LoginPage() {
         });
     };
 
-    const { formStateValid, validateField } = useValidation<InputsValidLogin>({
+    const {formStateValid, validateField} = useValidation<InputsValidLogin>({
         schema: authSchema,
         formSubmitted,
         setError,
@@ -90,7 +92,7 @@ export default function LoginPage() {
             password: false,
         },
     });
-    
+
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -102,7 +104,7 @@ export default function LoginPage() {
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(resetEmail)
         ) {
             onClickChangeOpenModal();
-            navigate("/forgot-password", { state: { from: location } });
+            navigate("/forgot-password", {state: {from: location}});
         } else {
             console.log("error");
         }
@@ -118,11 +120,17 @@ export default function LoginPage() {
     ) => {
         const value = e.target.value;
 
+        (reach(authSchema, type) as ISchema<unknown>)
+            .validate(value, {abortEarly: false})
+            .catch((error: { errors: string[]; }) => {
+                console.log(error);
+                setError(type, {type: "manual", message: error.errors[0]});
+            });
+
         setFormStateValue({
             ...formStateValue,
             [type]: value,
         });
-
         validateField(type, value);
     };
 
@@ -166,17 +174,14 @@ export default function LoginPage() {
                             <FormInput<InputLoginKeys, InputsLogin>
                                 value={value}
                                 register={register}
-                                errors={errors}
+                                errors={errors[value]}
                                 formStateValid={formStateValid}
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
                                 onChange={onChange}
                                 open={open}
                                 onFocusInput={onFocusInput}/>
-                            {!errors[value as keyof InputsLogin] &&
-                                formStateValid[value as keyof InputsLogin] && (
-                                    <IconOkey className={styles.okey__auth}/>
-                                )}
+                            {formStateValid[value as keyof InputsLogin] && <IconOkey className={styles.okey__auth}/>}
                             {formStateFocus[value as keyof InputsLogin] &&
                                 !formStateValid[value as keyof InputsLogin] &&
                                 !errors[value as keyof InputsLogin] &&
@@ -198,15 +203,15 @@ export default function LoginPage() {
                                 )}
                             {errors[value as keyof InputsLogin] &&
                                 !formStateValid[value as keyof InputsLogin] && (
-                                    <Error className={styles.error__auth} />
+                                    <Error className={styles.error__auth}/>
                                 )}
-                                                    {value === "password" && formStateValue.password?.length > 0 && !errors[value] &&
-                        !formStateValid[value] &&
-                        <button className={styles.button__show} type="button"
-                                onClick={onClickChangeOpen}>
-                            {open ? <OpenPassword/> : <HiddenPassword/>}
-                        </button>
-                    }
+                            {value === "password" && formStateValue.password?.length > 0 && !errors[value] &&
+                                !formStateValid[value] &&
+                                <button className={styles.button__show} type="button"
+                                        onClick={onClickChangeOpen}>
+                                    {open ? <OpenPassword/> : <HiddenPassword/>}
+                                </button>
+                            }
                             {value === "password" &&
                                 errors[value as keyof InputsLogin] &&
                                 !formStateValid[value as keyof InputsLogin] && (

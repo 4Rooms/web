@@ -1,25 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../auth.module.scss";
 import AuthWrapper from "../../../../shared/auth-wrapper/auth-wrapper.tsx";
 import Button from "../../../../shared/button/button.tsx";
-import Toaster from "../../../../shared/toaster/toaster.tsx";
+import { useLocation } from "react-router-dom";
+import authService from "../../../../services/auth/auth.service.tsx";
 
 export default function SignupConfirmation() {
-    /*const {setUsername} = useContext(AuthContext);
-    const location = useLocation();*/
-    const [endpointsError, setEndpointsError] = useState<string[]>([""]);
-    const [showToaster, setShowToaster] = useState(false);
+    const location = useLocation();
 
     const deliveryFormAuth = async () => {
-        console.log("confirm");
-        setEndpointsError(["Not implemented yet."]);
-
-        setShowToaster(true);
-
-        /*await authService.signup(location.state?.formData).then((response) => {
-            setUsername(response.data.username);
-            localStorageService.set("user", response);
-        });*/
+        await authService.sendSecondEmail(location.state?.formData.email);
     };
 
     return (
@@ -31,11 +21,6 @@ export default function SignupConfirmation() {
                 <Button className="accent" onClick={() => deliveryFormAuth()}>
                     send again
                 </Button>
-                <Toaster
-                    messages={endpointsError}
-                    isVisible={showToaster}
-                    onHide={() => setShowToaster(false)}
-                />
             </div>
         </AuthWrapper>
     );
