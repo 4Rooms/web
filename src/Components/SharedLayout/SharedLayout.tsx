@@ -22,12 +22,12 @@ export default function SharedLayout({user, showHeader, isAuthenticated}: Props)
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get('token');
         if (token) {
-            console.log('Полученный токен:', token);
+
             const maxAge = 30 * 24 * 60 * 60;
             document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
             secureApi.get('user/').then((response) => {
                 setUsername(response.data.username);
-                localStorageService.set("user", response.data.username);
+                localStorageService.set("user", response.data);
                 setIsAuthenticated(true);
                 navigate('/')
             });
