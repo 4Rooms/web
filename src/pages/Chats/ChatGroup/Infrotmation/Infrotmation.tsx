@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Infrotmation.module.css";
-import { Back, Favorite, MoreInformation, Saved } from "../../../../assets/icons";
+import {
+    Back,
+    Favorite,
+    MoreInformation,
+    Saved,
+} from "../../../../assets/icons";
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../chat-context/use-chat";
 
@@ -45,9 +50,11 @@ export default function Infrotmation({
         <>
             <div className={styles.container__information}>
                 <div className={styles.group}>
-                    <button onClick={() => setChatOpen(false)}>
-                        <Back />
-                    </button>
+                    {isSmallScreen && (
+                        <button onClick={() => setChatOpen(false)}>
+                            <Back />
+                        </button>
+                    )}
                     <img className={styles.group__avatar} src={avatar} />
                     <p className={styles.group__name}>{title}</p>
                     <button
