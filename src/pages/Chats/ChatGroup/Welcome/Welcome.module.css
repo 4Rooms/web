@@ -11,17 +11,28 @@
   border-radius: 20px;
   padding: 277.5px 79px;
 }
+@media screen and (min-width: 871px) and (max-width: 1105px) {
+  .welcome {
+    padding: 277.5px 0px;
+  }
+}
+@media screen and (max-width: 871px) {
+  .welcome {
+    padding: 143px 20px;
+    border-radius: 0px;
+  }
+}
 .welcome.books {
   background-color: #eed78c;
 }
 .welcome.games {
-  background-color: #F2B5B5;
+  background-color: #f2b5b5;
 }
 .welcome.cinema {
-  background-color: #B3DCCF;
+  background-color: #b3dccf;
 }
 .welcome.music {
-  background-color: #DFB8F1;
+  background-color: #dfb8f1;
 }
 .welcome__title {
   color: var(--black);
@@ -35,9 +46,26 @@
   font-weight: 400;
   line-height: 150%;
 }
+@media screen and (max-width: 871px) {
+  .welcome__text {
+    margin-bottom: 200px;
+  }
+}
 .welcome__span {
   color: var(--black);
   font-size: 20px;
   font-weight: 700;
+  line-height: 150%;
+}
+.welcome > div {
+  display: flex;
+  gap: 20px;
+  width: 162px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.welcome > div > span {
+  text-align: center;
+  font-size: 14px;
   line-height: 150%;
 }/*# sourceMappingURL=Welcome.module.css.map */

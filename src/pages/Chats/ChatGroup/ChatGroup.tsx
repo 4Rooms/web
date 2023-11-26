@@ -7,7 +7,11 @@ import MessageForm from "./MessageForm/MessageForm";
 import Welcome from "./Welcome/Welcome";
 import { useChat } from "../chat-context/use-chat";
 
-export default function ChatGroup() {
+interface ProfileContextType {
+    isSmallScreen?: boolean;
+}
+
+export default function ChatGroup({isSmallScreen}: ProfileContextType) {
     const { chatOpen, chatId, roomsList } = useChat();
     const [chat, setChat] = useState<{
         id?: number;
@@ -26,11 +30,11 @@ export default function ChatGroup() {
     }, [chatId, roomsList]);
     return (
         <div className={styles.container__chatGroups}>
-            {!chatOpen ? (
+            {!chatOpen && !isSmallScreen ? (
                 <Welcome />
             ) : (
                 <>
-                    <Infrotmation avatar={chat.img} title={chat.title} description={chat.description} timestamp={chat.timestamp} />
+                    <Infrotmation isSmallScreen={isSmallScreen} avatar={chat.img} title={chat.title} description={chat.description} timestamp={chat.timestamp} />
                     <Online />
                     <Chat />
                     <MessageForm />

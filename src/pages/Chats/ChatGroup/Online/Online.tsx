@@ -1,9 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Online.module.css";
 import { CloseModal } from "../../../../assets/icons";
 
 export default function Online() {
-    const users: string[] = [
+    const [isSmallScreen, setIsSmallScreen] = useState("");
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            if (window.innerWidth < 380) {
+                setIsSmallScreen("lessMobile");
+            } else if (window.innerWidth < 1105) {
+                setIsSmallScreen("mobile");
+            } else {
+                setIsSmallScreen("");
+            }
+        };
+
+        checkScreenSize();
+
+        window.addEventListener("resize", checkScreenSize);
+
+        return () => {
+            window.removeEventListener("resize", checkScreenSize);
+        };
+    }, []);
+    const initialUsers: string[] = [
         "Masha",
         "Masha",
         "Masha",
@@ -16,6 +37,12 @@ export default function Online() {
         "Masha",
         "Masha",
     ];
+    const users =
+        isSmallScreen === "lessMobile"
+            ? initialUsers.slice(0, 3)
+            : isSmallScreen === "mobile"
+            ? initialUsers.slice(0, 5)
+            : initialUsers;
     const [open, setOpen] = useState<boolean>(false);
     const onClickChangeOpen = (): void => {
         setOpen((prevOpen): boolean => {

@@ -2,8 +2,13 @@ import React from "react";
 import styles from "./Welcome.module.css";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { Trans, useTranslation } from "react-i18next";
+import { RowUp } from "../../../../assets/icons.tsx";
 
-export default function Welcome() {
+interface ProfileContextType {
+    isSmallScreen?: boolean;
+}
+
+export default function Welcome({isSmallScreen}: ProfileContextType) {
     const { t } = useTranslation('translation', { keyPrefix: 'welcome' });
 
     const { roomName } = useChat();
@@ -20,6 +25,12 @@ export default function Welcome() {
                     button.
                 </Trans>
             </p>
+            {isSmallScreen && (
+                <div>
+                    <RowUp />
+                    <span>Swipe and go to chats</span>
+                </div>
+            )}
         </div>
     );
 }

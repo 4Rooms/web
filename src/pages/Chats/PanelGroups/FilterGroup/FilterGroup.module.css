@@ -14,6 +14,11 @@
   cursor: pointer;
   color: var(--gray);
 }
+@media screen and (min-width: 370px) and (max-width: 871px) {
+  .button__filter {
+    font-size: 20px;
+  }
+}
 .button__filter.books:hover, .button__filter.books.active {
   text-decoration-line: underline;
   color: #cc9c00;
@@ -47,6 +52,11 @@
   border: transparent;
   cursor: pointer;
 }
+@media screen and (min-width: 370px) and (max-width: 871px) {
+  .button__new {
+    font-size: 16px;
+  }
+}
 .button__new.books {
   background-color: #cc9c00;
 }
@@ -68,7 +78,7 @@
   position: absolute;
   z-index: 1;
   flex-direction: column;
-  width: 87px;
+  width: 103px;
   cursor: pointer;
   display: flex;
   padding: 4px 8px;

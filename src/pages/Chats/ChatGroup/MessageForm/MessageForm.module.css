@@ -9,6 +9,11 @@
   align-items: center;
   height: 100%;
 }
+@media screen and (max-width: 871px) {
+  .form__message {
+    border-radius: 0;
+  }
+}
 
 .input__message {
   width: 100%;

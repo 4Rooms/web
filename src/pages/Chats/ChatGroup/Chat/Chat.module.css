@@ -2,9 +2,21 @@
   max-height: 544px;
   padding: 8px 20px;
   width: 100%;
-  background-color: var(--color--button);
+  background: var(--button--color);
   gap: 8px;
   overflow-y: auto;
+}
+.container__chat.books {
+  background: rgba(238, 215, 140, 0.7);
+}
+.container__chat.games {
+  background: rgba(242, 181, 181, 0.7);
+}
+.container__chat.cinema {
+  background: rgba(179, 220, 207, 0.7);
+}
+.container__chat.music {
+  background: rgba(223, 184, 241, 0.7);
 }
 .container__chat::-webkit-scrollbar {
   width: 1px;
@@ -14,4 +26,9 @@
 }
 .container__chat::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0);
+}
+@media screen and (max-width: 871px) {
+  .container__chat {
+    padding: 8px;
+  }
 }/*# sourceMappingURL=Chat.module.css.map */

@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import styles from "./Infrotmation.module.css";
-import { Favorite, MoreInformation, Saved } from "../../../../assets/icons";
+import { Back, Favorite, MoreInformation, Saved } from "../../../../assets/icons";
 import Modal from "../../../../Components/Modal/Modal";
+import { useChat } from "../../chat-context/use-chat";
 
 interface InfrotmationProps {
     title: string | undefined;
     description: string | undefined;
     timestamp: string | undefined;
     avatar: string | undefined;
+    isSmallScreen: boolean | undefined;
 }
 
 export default function Infrotmation({
     title,
     description,
     timestamp,
-    avatar
+    avatar,
+    isSmallScreen,
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const { setChatOpen } = useChat();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
             return "";
@@ -41,10 +45,10 @@ export default function Infrotmation({
         <>
             <div className={styles.container__information}>
                 <div className={styles.group}>
-                    <img
-                        className={styles.group__avatar}
-                        src={avatar}
-                    />
+                    <button onClick={() => setChatOpen(false)}>
+                        <Back />
+                    </button>
+                    <img className={styles.group__avatar} src={avatar} />
                     <p className={styles.group__name}>{title}</p>
                     <button
                         onClick={onClickChangeOpenModal}
@@ -72,7 +76,7 @@ export default function Infrotmation({
                         </p>
                         <div className={styles.group__additional}>
                             <p className={styles.time__additional}>
-                                {    formatDate(timestamp)}
+                                {formatDate(timestamp)}
                             </p>
                             <div className={styles.container__button}>
                                 <button className={styles.button__additional}>

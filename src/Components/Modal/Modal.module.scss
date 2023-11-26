@@ -26,11 +26,22 @@
 
     &.information {
         padding: 40px 32px;
+        @media screen and (max-width: 500px){
+            width: fit-content;
+            padding: 40px 20px;
+        }
     }
 
     &.create__chat {
         gap: 60px;
         width: 800px;
+        @media screen and (max-width: 871px) {
+            padding: 80px 12px;
+            width: 480px;
+        }
+        @media screen and (max-width: 500px) {
+            width: 370px;
+        }
     }
 }
 

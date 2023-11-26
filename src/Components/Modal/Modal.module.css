@@ -30,9 +30,27 @@
 .window.information {
   padding: 40px 32px;
 }
+@media screen and (max-width: 500px) {
+  .window.information {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 40px 20px;
+  }
+}
 .window.create__chat {
   gap: 60px;
   width: 800px;
+}
+@media screen and (max-width: 871px) {
+  .window.create__chat {
+    padding: 80px 12px;
+    width: 480px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .window.create__chat {
+    width: 370px;
+  }
 }
 
 .close {

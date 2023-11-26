@@ -24,10 +24,6 @@ export default function MessageFromYou() {
                 </p>
                 <p className={styles.user__time}>13:43</p>
             </div>
-            <img
-                className={styles.user__avatar}
-                src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
-            />
         </div>
     );
 }

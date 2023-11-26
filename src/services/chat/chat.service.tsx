@@ -21,7 +21,6 @@ export const getChatsRoom = async (room: string | undefined) => {
             const { data } = await axios.get(`/api/chat/get/${room}/popular/`);
             return data;
         } else {
-            // Handle the case where token is null
             throw new Error("Token is null");
         }
     } catch (error) {
@@ -40,11 +39,13 @@ export const createChat = async (
         | FormData
 ) => {
     try {
-        setAuthHeader(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNDIxMDUxLCJpYXQiOjE2OTk4MjkwNTEsImp0aSI6ImZjYzBjNDViYzM0MTQ4NWY4OWIyMDYxZDYyY2RkMTVkIiwidXNlcl9pZCI6NTF9.YVLEbMJ9zG03_MEBA5Usubz3WRMtSagVl63BLe1X6ww"
-        );
-        const { data } = await axios.post(`/api/chat/post/${room}/`, formData);
-        return data;
+        if (token !== null) {
+            setAuthHeader(token);
+            const { data } = await axios.post(`/api/chat/post/${room}/`, formData);
+            return data;
+        } else {
+            throw new Error("Token is null");
+        }
     } catch (error) {
         return error;
     }
