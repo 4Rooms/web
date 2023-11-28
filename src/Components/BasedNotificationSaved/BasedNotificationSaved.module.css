@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 58px);
+}
+.container__wrapper {
+  width: 80%;
+  background-color: transparent;
+  gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.container__wrapper_block {
+  padding: 11.5px 20px;
+  width: 100%;
+  display: flex;
+  border-radius: 20px;
+  position: relative;
+}
+.container__wrapper_block > p {
+  color: #eaeaea;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 150%;
+  margin-right: auto;
+}
+.container__wrapper_block > button {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+.container__wrapper_block > button > svg > path {
+  fill: white;
+}
+.container__wrapper_block.books {
+  background-color: #f5bb00;
+}
+.container__wrapper_block.games {
+  background-color: #f66;
+}
+.container__wrapper_block.cinema {
+  background-color: #61c9a8;
+}
+.container__wrapper_block.music {
+  background-color: #d06efd;
+}
+.container__wrapper_block.active {
+  border-radius: 20px 20px 0 0;
+}
+.container__wrapper_chats {
+  position: absolute;
+  width: 100%;
+  top: 75px;
+  left: 0;
+  z-index: 1;
+  padding: 32px 35px 40px;
+  border-radius: 0 0 20px 20px;
+}
+.container__wrapper_chats.books {
+  background: rgba(238, 215, 140, 0.7);
+}
+.container__wrapper_chats.games {
+  background: rgba(242, 181, 181, 0.7);
+}
+.container__wrapper_chats.cinema {
+  background: rgba(179, 220, 207, 0.7);
+}
+.container__wrapper_chats.music {
+  background: rgba(223, 184, 241, 0.7);
+}
+.container__wrapper_chats > label {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.container__wrapper_chats > label > button {
+  background-color: transparent;
+  border-color: transparent;
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: -2px;
+}
+.container__wrapper_chats > label > input {
+  height: 42px;
+  border-radius: 12px;
+  width: 360px;
+  padding: 12px 16px;
+  padding-right: 36px;
+  background: #eaeaea;
+  border: transparent;
+  color: var(--gray);
+  font-size: 16px;
+}
+.container__wrapper_chats > label > input:focus {
+  outline: transparent;
+}
+.container__wrapper_chats > ul {
+  max-height: 200px;
+}
+.container__wrapper_chats > ul::-webkit-scrollbar {
+  width: 6px;
+  max-height: 8px;
+}
+.container__wrapper_chats > ul::-webkit-scrollbar-thumb {
+  background-color: var(--black);
+  border-radius: 10px;
+}
+.container__wrapper_chats > ul::-webkit-scrollbar-track {
+  background-color: #DADADA;
+}/*# sourceMappingURL=BasedNotificationSaved.module.css.map */

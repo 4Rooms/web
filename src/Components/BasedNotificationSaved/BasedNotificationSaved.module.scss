@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 58px);
+
+    &__wrapper {
+        width: 80%;
+        background-color: transparent;
+        gap: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        &_block {
+            padding: 11.5px 20px;
+            width: 100%;
+            display: flex;
+            border-radius: 20px;
+            position: relative;
+            & > p {
+                color: #eaeaea;
+                font-size: 32px;
+                font-weight: 600;
+                line-height: 150%;
+                margin-right: auto;
+            }
+            & > button {
+                background-color: transparent;
+                border-color: transparent;
+                cursor: pointer;
+                & > svg > path {
+                    fill: white;
+                }
+            }
+            &.books {
+                background-color: #f5bb00;
+            }
+            &.games {
+                background-color: #f66;
+            }
+            &.cinema {
+                background-color: #61c9a8;
+            }
+            &.music {
+                background-color: #d06efd;
+            }
+            &.active {
+                border-radius: 20px 20px 0 0;
+            }
+        }
+        &_chats {
+            position: absolute;
+            width: 100%;
+            top: 75px;
+            left: 0;
+            z-index: 1;
+            padding: 32px 35px 40px;
+            border-radius: 0 0 20px 20px;
+            &.books {
+                background: rgba(238, 215, 140, 0.7);
+            }
+            &.games {
+                background: rgba(242, 181, 181, 0.7);
+            }
+            &.cinema {
+                background: rgba(179, 220, 207, 0.7);
+            }
+            &.music {
+                background: rgba(223, 184, 241, 0.7);
+            }
+            & > label {
+                position: relative;
+                display: inline-block;
+                margin-bottom: 20px;
+                & > button {
+                    background-color: transparent;
+                    border-color: transparent;
+                    position: absolute;
+                    cursor: pointer;
+                    right: 10px;
+                    top: -2px;
+                }
+                & > input {
+                    height: 42px;
+                    border-radius: 12px;
+                    width: 360px;
+                    padding: 12px 16px;
+                    padding-right: 36px;
+                    background: #eaeaea;
+                    border: transparent;
+                    color: var(--gray);
+                    font-size: 16px;
+                    &:focus {
+                        outline: transparent;
+                    }
+                }
+            }
+            & > ul {
+                max-height: 200px;
+                &::-webkit-scrollbar {
+                    width: 6px;
+                    max-height: 8px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: var(--black); 
+                    border-radius: 10px; 
+                }
+                &::-webkit-scrollbar-track {
+                    background-color: #DADADA; 
+                }
+            }
+        }
+    }
+}

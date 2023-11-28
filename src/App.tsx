@@ -20,6 +20,7 @@ import ChangeTheme from "./pages/profile/ChangeTheme/ChangeTheme.tsx";
 import ResetPassword from "./pages/profile/ResetPassword/ResetPassword.tsx";
 import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
 import { setInitialLanguage } from "./utils/language-selector/language-selector.ts";
+import Saved from "./pages/saved/Saved.tsx";
 
 export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();
@@ -33,9 +34,7 @@ export default function App() {
         "/account-confirmation",
         "/confirm-email",
     ];
-    const pathsForShowBackGround = [
-        "cinema", "books", "games", "music"
-    ]
+    const pathsForShowBackGround = ["cinema", "books", "games", "music"];
     setInitialLanguage();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
 
@@ -51,8 +50,10 @@ export default function App() {
     return (
         <div
             className={
-                pathsForShowBackGround.includes(location.pathname.split('/').pop() ?? "")
-                    ? `container ${location.pathname.split('/').pop()}` 
+                pathsForShowBackGround.includes(
+                    location.pathname.split("/").pop() ?? ""
+                )
+                    ? `container ${location.pathname.split("/").pop()}`
                     : !isAuthenticated
                     ? "container padding"
                     : "container"
@@ -89,6 +90,11 @@ export default function App() {
                         path="/confirm-email"
                         element={<EmailConfirmPage />}
                     />
+                    <Route
+                        path="/notifications"
+                        element={<EmailConfirmPage />}
+                    />
+                    <Route path="/saved" element={<Saved />} />
                     <Route path="/profile" element={<Profile />}>
                         <Route path="logout" element={<LogOut />} />
                         <Route path="language" element={<ChangeLanguage />} />
