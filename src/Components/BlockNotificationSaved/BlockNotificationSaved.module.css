@@ -10,18 +10,39 @@
   align-items: center;
   margin-bottom: 20px;
 }
+@media screen and (max-width: 500px) {
+  .block__up {
+    gap: 12px;
+  }
+}
 .block__up > img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
+@media screen and (max-width: 500px) {
+  .block__up > img {
+    width: 40px;
+    height: 40px;
+  }
+}
 .block__up > h2 {
   font-size: 20px;
   line-height: 150%;
 }
+@media screen and (max-width: 500px) {
+  .block__up > h2 {
+    font-size: 18px;
+  }
+}
 .block > p {
   font-size: 16px;
   margin-bottom: 20px;
+}
+@media screen and (max-width: 500px) {
+  .block > p {
+    margin-bottom: 16px;
+  }
 }
 .block__below {
   display: flex;

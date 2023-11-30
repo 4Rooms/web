@@ -1,34 +1,34 @@
 import React from "react";
 import BasedNotificationSaved from "../../Components/BasedNotificationSaved/BasedNotificationSaved";
 import BlockNotificationSaved from "../../Components/BlockNotificationSaved/BlockNotificationSaved";
-import { SavedChatsTrue } from "../../assets/icons";
-import "./Saved.module.css";
+import { Edit } from "../../assets/icons";
+import "./MyChats.module.css";
 
-export default function Saved() {
+export default function MyChats() {
     return (
-        <BasedNotificationSaved title="Saved Chats">
+        <BasedNotificationSaved title="My Chats">
             <li>
                 <BlockNotificationSaved />
                 <button>
-                    <SavedChatsTrue />
+                    <Edit />
                 </button>
             </li>
             <li>
                 <BlockNotificationSaved />
                 <button>
-                    <SavedChatsTrue />
+                    <Edit />
                 </button>
             </li>
             <li>
                 <BlockNotificationSaved />
                 <button>
-                    <SavedChatsTrue />
+                    <Edit />
                 </button>
             </li>
             <li>
                 <BlockNotificationSaved />
                 <button>
-                    <SavedChatsTrue />
+                    <Edit />
                 </button>
             </li>
         </BasedNotificationSaved>

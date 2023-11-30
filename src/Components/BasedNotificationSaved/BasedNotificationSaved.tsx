@@ -5,13 +5,14 @@ import { MoreInformation, SearchRooms } from "../../assets/icons";
 
 type Props = {
     children: React.ReactNode;
+    title: string;
 };
 
 type OpenSectionType = {
     [key: string]: boolean;
 };
 
-export default function BasedNotificationSaved({ children }: Props) {
+export default function BasedNotificationSaved({ children, title }: Props) {
     const [openSection, setOpenSection] = useState<OpenSectionType>({
         cinema: false,
         books: false,
@@ -21,6 +22,7 @@ export default function BasedNotificationSaved({ children }: Props) {
 
     return (
         <div className={styles.container}>
+            <h2>{title}</h2>
             <div className={styles.container__wrapper}>
                 {optionDashboard.map((option) => {
                     return (
