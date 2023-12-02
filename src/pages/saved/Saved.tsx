@@ -7,25 +7,25 @@ import "./Saved.module.css";
 export default function Saved() {
     return (
         <BasedNotificationSaved title="Saved Chats">
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <SavedChatsTrue />
                 </button>
             </li>
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <SavedChatsTrue />
                 </button>
             </li>
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <SavedChatsTrue />
                 </button>
             </li>
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <SavedChatsTrue />

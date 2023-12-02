@@ -7,25 +7,25 @@ import "./MyChats.module.css";
 export default function MyChats() {
     return (
         <BasedNotificationSaved title="My Chats">
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <Edit />
                 </button>
             </li>
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <Edit />
                 </button>
             </li>
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <Edit />
                 </button>
             </li>
-            <li>
+            <li className="item">
                 <BlockNotificationSaved />
                 <button>
                     <Edit />

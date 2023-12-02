@@ -1,24 +1,23 @@
-button {
-  background-color: #EAEAEA;
+.item {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+.item > button {
+  background-color: #eaeaea;
   border-color: transparent;
   border-radius: 12px;
   height: 52px;
   width: 52px;
 }
 @media screen and (max-width: 500px) {
-  button {
+  .item > button {
     border-radius: 10px;
     height: 27px;
     width: 27px;
   }
-  button > svg {
+  .item > button > svg {
     width: 15px;
     height: 15px;
   }
-}
-
-li {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 8px;
 }/*# sourceMappingURL=Saved.module.css.map */

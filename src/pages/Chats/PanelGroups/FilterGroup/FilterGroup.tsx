@@ -14,10 +14,7 @@ export default function FilterGroup() {
     const [categoryChat, setCategoryChat] = useState<string>("New");
     const filterButton: string[] = ["Cinema", "Books", "Music", "Games"];
     const changeNameCategory = arrayCategory.filter(
-        (category) => {
-            console.log(categoryChat, category)
-            return category !== categoryChat
-        }
+        (category) => category !== categoryChat
     );
     return (
         <div>
