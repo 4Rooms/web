@@ -39,8 +39,7 @@
   background-color: transparent;
   border-color: transparent;
   position: absolute;
-  right: -2px;
-  top: 1px;
+  right: 10px;
 }
 
 .navigation__link {

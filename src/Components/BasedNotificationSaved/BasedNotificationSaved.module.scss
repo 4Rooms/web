@@ -76,7 +76,7 @@
         &_chats {
             position: absolute;
             width: 100%;
-            top: 75px;
+            top: 70px;
             left: 0;
             z-index: 1;
             padding: 32px 35px 40px;
@@ -112,7 +112,7 @@
                     position: absolute;
                     cursor: pointer;
                     right: 10px;
-                    top: -2px;
+                    top: 10px;
                     @media screen and (max-width: 500px) {
                         top: 10px;
                     }
