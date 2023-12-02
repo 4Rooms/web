@@ -17,11 +17,12 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         }> | undefined
     >(undefined);
     const [chatOpen, setChatOpen] = useState(false);
-    const [chatId, setChatId] = useState<number>(0)
+    const [chatId, setChatId] = useState<number>(0);
+    const [ws, setWs] = useState<WebSocket | null>(null);
 
     return (
         <ChatContext.Provider
-            value={{ roomName, setRoomName, roomsList, setRoomsList, chatOpen, setChatOpen, chatId, setChatId }}
+            value={{ roomName, setRoomName, roomsList, setRoomsList, chatOpen, setChatOpen, chatId, setChatId, ws, setWs }}
         >
             {children}
         </ChatContext.Provider>

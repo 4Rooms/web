@@ -10,7 +10,7 @@ import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { setRoomName, setRoomsList, chatOpen } = useChat();
+    const { setRoomName, setRoomsList, chatOpen,  setWs} = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     setRoomName(room);
     useEffect(() => {
@@ -28,10 +28,14 @@ export default function Chats() {
         };
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
+        if (chatOpen) {
+            const ws = new WebSocket("wss://back.4rooms.pro");
+            setWs(ws)
+        }
         return () => {
             window.removeEventListener("resize", checkScreenSize);
         };
-    }, [room, setRoomsList]);
+    }, [chatOpen, room, setRoomsList, setWs]);
     return (
         <>
             {isSmallScreen ? (
