@@ -187,33 +187,6 @@ export default function ChangeUserData() {
                     </Button>
                 </form>
             </div>
-            <button
-                onClick={() => onClickChangeOpenModal()}
-                className={styles.delete__button}
-            >
-                <Delete />
-                Delete Account
-            </button>
-            {openModal && (
-                <Modal className="profile" onOpen={onClickChangeOpenModal}>
-                    <div className={styles.modal}>
-                        <h2>Delete your Account</h2>
-                        <p>
-                            After this action, you will permanently regain
-                            access to your account, chats and messages.
-                        </p>
-                        <Button
-                            onClick={() => {
-                                setOpen(true);
-                            }}
-                            type="submit"
-                            className="accent"
-                        >
-                            Delete
-                        </Button>
-                    </div>
-                </Modal>
-            )}
         </>
     );
 }

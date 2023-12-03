@@ -47,6 +47,9 @@
     align-items: center;
     gap: 24px;
     cursor: pointer;
+    & > .icons__width {
+        height: 18px;
+    }
 }
 
 .link__button {

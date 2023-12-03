@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 0 80px 0;
+  padding: 0px 8px 80px 8px;
 }
 .profile.mobile {
   padding: 0;
@@ -122,19 +122,35 @@
   align-items: center;
 }
 .profile_wrapper > button {
-  margin-right: 15%;
+  margin-right: 17%;
   background-color: transparent;
   border: transparent;
   cursor: pointer;
 }
 @media (min-width: 420px) and (max-width: 520px) {
   .profile_wrapper > button {
-    margin-right: 18%;
+    margin-right: 20%;
   }
 }
 @media (min-width: 520px) and (max-width: 871px) {
   .profile_wrapper > button {
     margin-right: 27%;
+  }
+}
+.profile_wrapper > button.edit {
+  margin-right: 25%;
+}
+@media (min-width: 520px) and (max-width: 871px) {
+  .profile_wrapper > button.edit {
+    margin-right: 30%;
+  }
+}
+.profile_wrapper > button.logout {
+  margin-right: 30%;
+}
+@media (min-width: 520px) and (max-width: 871px) {
+  .profile_wrapper > button.logout {
+    margin-right: 35%;
   }
 }
 

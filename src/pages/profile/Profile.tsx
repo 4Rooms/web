@@ -112,7 +112,19 @@ export default function Profile() {
                         <div className={styles.profile_section}>
                             {isSmallScreen && navigationMobile ? (
                                 <div className={styles.profile_wrapper}>
-                                    <button onClick={() => setNavigationMobile(false)}>
+                                    <button
+                                        className={
+                                            location.pathname === `/profile/`
+                                                ? styles.edit
+                                                : location.pathname ===
+                                                  `/profile/logout`
+                                                ? styles.logout
+                                                : ""
+                                        }
+                                        onClick={() =>
+                                            setNavigationMobile(false)
+                                        }
+                                    >
                                         <Back />
                                     </button>
                                     <TitleProfile />
