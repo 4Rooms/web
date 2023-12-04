@@ -10,8 +10,16 @@ import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { setRoomName, setRoomsList, chatOpen,  setWs} = useChat();
+    const { chatId } = useChat();
+    const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const cookieString = document.cookie;
+    function extractToken(cookieString: string) {
+        const pattern = /4roomToken=([^;]+)/;
+        const match = cookieString.match(pattern);
+        return match ? match[1] : null;
+    }
     setRoomName(room);
     useEffect(() => {
         const getAllChatsRoom = async () => {
@@ -28,14 +36,24 @@ export default function Chats() {
         };
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
+        const socketUrl =
+            protocol +
+            "//testback.4rooms.pro" +
+            "/ws/chat/" +
+            room +
+            "/" +
+            chatId +
+            "/" +
+            "?token=" +
+            extractToken(cookieString);
         if (chatOpen) {
-            const ws = new WebSocket("wss://back.4rooms.pro");
-            setWs(ws)
+            const ws = new WebSocket(socketUrl);
+            setWs(ws);
         }
         return () => {
             window.removeEventListener("resize", checkScreenSize);
         };
-    }, [chatOpen, room, setRoomsList, setWs]);
+    }, [chatId, chatOpen, cookieString, protocol, room, setRoomsList, setWs]);
     return (
         <>
             {isSmallScreen ? (
