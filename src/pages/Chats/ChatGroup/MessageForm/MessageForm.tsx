@@ -9,7 +9,6 @@ export default function MessageForm() {
     const forSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (message !== "") {
-            
             ws?.send(
                 JSON.stringify({
                     event_type: "chat_message",
@@ -19,7 +18,6 @@ export default function MessageForm() {
                     },
                 })
             );
-            console.log("321321")
         }
     };
     const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {

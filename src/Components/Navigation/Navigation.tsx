@@ -64,9 +64,6 @@ export default function Navigation({
                     <Link to="saved" className={styles.icons__width}>
                         <SavedChats />
                     </Link>
-                    <Link to="my-chats" className={styles.icons__width}>
-                        <Notifications />
-                    </Link>
                     <Link to="/profile" className={styles.link__button}>
                         {user}
                         <img

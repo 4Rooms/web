@@ -37,7 +37,7 @@ export default function Chats() {
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
         const socketUrl =
-            protocol +
+            "wss:" +
             "//testback.4rooms.pro" +
             "/ws/chat/" +
             room +
