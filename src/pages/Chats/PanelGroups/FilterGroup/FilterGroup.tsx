@@ -7,8 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export default function FilterGroup() {
     const { t } = useTranslation('translation', { keyPrefix: 'filter' });
-
-    const { roomName } = useChat();
+    const { roomName, setChatOpen } = useChat();
     const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
@@ -33,6 +32,7 @@ export default function FilterGroup() {
                                         ? styles.active
                                         : ""
                                 }`}
+                                onClick={() => setChatOpen(false)}
                             >
                                 {t(text.toLocaleLowerCase())}
                             </NavLink>

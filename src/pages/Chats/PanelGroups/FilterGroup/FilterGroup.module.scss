@@ -11,6 +11,9 @@
     transition: text-decoration 250ms;
     cursor: pointer;
     color: var(--gray);
+    @media screen and (min-width:370px) and (max-width: 871px) {
+        font-size: 20px;
+    }
     &.books:hover,
     &.books.active {
         text-decoration-line: underline;
@@ -48,6 +51,9 @@
     padding: 4px 8px;
     border: transparent;
     cursor: pointer;
+    @media screen and (min-width:370px) and (max-width: 871px) {
+        font-size: 16px;
+    }
 
     &.books {
         background-color: #cc9c00;
@@ -71,7 +77,7 @@
     position: absolute;
     z-index: 1;
     flex-direction: column;
-    width: 87px;
+    width: 103px;
     cursor: pointer;
     display: flex;
     padding: 4px 8px;

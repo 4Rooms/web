@@ -3,17 +3,21 @@ import styles from "./Groups.module.css";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Groups() {
-    const { roomName, roomsList } = useChat();
+    const { roomName, roomsList, setChatOpen, setChatId } = useChat();
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
 
-        if (text.length > 15) {
+        if (text?.length > 15) {
             modifiedText = text.substring(0, 20) + "...";
         } else {
             modifiedText = text;
         }
         return modifiedText;
     };
+    const onClickSetChat = (id: number) => {
+        setChatOpen(true);
+        setChatId(id);
+    }
     return (
         <ul className={styles.container__groups}>
             {roomsList?.map((group) => {
@@ -24,6 +28,9 @@ export default function Groups() {
                             className={`${styles.group} ${
                                 roomName ? styles[roomName] : ""
                             }`}
+                            onClick={() => {
+                                onClickSetChat(group.id);
+                            }}
                         >
                             <img
                                 className={styles.group__avatar}

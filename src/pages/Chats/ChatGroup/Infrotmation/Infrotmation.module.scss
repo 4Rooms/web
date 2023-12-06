@@ -7,6 +7,9 @@
     flex-wrap: wrap;
     border-radius: 20px 20px 0px 0px;
     width: 100%;
+    @media screen and (max-width: 871px) {
+        border-radius: 0;
+    }
 }
 .group {
     display: flex;
@@ -17,6 +20,10 @@
     background-color: transparent;
     border: transparent;
     width: 100%;
+    & > button {
+        background-color: transparent;
+        border-color: transparent;
+    }
 }
 
 .group__avatar {
@@ -96,4 +103,5 @@
     gap: 20px;
     text-align: center;
     margin-bottom: 40px;
+    width: 100%;
 }

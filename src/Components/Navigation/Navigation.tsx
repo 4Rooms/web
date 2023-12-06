@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
     Logo,
-    Messenger,
     MobileMenu,
     MyChats,
     Notifications,
@@ -9,7 +8,7 @@ import {
     SearchRooms,
 } from "../../assets/icons";
 import styles from "./Navigation.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Navigation({
     user,
@@ -19,6 +18,9 @@ export default function Navigation({
     showHeader: boolean;
 }) {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const { room } = useParams();
+    const pathsForShowBackGround = ["cinema", "books", "games", "music"];
+    console.log(pathsForShowBackGround.includes(room || ""));
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -39,22 +41,32 @@ export default function Navigation({
                         <span className={styles.logo__name}>4ROOMS</span>
                     )}
                 </Link>
-                {showHeader && !isSmallScreen && (
-                    <input 
-                    placeholder="Search" className={styles.navigation__input} type="text" />
-                )}
-                {showHeader && !isSmallScreen && (
-                    <button className={styles.search__button}>
-                        <SearchRooms />
-                    </button>
-                )}
+                {pathsForShowBackGround.includes(room || "") &&
+                    !isSmallScreen && (
+                        <input
+                            placeholder="Search"
+                            className={styles.navigation__input}
+                            type="text"
+                        />
+                    )}
+                {pathsForShowBackGround.includes(room || "") &&
+                    !isSmallScreen && (
+                        <button className={styles.search__button}>
+                            <SearchRooms />
+                        </button>
+                    )}
             </div>
             {showHeader && !isSmallScreen && (
                 <nav className={styles.navigation__link}>
-                    <MyChats />
-                    <SavedChats />
-                    <Notifications />
-                    <Messenger />
+                    <Link to="my-chats" className={styles.icons__width}>
+                        <MyChats />
+                    </Link>
+                    <Link to="saved" className={styles.icons__width}>
+                        <SavedChats />
+                    </Link>
+                    <Link to="my-chats" className={styles.icons__width}>
+                        <Notifications />
+                    </Link>
                     <Link to="/profile" className={styles.link__button}>
                         {user}
                         <img
@@ -67,7 +79,7 @@ export default function Navigation({
             )}
             {showHeader && isSmallScreen && (
                 <button type="button" className={styles.mobile__button}>
-                     <MobileMenu />
+                    <MobileMenu />
                 </button>
             )}
         </>

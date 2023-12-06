@@ -4,6 +4,9 @@
     gap: 27px;
     padding: 38px 0 80px 0;
     justify-content: center;
+    @media screen and (max-width: 871px) {
+        padding: 0;
+    }
 }
 
 .chats__footer {

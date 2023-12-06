@@ -12,9 +12,18 @@ export const getChatsRoom = async (room: string | undefined) => {
     }
 };
 
-export const createChat = async (room: string) => {
+export const createChat = async (
+    room: string | undefined,
+    formData:
+        | {
+              image: string;
+              title: string;
+              description: string;
+          }
+        | FormData
+) => {
     try {
-        const { data } = await secureApi.post(`/chat/post/${room}/`);
+        const { data } = await secureApi.post(`/chat/post/${room}/`, formData);
         return data;
     } catch (error) {
         return error;
@@ -23,4 +32,5 @@ export const createChat = async (room: string) => {
 
 export const chatService = {
     getChatsRoom,
+    createChat
 };

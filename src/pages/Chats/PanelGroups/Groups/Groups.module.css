@@ -14,6 +14,7 @@
   border-radius: 10px;
 }
 .container__groups::-webkit-scrollbar-track {
+  border-radius: 10px;
   background-color: #DADADA;
 }
 
@@ -59,4 +60,9 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 150%;
+}
+@media screen and (min-width: 370px) and (max-width: 871px) {
+  .group__text {
+    font-size: 20px;
+  }
 }/*# sourceMappingURL=Groups.module.css.map */

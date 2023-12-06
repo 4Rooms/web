@@ -25,6 +25,12 @@ interface ChatContextType {
         timestamp: string;
         likes: number;
     }> | undefined>>;
+    chatOpen: boolean;
+    setChatOpen: Dispatch<SetStateAction<boolean>>;
+    chatId: number;
+    setChatId: Dispatch<SetStateAction<number>>;
+    ws: WebSocket | null;
+    setWs: Dispatch<SetStateAction<WebSocket | null>>;
 }
 
 export const ChatContext = createContext<ChatContextType>(

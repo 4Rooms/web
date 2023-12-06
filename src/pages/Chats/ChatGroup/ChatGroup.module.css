@@ -5,4 +5,18 @@
   height: -moz-fit-content;
   height: fit-content;
   max-width: 706px;
+}
+@media screen and (min-width: 871px) and (max-width: 1105px) {
+  .container__chatGroups {
+    max-width: 500px;
+  }
+}
+@media screen and (max-width: 871px) {
+  .container__chatGroups {
+    max-width: 100%;
+    gap: 0px;
+  }
+  .container__chatGroups > div {
+    border-top: 1px solid #C7C7C7;
+  }
 }/*# sourceMappingURL=ChatGroup.module.css.map */

@@ -3,26 +3,30 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 100vh;
-    background: url(./assets/background_image@1x.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background: url(./assets/background_image@1x.png) 100%;
     @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
-        background: url(./assets/background_image@2x.png);
+        background: url(./assets/background_image@2x.png) 100%;
     }
     @media screen and (min-width: 768px) {
-        background: url(./assets/background_image@1x.png);
+        background: url(./assets/background_image@1x.png)  100%;
         @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-            background: url(./assets/background_image@2x.png);
+            background: url(./assets/background_image@2x.png) 100%;
         }
     }
     @media screen and (min-width: 1280px) {
-        background: url(./assets/background_image@1x.png);
+        background: url(./assets/background_image@1x.png)  100%;
         @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-            background: url(./assets/background_image@2x.png);
+            background: url(./assets/background_image@2x.png)  100%;
         }
     }
 }

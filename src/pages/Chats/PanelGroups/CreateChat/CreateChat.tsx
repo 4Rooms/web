@@ -14,17 +14,17 @@ import useValidation from "../../../../shared/use-validate/use-validate";
 import FormInput from "../../../../shared/auth-input/form-Input";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import createSchema from "./create-schema.tsx";
+import { createChat } from "../../../../services/chat/chat.service.tsx";
 import { useTranslation } from "react-i18next";
 
 export default function CreateChat() {
-    const { t } = useTranslation('translation', { keyPrefix: 'welcome' });
+    const { t } = useTranslation("translation", { keyPrefix: "welcome" });
 
-    const { roomName } = useChat();
+    const { roomName, roomsList, setRoomsList } = useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [imageURL, setImageURL] = useState<string>("");
-    const [, setImageError] = useState<null | string>(null);
 
     const [formStateValue, setFormStateValue] = useState<InputsCreate>({
         title: "",
@@ -69,12 +69,7 @@ export default function CreateChat() {
     const handleImageChange = (e: ChangeEvent<HTMLInputElement> | null) => {
         if (e && e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
-            if (file.size > 3 * 1024 * 1024) {
-                setImageError("Image size should be less than 3MB");
-            } else {
-                setImageError(null);
-                setImageURL(URL.createObjectURL(file));
-            }
+            setImageURL(URL.createObjectURL(file));
         }
     };
 
@@ -99,7 +94,19 @@ export default function CreateChat() {
     };
 
     const deliveryFormAuth: SubmitHandler<InputsCreate> = async (data) => {
-        console.log(data);
+        const formData = new FormData();
+        const chatOptions = {
+            ...data,
+            image: imageURL,
+        };
+        for (const key in chatOptions) {
+            formData.append(key, chatOptions[key as keyof typeof chatOptions]);
+        }
+        const newData = await createChat(roomName, formData);
+        if (newData) {
+            setRoomsList([newData.chat, ...(roomsList || [])]);
+        }
+        setOpenModal(false);
     };
 
     return (
@@ -130,10 +137,13 @@ export default function CreateChat() {
                                         onChange={handleImageChange}
                                         required
                                     />
-                                    {!imageURL && (
-                                    <AddPhoto />
-                                )}
-                                {imageURL && <img className={styles.user__img} src={imageURL} />}
+                                    {!imageURL && <AddPhoto />}
+                                    {imageURL && (
+                                        <img
+                                            className={styles.user__img}
+                                            src={imageURL}
+                                        />
+                                    )}
                                 </label>
                             </div>
                             {inputArray.map((value) => (
@@ -150,9 +160,7 @@ export default function CreateChat() {
                                         formStateFocus={formStateFocus}
                                         formStateValue={formStateValue}
                                         onChange={onChange}
-                                        textarea={
-                                            value === "description"
-                                        }
+                                        textarea={value === "description"}
                                         className={
                                             value === "description"
                                                 ? "textarea"

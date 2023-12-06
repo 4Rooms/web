@@ -4,4 +4,14 @@
     gap: 8px;
     height: fit-content;
     max-width: 706px;
+    @media screen and (min-width: 871px) and (max-width: 1105px) {
+        max-width: 500px;
+    }
+    @media screen and (max-width: 871px) {
+        max-width: 100%;
+        gap: 0px;
+        & > div {
+            border-top: 1px solid #C7C7C7;
+        }
+    }
 }

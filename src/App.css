@@ -3,31 +3,35 @@
   flex-direction: column;
   flex-grow: 1;
   min-height: 100vh;
-  background: url(./assets/background_image@1x.png);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background: url(./assets/background_image@1x.png) 100%;
 }
 @media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   #root {
-    background: url(./assets/background_image@2x.png);
+    background: url(./assets/background_image@2x.png) 100%;
   }
 }
 @media screen and (min-width: 768px) {
   #root {
-    background: url(./assets/background_image@1x.png);
+    background: url(./assets/background_image@1x.png) 100%;
   }
 }
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
   #root {
-    background: url(./assets/background_image@2x.png);
+    background: url(./assets/background_image@2x.png) 100%;
   }
 }
 @media screen and (min-width: 1280px) {
   #root {
-    background: url(./assets/background_image@1x.png);
+    background: url(./assets/background_image@1x.png) 100%;
   }
 }
 @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (min-resolution: 192dpi), screen and (min-width: 1280px) and (min-resolution: 2dppx) {
   #root {
-    background: url(./assets/background_image@2x.png);
+    background: url(./assets/background_image@2x.png) 100%;
   }
 }
 
