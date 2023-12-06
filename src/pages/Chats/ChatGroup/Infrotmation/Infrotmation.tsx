@@ -7,7 +7,7 @@ import {
     Saved,
 } from "../../../../assets/icons";
 import Modal from "../../../../Components/Modal/Modal";
-import { useChat } from "../../chat-context/use-chat";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 interface InfrotmationProps {
     title: string | undefined;

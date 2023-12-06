@@ -5,7 +5,7 @@ import Online from "./Online/Online";
 import Chat from "./Chat/Chat";
 import MessageForm from "./MessageForm/MessageForm";
 import Welcome from "./Welcome/Welcome";
-import { useChat } from "../chat-context/use-chat";
+import { useChat } from "../../chats/chat-context/use-chat.tsx";
 
 interface ProfileContextType {
     isSmallScreen?: boolean;
@@ -25,7 +25,7 @@ export default function ChatGroup({isSmallScreen}: ProfileContextType) {
         likes?: number;
     }>({});
     useEffect(() => {
-        const selectedChat = roomsList?.find((chat) => chat.id === chatId);
+        const selectedChat = roomsList?.find((chat: {id: number, title: string, room: string, img: string, user: string, description: string, url: string, timestamp: string, likes: number}) => chat.id === chatId);
         setChat(selectedChat || {});
     }, [chatId, roomsList]);
     return (

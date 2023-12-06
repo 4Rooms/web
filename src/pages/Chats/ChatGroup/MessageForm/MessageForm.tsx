@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AddFile, SendMessage, Smile } from "../../../../assets/icons";
 import styles from "./MessageForm.module.css";
-import { useChat } from "../../chat-context/use-chat";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function MessageForm() {
     const { ws, chatId } = useChat();
