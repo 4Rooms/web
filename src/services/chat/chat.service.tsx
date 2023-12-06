@@ -30,7 +30,19 @@ export const createChat = async (
     }
 };
 
+export const getAllMessages = async (
+    chatId: number | undefined,
+) => {
+    try {
+        const { data } = await secureApi.get(`/chat/messages/get/${chatId}/`);
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
 export const chatService = {
     getChatsRoom,
-    createChat
+    createChat,
+    getAllMessages,
 };

@@ -4,13 +4,13 @@ import PanelGroups from "./PanelGroups/PanelGroups";
 import ChatGroup from "./ChatGroup/ChatGroup";
 import { useParams } from "react-router-dom";
 import { useChat } from "../chats/chat-context/use-chat.tsx";
-import { getChatsRoom } from "../../services/chat/chat.service";
+import { getAllMessages, getChatsRoom } from "../../services/chat/chat.service";
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId } = useChat();
+    const { chatId, setMessage } = useChat();
     const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -38,7 +38,7 @@ export default function Chats() {
         window.addEventListener("resize", checkScreenSize);
         const socketUrl =
             "wss:" +
-            "//testback.4rooms.pro" +
+            "//back.4rooms.pro" +
             "/ws/chat/" +
             room +
             "/" +
@@ -49,11 +49,16 @@ export default function Chats() {
         if (chatOpen) {
             const ws = new WebSocket(socketUrl);
             setWs(ws);
+            const getMessages = async () => {
+                const messages = await getAllMessages(chatId);
+                setMessage(messages);
+            };
+            getMessages();
         }
         return () => {
             window.removeEventListener("resize", checkScreenSize);
         };
-    }, [chatId, chatOpen, cookieString, protocol, room, setRoomsList, setWs]);
+    }, [chatId, chatOpen, cookieString, protocol, room, setMessage, setRoomsList, setWs]);
     return (
         <>
             {isSmallScreen ? (

@@ -7,6 +7,9 @@
     &:last-child {
         margin-bottom: 0;
     }
+    &.from {
+        justify-content: right;
+    }
 }
 
 .user__avatar {
@@ -25,10 +28,14 @@
     @media screen and (max-width: 500px) {
         padding: 8px 16px;
     }
+    &.from {
+        border-radius: 20px 0px 20px 20px;
+    }
 }
 
 .user__name {
     font-size: 12px;
+    width: 100%;
     line-height: 150%;
     @media screen and (max-width: 500px) {
         font-size: 10px;
@@ -38,6 +45,7 @@
 .user__text {
     font-size: 14px;
     line-height: 23px;
+    width: 100%;
 }
 
 .user__time {
