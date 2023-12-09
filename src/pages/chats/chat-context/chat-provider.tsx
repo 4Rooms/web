@@ -21,20 +21,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     const [chatOpen, setChatOpen] = useState(false);
     const [chatId, setChatId] = useState<number>(0);
     const [ws, setWs] = useState<WebSocket | null>(null);
-    const [message, setMessage] = useState<
-        | {
-              count: number;
-              next: string | null;
-              previous: string | null;
-              results: [];
-          }
-        | MessageList
-    >({
-        count: 0,
-        next: null,
-        previous: null,
-        results: [],
-    });
+    const [message, setMessage] = useState<MessageList>([]);
+    const [online, setOnline] = useState<
+        { id: number; username: string; avatar: string }[]
+    >([]);
 
     return (
         <ChatContext.Provider
@@ -51,6 +41,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setWs,
                 message,
                 setMessage,
+                online,
+                setOnline
             }}
         >
             {children}

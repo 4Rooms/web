@@ -10,7 +10,7 @@ import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId, setMessage } = useChat();
+    const { chatId, setMessage, setOnline } = useChat();
     const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -21,6 +21,16 @@ export default function Chats() {
         return match ? match[1] : null;
     }
     setRoomName(room);
+
+    function handleMessages(e: MessageEvent) {
+        const msgData = JSON.parse(e.data);
+        if (msgData.event_type === "chat_message") {
+            setMessage((prevState) => [...prevState, msgData.message]);
+        } else if (msgData.event_type === "online_user_list") {
+            console.log(msgData)
+            setOnline(msgData.user_list);
+        }
+    }
     useEffect(() => {
         const getAllChatsRoom = async () => {
             try {
@@ -51,14 +61,25 @@ export default function Chats() {
             setWs(ws);
             const getMessages = async () => {
                 const messages = await getAllMessages(chatId);
-                setMessage(messages);
+                setMessage(messages.results);
             };
+            ws.addEventListener("message", handleMessages);
             getMessages();
         }
         return () => {
             window.removeEventListener("resize", checkScreenSize);
         };
-    }, [chatId, chatOpen, cookieString, protocol, room, setMessage, setRoomsList, setWs]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [
+        chatId,
+        chatOpen,
+        cookieString,
+        protocol,
+        room,
+        setMessage,
+        setRoomsList,
+        setWs,
+    ]);
     return (
         <>
             {isSmallScreen ? (

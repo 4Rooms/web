@@ -43,7 +43,7 @@ export default function MessageForYou({
     }
 
     return (
-        <li className={`${styles.message__container} ${message.user_name === username && styles.from}`}>
+        <li key={message.id} className={`${styles.message__container} ${message.user_name === username && styles.from}`}>
             {message.user_name !== username && <img className={styles.user__avatar} src={message.user_avatar} />}
             <div className={`${styles.message__user} ${message.user_name === username && styles.from}`}>
                 <p

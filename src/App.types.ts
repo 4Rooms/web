@@ -95,26 +95,23 @@ export type ChildrenModal = {
     className?: string;
 };
 
-export interface MessageList {
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: {
-        id: number;
+interface Message {
+    id: number;
+    user_name: string;
+    user_avatar: string;
+    reactions?: {
+        id: number; 
         user_name: string;
-        user_avatar: string;
-        reactions?: {
-            id: number;
-            user_name: string;
-            reaction: string;
-            timestamp: string;
-            message: number;
-            user: number;
-        }[];
-        text: string;
+        reaction: string;
         timestamp: string;
-        is_deleted: boolean;
-        chat: number;
+        message: number;
         user: number;
     }[];
+    text: string;
+    timestamp: string;
+    is_deleted: boolean;
+    chat: number; 
+    user: number;
 }
+
+export type MessageList = Message[];

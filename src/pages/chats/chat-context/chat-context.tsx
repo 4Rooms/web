@@ -39,24 +39,11 @@ interface ChatContextType {
     setChatId: Dispatch<SetStateAction<number>>;
     ws: WebSocket | null;
     setWs: Dispatch<SetStateAction<WebSocket | null>>;
-    message:
-        | MessageList
-        | {
-              count: number;
-              next: string | null;
-              previous: string | null;
-              results: [];
-          };
-    setMessage: Dispatch<
-        SetStateAction<
-            | MessageList
-            | {
-                  count: number;
-                  next: string | null;
-                  previous: string | null;
-                  results: [];
-              }
-        >
+    message: MessageList | [];
+    setMessage: Dispatch<SetStateAction<MessageList | []>>;
+    online: { id: number; username: string; avatar: string }[];
+    setOnline: Dispatch<
+        SetStateAction<{ id: number; username: string; avatar: string }[]>
     >;
 }
 
