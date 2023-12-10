@@ -26,13 +26,13 @@
     width: 360px;
     padding: 12px 16px;
     padding-right: 36px;
-    background:  transparent;
+    background: transparent;
     border: #616161 1px solid;
     color: var(--gray);
     font-size: 16px;
     &:focus {
         outline: transparent;
-    }  
+    }
 }
 
 .search__button {
@@ -69,4 +69,42 @@
     cursor: pointer;
     background-color: transparent;
     border: transparent;
+}
+
+.menu__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(234, 234, 234, 0.7);
+    z-index: 999;
+    text-align: right;
+    padding: 50px 16px 16px;
+    @media (min-width: 391px) {
+        padding: 16px 16px;
+    }
+    & > button {
+        margin-bottom: 27.5px;
+    }
+    & > div {
+        & > a {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: right;
+            flex-wrap: nowrap;
+            &:not(:last-child) {
+                margin-bottom: 32px;
+            }
+            & > p {
+                color: white;
+                font-size: 14px;
+                font-weight: 400;
+                padding: 2px 8px;
+                border-radius: 4px;
+                background-color: #7b34d8;
+            }
+        }
+    }
 }
