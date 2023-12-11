@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Online.module.css";
 import { CloseModal } from "../../../../assets/icons";
-import { useChat } from "../../chat-context/use-chat";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Online() {
     const [isSmallScreen, setIsSmallScreen] = useState("");
