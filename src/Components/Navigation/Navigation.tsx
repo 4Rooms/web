@@ -21,7 +21,6 @@ export default function Navigation({
     const [isOpen, setIsOpen] = useState(false);
     const { room } = useParams();
     const pathsForShowBackGround = ["cinema", "books", "games", "music"];
-    console.log(pathsForShowBackGround.includes(room || ""));
 
     useEffect(() => {
         const checkScreenSize = () => {

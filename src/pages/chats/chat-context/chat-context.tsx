@@ -45,6 +45,8 @@ interface ChatContextType {
     setOnline: Dispatch<
         SetStateAction<{ id: number; username: string; avatar: string }[]>
     >;
+    category: string;
+    setCategory: Dispatch<SetStateAction<string>>;
 }
 
 export const ChatContext = createContext<ChatContextType>(

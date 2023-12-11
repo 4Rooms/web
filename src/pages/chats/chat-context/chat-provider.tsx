@@ -25,6 +25,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     const [online, setOnline] = useState<
         { id: number; username: string; avatar: string }[]
     >([]);
+    const [category, setCategory] = useState("new");
 
     return (
         <ChatContext.Provider
@@ -42,7 +43,9 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 message,
                 setMessage,
                 online,
-                setOnline
+                setOnline,
+                category,
+                setCategory,
             }}
         >
             {children}
