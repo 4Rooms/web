@@ -1,43 +1,56 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { AddFile, SendMessage, Smile } from "../../../../assets/icons";
-import styles from "./MessageForm.module.css";
+import styles from "./MessageForm.module.scss";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import EmojiPicker from "emoji-picker-react";
 
 export default function MessageForm() {
     const { ws, chatId } = useChat();
     const [message, setMessage] = useState("");
-    const forSubmit = (e: { preventDefault: () => void }) => {
+    const [isPickerVisible, setIsPickerVisible] = useState(false);
+
+    const toggleEmojiPicker = () => {
+        setIsPickerVisible(!isPickerVisible);
+    };
+
+    const onEmojiClick = (emojiObject: any) => {
+        setMessage(prevMessage => prevMessage + emojiObject.emoji);        setIsPickerVisible(false);
+    };
+
+
+    const forSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (message !== "") {
-            try {
-                const messageUser = {
-                    event_type: "chat_message",
-                    message: {
-                        chat: chatId,
-                        text: message,
-                    },
-                };
-                ws?.send(JSON.stringify(messageUser));
-                console.log(32321)
-            } catch (error) {
-                console.log(error);
-            }
+        if (message && ws) {
+            const messageUser = {
+                event_type: "chat_message",
+                message: {
+                    chat: chatId,
+                    text: message,
+                },
+            };
+            ws.send(JSON.stringify(messageUser));
             setMessage("");
         }
-    };
-    const handleChange = (e: {
-        target: { value: React.SetStateAction<string> };
-    }) => {
-        setMessage(e.target.value);
-    };
+    }
+
+    const handleChange = useCallback(({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+        setMessage(value);
+    }, []);
     return (
-        <form className={styles.form__message} onSubmit={(e) => forSubmit(e)}>
+        <form className={styles.form__message} onSubmit={forSubmit}>
             <div className={styles.wrapper__icon}>
+                <div className={styles.emoji_container}>
+                    <button type="button" className={styles.button__message} onClick={toggleEmojiPicker}>
+                        <Smile/>
+                    </button>
+                    <div className={styles.emoji_picker}>
+                        {isPickerVisible &&
+                            <EmojiPicker onEmojiClick={onEmojiClick}/>
+                        }
+                    </div>
+                </div>
                 <button type="button" className={styles.button__message}>
-                    <Smile />
-                </button>
-                <button type="button" className={styles.button__message}>
-                    <AddFile />
+                    <AddFile/>
                 </button>
             </div>
             <input
@@ -48,7 +61,7 @@ export default function MessageForm() {
                 onChange={(e) => handleChange(e)}
             />
             <button type="submit" className={styles.button__message}>
-                <SendMessage />
+            <SendMessage />
             </button>
         </form>
     );

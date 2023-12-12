@@ -1,16 +1,27 @@
-.form__message {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 16px;
-    padding: 8px 20px;
-    border-radius: 0px 0px 20px 20px;
-    background-color: var(--color--button);
-    width: 100%;
-    align-items: center;
-    height: 100%;
-    @media screen and (max-width: 871px) {
-        border-radius: 0;
+.form {
+    &__message {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 16px;
+        padding: 8px 20px;
+        border-radius: 0 0 20px 20px;
+        background-color: var(--color--button);
+        width: 100%;
+        align-items: center;
+        height: 100%;
+        @media screen and (max-width: 871px) {
+            border-radius: 0;
+        }
+
     }
+}
+.emoji_container {
+    position: relative;
+}
+.emoji_picker {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
 }
 
 .input__message {
