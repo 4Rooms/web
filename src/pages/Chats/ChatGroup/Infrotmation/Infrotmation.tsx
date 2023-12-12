@@ -13,7 +13,7 @@ import Button from "../../../../shared/button/button.tsx";
 import { deleteChat } from "../../../../services/chat/chat.service.tsx";
 
 interface InfrotmationProps {
-    title: string | undefined;
+    title: string;
     description: string | undefined;
     timestamp: string | undefined;
     avatar: string | undefined;
@@ -55,6 +55,16 @@ export default function Infrotmation({
 
         return `${formattedDay}.${formattedMonth}.${year}`;
     }
+    const cutTextFunction = (text: string) => {
+        let modifiedText = "";
+
+        if (text?.length > 15) {
+            modifiedText = text.substring(0, 10) + "...";
+        } else {
+            modifiedText = text;
+        }
+        return modifiedText;
+    };
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -79,7 +89,7 @@ export default function Infrotmation({
                         </button>
                     )}
                     <img className={styles.group__avatar} src={avatar} />
-                    <p className={styles.group__name}>{title}</p>
+                    <p className={styles.group__name}>{cutTextFunction(title)}</p>
                     <button
                         onClick={onClickChangeOpenModal}
                         className={styles.group__button__more}
@@ -96,7 +106,7 @@ export default function Infrotmation({
                                 className={styles.group__avatar__modal}
                                 src={avatar}
                             />
-                            <p className={styles.group__name__modal}>{title}</p>
+                            <p className={styles.group__name__modal}>{cutTextFunction(title)}</p>
                         </div>
                         <p
                             style={{ marginBottom: 20 }}
@@ -121,7 +131,6 @@ export default function Infrotmation({
                             <button
                                 onClick={() => {
                                     setOpenModalDelete(true);
-                                    setOpenModal(false);
                                 }}
                                 className={styles.delete__chat}
                             >
@@ -144,7 +153,7 @@ export default function Infrotmation({
                                     <h2>Delete your chat</h2>
                                     <p>
                                         Are you sure you want to delete{" "}
-                                        <b>“{title}”</b> chat? After this
+                                        <b>“{cutTextFunction(title)}”</b> chat? After this
                                         action, recovery will be impossible.
                                     </p>
                                     <Button type="submit" className="accent">

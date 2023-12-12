@@ -27,6 +27,8 @@ export default function Chats() {
             setMessage((prevState) => [...prevState, msgData.message]);
         } else if (msgData.event_type === "online_user_list") {
             setOnline(msgData.user_list);
+        } else {
+            console.log(msgData);
         }
     }
     useEffect(() => {
@@ -60,6 +62,7 @@ export default function Chats() {
             const getMessages = async () => {
                 const messages = await getAllMessages(chatId);
                 setMessage(messages.results);
+                console.log(messages.results);
             };
             ws.addEventListener("message", handleMessages);
             getMessages();
