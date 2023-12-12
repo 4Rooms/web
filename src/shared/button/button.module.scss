@@ -14,10 +14,10 @@
 
   &:disabled {
     background-color: #C7C7C7;
-    color: #616161;
+    color: white;
   }
 
-  &:not(:disabled):hover {
+  &:hover {
     background-color: var(--hover);
     transform: scale(1.05);
   }

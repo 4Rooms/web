@@ -1,29 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Chat.module.css";
 import MessageForYou from "./message/MessageForYou/MessageForYou";
-import MessageFromYou from "./message/MessageFromYou/MessageFromYou";
 import { useParams } from "react-router-dom";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Chat() {
     const { room } = useParams();
-    window.addEventListener('load', function() {
-        const chatContainer: any = document.getElementById('chatContainer');
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    });
+    const { message } = useChat();
+    const chatContainerRef = useRef<HTMLUListElement>(null);
+    useEffect(() => {
+        const chatContainer = chatContainerRef.current;
+        if (chatContainer) {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    }, [message]);
     return (
-        <div className={`${styles.container__chat} ${room && styles[room]}`} id="chatContainer">
-            <MessageForYou />
-            <MessageFromYou />
-            <MessageForYou />
-            <MessageFromYou />
-            <MessageForYou />
-            <MessageFromYou />
-            <MessageForYou />
-            <MessageFromYou />
-            <MessageForYou />
-            <MessageFromYou />
-            <MessageForYou />
-            <MessageFromYou />
-        </div>
+        <ul
+            ref={chatContainerRef}
+            className={`${styles.container__chat} ${room && styles[room]}`}
+            id="chatContainer"
+        >
+            {message?.map((result) => {
+                return <MessageForYou key={result.id} message={result} />;
+            })}
+        </ul>
     );
 }

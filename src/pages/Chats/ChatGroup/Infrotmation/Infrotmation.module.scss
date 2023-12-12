@@ -105,3 +105,30 @@
     margin-bottom: 40px;
     width: 100%;
 }
+
+.delete__chat {
+    background-color: transparent;
+    border: transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+}
+
+.wrapper__modal_delete {
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    justify-content: center;
+    & > h2 {
+        font-size: 36px;
+    }
+    & > p {
+        font-size: 24px;
+    }
+}

@@ -8,7 +8,7 @@ export default function Groups() {
         let modifiedText = "";
 
         if (text?.length > 15) {
-            modifiedText = text.substring(0, 20) + "...";
+            modifiedText = text.substring(0, 10) + "...";
         } else {
             modifiedText = text;
         }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./FilterGroup.module.css";
 import { RowBelow } from "../../../../assets/icons";
 import { NavLink, useLocation } from "react-router-dom";
@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export default function FilterGroup() {
     const { t } = useTranslation('translation', { keyPrefix: 'filter' });
-    const { roomName, setChatOpen } = useChat();
+    const { roomName, setChatOpen, setCategory } = useChat();
     const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
@@ -16,6 +16,9 @@ export default function FilterGroup() {
     const changeNameCategory = arrayCategory.filter(
         (category) => category !== categoryChat
     );
+    useEffect(() => {
+        setCategory(categoryChat.toLocaleLowerCase());
+    }, [categoryChat, setCategory])
     return (
         <div>
             <ul className={styles.container__filterFroups}>

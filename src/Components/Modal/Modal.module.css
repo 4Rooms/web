@@ -52,6 +52,9 @@
     width: 370px;
   }
 }
+.window.delete {
+  width: 650px;
+}
 
 .close {
   position: absolute;

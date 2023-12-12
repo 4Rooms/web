@@ -109,4 +109,32 @@
   text-align: center;
   margin-bottom: 40px;
   width: 100%;
+}
+
+.delete__chat {
+  background-color: transparent;
+  border: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  margin-top: 20px;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.wrapper__modal_delete {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  justify-content: center;
+}
+.wrapper__modal_delete > h2 {
+  font-size: 36px;
+}
+.wrapper__modal_delete > p {
+  font-size: 24px;
 }/*# sourceMappingURL=Infrotmation.module.css.map */

@@ -3,9 +3,9 @@ import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 
 axios.defaults.baseURL = "https://back.4rooms.pro";
 
-export const getChatsRoom = async (room: string | undefined) => {
+export const getChatsRoom = async (room: string | undefined, category: string | undefined) => {
     try {
-        const { data } = await secureApi.get(`/chat/get/${room}/popular/`);
+        const { data } = await secureApi.get(`/chat/get/${room}/${category}/`);
         return data;
     } catch (error) {
         return error;
@@ -30,7 +30,31 @@ export const createChat = async (
     }
 };
 
+export const getAllMessages = async (
+    chatId: number | undefined,
+) => {
+    try {
+        const { data } = await secureApi.get(`/chat/messages/get/${chatId}/`);
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const deleteChat = async (
+    chatId: number | undefined,
+) => {
+    try {
+        const { data } = await secureApi.delete(`/chat/update/${chatId}/`);
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
 export const chatService = {
     getChatsRoom,
-    createChat
+    createChat,
+    getAllMessages,
+    deleteChat
 };

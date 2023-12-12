@@ -4,13 +4,13 @@ import PanelGroups from "./PanelGroups/PanelGroups";
 import ChatGroup from "./ChatGroup/ChatGroup";
 import { useParams } from "react-router-dom";
 import { useChat } from "../chats/chat-context/use-chat.tsx";
-import { getChatsRoom } from "../../services/chat/chat.service";
+import { getAllMessages, getChatsRoom } from "../../services/chat/chat.service";
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId } = useChat();
+    const { chatId, setMessage, setOnline, category } = useChat();
     const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -21,10 +21,18 @@ export default function Chats() {
         return match ? match[1] : null;
     }
     setRoomName(room);
+    function handleMessages(e: MessageEvent) {
+        const msgData = JSON.parse(e.data);
+        if (msgData.event_type === "chat_message") {
+            setMessage((prevState) => [...prevState, msgData.message]);
+        } else if (msgData.event_type === "online_user_list") {
+            setOnline(msgData.user_list);
+        }
+    }
     useEffect(() => {
         const getAllChatsRoom = async () => {
             try {
-                const data = await getChatsRoom(room);
+                const data = await getChatsRoom(room, category);
                 setRoomsList(data.results);
             } catch (error) {
                 console.log(error);
@@ -37,8 +45,8 @@ export default function Chats() {
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
         const socketUrl =
-            protocol +
-            "//testback.4rooms.pro" +
+            "wss:" +
+            "//back.4rooms.pro" +
             "/ws/chat/" +
             room +
             "/" +
@@ -49,11 +57,28 @@ export default function Chats() {
         if (chatOpen) {
             const ws = new WebSocket(socketUrl);
             setWs(ws);
+            const getMessages = async () => {
+                const messages = await getAllMessages(chatId);
+                setMessage(messages.results);
+            };
+            ws.addEventListener("message", handleMessages);
+            getMessages();
         }
         return () => {
             window.removeEventListener("resize", checkScreenSize);
         };
-    }, [chatId, chatOpen, cookieString, protocol, room, setRoomsList, setWs]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [
+        chatId,
+        chatOpen,
+        cookieString,
+        protocol,
+        room,
+        category,
+        setMessage,
+        setRoomsList,
+        setWs,
+    ]);
     return (
         <>
             {isSmallScreen ? (

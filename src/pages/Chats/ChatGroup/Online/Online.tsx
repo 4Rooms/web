@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Online.module.css";
 import { CloseModal } from "../../../../assets/icons";
+import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Online() {
     const [isSmallScreen, setIsSmallScreen] = useState("");
+    const { online } = useChat();
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -24,25 +26,12 @@ export default function Online() {
             window.removeEventListener("resize", checkScreenSize);
         };
     }, []);
-    const initialUsers: string[] = [
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-        "Masha",
-    ];
     const users =
         isSmallScreen === "lessMobile"
-            ? initialUsers.slice(0, 3)
+            ? online.slice(0, 3)
             : isSmallScreen === "mobile"
-            ? initialUsers.slice(0, 5)
-            : initialUsers;
+            ? online.slice(0, 5)
+            : online;
     const [open, setOpen] = useState<boolean>(false);
     const onClickChangeOpen = (): void => {
         setOpen((prevOpen): boolean => {
@@ -53,12 +42,12 @@ export default function Online() {
         <div className={styles.container__online}>
             <p className={styles.online__text}>Online now:</p>
             <ul className={styles.online__list}>
-                {users.map((_, index) => {
+                {users.map((user) => {
                     return (
-                        <li key={index}>
+                        <li key={user.id}>
                             <img
                                 className={styles.online__avatar}
-                                src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                                src={user.avatar}
                             />
                         </li>
                     );
@@ -69,7 +58,7 @@ export default function Online() {
                 type="button"
                 className={styles.online__button}
             >
-                ....and 96 others
+                {users.length > 5 && "....and others"}
             </button>
             {open && (
                 <div className={styles.wrapper__online__show}>
@@ -94,14 +83,14 @@ export default function Online() {
                                     >
                                         <img
                                             className={styles.online__avatar}
-                                            src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                                            src={user.avatar}
                                         />
                                         <p
                                             className={
                                                 styles.name__online__show
                                             }
                                         >
-                                            {user}
+                                            {user.username}
                                         </p>
                                     </li>
                                 );

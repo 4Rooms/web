@@ -1,7 +1,30 @@
 import React from "react";
 import styles from "../Message.module.scss";
+import { useAuth } from "../../../../../auth/auth-context/use-auth";
 
-export default function MessageForYou() {
+export default function MessageForYou({
+    message,
+}: {
+    message: {
+        id: number;
+        user_name: string;
+        user_avatar: string;
+        reactions?: {
+            id: number;
+            user_name: string;
+            reaction: string;
+            timestamp: string;
+            message: number;
+            user: number;
+        }[];
+        text: string;
+        timestamp: string;
+        is_deleted: boolean;
+        chat: number;
+        user: number;
+    };
+}) {
+    const {username} = useAuth();
     function getRandomColor() {
         const letters = "0123456789ABCDEF";
         let color = "#";
@@ -10,24 +33,30 @@ export default function MessageForYou() {
         }
         return color;
     }
+    function formatTime(time: string) {
+        const date = new Date(Number(time) * 1000);
+
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+
+        return hours + ":" + (minutes < 10 ? "0" : "") + minutes;
+    }
 
     return (
-        <div className={styles.message__container}>
-            <img
-                className={styles.user__avatar}
-                src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
-            />
-            <div
-                className={styles.message__user}
-            >
-                <p className={styles.user__name} style={{ color: getRandomColor() }}>Miki Spoul</p>
-                <p className={styles.user__text}>
-                    Well, Sophie Turner, who plays Sansa Stark, adopted Zunni,
-                    the Northern Inuit dog that played her pet direwolf on the
-                    series’ first season.
+        <li key={message.id} className={`${styles.message__container} ${message.user_name === username && styles.from}`}>
+            {message.user_name !== username && <img className={styles.user__avatar} src={message.user_avatar} />}
+            <div className={`${styles.message__user} ${message.user_name === username && styles.from}`}>
+                <p
+                    className={styles.user__name}
+                    style={{ color: getRandomColor() }}
+                >
+                    {message.user_name}
                 </p>
-                <p className={styles.user__time}>13:43</p>
+                <p className={styles.user__text}>{message.text}</p>
+                <p className={styles.user__time}>
+                    {formatTime(message.timestamp)}
+                </p>
             </div>
-        </div>
+        </li>
     );
 }

@@ -69,4 +69,42 @@
   cursor: pointer;
   background-color: transparent;
   border: transparent;
+}
+
+.menu__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(234, 234, 234, 0.7);
+  z-index: 999;
+  text-align: right;
+  padding: 50px 16px 16px;
+}
+@media (min-width: 391px) {
+  .menu__container {
+    padding: 16px 16px;
+  }
+}
+.menu__container > button {
+  margin-bottom: 27.5px;
+}
+.menu__container > div > a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: right;
+  flex-wrap: nowrap;
+}
+.menu__container > div > a:not(:last-child) {
+  margin-bottom: 32px;
+}
+.menu__container > div > a > p {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: #7b34d8;
 }/*# sourceMappingURL=Navigation.module.css.map */

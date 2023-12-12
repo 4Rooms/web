@@ -21,7 +21,7 @@ import ResetPassword from "./pages/profile/ResetPassword/ResetPassword.tsx";
 import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
 import { setInitialLanguage } from "./utils/language-selector/language-selector.ts";
 import Saved from "./pages/saved/Saved.tsx";
-import { MyChats } from "./assets/icons.tsx";
+import MyChats from "./pages/myChats/MyChats.tsx";
 
 export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();

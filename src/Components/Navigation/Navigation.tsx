@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
     Logo,
     MobileMenu,
+    MobileMenuOpen,
     MyChats,
-    Notifications,
     SavedChats,
     SearchRooms,
 } from "../../assets/icons";
@@ -18,9 +18,9 @@ export default function Navigation({
     showHeader: boolean;
 }) {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const { room } = useParams();
     const pathsForShowBackGround = ["cinema", "books", "games", "music"];
-    console.log(pathsForShowBackGround.includes(room || ""));
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -56,6 +56,35 @@ export default function Navigation({
                         </button>
                     )}
             </div>
+            {isOpen && (
+                <div className={styles.menu__container}>
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        type="button"
+                        className={styles.mobile__button}
+                    >
+                        <MobileMenuOpen />
+                    </button>
+                    <div>
+                        <Link to="my-chats">
+                            <p>My Chats</p>
+                            <MyChats />
+                        </Link>
+                        <Link to="saved">
+                            <p>Saved Chats</p>
+                            <SavedChats />
+                        </Link>
+                        <Link to="/profile">
+                            <p>My Profile</p>
+                            <img
+                                className={styles.avatar__user}
+                                src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                                alt=""
+                            />
+                        </Link>
+                    </div>
+                </div>
+            )}
             {showHeader && !isSmallScreen && (
                 <nav className={styles.navigation__link}>
                     <Link to="my-chats" className={styles.icons__width}>
@@ -63,9 +92,6 @@ export default function Navigation({
                     </Link>
                     <Link to="saved" className={styles.icons__width}>
                         <SavedChats />
-                    </Link>
-                    <Link to="my-chats" className={styles.icons__width}>
-                        <Notifications />
                     </Link>
                     <Link to="/profile" className={styles.link__button}>
                         {user}
@@ -78,7 +104,11 @@ export default function Navigation({
                 </nav>
             )}
             {showHeader && isSmallScreen && (
-                <button type="button" className={styles.mobile__button}>
+                <button
+                    onClick={() => setIsOpen(true)}
+                    type="button"
+                    className={styles.mobile__button}
+                >
                     <MobileMenu />
                 </button>
             )}

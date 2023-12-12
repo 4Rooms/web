@@ -14,6 +14,7 @@ export default function ChangeLanguage() {
         const newLanguage = event.target.value;
         if (newLanguage !== selectedOption) {
             setSelectedOption(newLanguage);
+            changeLanguage(newLanguage);
         }
     };
 
@@ -42,7 +43,7 @@ export default function ChangeLanguage() {
                     </div>
                 </div>
             </div>
-            <Button className="accent" type="button" onClick={()=> { changeLanguage(selectedOption) }}>
+            <Button className="accent" type="button">
                 Save
             </Button>
         </div>

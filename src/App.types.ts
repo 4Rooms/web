@@ -94,3 +94,24 @@ export type ChildrenModal = {
     onOpen: () => void;
     className?: string;
 };
+
+interface Message {
+    id: number;
+    user_name: string;
+    user_avatar: string;
+    reactions?: {
+        id: number; 
+        user_name: string;
+        reaction: string;
+        timestamp: string;
+        message: number;
+        user: number;
+    }[];
+    text: string;
+    timestamp: string;
+    is_deleted: boolean;
+    chat: number; 
+    user: number;
+}
+
+export type MessageList = Message[];

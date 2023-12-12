@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import styles from "./Infrotmation.module.css";
 import {
     Back,
+    Delete,
     Favorite,
     MoreInformation,
     Saved,
 } from "../../../../assets/icons";
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import Button from "../../../../shared/button/button.tsx";
+import { deleteChat } from "../../../../services/chat/chat.service.tsx";
 
 interface InfrotmationProps {
     title: string | undefined;
@@ -15,6 +18,7 @@ interface InfrotmationProps {
     timestamp: string | undefined;
     avatar: string | undefined;
     isSmallScreen: boolean | undefined;
+    user: string | undefined;
 }
 
 export default function Infrotmation({
@@ -23,9 +27,19 @@ export default function Infrotmation({
     timestamp,
     avatar,
     isSmallScreen,
+    user,
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const { setChatOpen } = useChat();
+    const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
+    const { setChatOpen, chatId } = useChat();
+    const userName: {
+        email: string;
+        id: number;
+        is_email_confirmed: boolean;
+        username: string;
+    } | null = localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user")!)
+        : null;
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
             return "";
@@ -45,6 +59,15 @@ export default function Infrotmation({
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
         });
+    };
+    const deleteChatSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            await deleteChat(chatId);
+            setChatOpen(false);
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <>
@@ -94,6 +117,42 @@ export default function Infrotmation({
                                 </button>
                             </div>
                         </div>
+                        {userName?.username === user && (
+                            <button
+                                onClick={() => {
+                                    setOpenModalDelete(true);
+                                    setOpenModal(false);
+                                }}
+                                className={styles.delete__chat}
+                            >
+                                <Delete />
+                                fewfewfew
+                            </button>
+                        )}
+                        {openModalDelete && (
+                            <Modal
+                                className="delete"
+                                onOpen={() => {
+                                    setOpenModalDelete(!openModalDelete);
+                                    setOpenModal(true);
+                                }}
+                            >
+                                <form
+                                    onSubmit={(e) => deleteChatSubmit(e)}
+                                    className={styles.wrapper__modal_delete}
+                                >
+                                    <h2>Delete your chat</h2>
+                                    <p>
+                                        Are you sure you want to delete{" "}
+                                        <b>“{title}”</b> chat? After this
+                                        action, recovery will be impossible.
+                                    </p>
+                                    <Button type="submit" className="accent">
+                                        fewfew
+                                    </Button>
+                                </form>
+                            </Modal>
+                        )}
                     </>
                 </Modal>
             )}
