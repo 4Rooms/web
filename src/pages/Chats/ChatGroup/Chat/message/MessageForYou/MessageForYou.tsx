@@ -29,6 +29,8 @@ export default function MessageForYou({
     const { username } = useAuth();
     const { ws } = useChat();
     const [open, setOpen] = useState(false);
+    const [edit, setEdit] = useState(false);
+    const [inputValue, setInputValue] = useState(message.text);
     function formatTime(time: string) {
         const date = new Date(Number(time) * 1000);
 
@@ -46,6 +48,20 @@ export default function MessageForYou({
             id: message.id,
         };
         ws?.send(JSON.stringify(messageUser));
+    };
+    const editMessage = () => {
+        const messageUser = {
+            event_type: "message_was_updated",
+            id: message.id,
+            new_text: inputValue,
+        };
+        ws?.send(JSON.stringify(messageUser));
+        setEdit(false);
+    };
+    const handleChange = (e: {
+        target: { value: React.SetStateAction<string> };
+    }) => {
+        setInputValue(e.target.value);
     };
 
     return (
@@ -65,7 +81,7 @@ export default function MessageForYou({
                 onClick={openMenuMessage}
                 className={message.is_deleted ? styles.deleted : ""}
             >
-                <div
+                <span
                     className={`${styles.message__user} ${
                         message.user_name === username && styles.from
                     } ${message.is_deleted ? styles.deleted : ""}`}
@@ -77,40 +93,61 @@ export default function MessageForYou({
                     >
                         {message.user_name}
                     </p>
-                    <p className={styles.user__text}>
-                        {message.is_deleted ? (
-                            <>
-                                <Delete /> The message is deleted
-                            </>
-                        ) : (
-                            message.text
-                        )}
-                    </p>
+                    {edit ? (
+                        <>
+                            <label>
+                                <input
+                                    onChange={(e) => handleChange(e)}
+                                    value={inputValue}
+                                    type="text"
+                                />
+                            </label>
+                            <div
+                                className={styles.edit__message}
+                                onClick={() => {
+                                    editMessage();
+                                }}
+                            >
+                                save
+                            </div>
+                        </>
+                    ) : (
+                        <p className={styles.user__text}>
+                            {message.is_deleted ? (
+                                <>
+                                    <Delete /> The message is deleted
+                                </>
+                            ) : (
+                                message.text
+                            )}
+                        </p>
+                    )}
                     <p className={styles.user__time}>
                         {formatTime(message.timestamp)}
                     </p>
-                    {open && (
-                        <div>
-                            <button
-                                onClick={() => {
-                                    console.log(312321321321);
-                                }}
-                                type="button"
-                            >
-                                <Edit /> Edit
-                            </button>
-                            <button
-                                onClick={() => {
-                                    deleteMessageUser();
-                                    console.log("message deleted");
-                                }}
-                                type="button"
-                            >
-                                <Delete /> Delete
-                            </button>
+                    {open && !message.is_deleted && !edit && (
+                        <div className={styles.menu__message}>
+                            {username === message.user_name && (
+                                <>
+                                    <div
+                                        onClick={() => {
+                                            setEdit(true);
+                                        }}
+                                    >
+                                        <Edit /> Edit
+                                    </div>
+                                    <div
+                                        onClick={() => {
+                                            deleteMessageUser();
+                                        }}
+                                    >
+                                        <Delete /> Delete
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
-                </div>
+                </span>
             </button>
         </li>
     );

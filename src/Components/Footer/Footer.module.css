@@ -11,6 +11,7 @@
   text-align: center;
   justify-content: center;
   padding: 34px 0;
+  margin-top: auto;
 }
 @media screen and (max-width: 871px) {
   .chats__footer {

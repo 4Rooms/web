@@ -10,17 +10,15 @@ import { ChatProvider } from "./pages/chats/chat-context/chat-provider.tsx";
 import { ProfileProvider } from "./pages/profile/profile-context/profile-provider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <React.StrictMode>
-        <AuthProvider>
-            <ChatProvider>
-                <ProfileProvider>
-                    <BrowserRouter>
-                        <I18nextProvider i18n={i18n}>
-                            <App />
-                        </I18nextProvider>
-                    </BrowserRouter>
-                </ProfileProvider>
-            </ChatProvider>
-        </AuthProvider>
-    </React.StrictMode>
+    <AuthProvider>
+        <ChatProvider>
+            <ProfileProvider>
+                <BrowserRouter>
+                    <I18nextProvider i18n={i18n}>
+                        <App />
+                    </I18nextProvider>
+                </BrowserRouter>
+            </ProfileProvider>
+        </ChatProvider>
+    </AuthProvider>
 );

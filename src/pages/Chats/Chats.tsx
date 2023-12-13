@@ -10,7 +10,7 @@ import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId, setMessage, setOnline, category } = useChat();
+    const { chatId, setMessage, setOnline, category, message } = useChat();
     const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -27,8 +27,22 @@ export default function Chats() {
             setMessage((prevState) => [...prevState, msgData.message]);
         } else if (msgData.event_type === "online_user_list") {
             setOnline(msgData.user_list);
-        } else {
-            console.log(msgData);
+        } else if (msgData.event_type === "message_was_deleted") {
+            setMessage((prevMessages) =>
+                prevMessages.map((prevMessage) =>
+                    prevMessage.id === msgData.id
+                        ? { ...prevMessage, is_deleted: true }
+                        : prevMessage
+                )
+            );
+        } else if (msgData.event_type === "message_was_updated") {
+            setMessage((prevMessages) =>
+                prevMessages.map((prevMessage) =>
+                    prevMessage.id === msgData.id
+                        ? { ...prevMessage, text: msgData.new_text }
+                        : prevMessage
+                )
+            );
         }
     }
     useEffect(() => {
