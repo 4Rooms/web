@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import styles from "./CreateChat.module.scss";
 import Modal from "../../../../Components/Modal/Modal";
 import { AddPhoto, Error, IconOkey } from "../../../../assets/icons";
@@ -25,6 +25,7 @@ export default function CreateChat() {
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [imageURL, setImageURL] = useState<string>("");
+    const [image, setImage] = useState<File>();
 
     const [formStateValue, setFormStateValue] = useState<InputsCreate>({
         title: "",
@@ -41,6 +42,7 @@ export default function CreateChat() {
         setError,
         clearErrors,
         formState: { errors },
+        reset,
     } = useForm({
         defaultValues: {
             title: "",
@@ -48,6 +50,9 @@ export default function CreateChat() {
         },
         resolver: yupResolver(createSchema),
     });
+    useEffect(() => {
+        console.log(image)
+    }, [image])
 
     const onFocusInput = (type: keyof InputsCreateValid) => {
         setFormStateFocus((prevFocus) => ({
@@ -70,6 +75,7 @@ export default function CreateChat() {
         if (e && e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
             setImageURL(URL.createObjectURL(file));
+            setImage(file);
         }
     };
 
@@ -97,15 +103,22 @@ export default function CreateChat() {
         const formData = new FormData();
         const chatOptions = {
             ...data,
-            image: imageURL,
+            img: image,
         };
         for (const key in chatOptions) {
-            formData.append(key, chatOptions[key as keyof typeof chatOptions]);
-        }
+            if (chatOptions[key as keyof typeof chatOptions] !== undefined) {
+                formData.append(
+                    key,
+                    chatOptions[key as keyof typeof chatOptions] as string | Blob
+                );
+            }
+        }    
         const newData = await createChat(roomName, formData);
-        if (newData) {
+        if (newData.name !== "AxiosError") {
             setRoomsList([newData.chat, ...(roomsList || [])]);
         }
+        setImageURL("");
+        reset();
         setOpenModal(false);
     };
 

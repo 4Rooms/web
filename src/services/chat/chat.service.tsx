@@ -16,7 +16,7 @@ export const createChat = async (
     room: string | undefined,
     formData:
         | {
-              image: string;
+              img: Blob;
               title: string;
               description: string;
           }
