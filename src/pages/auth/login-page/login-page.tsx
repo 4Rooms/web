@@ -120,18 +120,21 @@ export default function LoginPage() {
     ) => {
         const value = e.target.value;
 
-        (reach(authSchema, type) as ISchema<unknown>)
-            .validate(value, {abortEarly: false})
-            .catch((error: { errors: string[]; }) => {
-                console.log(error);
-                setError(type, {type: "manual", message: error.errors[0]});
-            });
-
         setFormStateValue({
             ...formStateValue,
             [type]: value,
         });
         validateField(type, value);
+    };
+
+    const onBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputLoginKeys) => {
+        const value = e.target.value;
+
+        (reach(loginSchema, type) as ISchema<unknown>)
+            .validate(value, {abortEarly: false})
+            .catch((error: { errors: string[]; }) => {
+                setError(type, {type: "manual", message: error.errors[0]});
+            });
     };
 
     const deliveryFormAuth: SubmitHandler<InputsLogin> = async (data) => {
@@ -178,25 +181,31 @@ export default function LoginPage() {
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
                                 onChange={onChange}
+                                onBlur={onBlur}
                                 open={open}
                                 onFocusInput={onFocusInput}/>
                             {formStateValid[value as keyof InputsLogin] && <IconOkey className={styles.okey__auth}/>}
-                            {formStateFocus[value as keyof InputsLogin] &&
-                                !formStateValid[value as keyof InputsLogin] &&
-                                !errors[value as keyof InputsLogin] &&
-                                formStateValue[value as keyof InputsLogin]
-                                    .length > 0 && (
+                            {!formStateValid[value as keyof InputsLogin] && formStateFocus[value as keyof InputsLogin] && !errors[value as keyof InputsLogin] &&
+                                <>
                                     <div className={styles.focus__block}>
                                         <p>{value as keyof InputsLogin}</p>
                                     </div>
-                                )}
+                                    <p className={styles.text__info}>
+                                        {t(value as keyof InputsLogin)}
+                                    </p>
+                                </>
+                            }
                             {errors[value as keyof InputsLogin] &&
-                                !formStateValid[value as keyof InputsLogin] &&
-                                value !== "password" && (
+                                !formStateValid[value as keyof InputsLogin] && (
                                     <p className={styles.text__error}>
-                                        {
-                                            errors[value as keyof InputsLogin]
-                                                ?.message
+                                        {t(`${errors[value as keyof InputsLogin]?.message}`)}
+                                        {value === "password" &&
+                                            <button
+                                                type="button"
+                                                className={styles.forgot__password__error}
+                                                onClick={onClickChangeOpenModal}>
+                                                {t('forgotPassword')}
+                                            </button>
                                         }
                                     </p>
                                 )}
@@ -211,22 +220,6 @@ export default function LoginPage() {
                                     {open ? <OpenPassword/> : <HiddenPassword/>}
                                 </button>
                             }
-                            {value === "password" &&
-                                errors[value as keyof InputsLogin] &&
-                                !formStateValid[value as keyof InputsLogin] && (
-                                    <p className={styles.text__error}>
-                                        {
-                                            errors[value as keyof InputsLogin]
-                                                ?.message
-                                        }{" "}
-                                        <button
-                                            type="button"
-                                            className={styles.forgot__password__error}
-                                            onClick={onClickChangeOpenModal}>
-                                            Forgot Password?
-                                        </button>
-                                    </p>
-                                )}
                         </label>
                     );
                 })}

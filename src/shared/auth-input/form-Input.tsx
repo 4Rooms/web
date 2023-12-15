@@ -21,6 +21,10 @@ interface FormInput<T extends Path<U>, U extends FieldValues> {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         value: T
     ) => void;
+    onBlur?: (
+        e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+        value: T
+    ) => void;
     onChangeInputValue?: (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         value: T
@@ -39,6 +43,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     formStateValue,
     open = false,
     onChange,
+    onBlur,
     onFocusInput,
     onChangeInputValue,
     className = "",
@@ -66,14 +71,17 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             onChange={(e) => {
                 onChange &&
                     onChange(
-                        e as React.ChangeEvent<HTMLTextAreaElement>,
+                        e,
                         value
                     );
                 onChangeInputValue &&
                     onChangeInputValue(
-                        e as React.ChangeEvent<HTMLTextAreaElement>,
+                        e,
                         value
                     );
+            }}
+            onBlur={(e) => {
+                onBlur && onBlur(e, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />
@@ -111,9 +119,12 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                 onChange && onChange(e, value);
                 onChangeInputValue &&
                     onChangeInputValue(
-                        e as React.ChangeEvent<HTMLInputElement>,
+                        e,
                         value
                     );
+            }}
+            onBlur={(e) => {
+                onBlur && onBlur(e, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />
