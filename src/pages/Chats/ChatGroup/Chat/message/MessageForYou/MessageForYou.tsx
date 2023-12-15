@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../Message.module.scss";
 import { useAuth } from "../../../../../auth/auth-context/use-auth";
+import { Delete, Edit } from "../../../../../../assets/icons";
+import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
 
 export default function MessageForYou({
     message,
@@ -24,15 +26,11 @@ export default function MessageForYou({
         user: number;
     };
 }) {
-    const {username} = useAuth();
-    function getRandomColor() {
-        const letters = "0123456789ABCDEF";
-        let color = "#";
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+    const { username } = useAuth();
+    const { ws } = useChat();
+    const [open, setOpen] = useState(false);
+    const [edit, setEdit] = useState(false);
+    const [inputValue, setInputValue] = useState(message.text);
     function formatTime(time: string) {
         const date = new Date(Number(time) * 1000);
 
@@ -41,22 +39,116 @@ export default function MessageForYou({
 
         return hours + ":" + (minutes < 10 ? "0" : "") + minutes;
     }
+    const openMenuMessage = () => {
+        setOpen((prevState) => !prevState);
+    };
+    const deleteMessageUser = () => {
+        const messageUser = {
+            event_type: "message_was_deleted",
+            id: message.id,
+        };
+        ws?.send(JSON.stringify(messageUser));
+    };
+    const editMessage = () => {
+        const messageUser = {
+            event_type: "message_was_updated",
+            id: message.id,
+            new_text: inputValue,
+        };
+        ws?.send(JSON.stringify(messageUser));
+        setEdit(false);
+    };
+    const handleChange = (e: {
+        target: { value: React.SetStateAction<string> };
+    }) => {
+        setInputValue(e.target.value);
+    };
 
     return (
-        <li key={message.id} className={`${styles.message__container} ${message.user_name === username && styles.from}`}>
-            {message.user_name !== username && <img className={styles.user__avatar} src={message.user_avatar} />}
-            <div className={`${styles.message__user} ${message.user_name === username && styles.from}`}>
-                <p
-                    className={styles.user__name}
-                    style={{ color: getRandomColor() }}
+        <li
+            key={message.id}
+            className={`${styles.message__container} ${
+                message.user_name === username && styles.from
+            }`}
+        >
+            {message.user_name !== username && (
+                <img
+                    className={styles.user__avatar}
+                    src={message.user_avatar}
+                />
+            )}
+            <button
+                onClick={openMenuMessage}
+                className={message.is_deleted ? styles.deleted : ""}
+            >
+                <span
+                    className={`${styles.message__user} ${
+                        message.user_name === username && styles.from
+                    } ${message.is_deleted ? styles.deleted : ""}`}
                 >
-                    {message.user_name}
-                </p>
-                <p className={styles.user__text}>{message.text}</p>
-                <p className={styles.user__time}>
-                    {formatTime(message.timestamp)}
-                </p>
-            </div>
+                    <p
+                        className={`${styles.user__name} ${
+                            message.is_deleted ? styles.gray : ""
+                        }`}
+                    >
+                        {message.user_name}
+                    </p>
+                    {edit ? (
+                        <>
+                            <label>
+                                <input
+                                    onChange={(e) => handleChange(e)}
+                                    value={inputValue}
+                                    type="text"
+                                />
+                            </label>
+                            <div
+                                className={styles.edit__message}
+                                onClick={() => {
+                                    editMessage();
+                                }}
+                            >
+                                save
+                            </div>
+                        </>
+                    ) : (
+                        <p className={styles.user__text}>
+                            {message.is_deleted ? (
+                                <>
+                                    <Delete /> The message is deleted
+                                </>
+                            ) : (
+                                message.text
+                            )}
+                        </p>
+                    )}
+                    <p className={styles.user__time}>
+                        {formatTime(message.timestamp)}
+                    </p>
+                    {open && !message.is_deleted && !edit && (
+                        <div className={styles.menu__message}>
+                            {username === message.user_name && (
+                                <>
+                                    <div
+                                        onClick={() => {
+                                            setEdit(true);
+                                        }}
+                                    >
+                                        <Edit /> Edit
+                                    </div>
+                                    <div
+                                        onClick={() => {
+                                            deleteMessageUser();
+                                        }}
+                                    >
+                                        <Delete /> Delete
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </span>
+            </button>
         </li>
     );
 }

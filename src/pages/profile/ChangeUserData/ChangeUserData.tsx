@@ -32,12 +32,7 @@ export default function ChangeUserData() {
             email: false,
         }
     );
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const [open, setOpen] = useState<boolean>(false);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [open] = useState<boolean>(false);
 
     const {
         register,
@@ -57,13 +52,6 @@ export default function ChangeUserData() {
             ...prevFocus,
             [type]: true,
         }));
-    };
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const onClickChangeOpenModal = (): void => {
-        setOpenModal((prevOpen): boolean => {
-            return !prevOpen;
-        });
     };
     const handleImageChange = (e: ChangeEvent<HTMLInputElement> | null) => {
         if (e && e.target.files && e.target.files.length > 0) {
@@ -99,7 +87,6 @@ export default function ChangeUserData() {
             ...formStateValue,
             [type]: value,
         });
-
         validateField(type, value);
     };
     const deliveryFormAuth: SubmitHandler<InputsChangeData> = async (data) => {

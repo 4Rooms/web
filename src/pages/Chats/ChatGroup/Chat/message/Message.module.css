@@ -10,6 +10,15 @@
 .message__container.from {
   justify-content: right;
 }
+.message__container > button {
+  background-color: transparent;
+  border: transparent;
+  color: black;
+  text-align: left;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+}
 
 .user__avatar {
   width: 30px;
@@ -18,7 +27,7 @@
 }
 
 .message__user {
-  background: #EAEAEA;
+  background: #eaeaea;
   border-radius: 0px 20px 20px 20px;
   padding: 10px 16px;
   display: flex;
@@ -33,11 +42,66 @@
 .message__user.from {
   border-radius: 20px 0px 20px 20px;
 }
+.message__user.deleted {
+  background-color: #c7c7c7;
+  color: #616161;
+  font-size: 8px;
+}
+.message__user > label {
+  width: -moz-fit-content;
+  width: fit-content;
+  width: 75%;
+}
+.message__user > label > input {
+  border: transparent;
+  color: black;
+  padding: 4px 8px;
+  border: 1px solid black;
+  border-radius: 16px;
+  width: 100%;
+}
+.message__user > label > input:focus {
+  outline: transparent;
+}
+.message__user > .menu__message {
+  position: absolute;
+  right: 2%;
+  top: 0;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  gap: 12px;
+  width: 100px;
+  flex-wrap: wrap;
+  background-color: #eaeaea;
+}
+.message__user > .menu__message > div {
+  cursor: pointer;
+  background-color: transparent;
+  border: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: black;
+  font-size: 14px;
+}
+
+.edit__message {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 10px;
+  color: black;
+  padding: 4px 8px;
+}
 
 .user__name {
   font-size: 12px;
+  color: black;
   width: 100%;
   line-height: 150%;
+}
+.user__name.gray {
+  color: gray;
 }
 @media screen and (max-width: 500px) {
   .user__name {
@@ -49,6 +113,16 @@
   font-size: 14px;
   line-height: 23px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.user__text > svg {
+  width: 20px;
+  height: 20px;
+}
+.user__text > svg > path {
+  fill: gray;
 }
 
 .user__time {
