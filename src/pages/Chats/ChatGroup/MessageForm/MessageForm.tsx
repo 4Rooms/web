@@ -56,7 +56,7 @@ export default function MessageForm() {
             return messageUser;
         }
         console.log(test());
-    }, [chatId, imageURLs, images, message])
+    }, [chatId, images, message])
 
     const forSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
