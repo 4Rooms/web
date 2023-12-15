@@ -10,7 +10,7 @@ import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId, setMessage, setOnline, category, message } = useChat();
+    const { chatId, setMessage, setOnline, category} = useChat();
     const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";

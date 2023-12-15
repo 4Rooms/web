@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../Message.module.scss";
 import { useAuth } from "../../../../../auth/auth-context/use-auth";
 import { Delete, Edit } from "../../../../../../assets/icons";
-import { useChat } from "../../../../chat-context/use-chat";
+import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
 
 export default function MessageForYou({
     message,
