@@ -1,5 +1,5 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
 const resources = {
     en: {
@@ -12,6 +12,20 @@ const resources = {
                 'sign up': 'Sign up',
                 'googleSignUp': 'Or sign up with email:',
                 'createAccount': 'Create account',
+                'signInButton': 'Sign in',
+                'minLengthErrorUsername': 'Username must be at least 1 character long.',
+                'maxLengthErrorUsername': 'Username cannot be longer than 20 characters.',
+                'usernameRegexError': 'Username can be either a name or an email address.',
+                'requiredUsername': 'Username is required.',
+                'validEmailError': 'Enter a valid email address.',
+                'emailRequired': 'Email is required.',
+                'validEmailTextError': 'Must be a valid email address',
+                'passwordMinError': 'Password must be at least 8 characters.',
+                'passwordMaxError': 'Password cannot exceed 128 characters.',
+                'passwordAnyCharError': 'Password can contain any character.',
+                'passwordValidCharsError': 'Password must contain only letters, digits, spaces, and the following special characters: !@#$%^&*()-_=+№{}|`\'.',
+                'passwordLetterError': 'Password must contain at least one letter.',
+                'passwordRequired': 'Password is required.',
             },
             'sign-in-page': {
                 'title': 'Authentication',
@@ -21,7 +35,17 @@ const resources = {
                 'enterPassword': 'Enter your password',
                 'forgotPassword': 'Forgot password?',
                 'googleSignIn': 'Sign in with Google:',
-                'signInButton': 'Sign in'
+                'signInButton': 'Sign in',
+                'minLengthErrorUsername':'Name should have at least 1 character',
+                'maxLengthErrorUsername':'Сreate a username up to 20 characters',
+                'usernameRegexError':'Username can be either a name or an email address',
+                'requiredUsername':'Name is required',
+                'passwordMinError':'Password must be at least 8 characters',
+                'passwordMaxError':'Password cannot exceed 128 characters',
+                'passwordAnyCharError':'Password can contain any character',
+                'passwordValidCharsError':'Password must contain only letters, digits, spaces, and the following special characters: !@#$%^&*()-_=+№{}|`\'',
+                'passwordLetterError':'Password must contain at least one letter',
+                'passwordRequired':'Password is required',
             },
             'confirm-email': {
                 'initial': 'Please wait for confirmation...',
@@ -33,7 +57,7 @@ const resources = {
                 'acceptAll': 'Accept all',
                 'description': {
                     'firstPart': 'We use files cookies only to collect information for functional. By clicking',
-                    'boldPart': '"Accept All"',
+                    'boldPart': 'Accept All',
                     'lastPart': ', you consent to data collection for the above purposes'
                 }
             },
@@ -83,11 +107,25 @@ const resources = {
             'auth-page': {
                 'hi': 'Вітаємо,',
                 'welcome': 'Вітаємо, ласкаво просимо до 4Rooms!',
-                'account': 'Натисніть "Увійти", якщо у вас є обліковий запис або "Зареєструватися", щоб створити його.',
+                'account': 'Натисніть \'Увійти\', якщо у вас є обліковий запис або \'Зареєструватися\', щоб створити його.',
                 'sign in': 'Увійти',
                 'sign up': 'Зареєструйтесь',
                 'googleSignUp': 'Зареєструватися за допомогою пошти:',
                 'createAccount': 'Створити аккаунт',
+                'oneCharacterError': 'Ім\'я повинно містити щонайменше 1 символ',
+                'minLengthErrorUsername': 'Ім\'я користувача повинно бути хоча б 1 символ завдовжки.',
+                'maxLengthErrorUsername': 'Ім\'я користувача не може перевищувати 20 символів.',
+                'usernameRegexError': 'Ім\'я користувача може бути ім\'ям або електронною адресою.',
+                'requiredUsername': 'Необхідно ввести ім\'я користувача.',
+                'validEmailError': 'Введіть дійсну електронну адресу.',
+                'emailRequired': 'Електронна адреса є обов\'язковою.',
+                'validEmailTextError': 'Має бути дійсною електронною адресою',
+                'passwordMinError': 'Пароль повинен містити принаймні 8 символів.',
+                'passwordMaxError': 'Пароль не може перевищувати 128 символів.',
+                'passwordAnyCharError': 'Пароль може містити будь-які символи.',
+                'passwordValidCharsError': 'Пароль має містити лише літери, цифри, пробіли та наступні спеціальні символи: !@#$%^&*()-_=+№{}|`\'.',
+                'passwordLetterError': 'Пароль повинен містити хоча б одну літеру.',
+                'passwordRequired': 'Пароль є обов\'язковим.'
             },
             'sign-in-page': {
                 'title': 'Аутентифікація',
@@ -97,7 +135,18 @@ const resources = {
                 'enterPassword': 'Введіть ваш пароль',
                 'forgotPassword': 'Забули пароль?',
                 'googleSignIn': 'Увійти за допомогою Google:',
-                'signInButton': 'Увійти'
+                'signInButton': 'Увійти',
+                'minLengthErrorUsername': 'Ім\'я повинно містити принаймні 1 символ',
+                'maxLengthErrorUsername': 'Створіть ім\'я користувача до 20 символів',
+                'usernameRegexError': 'Ім\'я користувача може бути або ім\'ям, або електронною адресою',
+                'requiredUsername': 'Необхідно ввести ім\'я',
+                'passwordMinError': 'Пароль повинен бути не менше 8 символів',
+                'passwordMaxError': 'Пароль не може перевищувати 128 символів',
+                'passwordAnyCharError': 'Пароль може містити будь-які символи',
+                'passwordValidCharsError': 'Пароль повинен містити тільки літери, цифри, пробіли та наступні спеціальні символи: !@#$%^&*()-_=+№{}|`\'',
+                'passwordLetterError': 'Пароль повинен містити принаймні одну літеру',
+                'passwordRequired': 'Пароль є обов\'язковим'
+
             },
             'confirm-email': {
                 'initial': 'Будь ласка, почекайте йде підтвердженя...',
