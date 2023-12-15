@@ -34,7 +34,7 @@ export default function ChatGroup({isSmallScreen}: ProfileContextType) {
                 <Welcome />
             ) : (
                 <>
-                    <Infrotmation user={chat.user} isSmallScreen={isSmallScreen} avatar={chat.img} title={chat.title} description={chat.description} timestamp={chat.timestamp} />
+                    <Infrotmation user={chat.user} isSmallScreen={isSmallScreen} avatar={chat.img} title={chat?.title ?? ''} description={chat.description} timestamp={chat.timestamp} />
                     <Online />
                     <Chat />
                     <MessageForm />

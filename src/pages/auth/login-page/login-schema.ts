@@ -3,25 +3,25 @@ import * as yup from "yup";
 export default yup.object().shape({
     username: yup
         .string()
-        .min(1, "Name should have at least 1 character")
-        .max(20, "Сreate a username up to 20 characters")
+        .min(1, 'minLengthErrorUsername')
+        .max(20, 'maxLengthErrorUsername')
         .matches(
             /^([@#$_]*[a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9@#$_\s]+[@#$_]*)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
-            "Username can be either a name or an email address"
+            'usernameRegexError'
         )
-        .required("Name is required"),
+        .required('requiredUsername'),
         password: yup
         .string()
-        .min(8, "Password must be at least 8 characters")
-        .max(128, "Password cannot exceed 128 characters")
-        .matches(/^[\s\S]*$/, "Password can contain any character")
+        .min(8, 'passwordMinError')
+        .max(128, 'passwordMaxError')
+        .matches(/^[\s\S]*$/, 'passwordAnyCharError')
         .matches(
             /^[a-zA-Zа-яА-ЯєіїёЁ0-9!@#$%^&*()-_=+№{}|`' ]*$/,
-            "Password must contain only letters, digits, spaces, and the following special characters: !@#$%^&*()-_=+№{}|`'"
+            'passwordValidCharsError'
         )
         .matches(
             /^(?=.*[a-zA-Zа-яА-ЯєіїёЁ])(?=.*\d)?[a-zA-Zа-яА-ЯєіїёЁ0-9!@#$%^&*()-_=+\s\S]*$/,
-            "Password must contain at least one letter"
+            'passwordLetterError'
         )
-        .required("Password is required"),
+        .required('passwordRequired'),
 });

@@ -16,6 +16,7 @@ import Button from "../../../shared/button/button.tsx";
 import FormInput from "../../../shared/auth-input/form-Input.tsx";
 import Toaster from "../../../shared/toaster/toaster.tsx";
 import { useTranslation } from "react-i18next";
+import { ISchema, reach } from "yup";
 
 export default function SignupPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
@@ -94,6 +95,16 @@ export default function SignupPage() {
         validateField(type, value);
     };
 
+    const onBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputSignupKeys) => {
+        const value = e.target.value;
+
+        (reach(authSchema, type) as ISchema<unknown>)
+            .validate(value, {abortEarly: false})
+            .catch((error: { errors: string[]; }) => {
+                setError(type, {type: "manual", message: error.errors[0]});
+            });
+    };
+
 
     const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (
         data
@@ -132,6 +143,7 @@ export default function SignupPage() {
                         formStateFocus={formStateFocus}
                         formStateValue={formStateValue}
                         open={open}
+                        onBlur={onBlur}
                         onChange={onChange}
                         onFocusInput={onFocusInput}
                     />
@@ -156,7 +168,7 @@ export default function SignupPage() {
 
                     {errors[value] && !formStateValid[value] &&
                         <>
-                            <p className={styles.text__error}>{errors[value]?.message}</p>
+                            <p className={styles.text__error}>{t(`${errors[value]?.message}`)}</p>
                             <Error className={styles.error__auth}/>
                         </>
                     }
