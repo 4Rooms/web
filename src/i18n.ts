@@ -26,6 +26,9 @@ const resources = {
                 'passwordValidCharsError': 'Password must contain only letters, digits, spaces, and the following special characters: !@#$%^&*()-_=+№{}|`\'.',
                 'passwordLetterError': 'Password must contain at least one letter.',
                 'passwordRequired': 'Password is required.',
+                'username': 'Сreate a username up to 20 characters.',
+                'password': 'Please, create a password of at least 8 characters using letters and numbers.',
+                'email': ''
             },
             'sign-in-page': {
                 'title': 'Authentication',
@@ -46,6 +49,8 @@ const resources = {
                 'passwordValidCharsError':'Password must contain only letters, digits, spaces, and the following special characters: !@#$%^&*()-_=+№{}|`\'',
                 'passwordLetterError':'Password must contain at least one letter',
                 'passwordRequired':'Password is required',
+                'username': 'Сreate a username up to 20 characters.',
+                'password': 'Please, create a password of at least 8 characters using letters and numbers.'
             },
             'confirm-email': {
                 'initial': 'Please wait for confirmation...',
@@ -125,7 +130,10 @@ const resources = {
                 'passwordAnyCharError': 'Пароль може містити будь-які символи.',
                 'passwordValidCharsError': 'Пароль має містити лише літери, цифри, пробіли та наступні спеціальні символи: !@#$%^&*()-_=+№{}|`\'.',
                 'passwordLetterError': 'Пароль повинен містити хоча б одну літеру.',
-                'passwordRequired': 'Пароль є обов\'язковим.'
+                'passwordRequired': 'Пароль є обов\'язковим.',
+                "username": "Створіть ім'я користувача до 20 символів.",
+                "password": "Будь ласка, створіть пароль не менше 8 символів, використовуючи літери та цифри.",
+                'email': ''
             },
             'sign-in-page': {
                 'title': 'Аутентифікація',
@@ -145,8 +153,9 @@ const resources = {
                 'passwordAnyCharError': 'Пароль може містити будь-які символи',
                 'passwordValidCharsError': 'Пароль повинен містити тільки літери, цифри, пробіли та наступні спеціальні символи: !@#$%^&*()-_=+№{}|`\'',
                 'passwordLetterError': 'Пароль повинен містити принаймні одну літеру',
-                'passwordRequired': 'Пароль є обов\'язковим'
-
+                'passwordRequired': 'Пароль є обов\'язковим',
+                "username": "Створіть ім'я користувача до 20 символів.",
+                "password": "Будь ласка, створіть пароль не менше 8 символів, використовуючи літери та цифри.",
             },
             'confirm-email': {
                 'initial': 'Будь ласка, почекайте йде підтвердженя...',
