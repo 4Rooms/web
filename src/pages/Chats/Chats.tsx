@@ -25,6 +25,7 @@ export default function Chats() {
         const msgData = JSON.parse(e.data);
         if (msgData.event_type === "chat_message") {
             setMessage((prevState) => [...prevState, msgData.message]);
+            console.log(msgData);
         } else if (msgData.event_type === "online_user_list") {
             setOnline(msgData.user_list);
         } else if (msgData.event_type === "message_was_deleted") {
@@ -43,6 +44,8 @@ export default function Chats() {
                         : prevMessage
                 )
             );
+        } else {
+            console.log(msgData)
         }
     }
     useEffect(() => {

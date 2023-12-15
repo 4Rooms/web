@@ -12,7 +12,6 @@
         @media screen and (max-width: 871px) {
             border-radius: 0;
         }
-
     }
 }
 .emoji_container {
@@ -45,9 +44,24 @@
     border-color: transparent;
     background-color: transparent;
     cursor: pointer;
-};
+}
 
 .wrapper__icon {
     display: flex;
     gap: 8px;
+}
+
+.add__photo {
+    cursor: pointer;
+    background-color: transparent;
+    border: transparent;
+    & > label {
+        position: relative;
+        & > input {
+            width: 20px;
+            height: 21px;
+            position: absolute;
+            opacity: 0;
+        }
+    }
 }
