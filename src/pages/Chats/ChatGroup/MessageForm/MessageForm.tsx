@@ -48,11 +48,11 @@ export default function MessageForm() {
                 message: {
                     chat: chatId,
                     text: message,
+                    attachments: await Promise.all(Array.from(images).map(async (file) => ({
+                        name: file.name,
+                        content: await readFile(file),
+                    })))
                 },
-                attachments: await Promise.all(Array.from(images).map(async (file) => ({
-                    name: file.name,
-                    content: await readFile(file),
-                }))),
             };
             ws.send(JSON.stringify(messageUser));
             setMessage("");
