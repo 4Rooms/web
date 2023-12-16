@@ -40,24 +40,6 @@ export default function MessageForm() {
         });
     }
 
-    useEffect(() => {
-        const test = async () => {
-            const messageUser = {
-                event_type: "chat_message",
-                message: {
-                    chat: chatId,
-                    text: message,
-                },
-                attachments: await Promise.all(images.map(async (file) => ({
-                    name: file.name,
-                    content: await readFile(file),
-                }))),
-            };
-            return messageUser;
-        }
-        console.log(test());
-    }, [chatId, images, message])
-
     const forSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (message && ws) {
@@ -67,7 +49,7 @@ export default function MessageForm() {
                     chat: chatId,
                     text: message,
                 },
-                attachments: await Promise.all(images.map(async (file) => ({
+                attachments: await Promise.all(Array.from(images).map(async (file) => ({
                     name: file.name,
                     content: await readFile(file),
                 }))),
