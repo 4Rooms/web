@@ -1,13 +1,11 @@
 #root {
+  overflow: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   min-height: 100vh;
-  background-color: transparent;
-  background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
-  background: url(./assets/background_image@1x.png) 100%;
+  background: transparent url(./assets/background_image@1x.png) no-repeat 100% 100%;
 }
 @media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   #root {

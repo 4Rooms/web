@@ -112,6 +112,7 @@ interface Message {
     is_deleted: boolean;
     chat: number; 
     user: number;
+    attachments: [string]
 }
 
 export type MessageList = Message[];

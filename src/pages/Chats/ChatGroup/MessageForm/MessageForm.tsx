@@ -21,13 +21,15 @@ export default function MessageForm() {
     };
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement> | null) => {
-        if (e && e.target.files && e.target.files.length > 0) {
+        if (e && e.target.files && e.target.files.length < 5) {
             const selectedFiles = Array.from(e.target.files);
             
             const imageUrls = selectedFiles.map((file) => URL.createObjectURL(file));
 
             setImageURLs((prevImageURLs) => [...prevImageURLs, ...imageUrls]);
             setImages((prevImages) => [...prevImages, ...selectedFiles]);
+        } else {
+            alert("Please select only 4 photo")
         }
     };
 
@@ -48,12 +50,13 @@ export default function MessageForm() {
                 message: {
                     chat: chatId,
                     text: message,
+                    attachments: await Promise.all(images.map(async (file) => ({
+                        name: file.name,
+                        content: await readFile(file),
+                    }))),
                 },
-                attachments: await Promise.all(Array.from(images).map(async (file) => ({
-                    name: file.name,
-                    content: await readFile(file),
-                }))),
             };
+            setImages([]);
             ws.send(JSON.stringify(messageUser));
             setMessage("");
         }

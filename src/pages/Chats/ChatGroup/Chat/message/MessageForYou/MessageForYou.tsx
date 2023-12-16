@@ -24,6 +24,7 @@ export default function MessageForYou({
         is_deleted: boolean;
         chat: number;
         user: number;
+        attachments: [string];
     };
 }) {
     const { username } = useAuth();
@@ -93,6 +94,16 @@ export default function MessageForYou({
                     >
                         {message.user_name}
                     </p>
+                    <div className={styles.message__photos}>
+                        {message.attachments?.map((photo, index) => (
+                            <img
+                                key={index}
+                                src={photo}
+                                className={styles.message__photo}
+                                alt={`Photo ${index + 1}`}
+                            />
+                        ))}
+                    </div>
                     {edit ? (
                         <>
                             <label>

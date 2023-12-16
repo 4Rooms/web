@@ -51,4 +51,19 @@
 .wrapper__icon {
   display: flex;
   gap: 8px;
+}
+
+.add__photo {
+  cursor: pointer;
+  background-color: transparent;
+  border: transparent;
+}
+.add__photo > label {
+  position: relative;
+}
+.add__photo > label > input {
+  width: 20px;
+  height: 21px;
+  position: absolute;
+  opacity: 0;
 }/*# sourceMappingURL=MessageForm.module.css.map */
