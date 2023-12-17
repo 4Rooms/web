@@ -14,8 +14,9 @@
         border: transparent;
         color: black;
         text-align: left;
-        width: fit-content;
         position: relative;
+        display: inline-flex;
+        min-width: 20%;
     }
 }
 
@@ -29,8 +30,7 @@
     background: #eaeaea;
     border-radius: 0px 20px 20px 20px;
     padding: 10px 16px;
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
     gap: 8px;
     @media screen and (max-width: 500px) {
         padding: 8px 16px;
@@ -57,6 +57,9 @@
                 outline: transparent;
             }
         }
+    }
+    &:not(:last-child) {
+        margin-bottom: 32px;
     }
 
     & > .menu__message {
@@ -120,16 +123,26 @@
 .user__time {
     font-size: 10px;
     line-height: 150%;
-    margin-left: auto;
+    text-align: right;
 }
 
 .message__photos {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    max-width: 365px;
+    justify-content: right;
 }
 
 .message__photo {
-    width: calc(50% - 5px);
+    width: 180px;
     height: 120px;
+    @media screen and (max-width: 440px) {
+        width: calc(50% - 5px);
+    }
+    &.three__child {
+        &:nth-child(3) {
+            width: 100%;
+        }
+    }
 }

@@ -3,7 +3,6 @@
     padding: 8px 20px;
     width: 100%;
     background: var(--button--color);
-    gap: 8px;
     overflow-y: auto;
     &.books {
         background: rgba(238, 215, 140, 0.70);
@@ -16,6 +15,13 @@
     }
     &.music {
         background: rgba(223, 184, 241, 0.70);
+    }
+    &.image {
+        gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-y: hidden;
+        justify-content: right;
     }
 
     &::-webkit-scrollbar {
@@ -32,5 +38,14 @@
 
     @media screen and (max-width: 871px) {
         padding: 8px;
+    }
+}
+.item__photo {
+    width: calc(50% - 5px);
+    height: 50%;
+    margin-top: auto;
+    & > img {
+        height: 100%;
+        width: 100%;
     }
 }

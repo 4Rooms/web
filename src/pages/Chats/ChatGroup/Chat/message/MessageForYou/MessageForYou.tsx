@@ -99,7 +99,7 @@ export default function MessageForYou({
                             <img
                                 key={index}
                                 src={photo}
-                                className={styles.message__photo}
+                                className={`${styles.message__photo} ${message.attachments.length === 3 && styles.three__child}`}
                                 alt={`Photo ${index + 1}`}
                             />
                         ))}

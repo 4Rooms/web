@@ -47,6 +47,8 @@ interface ChatContextType {
     >;
     category: string;
     setCategory: Dispatch<SetStateAction<string>>;
+    imageURLs: string[];
+    setImageURLs: Dispatch<SetStateAction<string[]>>;
 }
 
 export const ChatContext = createContext<ChatContextType>(

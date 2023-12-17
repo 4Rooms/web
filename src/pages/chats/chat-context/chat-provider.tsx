@@ -26,6 +26,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         { id: number; username: string; avatar: string }[]
     >([]);
     const [category, setCategory] = useState("new");
+    const [imageURLs, setImageURLs] = useState<string[]>([]);
 
     return (
         <ChatContext.Provider
@@ -46,6 +47,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setOnline,
                 category,
                 setCategory,
+                imageURLs,
+                setImageURLs
             }}
         >
             {children}

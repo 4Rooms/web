@@ -14,9 +14,9 @@
   border: transparent;
   color: black;
   text-align: left;
-  width: -moz-fit-content;
-  width: fit-content;
   position: relative;
+  display: inline-flex;
+  min-width: 20%;
 }
 
 .user__avatar {
@@ -29,8 +29,7 @@
   background: #eaeaea;
   border-radius: 0px 20px 20px 20px;
   padding: 10px 16px;
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
   gap: 8px;
 }
 @media screen and (max-width: 500px) {
@@ -61,6 +60,9 @@
 }
 .message__user > label > input:focus {
   outline: transparent;
+}
+.message__user:not(:last-child) {
+  margin-bottom: 32px;
 }
 .message__user > .menu__message {
   position: absolute;
@@ -125,16 +127,26 @@
 .user__time {
   font-size: 10px;
   line-height: 150%;
-  margin-left: auto;
+  text-align: right;
 }
 
 .message__photos {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  max-width: 365px;
+  justify-content: right;
 }
 
 .message__photo {
-  width: calc(50% - 5px);
+  width: 180px;
   height: 120px;
+}
+@media screen and (max-width: 440px) {
+  .message__photo {
+    width: calc(50% - 5px);
+  }
+}
+.message__photo.three__child:nth-child(3) {
+  width: 100%;
 }/*# sourceMappingURL=Message.module.css.map */

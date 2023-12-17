@@ -5,10 +5,9 @@ import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import EmojiPicker from "emoji-picker-react";
 
 export default function MessageForm() {
-    const { ws, chatId } = useChat();
+    const { ws, chatId, setImageURLs, imageURLs } = useChat();
     const [message, setMessage] = useState("");
     const [isPickerVisible, setIsPickerVisible] = useState(false);
-    const [imageURLs, setImageURLs] = useState<string[]>([]);
     const [images, setImages] = useState<File[]>([]);
 
     const toggleEmojiPicker = () => {
@@ -57,6 +56,7 @@ export default function MessageForm() {
                 },
             };
             setImages([]);
+            setImageURLs([]);
             ws.send(JSON.stringify(messageUser));
             setMessage("");
         }
@@ -92,7 +92,8 @@ export default function MessageForm() {
                             type="file"
                             accept="image/*"
                             onChange={handleImageChange}
-                            multiple
+                            multiple 
+                            disabled={imageURLs.length > 0}
                         />
                         <AddFile />
                     </label>
