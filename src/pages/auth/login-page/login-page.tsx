@@ -188,10 +188,10 @@ export default function LoginPage() {
                             {!formStateValid[value as keyof InputsLogin] && formStateFocus[value as keyof InputsLogin] && !errors[value as keyof InputsLogin] &&
                                 <>
                                     <div className={styles.focus__block}>
-                                        <p>{value as keyof InputsLogin}</p>
+                                        <p>{value}</p>
                                     </div>
                                     <p className={styles.text__info}>
-                                        {t(value as keyof InputsLogin)}
+                                        {t(value)}
                                     </p>
                                 </>
                             }

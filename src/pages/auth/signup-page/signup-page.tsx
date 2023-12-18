@@ -1,7 +1,7 @@
 import styles from "../auth.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error, HiddenPassword, IconOkey, OpenPassword } from "../../../assets/icons.tsx";
-import { InputSignupKeys, InputsRegistraytion, InputsValidRegistration } from "../../../App.types.ts";
+import { InputSignupKeys, InputsLogin, InputsRegistraytion, InputsValidRegistration } from "../../../App.types.ts";
 import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../auth-context/auth-context.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -158,12 +158,15 @@ export default function SignupPage() {
                         </button>
                     }
 
-                    {formStateFocus[value] && !formStateValid[value] && !errors[value] &&
-                        formStateValue[value].length > 0 &&
-                        <div className={styles.focus__block}>
-                            <p>{value}
+                    {!formStateValid[value as keyof InputsLogin] && formStateFocus[value as keyof InputsLogin] && !errors[value as keyof InputsLogin] &&
+                        <>
+                            <div className={styles.focus__block}>
+                                <p>{value}</p>
+                            </div>
+                            <p className={styles.text__info}>
+                                {t(value)}
                             </p>
-                        </div>
+                        </>
                     }
 
                     {errors[value] && !formStateValid[value] &&
