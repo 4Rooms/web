@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import styles from "./CreateChat.module.scss";
 import Modal from "../../../../Components/Modal/Modal";
 import { AddPhoto, Error, IconOkey } from "../../../../assets/icons";
@@ -42,7 +42,6 @@ export default function CreateChat() {
         setError,
         clearErrors,
         formState: { errors },
-        reset,
     } = useForm({
         defaultValues: {
             title: "",
@@ -50,9 +49,6 @@ export default function CreateChat() {
         },
         resolver: yupResolver(createSchema),
     });
-    useEffect(() => {
-        console.log(image)
-    }, [image])
 
     const onFocusInput = (type: keyof InputsCreateValid) => {
         setFormStateFocus((prevFocus) => ({
@@ -84,7 +80,6 @@ export default function CreateChat() {
         type: InputsCreateKeys
     ) => {
         const value = e.target.value;
-
         setFormStateValue({
             ...formStateValue,
             [type]: value,
@@ -100,6 +95,7 @@ export default function CreateChat() {
     };
 
     const deliveryFormAuth: SubmitHandler<InputsCreate> = async (data) => {
+        console.log(21321321)
         const formData = new FormData();
         const chatOptions = {
             ...data,
@@ -118,7 +114,6 @@ export default function CreateChat() {
             setRoomsList([newData.chat, ...(roomsList || [])]);
         }
         setImageURL("");
-        reset();
         setOpenModal(false);
     };
 

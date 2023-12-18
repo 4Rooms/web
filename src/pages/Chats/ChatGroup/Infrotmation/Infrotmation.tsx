@@ -31,7 +31,7 @@ export default function Infrotmation({
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const { setChatOpen, chatId } = useChat();
+    const { setChatOpen, chatId, ws } = useChat();
     const userName: {
         email: string;
         id: number;
@@ -73,7 +73,11 @@ export default function Infrotmation({
     const deleteChatSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await deleteChat(chatId);
+            // await deleteChat(chatId);
+            const messageUser = {
+                event_type: "chat_was_deleted"
+            };
+            ws?.send(JSON.stringify(messageUser));
             setChatOpen(false);
         } catch (error) {
             console.log(error);
