@@ -42,6 +42,7 @@ export default function CreateChat() {
         setError,
         clearErrors,
         formState: { errors },
+        reset
     } = useForm({
         defaultValues: {
             title: "",
@@ -113,6 +114,7 @@ export default function CreateChat() {
         if (newData.name !== "AxiosError") {
             setRoomsList([newData.chat, ...(roomsList || [])]);
         }
+        reset();
         setImageURL("");
         setOpenModal(false);
     };
