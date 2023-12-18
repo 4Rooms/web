@@ -175,7 +175,7 @@ export default function ChangeUserData() {
                         type="submit"
                         onClick={() => setFormSubmitted(true)}
                     >
-                        Sign in
+                        Save
                     </Button>
                 </form>
             </div>
