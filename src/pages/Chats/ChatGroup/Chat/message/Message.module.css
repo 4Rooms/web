@@ -31,6 +31,10 @@
   padding: 10px 16px;
   width: 100%;
   gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: grid;
 }
 @media screen and (max-width: 500px) {
   .message__user {
@@ -112,8 +116,8 @@
 .user__text {
   font-size: 14px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
   gap: 4px;
 }
 .user__text > svg {

@@ -27,6 +27,11 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     >([]);
     const [category, setCategory] = useState("new");
     const [imageURLs, setImageURLs] = useState<string[]>([]);
+    const [update, setUpdate] = useState({
+        edit: false,
+        text: "",
+        id: 0,
+    });
 
     return (
         <ChatContext.Provider
@@ -48,7 +53,9 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 category,
                 setCategory,
                 imageURLs,
-                setImageURLs
+                setImageURLs,
+                update,
+                setUpdate,
             }}
         >
             {children}

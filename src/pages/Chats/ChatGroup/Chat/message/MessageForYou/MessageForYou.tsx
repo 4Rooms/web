@@ -28,7 +28,7 @@ export default function MessageForYou({
     };
 }) {
     const { username } = useAuth();
-    const { ws } = useChat();
+    const { ws, setUpdate } = useChat();
     const [open, setOpen] = useState(false);
     const [edit, setEdit] = useState(false);
     const [inputValue, setInputValue] = useState(message.text);
@@ -94,16 +94,21 @@ export default function MessageForYou({
                     >
                         {message.user_name}
                     </p>
-                    <div className={styles.message__photos}>
-                        {message.attachments?.map((photo, index) => (
-                            <img
-                                key={index}
-                                src={photo}
-                                className={`${styles.message__photo} ${message.attachments.length === 3 && styles.three__child}`}
-                                alt={`Photo ${index + 1}`}
-                            />
-                        ))}
-                    </div>
+                    {message.attachments.length > 0 && (
+                        <div className={styles.message__photos}>
+                            {message.attachments?.map((photo, index) => (
+                                <img
+                                    key={index}
+                                    src={photo}
+                                    className={`${styles.message__photo} ${
+                                        message.attachments.length === 3 &&
+                                        styles.three__child
+                                    }`}
+                                    alt={`Photo ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+                    )}
                     {edit ? (
                         <>
                             <label>
@@ -142,7 +147,11 @@ export default function MessageForYou({
                                 <>
                                     <div
                                         onClick={() => {
-                                            setEdit(true);
+                                            setUpdate({
+                                                edit: true,
+                                                text: message.text,
+                                                id: message.id
+                                            });
                                         }}
                                     >
                                         <Edit /> Edit

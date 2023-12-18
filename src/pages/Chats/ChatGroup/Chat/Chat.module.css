@@ -22,7 +22,6 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: hidden;
-  justify-content: right;
 }
 .container__chat::-webkit-scrollbar {
   background-color: rgba(0, 0, 0, 0);
@@ -41,8 +40,18 @@
 
 .item__photo {
   width: calc(50% - 5px);
-  height: 50%;
+  height: calc(50% - 5px);
   margin-top: auto;
+}
+.item__photo.one__child {
+  height: 100%;
+  width: 100%;
+}
+.item__photo.two__child {
+  width: 100%;
+}
+.item__photo.three__child:nth-child(3) {
+  width: 100%;
 }
 .item__photo > img {
   height: 100%;

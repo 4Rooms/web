@@ -49,6 +49,16 @@ interface ChatContextType {
     setCategory: Dispatch<SetStateAction<string>>;
     imageURLs: string[];
     setImageURLs: Dispatch<SetStateAction<string[]>>;
+    update: {
+        id: number;
+        edit: boolean;
+        text: string;
+    };
+    setUpdate: Dispatch<SetStateAction<{
+        id: number;
+        edit: boolean;
+        text: string;
+    }>>
 }
 
 export const ChatContext = createContext<ChatContextType>(

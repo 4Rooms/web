@@ -137,4 +137,12 @@
 }
 .wrapper__modal_delete > p {
   font-size: 24px;
+}
+
+.wrapper {
+  background-color: #C7C7C7;
+  width: 100%;
+  border-radius: 10px;
+  padding: 12px 13px;
+  color: black;
 }/*# sourceMappingURL=Infrotmation.module.css.map */

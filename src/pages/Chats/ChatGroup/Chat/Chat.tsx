@@ -25,7 +25,17 @@ export default function Chat() {
             {imageURLs.length > 0
                 ? imageURLs?.map((image) => {
                       return (
-                          <li className={styles.item__photo}>
+                          <li
+                              className={`${styles.item__photo} ${
+                                  imageURLs?.length === 3
+                                      ? styles.three__child
+                                      : imageURLs?.length === 1
+                                      ? styles.one__child
+                                      : imageURLs?.length === 2
+                                      ? styles.two__child
+                                      : ""
+                              }`}
+                          >
                               <img src={image} alt={image} />
                           </li>
                       );

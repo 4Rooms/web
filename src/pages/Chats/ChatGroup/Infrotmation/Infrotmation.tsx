@@ -89,7 +89,9 @@ export default function Infrotmation({
                         </button>
                     )}
                     <img className={styles.group__avatar} src={avatar} />
-                    <p className={styles.group__name}>{cutTextFunction(title)}</p>
+                    <p className={styles.group__name}>
+                        {cutTextFunction(title)}
+                    </p>
                     <button
                         onClick={onClickChangeOpenModal}
                         className={styles.group__button__more}
@@ -106,25 +108,33 @@ export default function Infrotmation({
                                 className={styles.group__avatar__modal}
                                 src={avatar}
                             />
-                            <p className={styles.group__name__modal}>{cutTextFunction(title)}</p>
-                        </div>
-                        <p
-                            style={{ marginBottom: 20 }}
-                            className={styles.group__text}
-                        >
-                            {description}
-                        </p>
-                        <div className={styles.group__additional}>
-                            <p className={styles.time__additional}>
-                                {formatDate(timestamp)}
+                            <p className={styles.group__name__modal}>
+                                {cutTextFunction(title)}
                             </p>
-                            <div className={styles.container__button}>
-                                <button className={styles.button__additional}>
-                                    <Favorite />
-                                </button>
-                                <button className={styles.button__additional}>
-                                    <Saved />
-                                </button>
+                        </div>
+                        <div className={styles.wrapper}>
+                            <p
+                                style={{ marginBottom: 20 }}
+                                className={styles.group__text}
+                            >
+                                {description}
+                            </p>
+                            <div className={styles.group__additional}>
+                                <p className={styles.time__additional}>
+                                    {formatDate(timestamp)}
+                                </p>
+                                <div className={styles.container__button}>
+                                    <button
+                                        className={styles.button__additional}
+                                    >
+                                        <Favorite />
+                                    </button>
+                                    <button
+                                        className={styles.button__additional}
+                                    >
+                                        <Saved />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         {userName?.username === user && (
@@ -153,8 +163,9 @@ export default function Infrotmation({
                                     <h2>Delete your chat</h2>
                                     <p>
                                         Are you sure you want to delete{" "}
-                                        <b>“{cutTextFunction(title)}”</b> chat? After this
-                                        action, recovery will be impossible.
+                                        <b>“{cutTextFunction(title)}”</b> chat?
+                                        After this action, recovery will be
+                                        impossible.
                                     </p>
                                     <Button type="submit" className="accent">
                                         fewfew
