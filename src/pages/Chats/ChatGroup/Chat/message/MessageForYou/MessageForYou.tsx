@@ -150,7 +150,7 @@ export default function MessageForYou({
                                             setUpdate({
                                                 edit: true,
                                                 text: message.text,
-                                                id: message.id
+                                                id: message.id,
                                             });
                                         }}
                                     >
@@ -165,6 +165,13 @@ export default function MessageForYou({
                                     </div>
                                 </>
                             )}
+                            <div>
+                                <span>😀</span>
+                                <span>😈</span>
+                                <span>😎</span>
+                                <span>💀</span>
+                                <span>👻</span>
+                            </div>
                         </div>
                     )}
                 </span>
