@@ -21,6 +21,12 @@
     position: absolute;
     bottom: 40px;
     left: 0;
+    @media screen and (max-width: 420px) {
+        & > aside {
+            width: 250px;
+            height: 350px;
+        }
+    }
 }
 
 .wrapper__input {

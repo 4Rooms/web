@@ -24,6 +24,12 @@
   bottom: 40px;
   left: 0;
 }
+@media screen and (max-width: 420px) {
+  .emoji_picker > aside {
+    width: 250px;
+    height: 350px;
+  }
+}
 
 .wrapper__input {
   width: 100%;
@@ -57,8 +63,8 @@
   margin-left: auto;
 }
 .wrapper__input > div > button > svg {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   cursor: pointer;
 }
 

@@ -650,3 +650,101 @@ export const SavedChatsTrue = () => (
         />
     </svg>
 );
+
+export const DeleteChatCinema = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="200"
+        height="200"
+        viewBox="0 0 200 200"
+        fill="none"
+    >
+        <rect width="200" height="200" fill="#9A9FB1" />
+        <g id="Room page components">
+            <path
+                d="M-738 -2103C-738 -2107.42 -734.418 -2111 -730 -2111H4781C4785.42 -2111 4789 -2107.42 4789 -2103V3093C4789 3097.42 4785.42 3101 4781 3101H-730C-734.418 3101 -738 3097.42 -738 3093V-2103Z"
+                fill="#EBE8FA"
+            />
+            <g id="Functional_field_chat_page_01">
+                <rect
+                    x="-606.5"
+                    y="-1887.5"
+                    width="1079"
+                    height="2481"
+                    rx="4.5"
+                    stroke="#9747FF"
+                    stroke-dasharray="10 5"
+                />
+                <g id="State=Error" filter="url(#filter0_d_553_684)">
+                    <g id="Functional_field">
+                        <rect
+                            x="-253"
+                            y="-160"
+                            width="706"
+                            height="734"
+                            rx="20"
+                            fill="#BED1CB"
+                        />
+                        <circle
+                            id="Ellipse 14"
+                            cx="100"
+                            cy="100"
+                            r="100"
+                            fill="url(#pattern0)"
+                        />
+                    </g>
+                </g>
+            </g>
+        </g>
+        <defs>
+            <filter
+                id="filter0_d_553_684"
+                x="-602"
+                y="-171"
+                width="1070"
+                height="764"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+            >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="7.5" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+                />
+                <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_553_684"
+                />
+                <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_553_684"
+                    result="shape"
+                />
+            </filter>
+            <pattern
+                id="pattern0"
+                patternContentUnits="objectBoundingBox"
+                width="1"
+                height="1"
+            >
+            </pattern>
+            <image
+                id="image0_553_684"
+                data-name="deleted_chat_image_02.png"
+                width="500"
+                height="500"
+            />
+        </defs>
+    </svg>
+);

@@ -7,10 +7,12 @@ import { useChat } from "../chats/chat-context/use-chat.tsx";
 import { getAllMessages, getChatsRoom } from "../../services/chat/chat.service";
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
+import DeleteChat from "./ChatGroup/DeleteChat/DeleteChat.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId, setMessage, setOnline, category, setChatOpen } = useChat();
+    const { chatId, setMessage, setOnline, category, setDeleteChat, deleteChat } =
+        useChat();
     const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -44,7 +46,8 @@ export default function Chats() {
                 )
             );
         } else if (msgData.event_type === "chat_was_deleted") {
-            setChatOpen(false);
+            setDeleteChat((prevState) => ({ ...prevState, delete: true }));
+            setRoomsList((prevState) => prevState?.filter((room) => room.id !== msgData.id));
         }
         // } else if (msgData.event_type === "connected_user") {
         //     setOnline((prevState) => [...prevState, msgData.user]);
@@ -114,7 +117,11 @@ export default function Chats() {
                         <ChatGroup isSmallScreen={isSmallScreen} />
                     ) : (
                         <div>
-                            <Welcome isSmallScreen={isSmallScreen} />
+                            {deleteChat.delete ? (
+                                <DeleteChat />
+                            ) : (
+                                <Welcome isSmallScreen={isSmallScreen} />
+                            )}
                             <PanelGroups />
                         </div>
                     )}

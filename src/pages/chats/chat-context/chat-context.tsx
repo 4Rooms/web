@@ -54,11 +54,23 @@ interface ChatContextType {
         edit: boolean;
         text: string;
     };
-    setUpdate: Dispatch<SetStateAction<{
-        id: number;
-        edit: boolean;
-        text: string;
-    }>>
+    setUpdate: Dispatch<
+        SetStateAction<{
+            id: number;
+            edit: boolean;
+            text: string;
+        }>
+    >;
+    deleteChat: {
+        name: string;
+        delete: boolean;
+    };
+    setDeleteChat: Dispatch<
+        SetStateAction<{
+            name: string;
+            delete: boolean;
+        }>
+    >;
 }
 
 export const ChatContext = createContext<ChatContextType>(

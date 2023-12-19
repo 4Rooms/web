@@ -32,6 +32,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         text: "",
         id: 0,
     });
+    const [deleteChat, setDeleteChat] = useState({
+        name: "",
+        delete: false,
+    });
 
     return (
         <ChatContext.Provider
@@ -56,6 +60,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setImageURLs,
                 update,
                 setUpdate,
+                deleteChat,
+                setDeleteChat,
             }}
         >
             {children}

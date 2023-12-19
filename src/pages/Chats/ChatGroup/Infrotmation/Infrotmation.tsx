@@ -10,7 +10,6 @@ import {
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
-import { deleteChat } from "../../../../services/chat/chat.service.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -31,7 +30,7 @@ export default function Infrotmation({
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const { setChatOpen, chatId, ws } = useChat();
+    const { setChatOpen, ws, setDeleteChat } = useChat();
     const userName: {
         email: string;
         id: number;
@@ -73,12 +72,12 @@ export default function Infrotmation({
     const deleteChatSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            // await deleteChat(chatId);
             const messageUser = {
-                event_type: "chat_was_deleted"
+                event_type: "chat_was_deleted",
             };
             ws?.send(JSON.stringify(messageUser));
             setChatOpen(false);
+            setDeleteChat({ delete: true, name: title });
         } catch (error) {
             console.log(error);
         }
@@ -88,7 +87,15 @@ export default function Infrotmation({
             <div className={styles.container__information}>
                 <div className={styles.group}>
                     {isSmallScreen && (
-                        <button onClick={() => setChatOpen(false)}>
+                        <button
+                            onClick={() => {
+                                setChatOpen(false);
+                                setDeleteChat({
+                                    name: "",
+                                    delete: false,
+                                })
+                            }}
+                        >
                             <Back />
                         </button>
                     )}
