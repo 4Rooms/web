@@ -11,9 +11,16 @@ import DeleteChat from "./ChatGroup/DeleteChat/DeleteChat.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId, setMessage, setOnline, category, setDeleteChat, deleteChat } =
-        useChat();
-    const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
+    const {
+        chatId,
+        setMessage,
+        setOnline,
+        category,
+        setDeleteChat,
+        deleteChat,
+        online
+    } = useChat();
+    const { setRoomName, setRoomsList, chatOpen, setWs, ws } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const cookieString = document.cookie;
@@ -47,16 +54,19 @@ export default function Chats() {
             );
         } else if (msgData.event_type === "chat_was_deleted") {
             setDeleteChat((prevState) => ({ ...prevState, delete: true }));
-            setRoomsList((prevState) => prevState?.filter((room) => room.id !== msgData.id));
+            setRoomsList((prevState) =>
+                prevState?.filter((room) => room.id !== msgData.id)
+            );
+        } else if (msgData.event_type === "connected_user") {
+            setOnline((prevState) => [...prevState, msgData.user]);
+            console.log(online)
+        } else if (msgData.event_type === "disconnected_user") {
+            setOnline((prevState) =>
+                prevState.filter((user) => user.id !== msgData.user.id)
+            );
+        } else {
+            console.log(msgData.event_type);
         }
-        // } else if (msgData.event_type === "connected_user") {
-        //     setOnline((prevState) => [...prevState, msgData.user]);
-        // }
-        // } else if (msgData.event_type === "disconnected_user") {
-        //     setOnline((prevState) =>
-        //         prevState.filter((user) => user !== msgData.user.id)
-        //     );
-        // }
     }
     useEffect(() => {
         const getAllChatsRoom = async () => {
@@ -84,14 +94,17 @@ export default function Chats() {
             "?token=" +
             extractToken(cookieString);
         if (chatOpen) {
-            const ws = new WebSocket(socketUrl);
-            setWs(ws);
+            if (ws) {
+                console.log("disconnected");
+                ws?.close();
+            }
+            const wss = new WebSocket(socketUrl);
+            setWs(wss);
             const getMessages = async () => {
                 const messages = await getAllMessages(chatId);
                 setMessage(messages.results);
-                console.log(messages.results);
             };
-            ws.addEventListener("message", handleMessages);
+            wss.addEventListener("message", handleMessages);
             getMessages();
         }
         return () => {

@@ -19,7 +19,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         | undefined
     >(undefined);
     const [chatOpen, setChatOpen] = useState(false);
-    const [chatId, setChatId] = useState<number>(0);
+    const [chatId, setChatId] = useState<number>(1);
     const [ws, setWs] = useState<WebSocket | null>(null);
     const [message, setMessage] = useState<MessageList>([]);
     const [online, setOnline] = useState<
