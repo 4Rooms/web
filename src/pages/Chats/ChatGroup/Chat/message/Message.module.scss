@@ -9,7 +9,7 @@
     &.from {
         justify-content: right;
     }
-    & > button {
+    & > .wrapper__message {
         background-color: transparent;
         border: transparent;
         color: black;
@@ -68,15 +68,23 @@
 
     & > .menu__message {
         position: absolute;
-        left: 0;
-        top: 0;
+        left: -25px;
+        top: -10px;
         border-radius: 12px;
         padding: 8px 12px;
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
         background-color: #eaeaea;
-        & > div {
+        z-index: 1;
+        width: 134px;
+        &.more {
+            left: -10px;
+        }
+        @media screen and (max-width: 580px) {
+            left: -50px;
+        }
+        & > button {
             cursor: pointer;
             background-color: transparent;
             border: transparent;
@@ -85,6 +93,15 @@
             gap: 8px;
             color: black;
             font-size: 14px;
+        }
+        & > .reaction {
+            overflow: auto;
+            display: flex;
+            gap: 3px;
+            & > li > button {
+                background-color: transparent;
+                border: transparent;
+            }
         }
     }
 }
@@ -135,6 +152,34 @@
     gap: 5px;
     max-width: 365px;
     justify-content: right;
+}
+
+.list__reactions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    & > li > {
+        button {
+            border: transparent;
+            display: flex;
+            gap: 4px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        .books {
+            background-color: #cc9c00;
+        }
+        .games {
+            background-color: #c00;
+        }
+        .cinema {
+            background-color: #349878;
+        }
+        .music {
+            background-color: #8b03c9;
+        }
+    }
 }
 
 .message__photo {

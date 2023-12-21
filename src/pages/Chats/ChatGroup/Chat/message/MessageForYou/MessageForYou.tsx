@@ -28,10 +28,8 @@ export default function MessageForYou({
     };
 }) {
     const { username } = useAuth();
-    const { ws, setUpdate } = useChat();
+    const { ws, setUpdate, roomName } = useChat();
     const [open, setOpen] = useState(false);
-    const [edit, setEdit] = useState(false);
-    const [inputValue, setInputValue] = useState(message.text);
     function formatTime(time: string) {
         const date = new Date(Number(time) * 1000);
 
@@ -50,19 +48,16 @@ export default function MessageForYou({
         };
         ws?.send(JSON.stringify(messageUser));
     };
-    const editMessage = () => {
+    const clickReaction = (
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
+        const reaction = e.currentTarget.textContent;
         const messageUser = {
-            event_type: "message_was_updated",
+            event_type: "message_reaction",
             id: message.id,
-            new_text: inputValue,
+            reaction,
         };
         ws?.send(JSON.stringify(messageUser));
-        setEdit(false);
-    };
-    const handleChange = (e: {
-        target: { value: React.SetStateAction<string> };
-    }) => {
-        setInputValue(e.target.value);
     };
 
     return (
@@ -78,9 +73,11 @@ export default function MessageForYou({
                     src={message.user_avatar}
                 />
             )}
-            <button
+            <div
                 onClick={openMenuMessage}
-                className={message.is_deleted ? styles.deleted : ""}
+                className={`${styles.wrapper__message}  ${
+                    message.is_deleted ? styles.deleted : ""
+                }`}
             >
                 <span
                     className={`${styles.message__user} ${
@@ -109,43 +106,43 @@ export default function MessageForYou({
                             ))}
                         </div>
                     )}
-                    {edit ? (
-                        <>
-                            <label>
-                                <input
-                                    onChange={(e) => handleChange(e)}
-                                    value={inputValue}
-                                    type="text"
-                                />
-                            </label>
-                            <div
-                                className={styles.edit__message}
-                                onClick={() => {
-                                    editMessage();
-                                }}
-                            >
-                                save
-                            </div>
-                        </>
-                    ) : (
-                        <p className={styles.user__text}>
-                            {message.is_deleted ? (
-                                <>
-                                    <Delete /> The message is deleted
-                                </>
-                            ) : (
-                                message.text
-                            )}
-                        </p>
-                    )}
+
+                    <p className={styles.user__text}>
+                        {message.is_deleted ? (
+                            <>
+                                <Delete /> The message is deleted
+                            </>
+                        ) : (
+                            message.text
+                        )}
+                    </p>
+
                     <p className={styles.user__time}>
                         {formatTime(message.timestamp)}
                     </p>
-                    {open && !message.is_deleted && !edit && (
-                        <div className={styles.menu__message}>
+                    <ul className={styles.list__reactions}>
+                        {message.reactions?.map((user) => {
+                            return (
+                                <li
+                                    key={user.id}
+                                >
+                                    <button type="button" className={roomName ? styles[roomName] : ""}>
+                                        {user.reaction}
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    {open && !message.is_deleted && (
+                        <div
+                            className={`${styles.menu__message} ${
+                                message.text.length > 74 && styles.more
+                            }`}
+                        >
                             {username === message.user_name && (
                                 <>
-                                    <div
+                                    <button
+                                        type="button"
                                         onClick={() => {
                                             setUpdate({
                                                 edit: true,
@@ -155,27 +152,63 @@ export default function MessageForYou({
                                         }}
                                     >
                                         <Edit /> Edit
-                                    </div>
-                                    <div
+                                    </button>
+                                    <button
+                                        type="button"
                                         onClick={() => {
                                             deleteMessageUser();
                                         }}
                                     >
                                         <Delete /> Delete
-                                    </div>
+                                    </button>
                                 </>
                             )}
-                            <div>
-                                <span>😀</span>
-                                <span>😈</span>
-                                <span>😎</span>
-                                <span>💀</span>
-                                <span>👻</span>
-                            </div>
+                            <ul className={styles.reaction}>
+                                <li>
+                                    <button
+                                        onClick={(e) => clickReaction(e)}
+                                        type="button"
+                                    >
+                                        😀
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={(e) => clickReaction(e)}
+                                        type="button"
+                                    >
+                                        😈
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={(e) => clickReaction(e)}
+                                        type="button"
+                                    >
+                                        😎
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={(e) => clickReaction(e)}
+                                        type="button"
+                                    >
+                                        💀
+                                    </button>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={(e) => clickReaction(e)}
+                                        type="button"
+                                    >
+                                        👻
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     )}
                 </span>
-            </button>
+            </div>
         </li>
     );
 }

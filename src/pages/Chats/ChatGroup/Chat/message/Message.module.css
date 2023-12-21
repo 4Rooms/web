@@ -9,7 +9,7 @@
 .message__container.from {
   justify-content: right;
 }
-.message__container > button {
+.message__container > .wrapper__message {
   background-color: transparent;
   border: transparent;
   color: black;
@@ -70,17 +70,26 @@
 }
 .message__user > .menu__message {
   position: absolute;
-  right: 2%;
-  top: 0;
+  left: -25px;
+  top: -10px;
   border-radius: 12px;
   padding: 8px 12px;
   display: flex;
   gap: 12px;
-  width: 100px;
   flex-wrap: wrap;
   background-color: #eaeaea;
+  z-index: 1;
+  width: 134px;
 }
-.message__user > .menu__message > div {
+.message__user > .menu__message.more {
+  left: -10px;
+}
+@media screen and (max-width: 580px) {
+  .message__user > .menu__message {
+    left: -50px;
+  }
+}
+.message__user > .menu__message > button {
   cursor: pointer;
   background-color: transparent;
   border: transparent;
@@ -89,6 +98,15 @@
   gap: 8px;
   color: black;
   font-size: 14px;
+}
+.message__user > .menu__message > .reaction {
+  overflow: auto;
+  display: flex;
+  gap: 3px;
+}
+.message__user > .menu__message > .reaction > li > button {
+  background-color: transparent;
+  border: transparent;
 }
 
 .edit__message {
@@ -140,6 +158,31 @@
   gap: 5px;
   max-width: 365px;
   justify-content: right;
+}
+
+.list__reactions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.list__reactions > li > button {
+  border: transparent;
+  display: flex;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+.list__reactions > li > .books {
+  background-color: #cc9c00;
+}
+.list__reactions > li > .games {
+  background-color: #c00;
+}
+.list__reactions > li > .cinema {
+  background-color: #349878;
+}
+.list__reactions > li > .music {
+  background-color: #8b03c9;
 }
 
 .message__photo {

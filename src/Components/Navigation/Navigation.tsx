@@ -28,9 +28,6 @@ export default function Navigation({
     const filterList =
         inputValue !== "" &&
         roomsList?.filter((room) => room.title.includes(inputValue));
-    useEffect(() => {
-        console.log(filterList);
-    }, [filterList]);
 
     useEffect(() => {
         const checkScreenSize = () => {

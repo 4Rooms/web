@@ -20,7 +20,7 @@ export default function Chats() {
         deleteChat,
         online
     } = useChat();
-    const { setRoomName, setRoomsList, chatOpen, setWs, ws } = useChat();
+    const { setRoomName, setRoomsList, chatOpen, setWs, ws, message } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const cookieString = document.cookie;
@@ -65,7 +65,7 @@ export default function Chats() {
                 prevState.filter((user) => user.id !== msgData.user.id)
             );
         } else {
-            console.log(msgData.event_type);
+            console.log(msgData)
         }
     }
     useEffect(() => {
@@ -102,6 +102,7 @@ export default function Chats() {
             setWs(wss);
             const getMessages = async () => {
                 const messages = await getAllMessages(chatId);
+                console.log(messages)
                 setMessage(messages.results);
             };
             wss.addEventListener("message", handleMessages);
