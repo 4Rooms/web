@@ -72,6 +72,11 @@
     background-color: transparent;
     border-color: transparent;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 12px;
+    color: black;
 }
 
 .close__modal {

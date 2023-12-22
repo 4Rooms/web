@@ -11,6 +11,7 @@ import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
 import { useAuth } from "../../../auth/auth-context/use-auth.tsx";
+import { postSavedChat } from "../../../../services/chat/chat.service.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -19,6 +20,7 @@ interface InfrotmationProps {
     avatar: string | undefined;
     isSmallScreen: boolean | undefined;
     user: string | undefined;
+    likes: number | undefined;
 }
 
 export default function Infrotmation({
@@ -28,11 +30,12 @@ export default function Infrotmation({
     avatar,
     isSmallScreen,
     user,
+    likes,
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const { setChatOpen, ws, setDeleteChat } = useChat();
-    const {username} = useAuth();
+    const { setChatOpen, ws, setDeleteChat, chatId, savedChats, setSavedChats } = useChat();
+    const { username } = useAuth();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
             return "";
@@ -76,6 +79,24 @@ export default function Infrotmation({
             console.log(error);
         }
     };
+    const clickLike = () => {
+        const messageUser = {
+            event_type: "chat_was_liked/unliked",
+        };
+        ws?.send(JSON.stringify(messageUser));
+    };
+    const submitSavedChat = async () => {
+        const { saved_chat } = await postSavedChat(chatId);
+        const message = { ...saved_chat };
+        console.log(message)
+        setSavedChats(prevState => ([...prevState, { ...saved_chat }]))
+        const userString = localStorage.getItem("user");
+        if (userString !== null) {
+            const user = JSON.parse(userString);
+            console.log(savedChats.filter((item) => item.user === user.id))
+            console.log(user.id);
+        } 
+    };
     return (
         <>
             <div className={styles.container__information}>
@@ -87,7 +108,7 @@ export default function Infrotmation({
                                 setDeleteChat({
                                     name: "",
                                     delete: false,
-                                })
+                                });
                             }}
                         >
                             <Back />
@@ -130,12 +151,16 @@ export default function Infrotmation({
                                 </p>
                                 <div className={styles.container__button}>
                                     <button
+                                        onClick={clickLike}
                                         className={styles.button__additional}
                                     >
+                                        {likes}
                                         <Favorite />
                                     </button>
                                     <button
+                                        type="button"
                                         className={styles.button__additional}
+                                        onClick={submitSavedChat}
                                     >
                                         <Saved />
                                     </button>

@@ -4,7 +4,7 @@ import PanelGroups from "./PanelGroups/PanelGroups";
 import ChatGroup from "./ChatGroup/ChatGroup";
 import { useParams } from "react-router-dom";
 import { useChat } from "../chats/chat-context/use-chat.tsx";
-import { getAllMessages, getChatsRoom } from "../../services/chat/chat.service";
+import { getAllMessages, getChatsRoom, getSavedChats } from "../../services/chat/chat.service";
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 import DeleteChat from "./ChatGroup/DeleteChat/DeleteChat.tsx";
@@ -20,7 +20,7 @@ export default function Chats() {
         deleteChat,
         online,
     } = useChat();
-    const { setRoomName, setRoomsList, chatOpen, setWs, ws } = useChat();
+    const { setRoomName, setRoomsList, chatOpen, setWs, ws, setSavedChats } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const cookieString = document.cookie;
@@ -153,13 +153,15 @@ export default function Chats() {
             }
             const wss = new WebSocket(socketUrl);
             setWs(wss);
-            const getMessages = async () => {
+            const getMessagesandSavedChats = async () => {
                 const messages = await getAllMessages(chatId);
-                console.log(messages);
+                const savedChats = await getSavedChats();
+                console.log(savedChats)
                 setMessage(messages.results);
+                setSavedChats(savedChats.results);
             };
             wss.addEventListener("message", handleMessages);
-            getMessages();
+            getMessagesandSavedChats();
         }
         return () => {
             window.removeEventListener("resize", checkScreenSize);
@@ -175,6 +177,8 @@ export default function Chats() {
         setMessage,
         setRoomsList,
         setWs,
+        setSavedChats, 
+        
     ]);
     return (
         <>

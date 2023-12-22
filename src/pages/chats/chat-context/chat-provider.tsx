@@ -36,6 +36,20 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         name: "",
         delete: false,
     });
+    const [savedChats, setSavedChats] = useState<
+        {
+            id: number;
+            user: number;
+            chat: number;
+            title: string;
+            room: string;
+            description: string;
+            chat_creator: string;
+            img: string;
+            url: string;
+            likes: number;
+        }[]
+    >([]);
 
     return (
         <ChatContext.Provider
@@ -62,6 +76,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setUpdate,
                 deleteChat,
                 setDeleteChat,
+                setSavedChats,
+                savedChats,
             }}
         >
             {children}

@@ -58,6 +58,7 @@ export default function ChatGroup({ isSmallScreen }: ProfileContextType) {
                         title={chat?.title ?? ""}
                         description={chat.description}
                         timestamp={chat.timestamp}
+                        likes={chat.likes}
                     />
                     <Online />
                     <Chat />
