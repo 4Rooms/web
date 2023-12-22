@@ -3,19 +3,24 @@
     padding: 8px 20px;
     width: 100%;
     background: var(--button--color);
-    gap: 8px;
     overflow-y: auto;
     &.books {
-        background: rgba(238, 215, 140, 0.70);
+        background: rgba(238, 215, 140, 0.7);
     }
     &.games {
-        background: rgba(242, 181, 181, 0.70);
+        background: rgba(242, 181, 181, 0.7);
     }
     &.cinema {
-        background: rgba(179, 220, 207, 0.70);
+        background: rgba(179, 220, 207, 0.7);
     }
     &.music {
-        background: rgba(223, 184, 241, 0.70);
+        background: rgba(223, 184, 241, 0.7);
+    }
+    &.image {
+        gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-y: hidden;
     }
 
     &::-webkit-scrollbar {
@@ -32,5 +37,26 @@
 
     @media screen and (max-width: 871px) {
         padding: 8px;
+    }
+}
+.item__photo {
+    width: calc(50% - 5px);
+    height: calc(50% - 5px);
+    margin-top: auto;
+    &.one__child {
+        height: 100%;
+        width: 100%;
+    }
+    &.two__child {
+        width: 100%;
+    }
+    &.three__child {
+        &:nth-child(3) {
+            width: 100%;
+        }
+    }
+    & > img {
+        height: 100%;
+        width: 100%;
     }
 }

@@ -34,12 +34,52 @@
 .navigation__input:focus {
   outline: transparent;
 }
+.navigation__input.open {
+  border-radius: 12px 12px 0px 0px;
+}
 
 .search__button {
   background-color: transparent;
   border-color: transparent;
   position: absolute;
   right: 10px;
+}
+
+.list__chats {
+  position: absolute;
+  background-color: #eaeaea;
+  right: 0;
+  top: 80%;
+  width: 360px;
+  padding: 12px 16px;
+  border: #616161 1px solid;
+  border-top: 0;
+  border-radius: 0px 0px 12px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.list__chats > li {
+  width: 100%;
+}
+.list__chats > li > button {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  border: transparent;
+  color: black;
+  align-items: center;
+  gap: 8px;
+}
+.list__chats > li > button > img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.list__chats > li > button > p {
+  font-size: 12px;
+  font-family: 500;
 }
 
 .navigation__link {

@@ -163,7 +163,7 @@ export default function ResetPassword() {
                             type="submit"
                             onClick={() => setFormSubmitted(true)}
                         >
-                            Sign in
+                            Save
                         </Button>
                     </div>
                 </form>

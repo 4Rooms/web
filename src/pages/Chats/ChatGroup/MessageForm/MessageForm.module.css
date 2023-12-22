@@ -24,6 +24,49 @@
   bottom: 40px;
   left: 0;
 }
+@media screen and (max-width: 420px) {
+  .emoji_picker > aside {
+    width: 250px;
+    height: 350px;
+  }
+}
+
+.wrapper__input {
+  width: 100%;
+  position: relative;
+}
+.wrapper__input > div {
+  height: 28px;
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  top: -65%;
+  width: 100%;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: #C7C7C7;
+}
+.wrapper__input > div > svg {
+  width: 10px;
+  height: 10px;
+}
+.wrapper__input > div > p {
+  color: #616161;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wrapper__input > div > button {
+  background-color: transparent;
+  border: transparent;
+  margin-left: auto;
+}
+.wrapper__input > div > button > svg {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
 
 .input__message {
   width: 100%;
@@ -36,7 +79,7 @@
   color: var(--black);
   caret-color: var(--black);
   border-radius: 12px;
-  background-color: var(--background-color-chat);
+  background-color: #C7C7C7;
 }
 .input__message:focus {
   outline: none;
@@ -51,4 +94,19 @@
 .wrapper__icon {
   display: flex;
   gap: 8px;
+}
+
+.add__photo {
+  cursor: pointer;
+  background-color: transparent;
+  border: transparent;
+}
+.add__photo > label {
+  position: relative;
+}
+.add__photo > label > input {
+  width: 20px;
+  height: 21px;
+  position: absolute;
+  opacity: 0;
 }/*# sourceMappingURL=MessageForm.module.css.map */

@@ -10,7 +10,7 @@ import {
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
-import { deleteChat } from "../../../../services/chat/chat.service.tsx";
+import { useAuth } from "../../../auth/auth-context/use-auth.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -31,15 +31,8 @@ export default function Infrotmation({
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const { setChatOpen, chatId } = useChat();
-    const userName: {
-        email: string;
-        id: number;
-        is_email_confirmed: boolean;
-        username: string;
-    } | null = localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")!)
-        : null;
+    const { setChatOpen, ws, setDeleteChat } = useChat();
+    const {username} = useAuth();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
             return "";
@@ -73,8 +66,12 @@ export default function Infrotmation({
     const deleteChatSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await deleteChat(chatId);
+            const messageUser = {
+                event_type: "chat_was_deleted",
+            };
+            ws?.send(JSON.stringify(messageUser));
             setChatOpen(false);
+            setDeleteChat({ delete: true, name: title });
         } catch (error) {
             console.log(error);
         }
@@ -84,12 +81,22 @@ export default function Infrotmation({
             <div className={styles.container__information}>
                 <div className={styles.group}>
                     {isSmallScreen && (
-                        <button onClick={() => setChatOpen(false)}>
+                        <button
+                            onClick={() => {
+                                setChatOpen(false);
+                                setDeleteChat({
+                                    name: "",
+                                    delete: false,
+                                })
+                            }}
+                        >
                             <Back />
                         </button>
                     )}
                     <img className={styles.group__avatar} src={avatar} />
-                    <p className={styles.group__name}>{cutTextFunction(title)}</p>
+                    <p className={styles.group__name}>
+                        {cutTextFunction(title)}
+                    </p>
                     <button
                         onClick={onClickChangeOpenModal}
                         className={styles.group__button__more}
@@ -106,28 +113,36 @@ export default function Infrotmation({
                                 className={styles.group__avatar__modal}
                                 src={avatar}
                             />
-                            <p className={styles.group__name__modal}>{cutTextFunction(title)}</p>
-                        </div>
-                        <p
-                            style={{ marginBottom: 20 }}
-                            className={styles.group__text}
-                        >
-                            {description}
-                        </p>
-                        <div className={styles.group__additional}>
-                            <p className={styles.time__additional}>
-                                {formatDate(timestamp)}
+                            <p className={styles.group__name__modal}>
+                                {cutTextFunction(title)}
                             </p>
-                            <div className={styles.container__button}>
-                                <button className={styles.button__additional}>
-                                    <Favorite />
-                                </button>
-                                <button className={styles.button__additional}>
-                                    <Saved />
-                                </button>
+                        </div>
+                        <div className={styles.wrapper}>
+                            <p
+                                style={{ marginBottom: 20 }}
+                                className={styles.group__text}
+                            >
+                                {description}
+                            </p>
+                            <div className={styles.group__additional}>
+                                <p className={styles.time__additional}>
+                                    {formatDate(timestamp)}
+                                </p>
+                                <div className={styles.container__button}>
+                                    <button
+                                        className={styles.button__additional}
+                                    >
+                                        <Favorite />
+                                    </button>
+                                    <button
+                                        className={styles.button__additional}
+                                    >
+                                        <Saved />
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        {userName?.username === user && (
+                        {username === user && (
                             <button
                                 onClick={() => {
                                     setOpenModalDelete(true);
@@ -153,8 +168,9 @@ export default function Infrotmation({
                                     <h2>Delete your chat</h2>
                                     <p>
                                         Are you sure you want to delete{" "}
-                                        <b>“{cutTextFunction(title)}”</b> chat? After this
-                                        action, recovery will be impossible.
+                                        <b>“{cutTextFunction(title)}”</b> chat?
+                                        After this action, recovery will be
+                                        impossible.
                                     </p>
                                     <Button type="submit" className="accent">
                                         fewfew

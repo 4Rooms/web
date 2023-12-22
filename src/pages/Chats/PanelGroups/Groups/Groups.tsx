@@ -1,9 +1,9 @@
- import React from "react";
+import React from "react";
 import styles from "./Groups.module.css";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Groups() {
-    const { roomName, roomsList, setChatOpen, setChatId } = useChat();
+    const { roomName, roomsList, setChatOpen, setChatId, setDeleteChat } = useChat();
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
 
@@ -17,6 +17,10 @@ export default function Groups() {
     const onClickSetChat = (id: number) => {
         setChatOpen(true);
         setChatId(id);
+        setDeleteChat({
+            name: "",
+            delete: false,
+        })
     }
     return (
         <ul className={styles.container__groups}>

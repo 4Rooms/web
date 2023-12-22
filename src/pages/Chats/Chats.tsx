@@ -7,11 +7,20 @@ import { useChat } from "../chats/chat-context/use-chat.tsx";
 import { getAllMessages, getChatsRoom } from "../../services/chat/chat.service";
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
+import DeleteChat from "../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
 
 export default function Chats() {
     const { room } = useParams();
-    const { chatId, setMessage, setOnline, category} = useChat();
-    const { setRoomName, setRoomsList, chatOpen, setWs } = useChat();
+    const {
+        chatId,
+        setMessage,
+        setOnline,
+        category,
+        setDeleteChat,
+        deleteChat,
+        online,
+    } = useChat();
+    const { setRoomName, setRoomsList, chatOpen, setWs, ws } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const cookieString = document.cookie;
@@ -43,6 +52,73 @@ export default function Chats() {
                         : prevMessage
                 )
             );
+        } else if (msgData.event_type === "chat_was_deleted") {
+            setDeleteChat((prevState) => ({ ...prevState, delete: true }));
+            setRoomsList((prevState) =>
+                prevState?.filter((room) => room.id !== msgData.id)
+            );
+        } else if (msgData.event_type === "connected_user") {
+            setOnline((prevState) => [...prevState, msgData.user]);
+            console.log(online);
+        } else if (msgData.event_type === "disconnected_user") {
+            setOnline((prevState) =>
+                prevState.filter((user) => user.id !== msgData.user.id)
+            );
+        } else if (msgData.event_type === "message_reaction_was_posted") {
+            setMessage((prevState) =>
+                prevState.map((message) => {
+                    if (message.id === msgData.id) {
+                        message.reactions?.push(msgData);
+                    }
+                    return message;
+                })
+            );
+        } else if (msgData.event_type === "message_reaction_was_deleted") {
+            setMessage((prevState) =>
+                prevState.map((message) => {
+                    if (message.id === msgData.id) {
+                        if (
+                            message.reactions?.find(
+                                (reaction) =>
+                                    reaction.user_name === msgData.user
+                            ) ||
+                            message.reactions?.find(
+                                (reaction) => reaction.user === msgData.user
+                            )
+                        ) {
+                            const objectReaction =
+                                message.reactions?.find(
+                                    (reaction) =>
+                                        reaction.user_name === msgData.user
+                                ) ||
+                                message.reactions?.find(
+                                    (reaction) => reaction.user === msgData.user
+                                );
+                            if (objectReaction) {
+                                const indexObject =
+                                    message.reactions?.indexOf(objectReaction);
+
+                                if (
+                                    indexObject !== undefined &&
+                                    indexObject !== -1
+                                ) {
+                                    message.reactions.splice(
+                                        indexObject,
+                                        indexObject + 1
+                                    );
+                                    return {
+                                        ...message,
+                                        reactions: message.reactions,
+                                    };
+                                }
+                            }
+                        }
+                    }
+                    return message;
+                })
+            );
+        } else {
+            console.log(msgData);
         }
     }
     useEffect(() => {
@@ -71,14 +147,18 @@ export default function Chats() {
             "?token=" +
             extractToken(cookieString);
         if (chatOpen) {
-            const ws = new WebSocket(socketUrl);
-            setWs(ws);
+            if (ws) {
+                console.log("disconnected");
+                ws?.close();
+            }
+            const wss = new WebSocket(socketUrl);
+            setWs(wss);
             const getMessages = async () => {
                 const messages = await getAllMessages(chatId);
+                console.log(messages);
                 setMessage(messages.results);
-                console.log(messages.results);
             };
-            ws.addEventListener("message", handleMessages);
+            wss.addEventListener("message", handleMessages);
             getMessages();
         }
         return () => {
@@ -104,7 +184,11 @@ export default function Chats() {
                         <ChatGroup isSmallScreen={isSmallScreen} />
                     ) : (
                         <div>
-                            <Welcome isSmallScreen={isSmallScreen} />
+                            {deleteChat.delete ? (
+                                <DeleteChat />
+                            ) : (
+                                <Welcome isSmallScreen={isSmallScreen} />
+                            )}
                             <PanelGroups />
                         </div>
                     )}

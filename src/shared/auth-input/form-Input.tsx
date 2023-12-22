@@ -21,10 +21,6 @@ interface FormInput<T extends Path<U>, U extends FieldValues> {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         value: T
     ) => void;
-    onBlur?: (
-        e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-        value: T
-    ) => void;
     onChangeInputValue?: (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         value: T
@@ -43,7 +39,6 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     formStateValue,
     open = false,
     onChange,
-    onBlur,
     onFocusInput,
     onChangeInputValue,
     className = "",
@@ -52,6 +47,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     const { t } = useTranslation('translation', { keyPrefix: 'shared' });
     return textarea ? (
         <textarea
+            name={value}
             id={String(value)}
             autoComplete="off"
             {...(register && register(value))}
@@ -80,13 +76,11 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                         value
                     );
             }}
-            onBlur={(e) => {
-                onBlur && onBlur(e, value);
-            }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />
     ) : (
         <input
+            name={value}
             id={String(value)}
             autoComplete="off"
             {...(register && register(value))}
@@ -122,9 +116,6 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                         e,
                         value
                     );
-            }}
-            onBlur={(e) => {
-                onBlur && onBlur(e, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />

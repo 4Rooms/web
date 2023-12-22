@@ -3,7 +3,6 @@
   padding: 8px 20px;
   width: 100%;
   background: var(--button--color);
-  gap: 8px;
   overflow-y: auto;
 }
 .container__chat.books {
@@ -18,6 +17,12 @@
 .container__chat.music {
   background: rgba(223, 184, 241, 0.7);
 }
+.container__chat.image {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+}
 .container__chat::-webkit-scrollbar {
   background-color: rgba(0, 0, 0, 0);
 }
@@ -31,4 +36,24 @@
   .container__chat {
     padding: 8px;
   }
+}
+
+.item__photo {
+  width: calc(50% - 5px);
+  height: calc(50% - 5px);
+  margin-top: auto;
+}
+.item__photo.one__child {
+  height: 100%;
+  width: 100%;
+}
+.item__photo.two__child {
+  width: 100%;
+}
+.item__photo.three__child:nth-child(3) {
+  width: 100%;
+}
+.item__photo > img {
+  height: 100%;
+  width: 100%;
 }/*# sourceMappingURL=Chat.module.css.map */

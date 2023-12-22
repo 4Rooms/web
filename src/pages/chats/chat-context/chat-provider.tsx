@@ -19,13 +19,23 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         | undefined
     >(undefined);
     const [chatOpen, setChatOpen] = useState(false);
-    const [chatId, setChatId] = useState<number>(0);
+    const [chatId, setChatId] = useState<number>(1);
     const [ws, setWs] = useState<WebSocket | null>(null);
     const [message, setMessage] = useState<MessageList>([]);
     const [online, setOnline] = useState<
         { id: number; username: string; avatar: string }[]
     >([]);
     const [category, setCategory] = useState("new");
+    const [imageURLs, setImageURLs] = useState<string[]>([]);
+    const [update, setUpdate] = useState({
+        edit: false,
+        text: "",
+        id: 0,
+    });
+    const [deleteChat, setDeleteChat] = useState({
+        name: "",
+        delete: false,
+    });
 
     return (
         <ChatContext.Provider
@@ -46,6 +56,12 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setOnline,
                 category,
                 setCategory,
+                imageURLs,
+                setImageURLs,
+                update,
+                setUpdate,
+                deleteChat,
+                setDeleteChat,
             }}
         >
             {children}

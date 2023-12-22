@@ -1,67 +1,164 @@
-import React, { useCallback, useState } from "react";
-import { AddFile, SendMessage, Smile } from "../../../../assets/icons";
+import React, { ChangeEvent, useCallback, useState } from "react";
+import {
+    AddFile,
+    CloseModal,
+    Edit,
+    SendMessage,
+    Smile,
+} from "../../../../assets/icons";
 import styles from "./MessageForm.module.scss";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import EmojiPicker from "emoji-picker-react";
 
 export default function MessageForm() {
-    const { ws, chatId } = useChat();
+    const { ws, chatId, setImageURLs, imageURLs, update, setUpdate } =
+        useChat();
     const [message, setMessage] = useState("");
     const [isPickerVisible, setIsPickerVisible] = useState(false);
+    const [images, setImages] = useState<File[]>([]);
 
     const toggleEmojiPicker = () => {
         setIsPickerVisible(!isPickerVisible);
     };
 
     const onEmojiClick = (emojiObject: any) => {
-        setMessage(prevMessage => prevMessage + emojiObject.emoji);        setIsPickerVisible(false);
+        if (update.edit) {
+            setUpdate((prevState) => ({
+                ...prevState,
+                text: prevState.text + emojiObject.emoji,
+            }));
+        } else {
+            setMessage((prevMessage) => prevMessage + emojiObject.emoji);
+        }
+        setIsPickerVisible(false);
     };
 
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement> | null) => {
+        if (e && e.target.files && e.target.files.length < 5) {
+            const selectedFiles = Array.from(e.target.files);
 
-    const forSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+            const imageUrls = selectedFiles.map((file) =>
+                URL.createObjectURL(file)
+            );
+
+            setImageURLs((prevImageURLs) => [...prevImageURLs, ...imageUrls]);
+            setImages((prevImages) => [...prevImages, ...selectedFiles]);
+        } else {
+            alert("Please select only 4 photo");
+        }
+    };
+
+    async function readFile(file: Blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(new Error("Error reading the file."));
+            reader.readAsDataURL(file);
+        });
+    }
+
+    const forSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (message && ws) {
+        if (update.edit) {
+            const messageUser = {
+                event_type: "message_was_updated",
+                id: update.id,
+                new_text: update.text,
+            };
+            ws?.send(JSON.stringify(messageUser));
+            setUpdate(prevState => ({...prevState, edit: false}));
+        } else {
             const messageUser = {
                 event_type: "chat_message",
                 message: {
                     chat: chatId,
                     text: message,
+                    attachments: await Promise.all(
+                        images.map(async (file) => ({
+                            name: file.name,
+                            content: await readFile(file),
+                        }))
+                    ),
                 },
             };
-            ws.send(JSON.stringify(messageUser));
+            setImages([]);
+            setImageURLs([]);
+            ws?.send(JSON.stringify(messageUser));
             setMessage("");
         }
-    }
+    };
 
-    const handleChange = useCallback(({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-        setMessage(value);
-    }, []);
+    const handleChange = useCallback(
+        ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+            if (update.edit) {
+                setUpdate((prevState) => ({
+                    ...prevState,
+                    text: value,
+                }));
+            } else {
+                setMessage(value);
+            }
+        },
+        [setUpdate, update.edit]
+    );
     return (
         <form className={styles.form__message} onSubmit={forSubmit}>
             <div className={styles.wrapper__icon}>
                 <div className={styles.emoji_container}>
-                    <button type="button" className={styles.button__message} onClick={toggleEmojiPicker}>
-                        <Smile/>
+                    <button
+                        type="button"
+                        className={styles.button__message}
+                        onClick={toggleEmojiPicker}
+                    >
+                        <Smile />
                     </button>
                     <div className={styles.emoji_picker}>
-                        {isPickerVisible &&
-                            <EmojiPicker onEmojiClick={onEmojiClick}/>
-                        }
+                        {isPickerVisible && (
+                            <EmojiPicker onEmojiClick={onEmojiClick} />
+                        )}
                     </div>
                 </div>
-                <button type="button" className={styles.button__message}>
-                    <AddFile/>
+                <button className={styles.add__photo}>
+                    <label className={styles.label__add}>
+                        <input
+                            className={styles.add__image}
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            multiple
+                            disabled={imageURLs.length > 0 || update.edit}
+                        />
+                        <AddFile />
+                    </label>
                 </button>
             </div>
-            <input
-                className={styles.input__message}
-                placeholder="Type something..."
-                type="text"
-                value={message}
-                onChange={(e) => handleChange(e)}
-            />
+            <label className={styles.wrapper__input}>
+                <input
+                    className={styles.input__message}
+                    placeholder="Type something..."
+                    type="text"
+                    value={update.edit ? update.text : message}
+                    onChange={(e) => handleChange(e)}
+                />
+                {update.edit && (
+                    <div>
+                        <Edit />
+                        <p>{update.text}</p>
+                        <button
+                            onClick={() =>
+                                setUpdate((prevState) => ({
+                                    ...prevState,
+                                    edit: false,
+                                }))
+                            }
+                        >
+                            <CloseModal />
+                        </button>
+                    </div>
+                )}
+            </label>
             <button type="submit" className={styles.button__message}>
-            <SendMessage />
+                <SendMessage />
             </button>
         </form>
     );

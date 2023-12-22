@@ -1,0 +1,59 @@
+.welcome {
+  width: 100%;
+  background-color: #b3dccf;
+  gap: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 204.5px 87px;
+}
+@media screen and (min-width: 871px) and (max-width: 1105px) {
+  .welcome {
+    padding: 204.5px 0px;
+    font-size: 34px;
+  }
+}
+@media screen and (max-width: 871px) {
+  .welcome {
+    padding: 143px 20px;
+    border-radius: 0px;
+  }
+}
+.welcome.books {
+  background-color: #eed78c;
+}
+.welcome.games {
+  background-color: #f2b5b5;
+}
+.welcome.cinema {
+  background-color: #b3dccf;
+}
+.welcome.music {
+  background-color: #dfb8f1;
+}
+.welcome__title {
+  color: #616161;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 150%;
+}
+@media screen and (max-width: 420px) {
+  .welcome__title {
+    font-size: 30px;
+  }
+}
+.welcome > img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+@media screen and (max-width: 420px) {
+  .welcome > img {
+    width: 100px;
+    height: 100px;
+  }
+}/*# sourceMappingURL=DeleteChat.module.css.map */

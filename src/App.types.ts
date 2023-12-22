@@ -95,7 +95,7 @@ export type ChildrenModal = {
     className?: string;
 };
 
-interface Message {
+export interface Message {
     id: number;
     user_name: string;
     user_avatar: string;
@@ -112,6 +112,7 @@ interface Message {
     is_deleted: boolean;
     chat: number; 
     user: number;
+    attachments: [string]
 }
 
 export type MessageList = Message[];
