@@ -1,7 +1,12 @@
 import styles from "../auth.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error, HiddenPassword, IconOkey, OpenPassword } from "../../../assets/icons.tsx";
-import { InputSignupKeys, InputsLogin, InputsRegistraytion, InputsValidRegistration } from "../../../App.types.ts";
+import {
+    InputSignupKeys,
+    InputsLogin,
+    InputsRegistraytion,
+    InputsValidRegistration
+} from "../../../App.types.ts";
 import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../auth-context/auth-context.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -17,6 +22,7 @@ import FormInput from "../../../shared/auth-input/form-Input.tsx";
 import Toaster from "../../../shared/toaster/toaster.tsx";
 import { useTranslation } from "react-i18next";
 import { ISchema, reach } from "yup";
+import debounce from "../../../utils/debounce/debounce.ts";
 
 export default function SignupPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
@@ -83,28 +89,24 @@ export default function SignupPage() {
         }
     });
 
-
-    const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputSignupKeys) => {
-        const value = e.target.value;
-
+    const debouncedValidation = debounce((type: InputSignupKeys, value: string) => {
         setFormStateValue({
             ...formStateValue,
             [type]: value,
         });
 
         validateField(type, value);
-    };
-
-    const onBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputSignupKeys) => {
-        const value = e.target.value;
-
         (reach(authSchema, type) as ISchema<unknown>)
             .validate(value, {abortEarly: false})
             .catch((error: { errors: string[]; }) => {
                 setError(type, {type: "manual", message: error.errors[0]});
             });
-    };
+    }, 500);
 
+    const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputSignupKeys) => {
+        const value = e.target.value;
+        debouncedValidation(type, value);
+    };
 
     const deliveryFormAuth: SubmitHandler<InputsRegistraytion> = async (
         data
@@ -143,7 +145,6 @@ export default function SignupPage() {
                         formStateFocus={formStateFocus}
                         formStateValue={formStateValue}
                         open={open}
-                        onBlur={onBlur}
                         onChange={onChange}
                         onFocusInput={onFocusInput}
                     />

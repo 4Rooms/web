@@ -25,6 +25,7 @@ import loginSchema from "./login-schema.ts";
 import Toaster from "../../../shared/toaster/toaster.tsx";
 import { useTranslation } from "react-i18next";
 import { ISchema, reach } from 'yup';
+import debounce from "../../../utils/debounce/debounce.ts";
 
 export default function LoginPage() {
     const {t} = useTranslation('translation', {keyPrefix: 'sign-in-page'});
@@ -113,29 +114,29 @@ export default function LoginPage() {
     const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         resetEmail = e.target.value;
     }
-
-    const onChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-        type: InputLoginKeys
-    ) => {
-        const value = e.target.value;
-
-        setFormStateValue({
-            ...formStateValue,
+    const debouncedValidation = debounce((type: InputLoginKeys, value: string) => {
+        setFormStateValue((prevState) => ({
+            ...prevState,
             [type]: value,
-        });
-        validateField(type, value);
-    };
+        }));
 
-    const onBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputLoginKeys) => {
-        const value = e.target.value;
+        validateField(type, value);
 
         (reach(loginSchema, type) as ISchema<unknown>)
             .validate(value, {abortEarly: false})
             .catch((error: { errors: string[]; }) => {
                 setError(type, {type: "manual", message: error.errors[0]});
             });
+    }, 500);
+
+    const onChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        type: InputLoginKeys
+    ) => {
+        const value = e.target.value;
+        debouncedValidation(type, value);
     };
+
 
     const deliveryFormAuth: SubmitHandler<InputsLogin> = async (data) => {
         await authService
@@ -181,7 +182,6 @@ export default function LoginPage() {
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
                                 onChange={onChange}
-                                onBlur={onBlur}
                                 open={open}
                                 onFocusInput={onFocusInput}/>
                             {formStateValid[value as keyof InputsLogin] && <IconOkey className={styles.okey__auth}/>}

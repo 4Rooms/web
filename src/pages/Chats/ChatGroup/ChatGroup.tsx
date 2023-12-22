@@ -6,7 +6,7 @@ import Chat from "./Chat/Chat";
 import MessageForm from "./MessageForm/MessageForm";
 import Welcome from "./Welcome/Welcome";
 import { useChat } from "../../chats/chat-context/use-chat.tsx";
-import DeleteChat from "./DeleteChat/DeleteChat.tsx";
+import DeleteChat from "../../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
 
 interface ProfileContextType {
     isSmallScreen?: boolean;

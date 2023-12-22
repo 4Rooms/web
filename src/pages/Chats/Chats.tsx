@@ -7,7 +7,7 @@ import { useChat } from "../chats/chat-context/use-chat.tsx";
 import { getAllMessages, getChatsRoom, getSavedChats } from "../../services/chat/chat.service";
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
-import DeleteChat from "./ChatGroup/DeleteChat/DeleteChat.tsx";
+import DeleteChat from "../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
 
 export default function Chats() {
     const { room } = useParams();
