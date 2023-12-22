@@ -16,7 +16,7 @@
   text-align: left;
   position: relative;
   display: inline-flex;
-  min-width: 20%;
+  min-width: 30%;
 }
 
 .user__avatar {
@@ -70,7 +70,6 @@
 }
 .message__user > .menu__message {
   position: absolute;
-  left: -25px;
   top: -10px;
   border-radius: 12px;
   padding: 8px 12px;
@@ -81,13 +80,13 @@
   z-index: 1;
   width: 134px;
 }
-.message__user > .menu__message.more {
-  left: -10px;
-}
 @media screen and (max-width: 580px) {
   .message__user > .menu__message {
-    left: -50px;
+    left: -40px;
   }
+}
+.message__user > .menu__message.more {
+  left: -10px;
 }
 .message__user > .menu__message > button {
   cursor: pointer;
@@ -107,6 +106,7 @@
 .message__user > .menu__message > .reaction > li > button {
   background-color: transparent;
   border: transparent;
+  cursor: pointer;
 }
 
 .edit__message {
@@ -171,6 +171,7 @@
   gap: 4px;
   padding: 2px 6px;
   border-radius: 10px;
+  cursor: pointer;
 }
 .list__reactions > li > .books {
   background-color: #cc9c00;

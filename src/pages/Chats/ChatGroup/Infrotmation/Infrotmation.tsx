@@ -10,6 +10,7 @@ import {
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
+import { useAuth } from "../../../auth/auth-context/use-auth.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -31,14 +32,7 @@ export default function Infrotmation({
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
     const { setChatOpen, ws, setDeleteChat } = useChat();
-    const userName: {
-        email: string;
-        id: number;
-        is_email_confirmed: boolean;
-        username: string;
-    } | null = localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")!)
-        : null;
+    const {username} = useAuth();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
             return "";
@@ -148,7 +142,7 @@ export default function Infrotmation({
                                 </div>
                             </div>
                         </div>
-                        {userName?.username === user && (
+                        {username === user && (
                             <button
                                 onClick={() => {
                                     setOpenModalDelete(true);

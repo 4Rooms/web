@@ -16,7 +16,7 @@
         text-align: left;
         position: relative;
         display: inline-flex;
-        min-width: 20%;
+        min-width: 30%;
     }
 }
 
@@ -68,7 +68,6 @@
 
     & > .menu__message {
         position: absolute;
-        left: -25px;
         top: -10px;
         border-radius: 12px;
         padding: 8px 12px;
@@ -78,11 +77,11 @@
         background-color: #eaeaea;
         z-index: 1;
         width: 134px;
+        @media screen and (max-width: 580px) {
+            left: -40px;
+        }
         &.more {
             left: -10px;
-        }
-        @media screen and (max-width: 580px) {
-            left: -50px;
         }
         & > button {
             cursor: pointer;
@@ -101,6 +100,7 @@
             & > li > button {
                 background-color: transparent;
                 border: transparent;
+                cursor: pointer;
             }
         }
     }
@@ -165,6 +165,7 @@
             gap: 4px;
             padding: 2px 6px;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         .books {

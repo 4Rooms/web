@@ -3,6 +3,7 @@ import styles from "../Message.module.scss";
 import { useAuth } from "../../../../../auth/auth-context/use-auth";
 import { Delete, Edit } from "../../../../../../assets/icons";
 import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
+import { countBy } from "lodash";
 
 export default function MessageForYou({
     message,
@@ -17,7 +18,7 @@ export default function MessageForYou({
             reaction: string;
             timestamp: string;
             message: number;
-            user: number;
+            user: string;
         }[];
         text: string;
         timestamp: string;
@@ -30,6 +31,7 @@ export default function MessageForYou({
     const { username } = useAuth();
     const { ws, setUpdate, roomName } = useChat();
     const [open, setOpen] = useState(false);
+    const uniqueReactions = countBy(message.reactions, 'reaction');
     function formatTime(time: string) {
         const date = new Date(Number(time) * 1000);
 
@@ -51,15 +53,18 @@ export default function MessageForYou({
     const clickReaction = (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
-        const reaction = e.currentTarget.textContent;
+        const target = e.target as HTMLElement;
+        const reaction = target.textContent?.split(' ')[0];
         const messageUser = {
             event_type: "message_reaction",
             id: message.id,
             reaction,
         };
         ws?.send(JSON.stringify(messageUser));
+        setOpen(false);
+        e.stopPropagation(); 
     };
-
+    
     return (
         <li
             key={message.id}
@@ -121,13 +126,17 @@ export default function MessageForYou({
                         {formatTime(message.timestamp)}
                     </p>
                     <ul className={styles.list__reactions}>
-                        {message.reactions?.map((user) => {
+                    {Object.keys(uniqueReactions).map(reaction => {
                             return (
-                                <li
-                                    key={user.id}
-                                >
-                                    <button type="button" className={roomName ? styles[roomName] : ""}>
-                                        {user.reaction}
+                                <li key={reaction}>
+                                    <button
+                                        onClick={(e) => clickReaction(e)}
+                                        type="button"
+                                        className={
+                                            roomName ? styles[roomName] : ""
+                                        }
+                                    >
+                                        {reaction} {uniqueReactions[reaction]}
                                     </button>
                                 </li>
                             );
@@ -136,7 +145,7 @@ export default function MessageForYou({
                     {open && !message.is_deleted && (
                         <div
                             className={`${styles.menu__message} ${
-                                message.text.length > 74 && styles.more
+                                message.text.length > 50 && styles.more
                             }`}
                         >
                             {username === message.user_name && (
@@ -163,48 +172,58 @@ export default function MessageForYou({
                                     </button>
                                 </>
                             )}
-                            <ul className={styles.reaction}>
-                                <li>
-                                    <button
-                                        onClick={(e) => clickReaction(e)}
-                                        type="button"
-                                    >
-                                        😀
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={(e) => clickReaction(e)}
-                                        type="button"
-                                    >
-                                        😈
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={(e) => clickReaction(e)}
-                                        type="button"
-                                    >
-                                        😎
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={(e) => clickReaction(e)}
-                                        type="button"
-                                    >
-                                        💀
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={(e) => clickReaction(e)}
-                                        type="button"
-                                    >
-                                        👻
-                                    </button>
-                                </li>
-                            </ul>
+
+                            {message.reactions?.find(
+                                (reaction) => reaction.user_name === username
+                            ) ||
+                            message.reactions?.find(
+                                (reaction) => reaction.user === username
+                            ) ? (
+                                <></>
+                            ) : (
+                                <ul className={styles.reaction}>
+                                    <li>
+                                        <button
+                                            onClick={(e) => clickReaction(e)}
+                                            type="button"
+                                        >
+                                            😀
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={(e) => clickReaction(e)}
+                                            type="button"
+                                        >
+                                            😈
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={(e) => clickReaction(e)}
+                                            type="button"
+                                        >
+                                            😎
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={(e) => clickReaction(e)}
+                                            type="button"
+                                        >
+                                            💀
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={(e) => clickReaction(e)}
+                                            type="button"
+                                        >
+                                            ❤️
+                                        </button>
+                                    </li>
+                                </ul>
+                            )}
                         </div>
                     )}
                 </span>
