@@ -4,30 +4,9 @@ import { useAuth } from "../../../../../auth/auth-context/use-auth";
 import { Delete, Edit } from "../../../../../../assets/icons";
 import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
 import { countBy } from "lodash";
+import { Message } from "../../../../../../App.types";
 
-export default function MessageForYou({
-    message,
-}: {
-    message: {
-        id: number;
-        user_name: string;
-        user_avatar: string;
-        reactions?: {
-            id: number;
-            user_name: string;
-            reaction: string;
-            timestamp: string;
-            message: number;
-            user: string;
-        }[];
-        text: string;
-        timestamp: string;
-        is_deleted: boolean;
-        chat: number;
-        user: number;
-        attachments: [string];
-    };
-}) {
+export default function MessageForYou({message}: {message: Message}) {
     const { username } = useAuth();
     const { ws, setUpdate, roomName } = useChat();
     const [open, setOpen] = useState(false);
@@ -64,7 +43,14 @@ export default function MessageForYou({
         setOpen(false);
         e.stopPropagation(); 
     };
+    const getPhotoClassName = (attachmentsLength: number) => {
+        if (attachmentsLength === 3) {
+            return `${styles.message__photo} ${styles.three__child}`;
+        }
+        return styles.message__photo;
+    };
     
+
     return (
         <li
             key={message.id}
@@ -102,10 +88,7 @@ export default function MessageForYou({
                                 <img
                                     key={index}
                                     src={photo}
-                                    className={`${styles.message__photo} ${
-                                        message.attachments.length === 3 &&
-                                        styles.three__child
-                                    }`}
+                                    className={getPhotoClassName(message.attachments.length)}
                                     alt={`Photo ${index + 1}`}
                                 />
                             ))}
@@ -177,6 +160,9 @@ export default function MessageForYou({
                                 (reaction) => reaction.user_name === username
                             ) ||
                             message.reactions?.find(
+                                // TODO: fix this
+                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-ignore
                                 (reaction) => reaction.user === username
                             ) ? (
                                 <></>

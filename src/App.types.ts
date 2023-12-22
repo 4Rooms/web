@@ -95,7 +95,7 @@ export type ChildrenModal = {
     className?: string;
 };
 
-interface Message {
+export interface Message {
     id: number;
     user_name: string;
     user_avatar: string;
