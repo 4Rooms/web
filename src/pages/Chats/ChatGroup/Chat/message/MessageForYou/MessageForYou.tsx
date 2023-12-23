@@ -6,11 +6,11 @@ import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
 import { countBy } from "lodash";
 import { Message } from "../../../../../../App.types";
 
-export default function MessageForYou({message}: {message: Message}) {
+export default function MessageForYou({ message }: { message: Message }) {
     const { username } = useAuth();
     const { ws, setUpdate, roomName } = useChat();
     const [open, setOpen] = useState(false);
-    const uniqueReactions = countBy(message.reactions, 'reaction');
+    const uniqueReactions = countBy(message.reactions, "reaction");
     function formatTime(time: string) {
         const date = new Date(Number(time) * 1000);
 
@@ -33,7 +33,7 @@ export default function MessageForYou({message}: {message: Message}) {
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
         const target = e.target as HTMLElement;
-        const reaction = target.textContent?.split(' ')[0];
+        const reaction = target.textContent?.split(" ")[0];
         const messageUser = {
             event_type: "message_reaction",
             id: message.id,
@@ -41,7 +41,7 @@ export default function MessageForYou({message}: {message: Message}) {
         };
         ws?.send(JSON.stringify(messageUser));
         setOpen(false);
-        e.stopPropagation(); 
+        e.stopPropagation();
     };
     const getPhotoClassName = (attachmentsLength: number) => {
         if (attachmentsLength === 3) {
@@ -49,7 +49,6 @@ export default function MessageForYou({message}: {message: Message}) {
         }
         return styles.message__photo;
     };
-    
 
     return (
         <li
@@ -88,7 +87,9 @@ export default function MessageForYou({message}: {message: Message}) {
                                 <img
                                     key={index}
                                     src={photo}
-                                    className={getPhotoClassName(message.attachments.length)}
+                                    className={getPhotoClassName(
+                                        message.attachments.length
+                                    )}
                                     alt={`Photo ${index + 1}`}
                                 />
                             ))}
@@ -108,23 +109,28 @@ export default function MessageForYou({message}: {message: Message}) {
                     <p className={styles.user__time}>
                         {formatTime(message.timestamp)}
                     </p>
-                    <ul className={styles.list__reactions}>
-                    {Object.keys(uniqueReactions).map(reaction => {
-                            return (
-                                <li key={reaction}>
-                                    <button
-                                        onClick={(e) => clickReaction(e)}
-                                        type="button"
-                                        className={
-                                            roomName ? styles[roomName] : ""
-                                        }
-                                    >
-                                        {reaction} {uniqueReactions[reaction]}
-                                    </button>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    {!message.is_deleted && (
+                        <ul className={styles.list__reactions}>
+                            {Object.keys(uniqueReactions).map((reaction) => {
+                                return (
+                                    <li key={reaction}>
+                                        <button
+                                            onClick={(e) => clickReaction(e)}
+                                            type="button"
+                                            className={
+                                                roomName ? styles[roomName] : ""
+                                            }
+                                        >
+                                            {reaction}{" "}
+                                            <span>
+                                                {uniqueReactions[reaction]}
+                                            </span>
+                                        </button>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    )}
                     {open && !message.is_deleted && (
                         <div
                             className={`${styles.menu__message} ${
@@ -160,10 +166,8 @@ export default function MessageForYou({message}: {message: Message}) {
                                 (reaction) => reaction.user_name === username
                             ) ||
                             message.reactions?.find(
-                                // TODO: fix this
-                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                // @ts-ignore
-                                (reaction) => reaction.user === username
+                                (reaction) =>
+                                    reaction.user.toString() === username
                             ) ? (
                                 <></>
                             ) : (

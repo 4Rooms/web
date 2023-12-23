@@ -162,10 +162,16 @@
         button {
             border: transparent;
             display: flex;
-            gap: 4px;
+            align-items: center;
+            gap: 2px;
             padding: 2px 6px;
             border-radius: 10px;
             cursor: pointer;
+            font-size: 15px;
+            & > span {
+                font-size: 10px;
+                color: black;
+            }
         }
 
         .books {

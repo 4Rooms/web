@@ -71,6 +71,34 @@ interface ChatContextType {
             delete: boolean;
         }>
     >;
+    savedChats: {
+        id: number;
+        user: number;
+        chat: number;
+        title: string;
+        room: string;
+        description: string;
+        chat_creator: string;
+        img: string;
+        url: string;
+        likes: number;
+    }[];
+    setSavedChats: Dispatch<
+        SetStateAction<
+            {
+                id: number;
+                user: number;
+                chat: number;
+                title: string;
+                room: string;
+                description: string;
+                chat_creator: string;
+                img: string;
+                url: string;
+                likes: number;
+            }[]
+        >
+    >;
 }
 
 export const ChatContext = createContext<ChatContextType>(

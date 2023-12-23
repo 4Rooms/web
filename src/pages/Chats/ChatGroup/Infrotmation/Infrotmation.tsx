@@ -6,11 +6,16 @@ import {
     Favorite,
     MoreInformation,
     Saved,
+    SavedChatsTrue,
 } from "../../../../assets/icons";
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
 import { useAuth } from "../../../auth/auth-context/use-auth.tsx";
+import {
+    deleteSavedChat,
+    postSavedChat,
+} from "../../../../services/chat/chat.service.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -19,6 +24,7 @@ interface InfrotmationProps {
     avatar: string | undefined;
     isSmallScreen: boolean | undefined;
     user: string | undefined;
+    likes: number | undefined;
 }
 
 export default function Infrotmation({
@@ -28,11 +34,19 @@ export default function Infrotmation({
     avatar,
     isSmallScreen,
     user,
+    likes,
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const { setChatOpen, ws, setDeleteChat } = useChat();
-    const {username} = useAuth();
+    const {
+        setChatOpen,
+        ws,
+        setDeleteChat,
+        chatId,
+        savedChats,
+        setSavedChats,
+    } = useChat();
+    const { username } = useAuth();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
             return "";
@@ -76,6 +90,24 @@ export default function Infrotmation({
             console.log(error);
         }
     };
+    const clickLike = () => {
+        const messageUser = {
+            event_type: "chat_was_liked/unliked",
+        };
+        ws?.send(JSON.stringify(messageUser));
+    };
+    const submitSavedChat = async () => {
+        const chatTets = savedChats.find((item) => item.chat === chatId);
+        if (chatTets) {
+            await deleteSavedChat(chatTets.id);
+            setSavedChats((prevState) =>
+                prevState.filter((item) => item.chat !== chatId)
+            );
+        } else {
+            const { saved_chat } = await postSavedChat(chatId);
+            setSavedChats((prevState) => [...prevState, { ...saved_chat }]);
+        }
+    };
     return (
         <>
             <div className={styles.container__information}>
@@ -87,7 +119,7 @@ export default function Infrotmation({
                                 setDeleteChat({
                                     name: "",
                                     delete: false,
-                                })
+                                });
                             }}
                         >
                             <Back />
@@ -130,14 +162,24 @@ export default function Infrotmation({
                                 </p>
                                 <div className={styles.container__button}>
                                     <button
+                                        onClick={clickLike}
                                         className={styles.button__additional}
                                     >
+                                        {likes}
                                         <Favorite />
                                     </button>
                                     <button
-                                        className={styles.button__additional}
+                                        type="button"
+                                        className={`${styles.button__additional}`}
+                                        onClick={submitSavedChat}
                                     >
-                                        <Saved />
+                                        {savedChats.find(
+                                            (item) => item.chat === chatId
+                                        ) ? (
+                                            <SavedChatsTrue />
+                                        ) : (
+                                            <Saved />
+                                        )}
                                     </button>
                                 </div>
                             </div>
