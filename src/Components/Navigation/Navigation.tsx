@@ -59,7 +59,9 @@ export default function Navigation({
                             value={inputValue}
                             onChange={(e) => {
                                 setInputValue(e.target.value);
-                                e.target.value.length > 0 ? setIsOpenSearch(true) : setIsOpenSearch(false);
+                                e.target.value.length > 0
+                                    ? setIsOpenSearch(true)
+                                    : setIsOpenSearch(false);
                             }}
                         />
                     )}
@@ -69,25 +71,26 @@ export default function Navigation({
                             <SearchRooms />
                         </button>
                     )}
-                {isOpenSearch &&  (
+                {isOpenSearch && (
                     <ul className={styles.list__chats}>
-                        {Array.isArray(filterList) && filterList?.slice(0, 3).map((item) => {
-                            return (
-                                <li key={item.id}>
-                                    <button
-                                        onClick={() => {
-                                            setInputValue("");
-                                            setChatOpen(true);
-                                            setChatId(item.id);
-                                            setIsOpenSearch(false);
-                                        }}
-                                    >
-                                        <img src={item.img} />{" "}
-                                        <p>{item.title}</p>
-                                    </button>
-                                </li>
-                            );
-                        })}
+                        {Array.isArray(filterList) &&
+                            filterList?.slice(0, 3).map((item) => {
+                                return (
+                                    <li key={item.id}>
+                                        <button
+                                            onClick={() => {
+                                                setInputValue("");
+                                                setChatOpen(true);
+                                                setChatId(item.id);
+                                                setIsOpenSearch(false);
+                                            }}
+                                        >
+                                            <img src={item.img} />{" "}
+                                            <p>{item.title}</p>
+                                        </button>
+                                    </li>
+                                );
+                            })}
                     </ul>
                 )}
             </div>
@@ -101,22 +104,28 @@ export default function Navigation({
                         <MobileMenuOpen />
                     </button>
                     <div>
-                        <Link to="my-chats">
-                            <p>My Chats</p>
-                            <MyChats />
-                        </Link>
-                        <Link to="saved">
-                            <p>Saved Chats</p>
-                            <SavedChats />
-                        </Link>
-                        <Link to="/profile">
-                            <p>My Profile</p>
-                            <img
-                                className={styles.avatar__user}
-                                src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
-                                alt=""
-                            />
-                        </Link>
+                        <button type="button" onClick={() => setIsOpen(false)}>
+                            <Link to="my-chats">
+                                <p>My Chats</p>
+                                <MyChats />
+                            </Link>
+                        </button>
+                        <button type="button" onClick={() => setIsOpen(false)}>
+                            <Link to="saved">
+                                <p>Saved Chats</p>
+                                <SavedChats />
+                            </Link>
+                        </button>
+                        <button type="button" onClick={() => setIsOpen(false)}>
+                            <Link to="/profile">
+                                <p>My Profile</p>
+                                <img
+                                    className={styles.avatar__user}
+                                    src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                                    alt=""
+                                />
+                            </Link>
+                        </button>
                     </div>
                 </div>
             )}

@@ -122,36 +122,13 @@
   align-items: center;
 }
 .profile_wrapper > button {
-  margin-right: 17%;
+  position: absolute;
   background-color: transparent;
   border: transparent;
   cursor: pointer;
 }
-@media (min-width: 420px) and (max-width: 520px) {
-  .profile_wrapper > button {
-    margin-right: 20%;
-  }
-}
-@media (min-width: 520px) and (max-width: 871px) {
-  .profile_wrapper > button {
-    margin-right: 27%;
-  }
-}
-.profile_wrapper > button.edit {
-  margin-right: 25%;
-}
-@media (min-width: 520px) and (max-width: 871px) {
-  .profile_wrapper > button.edit {
-    margin-right: 30%;
-  }
-}
-.profile_wrapper > button.logout {
-  margin-right: 30%;
-}
-@media (min-width: 520px) and (max-width: 871px) {
-  .profile_wrapper > button.logout {
-    margin-right: 35%;
-  }
+.profile_wrapper > h2 {
+  margin: 0 auto;
 }
 
 .title {
