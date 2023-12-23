@@ -4,10 +4,15 @@ import PanelGroups from "./PanelGroups/PanelGroups";
 import ChatGroup from "./ChatGroup/ChatGroup";
 import { useParams } from "react-router-dom";
 import { useChat } from "../chats/chat-context/use-chat.tsx";
-import { getAllMessages, getChatsRoom, getSavedChats } from "../../services/chat/chat.service";
+import {
+    getAllMessages,
+    getChatsRoom,
+    getSavedChats,
+} from "../../services/chat/chat.service";
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 import DeleteChat from "../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
+import { isNumber } from "lodash";
 
 export default function Chats() {
     const { room } = useParams();
@@ -20,7 +25,8 @@ export default function Chats() {
         deleteChat,
         online,
     } = useChat();
-    const { setRoomName, setRoomsList, chatOpen, setWs, ws, setSavedChats } = useChat();
+    const { setRoomName, setRoomsList, chatOpen, setWs, ws, setSavedChats } =
+        useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const cookieString = document.cookie;
@@ -76,47 +82,43 @@ export default function Chats() {
         } else if (msgData.event_type === "message_reaction_was_deleted") {
             setMessage((prevState) =>
                 prevState.map((message) => {
-                    if (message.id === msgData.id) {
-                        if (
-                            message.reactions?.find(
-                                (reaction) =>
-                                    reaction.user_name === msgData.user
-                            ) ||
-                            message.reactions?.find(
-                                (reaction) => reaction.user === msgData.user
-                            )
-                        ) {
-                            const objectReaction =
-                                message.reactions?.find(
-                                    (reaction) =>
-                                        reaction.user_name === msgData.user
-                                ) ||
-                                message.reactions?.find(
-                                    (reaction) => reaction.user === msgData.user
-                                );
-                            if (objectReaction) {
-                                const indexObject =
-                                    message.reactions?.indexOf(objectReaction);
+                    if (message.id === msgData.id && message.reactions) {
+                        const userReactionIndex = message.reactions.findIndex(
+                            (reaction) =>
+                                reaction.user_name === msgData.user ||
+                                reaction.user === msgData.user
+                        );
 
-                                if (
-                                    indexObject !== undefined &&
-                                    indexObject !== -1
-                                ) {
-                                    message.reactions.splice(
-                                        indexObject,
-                                        indexObject + 1
-                                    );
-                                    return {
-                                        ...message,
-                                        reactions: message.reactions,
-                                    };
-                                }
-                            }
+                        if (userReactionIndex !== -1) {
+                            message.reactions.splice(userReactionIndex, 1);
+
+                            return {
+                                ...message,
+                                reactions: [...message.reactions],
+                            };
                         }
                     }
                     return message;
                 })
             );
+        } else if (msgData.event_type === "chat_was_liked") {
+            setRoomsList((prevRoomList) => {
+                return prevRoomList?.map((chat) => {
+                    if (chat.id === Number(msgData.id)) {
+                        return { ...chat, likes: chat.likes + 1 };
+                    }
+                    return chat;
+                });
+            });
+        } else if (msgData.event_type === "chat_was_unliked") {
+            setRoomsList((prevRoomList) => {
+                return prevRoomList?.map((chat) => {
+                    if (chat.id === Number(msgData.id)) {
+                        return { ...chat, likes: chat.likes - 1 };
+                    }
+                    return chat;
+                });
+            });
         } else {
             console.log(msgData);
         }
@@ -156,7 +158,7 @@ export default function Chats() {
             const getMessagesandSavedChats = async () => {
                 const messages = await getAllMessages(chatId);
                 const savedChats = await getSavedChats();
-                console.log(savedChats)
+                console.log(savedChats);
                 setMessage(messages.results);
                 setSavedChats(savedChats.results);
             };
@@ -177,8 +179,7 @@ export default function Chats() {
         setMessage,
         setRoomsList,
         setWs,
-        setSavedChats, 
-        
+        setSavedChats,
     ]);
     return (
         <>

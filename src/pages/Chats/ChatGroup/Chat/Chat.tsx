@@ -13,7 +13,7 @@ export default function Chat() {
         if (chatContainer) {
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
-    }, [message]);
+    }, []);
     return (
         <ul
             ref={chatContainerRef}
