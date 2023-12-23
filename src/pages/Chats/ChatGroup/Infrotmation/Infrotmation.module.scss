@@ -77,6 +77,10 @@
     gap: 2px;
     font-size: 12px;
     color: black;
+    & > svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .close__modal {

@@ -12,7 +12,6 @@ import {
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 import DeleteChat from "../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
-import { isNumber } from "lodash";
 
 export default function Chats() {
     const { room } = useParams();
@@ -25,7 +24,7 @@ export default function Chats() {
         deleteChat,
         online,
     } = useChat();
-    const { setRoomName, setRoomsList, chatOpen, setWs, ws, setSavedChats } =
+    const {roomName, setRoomName, setRoomsList, chatOpen, setWs, ws, setSavedChats } =
         useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -157,7 +156,7 @@ export default function Chats() {
             setWs(wss);
             const getMessagesandSavedChats = async () => {
                 const messages = await getAllMessages(chatId);
-                const savedChats = await getSavedChats();
+                const savedChats = await getSavedChats(roomName);
                 console.log(savedChats);
                 setMessage(messages.results);
                 setSavedChats(savedChats.results);

@@ -6,12 +6,16 @@ import {
     Favorite,
     MoreInformation,
     Saved,
+    SavedChatsTrue,
 } from "../../../../assets/icons";
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
 import { useAuth } from "../../../auth/auth-context/use-auth.tsx";
-import { postSavedChat } from "../../../../services/chat/chat.service.tsx";
+import {
+    deleteSavedChat,
+    postSavedChat,
+} from "../../../../services/chat/chat.service.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -34,7 +38,14 @@ export default function Infrotmation({
 }: InfrotmationProps) {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const { setChatOpen, ws, setDeleteChat, chatId, savedChats, setSavedChats } = useChat();
+    const {
+        setChatOpen,
+        ws,
+        setDeleteChat,
+        chatId,
+        savedChats,
+        setSavedChats,
+    } = useChat();
     const { username } = useAuth();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
@@ -86,16 +97,16 @@ export default function Infrotmation({
         ws?.send(JSON.stringify(messageUser));
     };
     const submitSavedChat = async () => {
-        const { saved_chat } = await postSavedChat(chatId);
-        const message = { ...saved_chat };
-        console.log(message)
-        setSavedChats(prevState => ([...prevState, { ...saved_chat }]))
-        const userString = localStorage.getItem("user");
-        if (userString !== null) {
-            const user = JSON.parse(userString);
-            console.log(savedChats.filter((item) => item.user === user.id))
-            console.log(user.id);
-        } 
+        const chatTets = savedChats.find((item) => item.chat === chatId);
+        if (chatTets) {
+            await deleteSavedChat(chatTets.id);
+            setSavedChats((prevState) =>
+                prevState.filter((item) => item.chat !== chatId)
+            );
+        } else {
+            const { saved_chat } = await postSavedChat(chatId);
+            setSavedChats((prevState) => [...prevState, { ...saved_chat }]);
+        }
     };
     return (
         <>
@@ -159,10 +170,16 @@ export default function Infrotmation({
                                     </button>
                                     <button
                                         type="button"
-                                        className={styles.button__additional}
+                                        className={`${styles.button__additional}`}
                                         onClick={submitSavedChat}
                                     >
-                                        <Saved />
+                                        {savedChats.find(
+                                            (item) => item.chat === chatId
+                                        ) ? (
+                                            <SavedChatsTrue />
+                                        ) : (
+                                            <Saved />
+                                        )}
                                     </button>
                                 </div>
                             </div>

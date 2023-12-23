@@ -6,14 +6,29 @@ import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Chat() {
     const { room } = useParams();
-    const { message, imageURLs } = useChat();
+    const { message, imageURLs, chatOpen } = useChat();
     const chatContainerRef = useRef<HTMLUListElement>(null);
     useEffect(() => {
         const chatContainer = chatContainerRef.current;
-        if (chatContainer) {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        if (!chatContainer) {
+            return;
         }
-    }, []);
+
+        const handleScrollToBottom = () => {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        };
+
+        handleScrollToBottom();
+
+        const observer = new MutationObserver(handleScrollToBottom);
+        observer.observe(chatContainer, { childList: true });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [chatOpen]);
+
     return (
         <ul
             ref={chatContainerRef}

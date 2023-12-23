@@ -42,9 +42,9 @@ export const getAllMessages = async (chatId: number | undefined) => {
     }
 };
 
-export const getSavedChats = async () => {
+export const getSavedChats = async (roomName: string | undefined) => {
     try {
-        const { data } = await secureApi.get(`/chat/saved_chats/get/books/`);
+        const { data } = await secureApi.get(`/chat/saved_chats/get/${roomName}/`);
         return data;
     } catch (error) {
         return error;
@@ -73,9 +73,7 @@ export const postSavedChat = async (chat_id: number) => {
 
 export const deleteSavedChat = async (chat_id: number) => {
     try {
-        const { data } = await secureApi.post("/chat/saved_chats/post/", {
-            chat_id,
-        });
+        const { data } = await secureApi.delete(`/chat/saved_chats/delete/${chat_id}/`);
         return data;
     } catch (error) {
         return error;
