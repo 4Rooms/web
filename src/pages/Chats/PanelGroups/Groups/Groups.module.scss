@@ -64,4 +64,16 @@
     }
     font-weight: 600;
     line-height: 150%;
+    &.books {
+        color: #CC9C00;
+    }
+    &.games {
+        color: #C00;
+    }
+    &.cinema {
+        color: #349878;
+    }
+    &.music {
+        color: #8B03C9;
+    }
 }

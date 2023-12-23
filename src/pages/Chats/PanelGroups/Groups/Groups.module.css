@@ -65,4 +65,16 @@
   .group__text {
     font-size: 20px;
   }
+}
+.group__text.books {
+  color: #CC9C00;
+}
+.group__text.games {
+  color: #C00;
+}
+.group__text.cinema {
+  color: #349878;
+}
+.group__text.music {
+  color: #8B03C9;
 }/*# sourceMappingURL=Groups.module.css.map */
