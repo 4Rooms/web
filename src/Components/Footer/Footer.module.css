@@ -1,5 +1,5 @@
 .logo__name {
-  color: #212121;
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 20px;
   font-style: normal;
   font-weight: 700;

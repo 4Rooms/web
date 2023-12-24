@@ -11,7 +11,7 @@ import {
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
-import { useAuth } from "../../../auth/auth-context/use-auth.tsx";
+import { useAuth } from "../../../auth/signup-page/auth-context/use-auth.tsx";
 import {
     deleteSavedChat,
     postSavedChat,

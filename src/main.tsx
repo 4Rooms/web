@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { AuthProvider } from "./pages/auth/auth-context/auth-provider";
+import { AuthProvider } from "./pages/auth/signup-page/auth-context/auth-provider.tsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";

@@ -10,7 +10,7 @@
         max-height: 8px;
     }
     &::-webkit-scrollbar-thumb {
-        background-color: var(--black); 
+        background-color: var(--LIGHT_THEME-Other-text_main); 
         border-radius: 10px; 
     }
     &::-webkit-scrollbar-track {
@@ -28,7 +28,7 @@
 
 .group {
     display: flex;
-    color: var(--black);
+    color: var(--LIGHT_THEME-Other-text_main);
     flex-wrap: nowrap;
     gap: 20px;
     align-items: center;
@@ -38,16 +38,16 @@
     width: 100%;
     cursor: pointer;
     &.books:hover {
-        color: #CC9C00;
+        color: var(--ROOMS-Books-dark);
     }
     &.games:hover {
-        color: #C00;
+        color: var(--ROOMS-Games-dark);
     }
     &.cinema:hover {
-        color: #349878;
+        color: var(--ROOMS-Cinema-dark);
     }
     &.music:hover {
-        color: #8B03C9;
+        color: var(--ROOMS-Music-dark);
     }
 }
 
@@ -65,15 +65,15 @@
     font-weight: 600;
     line-height: 150%;
     &.books {
-        color: #CC9C00;
+        color: var(--ROOMS-Books-dark);
     }
     &.games {
-        color: #C00;
+        color: var(--ROOMS-Games-dark);
     }
     &.cinema {
-        color: #349878;
+        color: var(--ROOMS-Cinema-dark);
     }
     &.music {
-        color: #8B03C9;
+        color: var(--ROOMS-Music-dark);
     }
 }

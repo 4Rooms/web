@@ -8,7 +8,7 @@ import {
     InputsValidRegistration
 } from "../../../App.types.ts";
 import React, { useContext, useRef, useState } from "react";
-import { AuthContext } from "../auth-context/auth-context.tsx";
+import { AuthContext } from "./auth-context/auth-context.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import authService from "../../../services/auth/auth.service.tsx";

@@ -6,7 +6,7 @@
   padding: 24px 0;
 
     &__title {
-    color: var(--black);
+    color: var(--LIGHT_THEME-Other-text_main);
     font-size: 32px;
     line-height: 150%;
     margin-bottom: 60px;
@@ -59,7 +59,7 @@
 
     &:hover > a > div > p {
       opacity: 1;
-      color: var(--black);
+      color: var(--LIGHT_THEME-Other-text_main);
       position: static;
     }
     &:hover > a > div > .dashboard__text {
@@ -105,7 +105,7 @@
     position: relative;
   }
   &__text {
-    color: var(--gray);
+    color: var(--OTHER-inactive_text);
     font-size: 20px;
     font-weight: 500;
     line-height: 150%;

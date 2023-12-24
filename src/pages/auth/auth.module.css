@@ -6,7 +6,7 @@
 }
 
 .container__auth {
-  background-color: rgba(234, 234, 234, 0.7);
+  background-color: var(--background-color-MAIN-block);
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -32,14 +32,14 @@
 }
 
 .title__auth {
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 36px;
   font-weight: 700;
   line-height: 150%;
 }
 
 .text__google {
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 36px;
@@ -57,9 +57,9 @@
   gap: 10px;
   align-items: center;
   border-radius: 5px;
-  border: 1px solid var(--black);
+  border: 1px solid var(--LIGHT_THEME-Other-text_main);
   cursor: pointer;
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 20px;
   margin-bottom: 48px;
 }
@@ -82,35 +82,53 @@
 
 .label__auth {
   width: 100%;
-  margin-bottom: 40px;
+  display: inline-block;
+  margin-bottom: 48px;
   position: relative;
 }
-@media (min-width: 391px) {
-  .label__auth {
-    margin-bottom: 48px;
-  }
-}
 .label__auth:last-of-type {
-  margin-bottom: 48px;
+  margin-bottom: 80px;
 }
-@media (min-width: 391px) {
-  .label__auth:last-of-type {
-    margin-bottom: 80px;
-  }
+.label__auth.label__modal {
+  margin-bottom: 60px;
+}
+.label__auth.textarea {
+  height: 94px;
 }
 
 .input__auth {
-  color: var(--gray);
+  color: var(--OTHER-inactive_text);
   font-size: 18px;
-  width: 87%;
+  width: 100%;
   padding: 10px 15px;
   padding-right: 40px;
-  margin-bottom: 4px;
   border-radius: 5px;
-  border: 1px solid var(--gray);
+  background-color: transparent;
+  border: 1px solid var(--OTHER-inactive_text);
 }
 .input__auth:focus {
   outline: transparent;
+}
+.input__auth.create {
+  width: 100%;
+  padding: 20px 24px;
+}
+.input__auth.textarea {
+  width: 100%;
+  padding: 20px 24px;
+  background-color: transparent;
+  font-family: Roboto, sans-serif;
+  resize: none;
+  overflow-x: hidden;
+}
+.input__auth.textarea::-webkit-scrollbar {
+  width: 1px;
+}
+.input__auth.textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+.input__auth.textarea::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .error__auth {
@@ -126,8 +144,8 @@
 }
 
 .focus__block {
-  background-color: var(--button-up);
-  color: var(--color--button);
+  background-color: var(--OTHER-accent);
+  color: var(--LIGHT_THEME-Other-background_light);
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 10px;
@@ -142,6 +160,8 @@
   font-size: 14px;
   position: absolute;
   top: 110%;
+  display: flex;
+  gap: 2px;
 }
 
 .wrapper__buttons {
@@ -155,13 +175,13 @@
 }
 
 .button__next {
-  color: var(--color--button);
+  color: var(--LIGHT_THEME-Other-background_light);
   font-size: 20px;
   font-weight: 500;
   line-height: 150%;
   padding: 4px 20px;
   border: transparent;
-  background: var(--button-up);
+  background: var(--OTHER-accent);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
@@ -169,13 +189,13 @@
 }
 
 .button__forgot {
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 10px;
   font-weight: 500;
   line-height: 150%;
   padding: 2px 10px;
-  border: 1px solid var(--black);
-  background: var(--color--button);
+  border: 1px solid var(--LIGHT_THEME-Other-text_main);
+  background: var(--LIGHT_THEME-Other-background_light);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
@@ -191,21 +211,25 @@
   cursor: pointer;
 }
 
-.body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-}
-.body h3 {
-  text-align: center;
-  margin-top: -80px;
-  margin-bottom: 40px;
+.forgot__password__error {
+  color: red;
+  font-size: 14px;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration-line: underline;
+  cursor: pointer;
 }
 
 .text__confirm {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 40px;
+}
+
+.text__modal {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 80px;
 }/*# sourceMappingURL=auth.module.css.map */

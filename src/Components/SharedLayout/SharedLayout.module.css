@@ -16,5 +16,5 @@
   }
 }
 .header__user.authenticated {
-  background-color: #EAEAEA;
+  background-color: var(--LIGHT_THEME-Other-background_light);
 }/*# sourceMappingURL=SharedLayout.module.css.map */

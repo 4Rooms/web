@@ -10,7 +10,7 @@
 }
 
 .container__auth {
-    background-color: rgba(234, 234, 234, 0.70);
+    background-color: var(--background-color-MAIN-block);
     padding: 205.5px 12px;
     max-width: 374px;
     text-align: center;
@@ -22,7 +22,7 @@
 }
 
 .greeting__text {
-    color: var(--black);
+    color: var(--LIGHT_THEME-Other-text_main);
     font-size: 30px;
     font-weight: 700;
     font-style: normal;
@@ -34,7 +34,7 @@
 }
 
 .another__text {
-    color: var(--black);
+    color: var(--LIGHT_THEME-Other-text_main);
     width: 280px;
     font-size: 20px;
     font-weight: 400;
@@ -54,13 +54,13 @@
 }
 
 .button__in {
-    color: var(--color--button);
+    color: var(--LIGHT_THEME-Other-background_light);
     font-size: 18px;
     font-weight: 500;
     line-height: 150%;
     padding: 4px 43px;
-    border: 1px solid var(--black);
-    background-color: var(--black);
+    border: 1px solid var(--LIGHT_THEME-Other-text_main);
+    background-color: var(--LIGHT_THEME-Other-text_main);
     border-radius: 10px;
     width: fit-content;
     & > p {
@@ -75,7 +75,7 @@
 }
 
 .button__up {
-    color: var(--color--button);
+    color: var(--LIGHT_THEME-Other-background_light);
     font-size: 18px;
     font-weight: 500;
     line-height: 150%;

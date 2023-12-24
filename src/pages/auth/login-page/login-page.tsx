@@ -1,4 +1,4 @@
-import styles from "../auth-context/sign/Sign.module.scss";
+import styles from "../auth.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error, HiddenPassword, IconOkey, OpenPassword } from "../../../assets/icons.tsx";
 import {
@@ -10,7 +10,7 @@ import {
 } from "../../../App.types.ts";
 import React, { useContext, useRef, useState } from "react";
 import GoogleAuthButton from "../../../shared/google-auth-button/google-auth-button.tsx";
-import { AuthContext } from "../auth-context/auth-context.tsx";
+import { AuthContext } from "../signup-page/auth-context/auth-context.tsx";
 import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -177,7 +177,7 @@ export default function LoginPage() {
                             <FormInput<InputLoginKeys, InputsLogin>
                                 value={value}
                                 register={register}
-                                errors={errors[value]}
+                                errors={errors}
                                 formStateValid={formStateValid}
                                 formStateFocus={formStateFocus}
                                 formStateValue={formStateValue}
@@ -224,7 +224,7 @@ export default function LoginPage() {
                     );
                 })}
                 {openModal && (
-                    <Modal onOpen={onClickChangeOpenModal}>
+                    <Modal className="reset"  onOpen={onClickChangeOpenModal}>
                         <form>
                             <p className={styles.text__modal}>
                                 Enter your email to reset password

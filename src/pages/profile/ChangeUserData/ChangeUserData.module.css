@@ -42,7 +42,7 @@
   justify-content: center;
 }
 .modal > h2 {
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 24px;
   line-height: 150%;
   margin-bottom: 20px;
@@ -50,7 +50,7 @@
 .modal > p {
   font-size: 18px;
   line-height: 150%;
-  color: var(--gray);
+  color: var(--OTHER-inactive_text);
   margin-bottom: 40px;
 }
 
@@ -67,7 +67,7 @@
   }
 }
 .data__user > div {
-  color: var(--gray);
+  color: var(--OTHER-inactive_text);
   text-align: left;
   font-size: 18px;
   width: 100%;
@@ -75,7 +75,7 @@
   padding-right: 40px;
   border-radius: 5px;
   background-color: transparent;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--OTHER-inactive_text);
 }
 .data__user > div:focus {
   outline: transparent;
@@ -85,7 +85,7 @@
 }
 
 .delete__button {
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 18px;
   line-height: 150%;
   text-align: left;
@@ -110,8 +110,8 @@
 }
 
 .focus {
-  background-color: var(--button-up);
-  color: var(--color--button);
+  background-color: var(--OTHER-accent);
+  color: var(--LIGHT_THEME-Other-background_light);
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 10px;
@@ -122,7 +122,7 @@
 }
 
 .text__error {
-  color: red;
+  color: var(--OTHER-invalid);
   font-size: 14px;
   position: absolute;
   top: 110%;

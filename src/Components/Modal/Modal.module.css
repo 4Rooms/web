@@ -12,7 +12,7 @@
 }
 
 .window {
-  background-color: #EAEAEA;
+  background-color: var(--LIGHT_THEME-Other-background_light);
   padding: 80px 60px;
   border-radius: 20px;
   position: relative;
@@ -54,6 +54,9 @@
 }
 .window.delete {
   width: 650px;
+}
+.window.reset {
+  width: 555px;
 }
 
 .close {

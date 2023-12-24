@@ -7,7 +7,7 @@
   height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
-  background-color: rgba(234, 234, 234, 0.7);
+  background-color: var(--background-color-MAIN-block);
 }
 @media screen and (max-width: 871px) {
   .container__chatGroups {

@@ -4,12 +4,12 @@ import { EmailConfirmationResponse, InputsLogin, InputsRegistraytion } from "../
 axios.defaults.baseURL = 'https://back.4rooms.pro/api/';
 
 const signup = async (dataForm: InputsRegistraytion) => {
-    return await axios.post("/api/register/", dataForm);
+    return await axios.post("register/", dataForm);
 };
 
 const login = async (dataForm: InputsLogin) => {
     try {
-        const {data} = await axios.post("/api/login/", dataForm)
+        const {data} = await axios.post("login/", dataForm)
         return data;
     } catch (err) {
         return err;
