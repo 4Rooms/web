@@ -28,7 +28,7 @@ export default function Welcome({isSmallScreen}: ProfileContextType) {
             {isSmallScreen && (
                 <div>
                     <RowUp />
-                    <span>Swipe and go to chats</span>
+                    <span>Scroll and go to chats</span>
                 </div>
             )}
         </div>

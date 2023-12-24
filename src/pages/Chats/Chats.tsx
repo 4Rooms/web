@@ -123,6 +123,7 @@ export default function Chats() {
         }
     }
     useEffect(() => {
+        window.scrollTo(0, 0);
         const getAllChatsRoom = async () => {
             try {
                 const data = await getChatsRoom(room, category);
@@ -157,7 +158,6 @@ export default function Chats() {
             const getMessagesandSavedChats = async () => {
                 const messages = await getAllMessages(chatId);
                 const savedChats = await getSavedChats(roomName);
-                console.log(savedChats);
                 setMessage(messages.results);
                 setSavedChats(savedChats.results);
             };

@@ -128,22 +128,30 @@
         margin-bottom: 27.5px;
     }
     & > div {
-        & > a {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            justify-content: right;
-            flex-wrap: nowrap;
-            &:not(:last-child) {
-                margin-bottom: 32px;
-            }
-            & > p {
-                color: white;
-                font-size: 14px;
-                font-weight: 400;
-                padding: 2px 8px;
-                border-radius: 4px;
-                background-color: #7b34d8;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 27.5px;
+        & > button {
+            width: 100%;
+            background-color: transparent;
+            border: transparent;
+            & > a {
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                justify-content: right;
+                flex-wrap: nowrap;
+                &:not(:last-child) {
+                    margin-bottom: 32px;
+                }
+                & > p {
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 400;
+                    padding: 2px 8px;
+                    border-radius: 4px;
+                    background-color: #7b34d8;
+                }
             }
         }
     }

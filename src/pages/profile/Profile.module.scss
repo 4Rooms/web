@@ -118,28 +118,13 @@
         display: flex;
         align-items: center;
         & > button {
-            margin-right: 17%;
+            position: absolute;
             background-color: transparent;
             border: transparent;
             cursor: pointer;
-            @media (min-width: 420px) and (max-width: 520px) {
-                margin-right: 20%;
-            }
-            @media (min-width: 520px) and (max-width: 871px) {
-                margin-right: 27%;
-            }
-            &.edit {
-                margin-right: 25%;
-                @media (min-width: 520px) and (max-width: 871px) {
-                    margin-right: 30%;
-                }
-            }
-            &.logout {
-                margin-right: 30%;
-                @media (min-width: 520px) and (max-width: 871px) {
-                    margin-right: 35%;
-                }
-            }
+        } 
+        & > h2 {
+            margin: 0 auto;
         }
     }
 }

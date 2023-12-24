@@ -130,17 +130,27 @@
 .menu__container > button {
   margin-bottom: 27.5px;
 }
-.menu__container > div > a {
+.menu__container > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 27.5px;
+}
+.menu__container > div > button {
+  width: 100%;
+  background-color: transparent;
+  border: transparent;
+}
+.menu__container > div > button > a {
   display: flex;
   gap: 12px;
   align-items: center;
   justify-content: right;
   flex-wrap: nowrap;
 }
-.menu__container > div > a:not(:last-child) {
+.menu__container > div > button > a:not(:last-child) {
   margin-bottom: 32px;
 }
-.menu__container > div > a > p {
+.menu__container > div > button > a > p {
   color: white;
   font-size: 14px;
   font-weight: 400;
