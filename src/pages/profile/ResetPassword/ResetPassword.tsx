@@ -17,6 +17,7 @@ import {
     OpenPassword,
 } from "../../../assets/icons";
 import FormInput from "../../../shared/auth-input/form-Input";
+import { useTranslation } from "react-i18next";
 
 export default function ResetPassword() {
     const inputArray: InputResetPasswordKeys[] = ["oldPassword", "newPassword"];
@@ -31,6 +32,7 @@ export default function ResetPassword() {
             newPassword: false,
         });
     const [open, setOpen] = useState<boolean>(false);
+    const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
 
     const {
         register,
@@ -90,8 +92,7 @@ export default function ResetPassword() {
     return (
         <>
                 <p className={styles.reset__warning}>
-                    To change your password, enter your old password and create
-                    a new one.
+                    {t('change-password-description')}
                 </p>
             <div className={styles.reset__container}>
                 <form onSubmit={handleSubmit(deliveryFormAuth)}>
@@ -163,7 +164,7 @@ export default function ResetPassword() {
                             type="submit"
                             onClick={() => setFormSubmitted(true)}
                         >
-                            Save
+                            {t('save')}
                         </Button>
                     </div>
                 </form>

@@ -87,7 +87,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             aria-invalid={errors && errors[value] ? "true" : "false"}
             placeholder={
                 value === "newPassword"
-                  ? "Create new password"
+                  ? t('create new password')
                   : value !== "resetEmail"
                   ? value === "oldPassword"
                     ? t('password')
