@@ -130,8 +130,11 @@ export default function SignupPage() {
         <form
             className={styles.form__auth}
             onSubmit={handleSubmit(deliveryFormAuth)}>
-            <GoogleAuthButton translation={t('sign up')}/>
-            <h2 className={styles.text__form}>{t('googleSignUp')}</h2>
+            <div>
+                <GoogleAuthButton translation={t('sign up with google')}/>
+                <h2 className={styles.text__form}>{t('googleSignUp')}</h2>
+            </div>
+
             {inputArray.map((value) =>
                 <label
                     htmlFor={value}

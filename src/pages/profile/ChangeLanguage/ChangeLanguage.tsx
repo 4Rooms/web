@@ -4,9 +4,11 @@ import Button from "../../../shared/button/button";
 import Switch from "../../../Components/Switch/Switch";
 import { changeLanguage } from "../../../utils/language-selector/language-selector.ts";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
+import { useTranslation } from "react-i18next";
 
 export default function ChangeLanguage() {
     const [selectedOption, setSelectedOption] = useState(localStorageService.get("4RoomLanguage") || "en");
+    const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
 
     const handleLanguageChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -21,12 +23,12 @@ export default function ChangeLanguage() {
     return (
         <div className={styles.language__container}>
             <p className={styles.language__container_title}>
-                Pick which language to use for 4ROOMS’s website.
+                {t('pick-language')}
             </p>
             <div className={styles.language__container_switch}>
                 <div className={styles.language__container_wrapper}>
                     <div>
-                        <p>English</p>
+                        <p>{t('en')}</p>
                         <Switch
                             handleChange={handleLanguageChange}
                             selectedOption={selectedOption}
@@ -34,7 +36,7 @@ export default function ChangeLanguage() {
                         />
                     </div>
                     <div>
-                        <p>Ukrainian</p>
+                        <p>{t('ua')}</p>
                         <Switch
                             handleChange={handleLanguageChange}
                             selectedOption={selectedOption}
@@ -44,7 +46,7 @@ export default function ChangeLanguage() {
                 </div>
             </div>
             <Button className="accent" type="button">
-                Save
+                {t('save')}
             </Button>
         </div>
     );

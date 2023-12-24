@@ -8,7 +8,13 @@ export const getChatsRoom = async (
     category: string | undefined
 ) => {
     try {
-        const { data } = await secureApi.get(`/chat/get/${room}/${category}/`);
+        const categoryMap = {
+            "нові": "new",
+            "популярні": "popular",
+            "старі": "old"
+        };
+
+        const { data } = await secureApi.get(`/chat/get/${room}/${categoryMap[category as keyof typeof categoryMap] || category}/`);
         return data;
     } catch (error) {
         return error;

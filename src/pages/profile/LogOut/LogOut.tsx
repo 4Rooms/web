@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./LogOut.module.css";
 import Button from "../../../shared/button/button";
 import Modal from "../../../Components/Modal/Modal";
+import { useTranslation } from "react-i18next";
 export default function LogOut() {
     const [open, setOpen] = useState<boolean>(false);
     const onClickChangeOpenModal = (): void => {
@@ -9,9 +10,11 @@ export default function LogOut() {
             return !prevOpen;
         });
     };
+    const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
+
     return (
         <div className={styles.logout__container}>
-            <p>Are you sure you want to leave 4ROOM?</p>
+            <p>{t('logout description')}</p>
             <Button
                 onClick={() => {
                     setOpen(true);
@@ -19,13 +22,13 @@ export default function LogOut() {
                 type="button"
                 className="accent"
             >
-                Log Out
+                {t('logout')}
             </Button>
             {open && (
                 <Modal className="profile" onOpen={onClickChangeOpenModal}>
                     <div className={styles.logout__container_modal}>
-                        <h2>Log Out</h2>
-                        <p>Are you sure you want to leave 4ROOM?</p>
+                        <h2>{t('logout')}</h2>
+                        <p>{t('logout description')}</p>
                         <Button
                             onClick={() => {
                                 setOpen(true);
@@ -33,7 +36,7 @@ export default function LogOut() {
                             type="submit"
                             className="accent"
                         >
-                            Log Out
+                            {t('logout')}
                         </Button>
                     </div>
                 </Modal>

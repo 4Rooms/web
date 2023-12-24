@@ -5,11 +5,13 @@ import TitleProfile from "../../shared/title-profile/TitleProfile";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { Back } from "../../assets/icons";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
     const location = useLocation();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [navigationMobile, setNavigationMobile] = useState(false);
+    const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -24,7 +26,7 @@ export default function Profile() {
 
     return (
         <>
-            {!isSmallScreen && <h1 className={styles.title}>My profile</h1>}
+            {!isSmallScreen && <h1 className={styles.title}>{t('page-title')}</h1>}
             <div
                 className={`${styles.profile} ${
                     isSmallScreen && styles.mobile
@@ -48,7 +50,7 @@ export default function Profile() {
                                         isSmallScreen && styles.mobile
                                     }`}
                                 >
-                                    My profile
+                                    {t('page-title')}
                                 </h1>
                             )}
                             <ul>
@@ -84,23 +86,23 @@ export default function Profile() {
                                                     .toLowerCase()}`
                                                     ? styles.active
                                                     : (value.name ===
-                                                          "Edit Profile" &&
+                                                          "edit-profile" &&
                                                           location.pathname ===
                                                               `/profile/`) ||
                                                       (location.pathname ===
                                                           `/profile` &&
                                                           value.name ===
-                                                              "Edit Profile")
+                                                              "edit-profile")
                                                     ? styles.active
                                                     : value.name ===
-                                                          "Edit Password" &&
+                                                          "edit-password" &&
                                                       location.pathname ===
                                                           `/profile/password`
                                                     ? styles.active
                                                     : ""
                                             }`}
                                         >
-                                            {value.icon} {value.name}
+                                            {value.icon} {t(`menu.${value.name}`)}
                                         </NavLink>
                                     </li>
                                 ))}
