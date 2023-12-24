@@ -4,7 +4,7 @@
   display: inline-block;
   padding: 12px 44px;
   justify-content: center;
-  color: white;
+  color: var(--LIGHT_THEME-Other-background_light);
   align-items: center;
   border: none;
   border-radius: 10px;
@@ -15,7 +15,7 @@
 
   &:disabled {
     background-color: #C7C7C7;
-    color: white;
+    color: var(--LIGHT_THEME-Other-background_light);
   }
 
   &:hover {
@@ -24,8 +24,8 @@
   }
 
   &.default {
-    --background: #212121;
-    --hover: #616161;
+    --background: var(--LIGHT_THEME-Other-text_main);
+    --hover: var(--OTHER-inactive_text);
   }
 
   &.accent {
@@ -40,16 +40,16 @@
     gap: 10px;
     align-items: center;
     border-radius: 5px;
-    border: 1px solid var(--black);
+    border: 1px solid var(--LIGHT_THEME-Other-text_main);
     cursor: pointer;
-    color: var(--black);
+    color: var(--LIGHT_THEME-Other-text_main);
     font-size: 20px;
     margin-bottom: 60px;
   }
 
   &.disabled {
-    --background: #616161;
-    --hover: #616161;
+    --background: var(--OTHER-inactive_text);
+    --hover: var(--OTHER-inactive_text);
     cursor: not-allowed;
     opacity: 0.7;
     transform: none;

@@ -10,29 +10,29 @@
     line-height: 150%;
     transition: text-decoration 250ms;
     cursor: pointer;
-    color: var(--gray);
+    color: var(--OTHER-inactive_text);
     @media screen and (min-width:370px) and (max-width: 871px) {
         font-size: 20px;
     }
     &.books:hover,
     &.books.active {
         text-decoration-line: underline;
-        color: #cc9c00;
+        color: var(--ROOMS-Books-dark);
     }
     &.games:hover,
     &.games.active {
         text-decoration-line: underline;
-        color: #c00;
+        color: var(--ROOMS-Games-dark);
     }
     &.cinema:hover,
     &.cinema.active {
         text-decoration-line: underline;
-        color: #349878;
+        color: var(--ROOMS-Cinema-dark);
     }
     &.music:hover,
     &.music.active {
         text-decoration-line: underline;
-        color: #8b03c9;
+        color: var(--ROOMS-Music-dark);
     }
 }
 
@@ -41,7 +41,7 @@
     align-items: center;
     width: 103px;
     text-align: left;
-    color: var(--color--button);
+    color: var(--LIGHT_THEME-Other-background_light);
     font-size: 12px;
     font-weight: 400;
     line-height: 150%;
@@ -56,16 +56,16 @@
     }
 
     &.books {
-        background-color: #cc9c00;
+        background-color: var(--ROOMS-Books-dark);
     }
     &.games {
-        background-color: #c00;
+        background-color: var(--ROOMS-Games-dark);
     }
     &.cinema {
-        background-color: #349878;
+        background-color: var(--ROOMS-Cinema-dark);
     }
     &.music {
-        background-color: #8b03c9;
+        background-color: var(--ROOMS-Music-dark);
     }
 }
 
@@ -83,14 +83,14 @@
     padding: 4px 8px;
     gap: 8px;
     border-radius: 0px 0px 4px 4px;
-    background-color: white;
+    background-color: var(--LIGHT_THEME-Other-background_light);
 }
 
 .button__category_change {
     text-align: left;
     background-color: transparent;
     border-color: transparent;
-    color: var(--black);
+    color: var(--LIGHT_THEME-Other-text_main);
     font-size: 12px;
     line-height: 150%;
     cursor: pointer;

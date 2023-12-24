@@ -10,7 +10,7 @@
   }
 }
 .language__container_title {
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 48px;

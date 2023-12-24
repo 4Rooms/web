@@ -1,7 +1,7 @@
 .button__addChat {
   background-color: var(--button--color);
   border: transparent;
-  color: var(--color--button);
+  color: var(--LIGHT_THEME-Other-background_light);
   border-radius: 10px;
   padding: 12px 33px;
   font-size: 16px;
@@ -15,20 +15,20 @@
   }
 }
 .button__addChat.books {
-  background-color: #CC9C00;
+  background-color: var(--ROOMS-Books-dark);
 }
 .button__addChat.games {
-  background-color: #C00;
+  background-color: var(--ROOMS-Games-dark);
 }
 .button__addChat.cinema {
-  background-color: #349878;
+  background-color: var(--ROOMS-Cinema-dark);
 }
 .button__addChat.music {
-  background-color: #8B03C9;
+  background-color: var(--ROOMS-Music-dark);
 }
 
 .title__modal {
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   text-align: center;
   font-size: 36px;
   font-weight: 700;
@@ -36,13 +36,13 @@
 }
 
 .input__auth {
-  color: var(--gray);
+  color: var(--OTHER-inactive_text);
   font-size: 18px;
   width: 90%;
   padding: 10px 15px;
   padding-right: 40px;
   border-radius: 5px;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--OTHER-inactive_text);
 }
 .input__auth:focus {
   outline: transparent;
@@ -73,7 +73,7 @@
 }
 
 .text__error {
-  color: red;
+  color: var(--OTHER-invalid);
   font-size: 14px;
   position: absolute;
   top: 110%;
@@ -86,8 +86,8 @@
 }
 
 .focus__block {
-  background-color: var(--button-up);
-  color: var(--color--button);
+  background-color: var(--OTHER-accent);
+  color: var(--LIGHT_THEME-Other-background_light);
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 10px;

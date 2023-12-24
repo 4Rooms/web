@@ -12,7 +12,7 @@
   transition: text-decoration 250ms;
   transition: text-decoration 250ms, -webkit-text-decoration 250ms;
   cursor: pointer;
-  color: var(--gray);
+  color: var(--OTHER-inactive_text);
 }
 @media screen and (min-width: 370px) and (max-width: 871px) {
   .button__filter {
@@ -21,19 +21,19 @@
 }
 .button__filter.books:hover, .button__filter.books.active {
   text-decoration-line: underline;
-  color: #cc9c00;
+  color: var(--ROOMS-Books-dark);
 }
 .button__filter.games:hover, .button__filter.games.active {
   text-decoration-line: underline;
-  color: #c00;
+  color: var(--ROOMS-Games-dark);
 }
 .button__filter.cinema:hover, .button__filter.cinema.active {
   text-decoration-line: underline;
-  color: #349878;
+  color: var(--ROOMS-Cinema-dark);
 }
 .button__filter.music:hover, .button__filter.music.active {
   text-decoration-line: underline;
-  color: #8b03c9;
+  color: var(--ROOMS-Music-dark);
 }
 
 .button__new {
@@ -41,7 +41,7 @@
   align-items: center;
   width: 103px;
   text-align: left;
-  color: var(--color--button);
+  color: var(--LIGHT_THEME-Other-background_light);
   font-size: 12px;
   font-weight: 400;
   line-height: 150%;
@@ -58,16 +58,16 @@
   }
 }
 .button__new.books {
-  background-color: #cc9c00;
+  background-color: var(--ROOMS-Books-dark);
 }
 .button__new.games {
-  background-color: #c00;
+  background-color: var(--ROOMS-Games-dark);
 }
 .button__new.cinema {
-  background-color: #349878;
+  background-color: var(--ROOMS-Cinema-dark);
 }
 .button__new.music {
-  background-color: #8b03c9;
+  background-color: var(--ROOMS-Music-dark);
 }
 
 .wrapper__new {
@@ -84,14 +84,14 @@
   padding: 4px 8px;
   gap: 8px;
   border-radius: 0px 0px 4px 4px;
-  background-color: white;
+  background-color: var(--LIGHT_THEME-Other-background_light);
 }
 
 .button__category_change {
   text-align: left;
   background-color: transparent;
   border-color: transparent;
-  color: var(--black);
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 12px;
   line-height: 150%;
   cursor: pointer;

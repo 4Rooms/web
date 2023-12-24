@@ -12,7 +12,7 @@
 .message__container > .wrapper__message {
   background-color: transparent;
   border: transparent;
-  color: black;
+  color: var(--LIGHT_THEME-Other-text_main);
   text-align: left;
   position: relative;
   display: inline-flex;
@@ -46,7 +46,7 @@
 }
 .message__user.deleted {
   background-color: #c7c7c7;
-  color: #616161;
+  color: var(--OTHER-inactive_text);
   font-size: 8px;
 }
 .message__user > label {
@@ -56,9 +56,9 @@
 }
 .message__user > label > input {
   border: transparent;
-  color: black;
+  color: var(--LIGHT_THEME-Other-text_main);
   padding: 4px 8px;
-  border: 1px solid black;
+  border: 1px solid var(--LIGHT_THEME-Other-text_main);
   border-radius: 16px;
   width: 100%;
 }
@@ -95,7 +95,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: black;
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 14px;
 }
 .message__user > .menu__message > .reaction {
@@ -111,19 +111,19 @@
 
 .edit__message {
   background-color: transparent;
-  border: 1px solid black;
+  border: 1px solid var(--LIGHT_THEME-Other-text_main);
   border-radius: 10px;
-  color: black;
+  color: var(--LIGHT_THEME-Other-text_main);
   padding: 4px 8px;
 }
 
 .user__name {
   font-size: 12px;
-  color: black;
+  color: var(--LIGHT_THEME-Other-text_main);
   line-height: 150%;
 }
 .user__name.gray {
-  color: gray;
+  color: var(--OTHER-inactive_text);
 }
 @media screen and (max-width: 500px) {
   .user__name {
@@ -143,7 +143,7 @@
   height: 20px;
 }
 .user__text > svg > path {
-  fill: gray;
+  fill: var(--OTHER-inactive_text);
 }
 
 .user__time {
@@ -177,19 +177,19 @@
 }
 .list__reactions > li > button > span {
   font-size: 10px;
-  color: black;
+  color: var(--LIGHT_THEME-Other-text_main);
 }
 .list__reactions > li > .books {
-  background-color: #cc9c00;
+  background-color: var(--ROOMS-Books-dark);
 }
 .list__reactions > li > .games {
-  background-color: #c00;
+  background-color: var(--ROOMS-Games-dark);
 }
 .list__reactions > li > .cinema {
-  background-color: #349878;
+  background-color: var(--ROOMS-Cinema-dark);
 }
 .list__reactions > li > .music {
-  background-color: #8b03c9;
+  background-color: var(--ROOMS-Music-dark);
 }
 
 .message__photo {

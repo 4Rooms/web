@@ -6,14 +6,32 @@
   color-scheme: light dark;
   color: #242424;
   background-color: #EBE8FA;
-  --black: #212121;
-  --background-color-group: rgba(194, 224, 215, 0.35);
-  --gray: #616161;
-  --button--color:#179C74;
-  --color--button: #EAEAEA;
-  --background-color-chat: #DADADA;
-  --background-form-auth: rgba(228, 228, 228, 0.70);
-  --button-up: #B187E8;
+  border-radius: 50px;
+  --ROOMS-Cinema-dark: #349878;
+  --ROOMS-Cinema-main: #61C9A8;
+  --ROOMS-Cinema-light: #B3DCCF;
+  --ROOMS-Cinema-extra_light: #BED1CB;
+  --ROOMS-Books-dark: #CC9C00;
+  --ROOMS-Books-main: #F5BB00;
+  --ROOMS-Books-light: #EED78C;
+  --ROOMS-Books-extra_light: #CDC5AD;
+  --ROOMS-Music-dark: #8B03C9;
+  --ROOMS-Music-main: #D06EFD;
+  --ROOMS-Music-light: #DFB8F1;
+  --ROOMS-Music-extra_light: #D9C9E0;
+  --ROOMS-Games-dark: #C00;
+  --ROOMS-Games-main: #F66;
+  --ROOMS-Games-light: #F2B5B5;
+  --ROOMS-Games-extra_light: #E0C6C6;
+  --OTHER-accent: #7B34D8;
+  --OTHER-accent_light: #B187E8;
+  --LIGHT_THEME-Other-background_light: #EAEAEA;
+  --LIGHT_THEME-Other-text_second: #A1A1A1;
+  --OTHER-inactive_text: #616161;
+  --LIGHT_THEME-Other-text_main: #212121;
+  --OTHER-invalid: #D83434;
+  --OTHER-valid: #2CA129;
+  --background-color-MAIN-block: rgba(234, 234, 234, 0.70);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -56,7 +74,7 @@ label {
 
 input{ 
   padding: 0;
-  background-color: white;
+  background-color: var(--LIGHT_THEME-Other-background_light);
   margin: 0;
 }
 

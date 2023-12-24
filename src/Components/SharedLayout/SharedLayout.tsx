@@ -3,7 +3,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import styles from "./SharedLayout.module.css";
 import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
-import { AuthContext } from "../../pages/auth/auth-context/auth-context.tsx";
+import { AuthContext } from "../../pages/auth/signup-page/auth-context/auth-context.tsx";
 import { localStorageService } from "../../services/local-storage/local-storage.ts";
 
 type Props = {

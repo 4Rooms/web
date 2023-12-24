@@ -1,4 +1,4 @@
-import styles from "../../pages/auth/auth-context/sign/Sign.module.scss";
+import styles from "../../pages/auth/auth.module.css";
 import React from "react";
 import {
     FieldErrors,

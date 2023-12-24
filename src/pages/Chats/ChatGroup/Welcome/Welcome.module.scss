@@ -30,13 +30,13 @@
         background-color: #dfb8f1;
     }
     &__title {
-        color: var(--black);
+        color: var(--LIGHT_THEME-Other-text_main);
         font-size: 32px;
         font-weight: 700;
         line-height: 150%;
     }
     &__text {
-        color: var(--black);
+        color: var(--LIGHT_THEME-Other-text_main);
         font-size: 20px;
         font-weight: 400;
         line-height: 150%;
@@ -45,7 +45,7 @@
         }
     }
     &__span {
-        color: var(--black);
+        color: var(--LIGHT_THEME-Other-text_main);
         font-size: 20px;
         font-weight: 700;
         line-height: 150%;

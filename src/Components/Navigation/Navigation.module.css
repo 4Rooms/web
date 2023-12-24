@@ -6,7 +6,7 @@
 }
 
 .logo__name {
-  color: #212121;
+  color: var(--LIGHT_THEME-Other-text_main);
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -27,8 +27,8 @@
   padding: 12px 16px;
   padding-right: 36px;
   background: transparent;
-  border: #616161 1px solid;
-  color: var(--gray);
+  border: var(--OTHER-inactive_text) 1px solid;
+  color: var(--OTHER-inactive_text);
   font-size: 16px;
 }
 .navigation__input:focus {
@@ -52,7 +52,7 @@
   top: 80%;
   width: 360px;
   padding: 12px 16px;
-  border: #616161 1px solid;
+  border: var(--OTHER-inactive_text) 1px solid;
   border-top: 0;
   border-radius: 0px 0px 12px 12px;
   display: flex;
@@ -68,7 +68,7 @@
   width: 100%;
   background-color: transparent;
   border: transparent;
-  color: black;
+  color: var(--LIGHT_THEME-Other-text_main);
   align-items: center;
   gap: 8px;
 }
@@ -151,7 +151,7 @@
   margin-bottom: 32px;
 }
 .menu__container > div > button > a > p {
-  color: white;
+  color: var(--LIGHT_THEME-Other-background_light);
   font-size: 14px;
   font-weight: 400;
   padding: 2px 8px;

@@ -26,7 +26,7 @@
         bottom: 0;
         right: 0;
         border-radius: 34px;
-        background-color: #616161;
+        background-color: var(--OTHER-inactive_text);
         transition: all 0.4s;
 
         &::before {

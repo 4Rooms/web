@@ -1,15 +1,15 @@
 .inputError {
-  border: 1px solid red;
+  border: 1px solid var(--OTHER-invalid);
 }
 
 .inputValid {
-  border: 1px solid green;
+  border: 1px solid var(--OTHER-valid);
 }
 
 .inputFocus {
-  border: 1px solid var(--button-up);
+  border: 1px solid var(--OTHER-accent);
 }
 
 .inputDefault {
-  border: 1px solid var(--gray);
+  border: 1px solid var(--OTHER-inactive_text);
 }

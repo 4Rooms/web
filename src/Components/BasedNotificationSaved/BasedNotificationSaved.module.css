@@ -62,7 +62,7 @@
   height: 6px;
 }
 .container__wrapper_block > button > svg > path {
-  fill: white;
+  fill: var(--LIGHT_THEME-Other-background_light);
 }
 .container__wrapper_block.books {
   background-color: #f5bb00;
@@ -141,7 +141,7 @@
   padding-right: 36px;
   background: #eaeaea;
   border: transparent;
-  color: var(--gray);
+  color: var(--OTHER-inactive_text);
   font-size: 16px;
 }
 .container__wrapper_chats > label > input:focus {
@@ -162,7 +162,7 @@
   max-height: 8px;
 }
 .container__wrapper_chats > ul::-webkit-scrollbar-thumb {
-  background-color: var(--black);
+  background-color: var(--LIGHT_THEME-Other-text_main);
   border-radius: 10px;
 }
 .container__wrapper_chats > ul::-webkit-scrollbar-track {

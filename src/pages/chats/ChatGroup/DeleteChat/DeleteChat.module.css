@@ -36,7 +36,7 @@
   background-color: #dfb8f1;
 }
 .welcome__title {
-  color: #616161;
+  color: var(--OTHER-inactive_text);
   font-size: 32px;
   font-weight: 700;
   line-height: 150%;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../Message.module.scss";
-import { useAuth } from "../../../../../auth/auth-context/use-auth";
+import { useAuth } from "../../../../../auth/signup-page/auth-context/use-auth.tsx";
 import { Delete, Edit } from "../../../../../../assets/icons";
 import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
 import { countBy } from "lodash";
