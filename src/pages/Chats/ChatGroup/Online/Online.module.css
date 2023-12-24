@@ -73,7 +73,7 @@
 }
 .container__online__show::-webkit-scrollbar-track {
   margin-top: 40px;
-  background-color: #dadada;
+  background-color: var(--LIGHT_THEME-Other-background_light);
 }
 
 .wrapper__text__show {

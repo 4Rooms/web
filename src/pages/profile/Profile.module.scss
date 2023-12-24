@@ -66,20 +66,20 @@
 
                 &:hover {
                     svg > g > path {
-                        fill: #7b34d8;
+                        fill: var(--OTHER-accent);
                     }
                     svg > path {
-                        fill: #7b34d8;
+                        fill: var(--OTHER-accent);
                     }
-                    color: #7b34d8;
+                    color: var(--OTHER-accent);
                 }
                 &.active {
-                    color: #7b34d8;
+                    color: var(--OTHER-accent);
                     svg > g > path {
-                        fill: #7b34d8;
+                        fill: var(--OTHER-accent);
                     }
                     svg > path {
-                        fill: #7b34d8;
+                        fill: var(--OTHER-accent);
                     }
                 }
             }

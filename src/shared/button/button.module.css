@@ -13,10 +13,6 @@
   font-size: 16px;
   transition: all 500ms;
 }
-.button:disabled {
-  background-color: #C7C7C7;
-  color: var(--LIGHT_THEME-Other-background_light);
-}
 .button:hover {
   background-color: var(--hover);
   transform: scale(1.05);
@@ -26,8 +22,8 @@
   --hover: var(--OTHER-inactive_text);
 }
 .button.accent {
-  --background: #B187E8;
-  --hover: #7B34D8;
+  --background: var(--OTHER-accent_light);
+  --hover: var(--OTHER-accent);
 }
 .button.google {
   background-color: transparent;

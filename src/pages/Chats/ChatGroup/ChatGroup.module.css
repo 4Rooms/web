@@ -17,6 +17,6 @@
     gap: 0px;
   }
   .container__chatGroups > div {
-    border-top: 1px solid #C7C7C7;
+    border-top: 1px solid var(--LIGHT_THEME-Other-background_light);
   }
 }/*# sourceMappingURL=ChatGroup.module.css.map */
