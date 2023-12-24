@@ -27,7 +27,8 @@ export default function SharedLayout({user, showHeader, isAuthenticated}: Props)
             document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
             secureApi.get('user/').then((response) => {
                 setUsername(response.data.username);
-                localStorageService.set("user", response.data);
+                console.log(response.data);
+                localStorageService.set("user", response.data.data);
                 setIsAuthenticated(true);
                 navigate('/')
             });

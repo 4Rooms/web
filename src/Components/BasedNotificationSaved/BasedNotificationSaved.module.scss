@@ -39,7 +39,7 @@
             border-radius: 20px;
             position: relative;
             & > p {
-                color: #eaeaea;
+                color: var(--LIGHT_THEME-Other-background_light);
                 font-size: 32px;
                 font-weight: 600;
                 line-height: 150%;
@@ -58,16 +58,16 @@
                 }
             }
             &.books {
-                background-color: #f5bb00;
+                background-color: var(--ROOMS-Books-main);
             }
             &.games {
-                background-color: #f66;
+                background-color: var(--ROOMS-Games-main);
             }
             &.cinema {
-                background-color: #61c9a8;
+                background-color: var(--ROOMS-Cinema-main);
             }
             &.music {
-                background-color: #d06efd;
+                background-color: var(--ROOMS-Music-main);
             }
             &.active {
                 border-radius: 20px 20px 0 0;
@@ -123,7 +123,7 @@
                     width: 360px;
                     padding: 12px 16px;
                     padding-right: 36px;
-                    background: #eaeaea;
+                    background: var(--LIGHT_THEME-Other-background_light);
                     border: transparent;
                     color: var(--OTHER-inactive_text);
                     font-size: 16px;
@@ -148,7 +148,7 @@
                     border-radius: 10px;
                 }
                 &::-webkit-scrollbar-track {
-                    background-color: #dadada;
+                    background-color: var(--LIGHT_THEME-Other-background_light);
                     border-radius: 10px;
                 }
                 @media screen and (max-width: 500px) {

@@ -47,7 +47,7 @@
 
 .list__chats {
     position: absolute;
-    background-color: #eaeaea;
+    background-color: var(--LIGHT_THEME-Other-background_light);
     right: 0;
     top: 80%;
     width: 360px;
@@ -150,7 +150,7 @@
                     font-weight: 400;
                     padding: 2px 8px;
                     border-radius: 4px;
-                    background-color: #7b34d8;
+                    background-color: var(--OTHER-accent);
                 }
             }
         }

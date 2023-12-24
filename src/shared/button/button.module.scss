@@ -13,11 +13,6 @@
   font-size: 16px;
   transition: all 500ms;
 
-  &:disabled {
-    background-color: #C7C7C7;
-    color: var(--LIGHT_THEME-Other-background_light);
-  }
-
   &:hover {
     background-color: var(--hover);
     transform: scale(1.05);
@@ -29,8 +24,8 @@
   }
 
   &.accent {
-    --background: #B187E8;
-    --hover: #7B34D8;
+    --background: var(--OTHER-accent_light);
+    --hover: var(--OTHER-accent);
   }
 
   &.google {

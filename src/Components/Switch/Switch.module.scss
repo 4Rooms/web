@@ -10,7 +10,7 @@
         width: 0;
         opacity: 0;
         &:checked + .switch__slider {
-            background-color: #7B34D8;
+            background-color: var(--OTHER-accent);
         }
         &:checked + .switch__slider::before {
             transform: translateX(20px);
@@ -38,7 +38,7 @@
             width: 15px;
             height: 15px;
             border-radius: 50%;
-            background-color: #eaeaea;
+            background-color: var(--LIGHT_THEME-Other-background_light);
             transition: all 0.4s;
         }
     }

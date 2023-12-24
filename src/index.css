@@ -1,38 +1,54 @@
 :root {
-  font-family: Roboto, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: Roboto, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: #242424;
-  background-color: #EBE8FA;
-  border-radius: 50px;
-  --ROOMS-Cinema-dark: #349878;
-  --ROOMS-Cinema-main: #61C9A8;
-  --ROOMS-Cinema-light: #B3DCCF;
-  --ROOMS-Cinema-extra_light: #BED1CB;
-  --ROOMS-Books-dark: #CC9C00;
-  --ROOMS-Books-main: #F5BB00;
-  --ROOMS-Books-light: #EED78C;
-  --ROOMS-Books-extra_light: #CDC5AD;
-  --ROOMS-Music-dark: #8B03C9;
-  --ROOMS-Music-main: #D06EFD;
-  --ROOMS-Music-light: #DFB8F1;
-  --ROOMS-Music-extra_light: #D9C9E0;
-  --ROOMS-Games-dark: #C00;
-  --ROOMS-Games-main: #F66;
-  --ROOMS-Games-light: #F2B5B5;
-  --ROOMS-Games-extra_light: #E0C6C6;
-  --OTHER-accent: #7B34D8;
-  --OTHER-accent_light: #B187E8;
-  --LIGHT_THEME-Other-background_light: #EAEAEA;
-  --LIGHT_THEME-Other-text_second: #A1A1A1;
-  --OTHER-inactive_text: #616161;
-  --LIGHT_THEME-Other-text_main: #212121;
-  --OTHER-invalid: #D83434;
-  --OTHER-valid: #2CA129;
-  --background-color-MAIN-block: rgba(234, 234, 234, 0.70);
+    color-scheme: light dark;
+    color: #242424;
+    background-color: #ebe8fa;
+    border-radius: 50px;
+    --ROOMS-Cinema-dark: #349878;
+    --ROOMS-Cinema-main: #61c9a8;
+    --ROOMS-Cinema-light: #b3dccf;
+    --ROOMS-Cinema-extra_light: #bed1cb;
+    --ROOMS-Books-dark: #cc9c00;
+    --ROOMS-Books-main: #f5bb00;
+    --ROOMS-Books-light: #eed78c;
+    --ROOMS-Books-extra_light: #cdc5ad;
+    --ROOMS-Music-dark: #8b03c9;
+    --ROOMS-Music-main: #d06efd;
+    --ROOMS-Music-light: #dfb8f1;
+    --ROOMS-Music-extra_light: #d9c9e0;
+    --ROOMS-Games-dark: #c00;
+    --ROOMS-Games-main: #f66;
+    --ROOMS-Games-light: #f2b5b5;
+    --ROOMS-Games-extra_light: #e0c6c6;
+    --OTHER-accent: #7b34d8;
+    --OTHER-accent_light: #b187e8;
+    --LIGHT_THEME-Other-background_light: #eaeaea;
+    --LIGHT_THEME-Other-text_second: #c7c7c7;
+    --OTHER-inactive_text: #616161;
+    --LIGHT_THEME-Other-text_main: #212121;
+    --OTHER-invalid: #d83434;
+    --OTHER-valid: #2ca129;
+    --background-color-MAIN-block: rgba(234, 234, 234, 0.7);
 
+    --ROOMS-Cinema-dark: #349878;
+    --ROOMS-Cinema-main: #61C9A8;
+    --ROOMS-Books-dark: #cc9c00;
+    --DARK_THEME-Music-dark: #ad6bcb;
+    --DARK_THEME-Music-light: #AD6BCB;
+    --DARK_THEME-Games-dark: #d28181;
+    --DARK_THEME-Games-light: #D28181;
+    --DARK_THEME-Other-background_dark: #2c374c;
+    --DARK_THEME-Other-text_dark: #212121;
+    --OTHER-inactive_text: #616161;
+    --DARK_THEME-Other-background_del_mess: #a1a1a1;
+    --DARK_THEME-Other-scrollbar: #ccc;
+    --DARK_THEME-Other-text_light: #eaeaea;
+    --OTHER-accent: #7b34d8;
+    --ROOMS-Music-main: #d06efd;
+    --OTHER-background_2: rgba(44, 55, 76, 0.70);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -53,9 +69,9 @@ a {
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1,
@@ -65,33 +81,33 @@ h4,
 h5,
 h6,
 p {
-  margin: 0;
+    margin: 0;
 }
 
 label {
-  margin: 0;
+    margin: 0;
 }
 
-input{ 
-  padding: 0;
-  background-color: var(--LIGHT_THEME-Other-background_light);
-  margin: 0;
+input {
+    padding: 0;
+    background-color: var(--LIGHT_THEME-Other-background_light);
+    margin: 0;
 }
 
 ul,
 ol {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 li {
-  list-style: none;
+    list-style: none;
 }
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 button {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }

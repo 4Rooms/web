@@ -102,7 +102,7 @@
     border: 1px solid var(--OTHER-inactive_text);
     &:focus {
         outline: transparent;
-    }  
+    }
     &.create {
         width: 100%;
         padding: 20px 24px;
@@ -116,12 +116,12 @@
         overflow-x: hidden;
 
         &::-webkit-scrollbar {
-            width: 1px; 
+            width: 1px;
         }
         &::-webkit-scrollbar-thumb {
             background-color: rgba(0, 0, 0, 0);
         }
-        
+
         &::-webkit-scrollbar-thumb:hover {
             background-color: rgba(0, 0, 0, 0);
         }
@@ -219,6 +219,7 @@
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .text__modal {
@@ -227,4 +228,15 @@
     color: var(--black);
     text-align: center;
     margin-bottom: 80px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    & > h3 {
+        text-align: center;
+    }
 }

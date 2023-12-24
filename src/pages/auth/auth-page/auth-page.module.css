@@ -87,7 +87,7 @@
   line-height: 150%;
   padding: 4px 43px;
   border: transparent;
-  background: #7b34d8;
+  background: var(--OTHER-accent);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;

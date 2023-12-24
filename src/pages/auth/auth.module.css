@@ -224,6 +224,7 @@
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 40px;
+  text-align: center;
 }
 
 .text__modal {
@@ -232,4 +233,15 @@
   color: var(--black);
   text-align: center;
   margin-bottom: 80px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.body > h3 {
+  text-align: center;
 }/*# sourceMappingURL=auth.module.css.map */

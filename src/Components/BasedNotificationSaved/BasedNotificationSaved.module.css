@@ -46,7 +46,7 @@
   position: relative;
 }
 .container__wrapper_block > p {
-  color: #eaeaea;
+  color: var(--LIGHT_THEME-Other-background_light);
   font-size: 32px;
   font-weight: 600;
   line-height: 150%;
@@ -65,16 +65,16 @@
   fill: var(--LIGHT_THEME-Other-background_light);
 }
 .container__wrapper_block.books {
-  background-color: #f5bb00;
+  background-color: var(--ROOMS-Books-main);
 }
 .container__wrapper_block.games {
-  background-color: #f66;
+  background-color: var(--ROOMS-Games-main);
 }
 .container__wrapper_block.cinema {
-  background-color: #61c9a8;
+  background-color: var(--ROOMS-Cinema-main);
 }
 .container__wrapper_block.music {
-  background-color: #d06efd;
+  background-color: var(--ROOMS-Music-main);
 }
 .container__wrapper_block.active {
   border-radius: 20px 20px 0 0;
@@ -139,7 +139,7 @@
   width: 360px;
   padding: 12px 16px;
   padding-right: 36px;
-  background: #eaeaea;
+  background: var(--LIGHT_THEME-Other-background_light);
   border: transparent;
   color: var(--OTHER-inactive_text);
   font-size: 16px;
@@ -166,7 +166,7 @@
   border-radius: 10px;
 }
 .container__wrapper_chats > ul::-webkit-scrollbar-track {
-  background-color: #dadada;
+  background-color: var(--LIGHT_THEME-Other-background_light);
   border-radius: 10px;
 }
 @media screen and (max-width: 500px) {

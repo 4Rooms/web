@@ -15,7 +15,7 @@
 }
 .container__groups::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #DADADA;
+  background-color: var(--LIGHT_THEME-Other-background_light);
 }
 
 .item__group {

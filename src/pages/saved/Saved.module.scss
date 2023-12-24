@@ -3,7 +3,7 @@
     flex-wrap: nowrap;
     gap: 8px;
     & > button {
-        background-color: #eaeaea;
+        background-color: var(--LIGHT_THEME-Other-background_light);
         border-color: transparent;
         border-radius: 12px;
         height: 52px;

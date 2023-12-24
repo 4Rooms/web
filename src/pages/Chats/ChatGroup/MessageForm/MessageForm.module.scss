@@ -42,7 +42,7 @@
         align-items: center;
         padding: 8px 16px;
         border-radius: 12px;
-        background-color: #C7C7C7;
+        background-color:  var(--LIGHT_THEME-Other-text_second);
         & > svg {
             width: 10px;
             height: 10px;
@@ -77,7 +77,7 @@
     color: var(--LIGHT_THEME-Other-text_main);
     caret-color: var(--LIGHT_THEME-Other-text_main);
     border-radius: 12px;
-    background-color: #C7C7C7;
+    background-color: var(--LIGHT_THEME-Other-text_second);
     &:focus {
         outline: none;
     }

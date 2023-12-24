@@ -1,6 +1,6 @@
 .welcome {
     width: 100%;
-    background-color: #b3dccf;
+    background-color: var(--ROOMS-Cinema-light);
     gap: 48px;
     display: flex;
     flex-wrap: wrap;
@@ -19,16 +19,16 @@
         border-radius: 0px;
     }
     &.books {
-        background-color: #eed78c;
+        background-color: var(--ROOMS-Books-light);
     }
     &.games {
-        background-color: #f2b5b5;
+        background-color: var(--ROOMS-Games-light);
     }
     &.cinema {
-        background-color: #b3dccf;
+        background-color: var(--ROOMS-Cinema-light);
     }
     &.music {
-        background-color: #dfb8f1;
+        background-color: var(--ROOMS-Music-light);
     }
     &__title {
         color: var(--OTHER-inactive_text);
