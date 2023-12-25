@@ -12,7 +12,7 @@ type Props = {
     showHeader: boolean;
 };
 
-export default function SharedLayout({user, showHeader, isAuthenticated}: Props) {
+export default function SharedLayout({user, showHeader}: Props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { setUsername, setIsAuthenticated } = useContext(AuthContext);
