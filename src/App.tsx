@@ -71,38 +71,52 @@ export default function App() {
                         />
                     }
                 >
-                    <Route element={<GuardRoutes />}>
+                    <Route element={<GuardRoutes redirectTo="/auth" />}>
                         <Route index element={<DashboardPage />} />
                         <Route path="/chat/:room" element={<Chats />} />
+                        <Route path="/saved" element={<Saved />} />
+                        <Route path="/my-chats" element={<MyChats />} />
+                        <Route path="/profile" element={<Profile />}>
+                            <Route path="logout" element={<LogOut />} />
+                            <Route
+                                path="language"
+                                element={<ChangeLanguage />}
+                            />
+                            <Route path="theme" element={<ChangeTheme />} />
+                            <Route
+                                path="password"
+                                element={<ResetPassword />}
+                            />
+                            <Route index element={<ChangeUserData />} />
+                        </Route>
                     </Route>
-                    <Route path="/auth" element={<AuthPage />} />
-                    <Route path="/authentication" element={<LoginPage />} />
-                    <Route path="/create-account" element={<SignupPage />} />
-                    <Route path="/password-reset" element={<PasswordReset />} />
-                    <Route
-                        path="/forgot-password"
-                        element={<ForgotPassword />}
-                    />
-                    <Route
-                        path="/account-confirmation"
-                        element={<SignupConfirmation />}
-                    />
-                    <Route
-                        path="/confirm-email"
-                        element={<EmailConfirmPage />}
-                    />
-                    <Route
-                        path="/notifications"
-                        element={<EmailConfirmPage />}
-                    />
-                    <Route path="/saved" element={<Saved />} />
-                    <Route path="/my-chats" element={<MyChats />} />
-                    <Route path="/profile" element={<Profile />}>
-                        <Route path="logout" element={<LogOut />} />
-                        <Route path="language" element={<ChangeLanguage />} />
-                        <Route path="theme" element={<ChangeTheme />} />
-                        <Route path="password" element={<ResetPassword />} />
-                        <Route index element={<ChangeUserData />} />
+                    <Route element={<GuardRoutes redirectTo="/" />}>
+                        <Route path="/auth" element={<AuthPage />} />
+                        <Route path="/authentication" element={<LoginPage />} />
+                        <Route
+                            path="/create-account"
+                            element={<SignupPage />}
+                        />
+                        <Route
+                            path="/password-reset"
+                            element={<PasswordReset />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<ForgotPassword />}
+                        />
+                        <Route
+                            path="/account-confirmation"
+                            element={<SignupConfirmation />}
+                        />
+                        <Route
+                            path="/confirm-email"
+                            element={<EmailConfirmPage />}
+                        />
+                        <Route
+                            path="/notifications"
+                            element={<EmailConfirmPage />}
+                        />
                     </Route>
                 </Route>
             </Routes>

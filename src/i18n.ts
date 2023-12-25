@@ -62,8 +62,8 @@ const resources = {
                 'header': 'Consent to use files cookies',
                 'acceptAll': 'Accept all',
                 'description': {
-                    'firstPart': 'We use files cookies only to collect information for functional. By clicking',
-                    'boldPart': 'Accept All',
+                    'firstPart': 'We use files cookies only to collect information for functional. By clicking ',
+                    'boldPart': ' Accept All',
                     'lastPart': ', you consent to data collection for the above purposes'
                 }
             },
