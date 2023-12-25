@@ -19,6 +19,7 @@ const resources = {
                 'usernameRegexError': 'Username can be either a name or an email address.',
                 'requiredUsername': 'Username is required.',
                 'validEmailError': 'Enter a valid email address.',
+                'forbiddenEmailDomainError': 'Email addresses from this domain are not permitted.',
                 'emailRequired': 'Email is required.',
                 'validEmailTextError': 'Must be a valid email address',
                 'passwordMinError': 'Password must be at least 8 characters.',
@@ -110,6 +111,24 @@ const resources = {
                 'title': "Enter title name",
                 'description': "Enter chat description ",
             },
+            'create-chat': {
+                'title': 'Create a new chat',
+                'button': 'Create',
+            },
+            'online': {
+                'online': 'Online now:',
+            },
+            'menu-modal': {
+                'edit': 'Edit',
+                'delete': 'Delete',
+                'was deleted': 'The message is deleted'
+            },
+            'my-chart': {
+                'page-title': 'My Chats',
+            },
+            'saved-chats': {
+                'page-title': 'Saved Chats',
+            },
             'my-profile': {
                 'page-title': 'My profile',
                 'charts': 'My Charts',
@@ -158,6 +177,7 @@ const resources = {
                 'usernameRegexError': 'Ім\'я користувача може бути ім\'ям або електронною адресою.',
                 'requiredUsername': 'Необхідно ввести ім\'я користувача.',
                 'validEmailError': 'Введіть дійсну електронну адресу.',
+                'forbiddenEmailDomainError': 'Електронні адреси з цього домену заборонені.',
                 'emailRequired': 'Електронна адреса є обов\'язковою.',
                 'validEmailTextError': 'Має бути дійсною електронною адресою',
                 'passwordMinError': 'Пароль повинен містити принаймні 8 символів.',
@@ -248,6 +268,24 @@ const resources = {
                 'create new password': 'Створіть новий пароль',
                 'title': "Введіть назву заголовка",
                 'description': "Введіть опис чату",
+            },
+            'create-chat': {
+                'title': 'Створити новий чат',
+                'button': 'Створити',
+            },
+            'online': {
+                'online': 'Зараз в мережі:',
+            },
+            'menu-modal': {
+                'edit': 'Редагувати',
+                'delete': 'Видалити',
+                'was deleted': 'Повідомлення видалено'
+            },
+            'my-chart': {
+                'page-title': 'Мої чати',
+            },
+            'saved-chats': {
+                'page-title': 'Збережені чати',
             },
             'my-profile': {
                 'page-title': 'Мій профайл',

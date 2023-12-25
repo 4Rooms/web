@@ -74,7 +74,7 @@
 
 .text__error {
   color: var(--OTHER-invalid);
-  font-size: 14px;
+  font-size: 16px;
   position: absolute;
   top: 110%;
 }
