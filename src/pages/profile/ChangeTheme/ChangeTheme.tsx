@@ -4,8 +4,10 @@ import Button from "../../../shared/button/button";
 import Switch from "../../../Components/Switch/Switch";
 import WhiteTheme from "../../../assets/whiteTheme.jpg";
 import BlackTheme from "../../../assets/blackTheme.jpg";
+import { useTranslation } from "react-i18next";
 export default function ChangeTheme() {
     const [selectedOption, setSelectedOption] = useState("White");
+    const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
 
     const handleLanguageChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -27,7 +29,7 @@ export default function ChangeTheme() {
                 <div>
                     <img src={WhiteTheme} alt=""/>
                     <div className={styles.wrapper__option}>
-                        <p>Light theme</p>
+                        <p>{t('light theme')}</p>
                         <Switch
                             handleChange={handleLanguageChange}
                             selectedOption={selectedOption}
@@ -38,7 +40,7 @@ export default function ChangeTheme() {
                 <div>
                     <img src={BlackTheme} alt=""/>
                     <div className={styles.wrapper__option}>
-                        <p>Dark theme</p>
+                        <p>{t('dark theme')}</p>
                         <Switch
                             handleChange={handleLanguageChange}
                             selectedOption={selectedOption}
@@ -48,7 +50,7 @@ export default function ChangeTheme() {
                 </div>
             </div>
             <Button className="accent" type="button">
-                Save
+                {t('save')}
             </Button>
         </div>
     );

@@ -12,6 +12,7 @@ import styles from "./ChangeUserData.module.css";
 import Button from "../../../shared/button/button";
 import { AddPhoto, Edit, Error, IconOkey } from "../../../assets/icons";
 import FormInput from "../../../shared/auth-input/form-Input";
+import { useTranslation } from "react-i18next";
 
 export default function ChangeUserData() {
     const inputArray: InputChangeDataKeys[] = ["username", "email"];
@@ -33,6 +34,7 @@ export default function ChangeUserData() {
         }
     );
     const [open] = useState<boolean>(false);
+    const { t } = useTranslation('translation');
 
     const {
         register,
@@ -153,7 +155,9 @@ export default function ChangeUserData() {
                                 key={value}
                             >
                                 <div>
-                                    <p>{value}</p>
+                                    <p>
+                                        {t(`shared.${value}`)}
+                                    </p>
                                 </div>
                                 <button
                                     onClick={() => {
@@ -175,7 +179,7 @@ export default function ChangeUserData() {
                         type="submit"
                         onClick={() => setFormSubmitted(true)}
                     >
-                        Save
+                        {t('my-profile.save')}
                     </Button>
                 </form>
             </div>

@@ -10,6 +10,7 @@ const resources = {
                 'account': '\'Sign In\' if you\'re have an account or \'Sign Up\' to create one.',
                 'sign in': 'Sign in',
                 'sign up': 'Sign up',
+                'sign up with google': 'Sign up with Google:',
                 'googleSignUp': 'Or sign up with email:',
                 'createAccount': 'Create account',
                 'signInButton': 'Sign in',
@@ -104,6 +105,37 @@ const resources = {
                 'username': 'Enter your username',
                 'password': 'Enter your password',
                 'default': 'Enter your email',
+                'search': 'Search',
+                'create new password': 'Create new password',
+            },
+            'my-profile': {
+                'page-title': 'My profile',
+                'charts': 'My Charts',
+                'saved': 'Saved Charts',
+                'menu': {
+                    'editprofile': 'Edit Profile',
+                    'editpassword': 'Edit Password',
+                    'language': 'Language',
+                    'theme': 'Theme',
+                    'log-out': 'Log Out'
+                },
+                'profile-title': {
+                    'editprofile': 'Edit Profile',
+                    'editpassword': 'Edit Password',
+                    'change': 'Change',
+                    'language': 'language',
+                    'theme': 'theme',
+                    'log-out': 'Log Out'
+                },
+                'change-password-description': 'To change your password, enter your old password and create a new one.',
+                'pick-language': 'Pick which language to use for 4ROOMS’s website.',
+                'en':'English',
+                'ua':'Ukrainian',
+                'save': 'Save',
+                'light theme': 'Light theme',
+                'dark theme': 'Dark theme',
+                'logout description': 'Are you sure you want to leave 4ROOM?',
+                'logout': 'Log Out'
             }
         }
     },
@@ -115,6 +147,7 @@ const resources = {
                 'account': 'Натисніть \'Увійти\', якщо у вас є обліковий запис або \'Зареєструватися\', щоб створити його.',
                 'sign in': 'Увійти',
                 'sign up': 'Зареєструйтесь',
+                'sign up with google': 'Зареєструйтеся в Google:',
                 'googleSignUp': 'Зареєструватися за допомогою пошти:',
                 'createAccount': 'Створити аккаунт',
                 'oneCharacterError': 'Ім\'я повинно містити щонайменше 1 символ',
@@ -201,14 +234,45 @@ const resources = {
                 'games': 'Ігри',
                 'music': 'Музика',
                 'room': 'кімнати!',
-                'message': 'Выберите любой чат из списка слева и начните общение. Если вы не нашли интересующий чат, создайте новый, используя кнопку <1>Создать чат</1>.',
+                'message': 'Виберіть будь-який чат зі списку зліва та почніть спілкування. Якщо ви не знайшли цікавий чат, створіть новий, використовуючи кнопку <1>Створити чат</1>.',
                 'createChat': 'Створити чат'
             },
             'shared': {
                 'email': 'Введіть свою пошту',
                 'username': 'Введіть своє ім\'я',
                 'password': 'Введіть свій пароль',
-                'default': 'Enter your email',
+                'default': 'Введіть свою електронну пошту',
+                'search': 'Пошук',
+                'create new password': 'Створіть новий пароль',
+            },
+            'my-profile': {
+                'page-title': 'Мій профайл',
+                'charts': 'Мої чати',
+                'saved': 'Збережені чати',
+                'menu': {
+                    'editprofile': 'Редагувати профіль',
+                    'editpassword': 'Змінити Пароль',
+                    'language': 'Мова',
+                    'theme': 'Тема',
+                    'logout': 'Вийти'
+                },
+                'profile-title': {
+                    'editprofile': 'Редагувати профіль',
+                    'editpassword': 'Змінити Пароль',
+                    'change': 'Змінити',
+                    'language': 'мову',
+                    'theme': 'тему',
+                    'logout': 'Вийти'
+                },
+                'change-password-description': 'Щоб змінити пароль, введіть старий пароль і створіть новий.',
+                'pick-language': 'Оберіть, якою мовою вам бажано створити вебсайт 4ROOMS.',
+                'en':'Англійська',
+                'ua':'Українська',
+                'save': 'Зберегти',
+                'light theme': 'Cвітла тема',
+                'dark theme': 'Темна тема',
+                'logout description': 'Ви впевнені, що хочете покинути 4ROOM?',
+                'logout': 'Вийти'
             }
         }
     }
@@ -223,7 +287,7 @@ if (!userLanguage) {
 }
 
 
-i18n.use(initReactI18next).init(
+i18n.use(initReactI18next)?.init(
     {
         resources,
         lng: userLanguage,

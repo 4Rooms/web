@@ -10,6 +10,7 @@ import {
 import styles from "./Navigation.module.css";
 import { Link, useParams } from "react-router-dom";
 import { useChat } from "../../pages/chats/chat-context/use-chat";
+import { useTranslation } from "react-i18next";
 
 export default function Navigation({
     user,
@@ -28,6 +29,7 @@ export default function Navigation({
     const filterList =
         inputValue !== "" &&
         roomsList?.filter((room) => room.title.includes(inputValue));
+    const { t } = useTranslation('translation');
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -106,19 +108,19 @@ export default function Navigation({
                     <div>
                         <button type="button" onClick={() => setIsOpen(false)}>
                             <Link to="my-chats">
-                                <p>My Chats</p>
+                                <p>{t('my-profile.charts')}</p>
                                 <MyChats />
                             </Link>
                         </button>
                         <button type="button" onClick={() => setIsOpen(false)}>
                             <Link to="saved">
-                                <p>Saved Chats</p>
+                                <p>{t('my-profile.saved')}</p>
                                 <SavedChats />
                             </Link>
                         </button>
                         <button type="button" onClick={() => setIsOpen(false)}>
                             <Link to="/profile">
-                                <p>My Profile</p>
+                                <p>{t('my-profile.page-title')}</p>
                                 <img
                                     className={styles.avatar__user}
                                     src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"

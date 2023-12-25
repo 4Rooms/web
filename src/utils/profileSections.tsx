@@ -5,22 +5,22 @@ import React from "react";
 export const profileSections: { icon: ReactElement; name: string }[] = [
     {
         icon: <EditProfile />,
-        name: "Edit Profile",
+        name: "editprofile",
     },
     {
         icon: <PasswordReset />,
-        name: "Edit Password"
+        name: "editpassword"
     },
     {
         icon: <LanguageProfile />,
-        name: "Language",
+        name: "language",
     },
     {
         icon: <ThemeProfile />,
-        name: "Theme",
+        name: "theme",
     },
     {
         icon: <LeaveProfile />,
-        name: "Log Out",
+        name: "logout",
     },
 ];
