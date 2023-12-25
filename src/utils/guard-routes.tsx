@@ -2,7 +2,11 @@ import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AuthContext } from "../pages/auth/signup-page/auth-context/auth-context.tsx";
 
-export default function GuardRoutes() {
+export default function GuardRoutes({redirectTo}: {redirectTo: string}) {
     const {isAuthenticated} = useContext(AuthContext);
-    return isAuthenticated ? <Outlet/> : <Navigate to="/auth"/>
+    if (redirectTo === "/auth") {
+        return isAuthenticated ? <Outlet/> : <Navigate to={redirectTo}/>
+    } else {
+        return !isAuthenticated ? <Outlet/> : <Navigate to={redirectTo}/>
+    }
 }

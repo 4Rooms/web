@@ -62,8 +62,8 @@ const resources = {
                 'header': 'Consent to use files cookies',
                 'acceptAll': 'Accept all',
                 'description': {
-                    'firstPart': 'We use files cookies only to collect information for functional. By clicking',
-                    'boldPart': 'Accept All',
+                    'firstPart': 'We use files cookies only to collect information for functional. By clicking ',
+                    'boldPart': ' Accept All',
                     'lastPart': ', you consent to data collection for the above purposes'
                 }
             },
@@ -107,6 +107,8 @@ const resources = {
                 'default': 'Enter your email',
                 'search': 'Search',
                 'create new password': 'Create new password',
+                'title': "Enter title name",
+                'description': "Enter chat description ",
             },
             'my-profile': {
                 'page-title': 'My profile',
@@ -244,6 +246,8 @@ const resources = {
                 'default': 'Введіть свою електронну пошту',
                 'search': 'Пошук',
                 'create new password': 'Створіть новий пароль',
+                'title': "Введіть назву заголовка",
+                'description': "Введіть опис чату",
             },
             'my-profile': {
                 'page-title': 'Мій профайл',

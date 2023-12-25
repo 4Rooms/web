@@ -12,17 +12,17 @@ type Props = {
     showHeader: boolean;
 };
 
-export default function SharedLayout({user, showHeader, isAuthenticated}: Props) {
+export default function SharedLayout({user, showHeader}: Props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { setUsername, setIsAuthenticated } = useContext(AuthContext);
+    const is_verif = localStorageService?.get("user");
 
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get('token');
         if (token) {
-
             const maxAge = 30 * 24 * 60 * 60;
             document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
             secureApi.get('user/').then((response) => {
@@ -32,13 +32,20 @@ export default function SharedLayout({user, showHeader, isAuthenticated}: Props)
                 setIsAuthenticated(true);
                 navigate('/')
             });
-
         }
+        
     }, []);
+
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //       // Викликати перезавантаження тільки якщо користувач аутентифікований
+    //       window.location.reload();
+    //     }
+    //   }, [isAuthenticated]);
 
 
     return <>
-        <header className={`${styles.header__user} ${isAuthenticated && styles.authenticated}`}>
+        <header className={`${styles.header__user} ${is_verif?.is_email_confirmed && styles.authenticated}`}>
             <Navigation user={user} showHeader={showHeader}/>
         </header>
         <Outlet/>

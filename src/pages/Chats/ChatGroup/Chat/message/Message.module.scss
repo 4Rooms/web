@@ -43,7 +43,7 @@
         border-radius: 20px 0px 20px 20px;
     }
     &.deleted {
-        background-color:  var(--LIGHT_THEME-Other-background_light);;
+        background-color:  var(--LIGHT_THEME-Other-text_second);;
         color: var(--OTHER-inactive_text);
         font-size: 8px;
     }
@@ -74,7 +74,7 @@
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
-        background-color:  var(--LIGHT_THEME-Other-background_light);;
+        background-color:  var(--LIGHT_THEME-Other-background_light);
         z-index: 1;
         width: 134px;
         @media screen and (max-width: 580px) {
@@ -131,6 +131,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     gap: 4px;
+    display: flex;
     & > svg {
         width: 20px;
         height: 20px;
