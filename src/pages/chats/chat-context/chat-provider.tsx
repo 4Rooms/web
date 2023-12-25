@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { ChatContext } from "./chat-context";
-import { MessageList } from "../../../App.types";
+import { MessageList, Result } from "../../../App.types";
 
 export function ChatProvider({ children }: { children: ReactNode }) {
     const [roomName, setRoomName] = useState<string | undefined>(undefined);
@@ -50,6 +50,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             likes: number;
         }[]
     >([]);
+    const [createChat, setCreateChat] = useState<Result>([]);
+    const [filterCreate, setFilterCreate] = useState<Result>([]);
 
     return (
         <ChatContext.Provider
@@ -78,6 +80,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setDeleteChat,
                 setSavedChats,
                 savedChats,
+                setCreateChat,
+                createChat,
+                filterCreate,
+                setFilterCreate,
             }}
         >
             {children}

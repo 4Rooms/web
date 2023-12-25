@@ -45,7 +45,7 @@
   border-radius: 20px 0px 20px 20px;
 }
 .message__user.deleted {
-  background-color: var(--LIGHT_THEME-Other-background_light);
+  background-color: var(--LIGHT_THEME-Other-text_second);
   color: var(--OTHER-inactive_text);
   font-size: 8px;
 }
@@ -137,6 +137,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   gap: 4px;
+  display: flex;
 }
 .user__text > svg {
   width: 20px;

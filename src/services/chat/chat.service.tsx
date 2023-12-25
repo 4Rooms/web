@@ -84,6 +84,15 @@ export const deleteSavedChat = async (chat_id: number) => {
     } catch (error) {
         return error;
     }
+}; 
+
+export const getCreateChat = async (roomName: string | undefined) => {
+    try {
+        const { data } = await secureApi.get(`/chat/my_chats/get/${roomName}/`);
+        return data;
+    } catch (error) {
+        return error;
+    }
 };
 
 export const chatService = {

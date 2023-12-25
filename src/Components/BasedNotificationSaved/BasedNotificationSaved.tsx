@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./BasedNotificationSaved.module.css";
 import { optionDashboard } from "../../utils/optionDashboard";
 import { MoreInformation, SearchRooms } from "../../assets/icons";
+import { getCreateChat } from "../../services/chat/chat.service";
+import { useChat } from "../../pages/chats/chat-context/use-chat";
 
 type Props = {
     children: React.ReactNode;
@@ -13,6 +15,7 @@ type OpenSectionType = {
 };
 
 export default function BasedNotificationSaved({ children, title }: Props) {
+    const { setFilterCreate, setCreateChat , createChat } = useChat();
     const [openSection, setOpenSection] = useState<OpenSectionType>({
         cinema: false,
         books: false,
@@ -41,15 +44,18 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                             >
                                 <p>{option.name}</p>
                                 <button
-                                    onClick={() =>
+                                    onClick={async () => {
                                         setOpenSection((prevState) => ({
                                             ...prevState,
                                             [option.name.toLocaleLowerCase()]:
                                                 !prevState[
                                                     option.name.toLocaleLowerCase()
                                                 ],
-                                        }))
-                                    }
+                                        }));
+                                        const chats = await getCreateChat(option.name.toLocaleLowerCase());
+                                        setFilterCreate(chats.results)
+                                        setCreateChat(chats.results);
+                                    }}
                                 >
                                     <MoreInformation />
                                 </button>
@@ -71,11 +77,14 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                                 className={
                                                     styles.navigation__input
                                                 }
+                                                onChange={(e) => {
+                                                    if (createChat) {
+                                                        setFilterCreate(createChat?.filter((room) => room.title.includes(e.target.value)))
+                                                    }
+                                                }}
                                                 type="text"
                                             />
-                                            <button
-                                                type="button"
-                                            >
+                                            <button type="button">
                                                 <SearchRooms />
                                             </button>
                                         </label>

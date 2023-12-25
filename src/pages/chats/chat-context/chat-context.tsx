@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { MessageList } from "../../../App.types";
+import { MessageList, Result } from "../../../App.types";
 
 interface ChatContextType {
     roomName: string | undefined;
@@ -99,6 +99,10 @@ interface ChatContextType {
             }[]
         >
     >;
+    filterCreate: Result,
+    setFilterCreate: Dispatch<SetStateAction<Result>>;
+    createChat: Result,
+    setCreateChat: Dispatch<SetStateAction<Result>>;
 }
 
 export const ChatContext = createContext<ChatContextType>(
