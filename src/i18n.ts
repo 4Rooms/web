@@ -110,6 +110,24 @@ const resources = {
                 'title': "Enter title name",
                 'description': "Enter chat description ",
             },
+            'create-chat': {
+                'title': 'Create a new chat',
+                'button': 'Create',
+            },
+            'online': {
+                'online': 'Online now:',
+            },
+            'menu-modal': {
+                'edit': 'Edit',
+                'delete': 'Delete',
+                'was deleted': 'The message is deleted'
+            },
+            'my-chart': {
+                'page-title': 'My Chats',
+            },
+            'saved-chats': {
+                'page-title': 'Saved Chats',
+            },
             'my-profile': {
                 'page-title': 'My profile',
                 'charts': 'My Charts',
@@ -248,6 +266,24 @@ const resources = {
                 'create new password': 'Створіть новий пароль',
                 'title': "Введіть назву заголовка",
                 'description': "Введіть опис чату",
+            },
+            'create-chat': {
+                'title': 'Створити новий чат',
+                'button': 'Створити',
+            },
+            'online': {
+                'online': 'Зараз в мережі:',
+            },
+            'menu-modal': {
+                'edit': 'Редагувати',
+                'delete': 'Видалити',
+                'was deleted': 'Повідомлення видалено'
+            },
+            'my-chart': {
+                'page-title': 'Мої чати',
+            },
+            'saved-chats': {
+                'page-title': 'Збережені чати',
             },
             'my-profile': {
                 'page-title': 'Мій профайл',

@@ -23,12 +23,14 @@ export default function SharedLayout({user, showHeader}: Props) {
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get('token');
         if (token) {
+            console.log(token);
             const maxAge = 30 * 24 * 60 * 60;
             document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
             secureApi.get('user/').then((response) => {
+                console.log(response.data);
                 setUsername(response.data.username);
                 console.log(response.data);
-                localStorageService.set("user", response.data.data);
+                localStorageService.set("user", response.data);
                 setIsAuthenticated(true);
                 navigate('/')
             });
