@@ -146,7 +146,7 @@ const resources = {
                     'change': 'Change',
                     'language': 'language',
                     'theme': 'theme',
-                    'log-out': 'Log Out'
+                    'logout': 'Log Out'
                 },
                 'change-password-description': 'To change your password, enter your old password and create a new one.',
                 'pick-language': 'Pick which language to use for 4ROOMS’s website.',
