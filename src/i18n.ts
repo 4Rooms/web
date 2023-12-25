@@ -138,7 +138,7 @@ const resources = {
                     'editpassword': 'Edit Password',
                     'language': 'Language',
                     'theme': 'Theme',
-                    'log-out': 'Log Out'
+                    'logout': 'Log Out'
                 },
                 'profile-title': {
                     'editprofile': 'Edit Profile',
