@@ -288,7 +288,7 @@ const resources = {
                 'page-title': 'Збережені чати',
             },
             'my-profile': {
-                'page-title': 'Мій профайл',
+                'page-title': 'Мій профіль',
                 'charts': 'Мої чати',
                 'saved': 'Збережені чати',
                 'menu': {
@@ -307,7 +307,7 @@ const resources = {
                     'logout': 'Вийти'
                 },
                 'change-password-description': 'Щоб змінити пароль, введіть старий пароль і створіть новий.',
-                'pick-language': 'Оберіть, якою мовою вам бажано створити вебсайт 4ROOMS.',
+                'pick-language': 'Оберіть мову для сайту 4ROOMS.',
                 'en':'Англійська',
                 'ua':'Українська',
                 'save': 'Зберегти',
