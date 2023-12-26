@@ -63,7 +63,7 @@ const resources = {
                 'acceptAll': 'Accept all',
                 'description': {
                     'firstPart': 'We use files cookies only to collect information for functional. By clicking ',
-                    'boldPart': ' Accept All',
+                    'boldPart': ' "Accept All"',
                     'lastPart': ', you consent to data collection for the above purposes'
                 }
             },
