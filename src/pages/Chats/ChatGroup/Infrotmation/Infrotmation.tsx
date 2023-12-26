@@ -192,7 +192,7 @@ export default function Infrotmation({
                                 className={styles.delete__chat}
                             >
                                 <Delete />
-                                fewfewfew
+                                Delete chat
                             </button>
                         )}
                         {openModalDelete && (
