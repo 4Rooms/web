@@ -1,11 +1,11 @@
 .container__information {
-    background-color: var(--LIGHT_THEME-Other-background_light);
+    background-color: var(--background-other);
     display: flex;
     padding: 12px 20px;
     justify-content: left;
     gap: 20px;
     flex-wrap: wrap;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 20px 0 0;
     width: 100%;
     @media screen and (max-width: 871px) {
         border-radius: 0;
@@ -96,7 +96,6 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    display: block;
     margin: 0;
     margin-bottom: 20px;
     display: inline-block;

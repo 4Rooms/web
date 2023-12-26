@@ -9,19 +9,13 @@ export default function ChangeTheme() {
     const [selectedOption, setSelectedOption] = useState("White");
     const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
 
-    const handleLanguageChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        if (event.target.value === "White" && selectedOption === "White") {
-            setSelectedOption("Black");
-        } else if (
-            event.target.value === "Black" &&
-            selectedOption === "Black"
-        ) {
-            setSelectedOption("White");
-        } else {
-            setSelectedOption(event.target.value);
-        }
+    const handleLanguageChange = () => {
+        const newTheme = selectedOption === "White" ? "Black" : "White";
+
+        setSelectedOption(newTheme);
+
+        const themeAttribute = newTheme === "White" ? "light" : "dark";
+        document.documentElement.setAttribute('data-theme', themeAttribute);
     };
     return (
         <div className={styles.theme__container}>
