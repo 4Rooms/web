@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PanelGroups.module.css";
+import styles from "./PanelGroups.module.scss";
 import FilterGroup from "./FilterGroup/FilterGroup";
 import Groups from "./Groups/Groups";
 import CreateChat from "./CreateChat/CreateChat";

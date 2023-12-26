@@ -1,6 +1,6 @@
 .container__online {
     padding: 10px 20px;
-    background-color: var(--LIGHT_THEME-Other-background_light);
+    background-color: var(--background-other);
     flex-wrap: wrap;
     display: flex;
     gap: 9px;
@@ -49,7 +49,7 @@
     width: 100%;
     left: 0;
     top: 0;
-    background-color: var(--LIGHT_THEME-Other-background_light);
+    background-color: var(--background-other);
 }
 
 .container__online__show {
@@ -69,7 +69,7 @@
     }
     &::-webkit-scrollbar-track {
         margin-top: 40px;
-        background-color: var(--LIGHT_THEME-Other-background_light);
+        background-color: var(--background-other);
     }
 }
 

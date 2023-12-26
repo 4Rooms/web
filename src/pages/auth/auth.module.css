@@ -145,7 +145,7 @@
 
 .focus__block {
   background-color: var(--OTHER-accent);
-  color: var(--LIGHT_THEME-Other-background_light);
+  color: var(--background-other);
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 10px;
@@ -175,7 +175,7 @@
 }
 
 .button__next {
-  color: var(--LIGHT_THEME-Other-background_light);
+  color: var(--background-other);
   font-size: 20px;
   font-weight: 500;
   line-height: 150%;
@@ -195,7 +195,7 @@
   line-height: 150%;
   padding: 2px 10px;
   border: 1px solid var(--LIGHT_THEME-Other-text_main);
-  background: var(--LIGHT_THEME-Other-background_light);
+  background: var(--background-other);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;

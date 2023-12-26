@@ -7,14 +7,14 @@
 }
 
 .chats__footer {
-    background-color: var(--LIGHT_THEME-Other-background_light);
+    background-color: var(--background-other);
     text-align: center;
     justify-content: center;
     padding: 34px 0;
     margin-top: auto;
 
     @media screen and (max-width: 871px) {
-        border-top: 1px solid var(--LIGHT_THEME-Other-background_light);
+        border-top: 1px solid var(--background-other);
     }
 }
 

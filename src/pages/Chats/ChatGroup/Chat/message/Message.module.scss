@@ -27,8 +27,8 @@
 }
 
 .message__user {
-    background:  var(--LIGHT_THEME-Other-background_light);;
-    border-radius: 0px 20px 20px 20px;
+    background:  var(--background-other);
+    border-radius: 0 20px 20px 20px;
     padding: 10px 16px;
     width: 100%;
     gap: 8px;
@@ -40,7 +40,7 @@
         padding: 8px 16px;
     }
     &.from {
-        border-radius: 20px 0px 20px 20px;
+        border-radius: 20px 0 20px 20px;
     }
     &.deleted {
         background-color:  var(--LIGHT_THEME-Other-text_second);;
@@ -74,7 +74,7 @@
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
-        background-color:  var(--LIGHT_THEME-Other-background_light);
+        background-color:  var(--background-other);
         z-index: 1;
         width: 134px;
         @media screen and (max-width: 580px) {

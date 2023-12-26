@@ -9,9 +9,9 @@
     }
     @media screen and (max-width: 871px) {
         max-width: 100%;
-        gap: 0px;
+        gap: 0;
         & > div {
-            border-top: 1px solid  var(--LIGHT_THEME-Other-background_light);;
+            border-top: 1px solid  var(--background-other);
         }
     }
 }
