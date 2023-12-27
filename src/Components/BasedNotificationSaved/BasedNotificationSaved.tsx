@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./BasedNotificationSaved.module.css";
 import { optionDashboard } from "../../utils/optionDashboard";
 import { MoreInformation, SearchRooms } from "../../assets/icons";
-import { getCreateChat } from "../../services/chat/chat.service";
+import { getCreateChat, getSavedChats } from "../../services/chat/chat.service";
 import { useChat } from "../../pages/chats/chat-context/use-chat";
 
 type Props = {
@@ -15,7 +15,14 @@ type OpenSectionType = {
 };
 
 export default function BasedNotificationSaved({ children, title }: Props) {
-    const { setFilterCreate, setCreateChat , createChat } = useChat();
+    const {
+        setFilterCreate,
+        setCreateChat,
+        setFilterSaved,
+        createChat,
+        savedChats,
+        setSavedChats,
+    } = useChat();
     const [openSection, setOpenSection] = useState<OpenSectionType>({
         cinema: false,
         books: false,
@@ -52,9 +59,19 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                                     option.name.toLocaleLowerCase()
                                                 ],
                                         }));
-                                        const chats = await getCreateChat(option.name.toLocaleLowerCase());
-                                        setFilterCreate(chats.results)
-                                        setCreateChat(chats.results);
+                                        if (title === "My Chats") {
+                                            const chats = await getCreateChat(
+                                                option.name.toLocaleLowerCase()
+                                            );
+                                            setFilterCreate(chats.results);
+                                            setCreateChat(chats.results);
+                                        } else {
+                                            const chats = await getSavedChats(
+                                                option.name.toLocaleLowerCase()
+                                            );
+                                            setSavedChats(chats.results);
+                                            setFilterSaved(chats.results);
+                                        }
                                     }}
                                 >
                                     <MoreInformation />
@@ -78,8 +95,26 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                                     styles.navigation__input
                                                 }
                                                 onChange={(e) => {
-                                                    if (createChat) {
-                                                        setFilterCreate(createChat?.filter((room) => room.title.includes(e.target.value)))
+                                                    if (createChat && title === "My Chats") {
+                                                        setFilterCreate(
+                                                            createChat?.filter(
+                                                                (room) =>
+                                                                    room.title.includes(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                            )
+                                                        );
+                                                    } else {
+                                                        setFilterSaved(
+                                                            savedChats?.filter(
+                                                                (room) =>
+                                                                    room.title.includes(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                            )
+                                                        );
                                                     }
                                                 }}
                                                 type="text"

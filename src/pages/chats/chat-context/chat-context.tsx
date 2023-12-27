@@ -99,9 +99,37 @@ interface ChatContextType {
             }[]
         >
     >;
-    filterCreate: Result,
+    filterSaved: {
+        id: number;
+        user: number;
+        chat: number;
+        title: string;
+        room: string;
+        description: string;
+        chat_creator: string;
+        img: string;
+        url: string;
+        likes: number;
+    }[];
+    setFilterSaved: Dispatch<
+        SetStateAction<
+            {
+                id: number;
+                user: number;
+                chat: number;
+                title: string;
+                room: string;
+                description: string;
+                chat_creator: string;
+                img: string;
+                url: string;
+                likes: number;
+            }[]
+        >
+    >;
+    filterCreate: Result;
     setFilterCreate: Dispatch<SetStateAction<Result>>;
-    createChat: Result,
+    createChat: Result;
     setCreateChat: Dispatch<SetStateAction<Result>>;
 }
 

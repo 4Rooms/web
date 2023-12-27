@@ -11,7 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import createSchema from "../../pages/Chats/PanelGroups/CreateChat/create-schema";
 import useValidation from "../../shared/use-validate/use-validate";
-import { createChat, updateCreateChat } from "../../services/chat/chat.service";
+import { updateCreateChat } from "../../services/chat/chat.service";
 import Modal from "../Modal/Modal";
 import FormInput from "../../shared/auth-input/form-Input";
 import Button from "../../shared/button/button";
@@ -32,8 +32,8 @@ export default function BlockNotificationSaved({
     likes: number;
     time: string;
     open: boolean;
-    changeOpen: () => void;
-    id: number
+    changeOpen?: () => void;
+    id?: number;
 }) {
     const { setFilterCreate } = useChat();
     const inputArray: InputsCreateKeys[] = ["title", "description"];
@@ -121,7 +121,7 @@ export default function BlockNotificationSaved({
         }
         const newData = await updateCreateChat(id, formData);
         if (newData.name !== "AxiosError") {
-            setFilterCreate(prevState => {
+            setFilterCreate((prevState) => {
                 return prevState.map((chat) => {
                     if (chat.id === newData.id) {
                         return newData;
@@ -132,7 +132,9 @@ export default function BlockNotificationSaved({
         }
         reset();
         setImageURL("");
-        changeOpen();
+        if (changeOpen) {
+            changeOpen();
+        }
     };
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
@@ -163,11 +165,9 @@ export default function BlockNotificationSaved({
                 </div>
             </div>
             {open && (
-                <Modal className="create__chat" onOpen={changeOpen}>
+                <Modal className="create__chat"  onOpen={changeOpen ? changeOpen : () => console.log("Default action")}>
                     <>
-                        <h1 className={styles.title__modal}>
-                            Edit your chat
-                        </h1>
+                        <h1 className={styles.title__modal}>Edit your chat</h1>
                         <form
                             onSubmit={handleSubmit(deliveryFormAuth)}
                             className={styles.form__auth}
@@ -202,6 +202,7 @@ export default function BlockNotificationSaved({
                                         formStateFocus={formStateFocus}
                                         formStateValue={formStateValue}
                                         onChange={onChange}
+                                        edit={true}
                                         textarea={value === "description"}
                                         className={
                                             value === "description"

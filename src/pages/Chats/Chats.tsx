@@ -150,7 +150,6 @@ export default function Chats() {
             extractToken(cookieString);
         if (chatOpen) {
             if (ws) {
-                console.log("disconnected");
                 ws?.close();
             }
             const wss = new WebSocket(socketUrl);

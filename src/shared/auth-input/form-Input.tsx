@@ -28,6 +28,7 @@ interface FormInput<T extends Path<U>, U extends FieldValues> {
     onFocusInput?: (type: T) => void;
     className?: string | undefined;
     textarea?: boolean;
+    edit?: boolean;
 }
 
 export default function FormInput<T extends Path<U>, U extends FieldValues>({
@@ -43,8 +44,10 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     onChangeInputValue,
     className = "",
     textarea = false,
+    edit,
 }: FormInput<T, U>) {
-    const { t } = useTranslation('translation', { keyPrefix: 'shared' });
+    console.log(edit && value === "title");
+    const { t } = useTranslation("translation", { keyPrefix: "shared" });
     return textarea ? (
         <textarea
             name={value}
@@ -53,9 +56,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             {...(register && register(value))}
             aria-invalid={errors && errors[value] ? "true" : "false"}
             placeholder={
-                value !== "resetEmail"
-                    ? t(String(value))
-                    : t('default')
+                value !== "resetEmail" ? t(String(value)) : t("default")
             }
             className={`${styles.input__auth} ${getInputClass(
                 String(value),
@@ -65,16 +66,8 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                 formStateValue || {}
             )} ${styles[className]}`}
             onChange={(e) => {
-                onChange &&
-                    onChange(
-                        e,
-                        value
-                    );
-                onChangeInputValue &&
-                    onChangeInputValue(
-                        e,
-                        value
-                    );
+                onChange && onChange(e, value);
+                onChangeInputValue && onChangeInputValue(e, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />
@@ -87,14 +80,14 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             aria-invalid={errors && errors[value] ? "true" : "false"}
             placeholder={
                 value === "newPassword"
-                  ? t('create new password')
-                  : value !== "resetEmail"
-                  ? value === "oldPassword"
-                    ? t('password')
-                    : t(String(value))
-                  : t('default')
-              }
-              
+                    ? t("create new password")
+                    : value !== "resetEmail"
+                    ? value === "oldPassword"
+                        ? t("password")
+                        : t(String(value))
+                    : t("default")
+            }
+            disabled={edit && value === "title"}
             type={
                 value === "password" || value === "newPassword"
                     ? open
@@ -111,11 +104,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
             )} ${styles[className]}`}
             onChange={(e) => {
                 onChange && onChange(e, value);
-                onChangeInputValue &&
-                    onChangeInputValue(
-                        e,
-                        value
-                    );
+                onChangeInputValue && onChangeInputValue(e, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
         />

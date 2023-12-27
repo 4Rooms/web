@@ -50,6 +50,20 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             likes: number;
         }[]
     >([]);
+    const [filterSaved, setFilterSaved] = useState<
+        {
+            id: number;
+            user: number;
+            chat: number;
+            title: string;
+            room: string;
+            description: string;
+            chat_creator: string;
+            img: string;
+            url: string;
+            likes: number;
+        }[]
+    >([]);
     const [createChat, setCreateChat] = useState<Result>([]);
     const [filterCreate, setFilterCreate] = useState<Result>([]);
 
@@ -84,6 +98,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 createChat,
                 filterCreate,
                 setFilterCreate,
+                filterSaved,
+                setFilterSaved,
             }}
         >
             {children}

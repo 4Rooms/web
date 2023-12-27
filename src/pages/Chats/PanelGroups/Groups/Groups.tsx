@@ -9,7 +9,7 @@ export default function Groups() {
         let modifiedText = "";
 
         if (text?.length > 15) {
-            modifiedText = text.substring(0, 10) + "...";
+            modifiedText = text.substring(0, 25) + "...";
         } else {
             modifiedText = text;
         }

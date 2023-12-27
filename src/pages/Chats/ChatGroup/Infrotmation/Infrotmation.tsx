@@ -64,9 +64,10 @@ export default function Infrotmation({
     }
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
-
-        if (text?.length > 15) {
-            modifiedText = text.substring(0, 10) + "...";
+        if (text?.length > 15 && isSmallScreen) {
+            modifiedText = text.substring(0, 15) + "...";
+        } else if (text?.length > 15) {
+            modifiedText = text.substring(0, 25) + "...";
         } else {
             modifiedText = text;
         }
