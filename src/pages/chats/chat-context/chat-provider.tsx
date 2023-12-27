@@ -48,6 +48,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             img: string;
             url: string;
             likes: number;
+            timestamp: string;
         }[]
     >([]);
     const [filterSaved, setFilterSaved] = useState<
@@ -62,6 +63,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             img: string;
             url: string;
             likes: number;
+            timestamp: string;
         }[]
     >([]);
     const [createChat, setCreateChat] = useState<Result>([]);

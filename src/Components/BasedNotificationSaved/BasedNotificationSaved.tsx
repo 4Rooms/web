@@ -52,13 +52,18 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                 <p>{option.name}</p>
                                 <button
                                     onClick={async () => {
-                                        setOpenSection((prevState) => ({
-                                            ...prevState,
-                                            [option.name.toLocaleLowerCase()]:
-                                                !prevState[
-                                                    option.name.toLocaleLowerCase()
-                                                ],
-                                        }));
+                                        setOpenSection((prevState) => {
+                                            const updatedState = Object.keys(prevState).reduce((acc: OpenSectionType, key) => {
+                                                acc[key] = false;
+                                                return acc;
+                                            }, {});
+                                        
+                                            return {
+                                                ...updatedState,
+                                                [option.name.toLocaleLowerCase()]: !prevState[option.name.toLocaleLowerCase()],
+                                            };
+                                        });
+                                        
                                         if (title === "My Chats") {
                                             const chats = await getCreateChat(
                                                 option.name.toLocaleLowerCase()

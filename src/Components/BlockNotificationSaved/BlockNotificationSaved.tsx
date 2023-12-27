@@ -31,7 +31,7 @@ export default function BlockNotificationSaved({
     title: string;
     likes: number;
     time: string;
-    open: boolean;
+    open?: boolean;
     changeOpen?: () => void;
     id?: number;
 }) {

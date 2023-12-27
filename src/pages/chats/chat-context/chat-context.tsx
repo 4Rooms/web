@@ -82,6 +82,7 @@ interface ChatContextType {
         img: string;
         url: string;
         likes: number;
+        timestamp: string;
     }[];
     setSavedChats: Dispatch<
         SetStateAction<
@@ -96,6 +97,7 @@ interface ChatContextType {
                 img: string;
                 url: string;
                 likes: number;
+                timestamp: string;
             }[]
         >
     >;
@@ -110,6 +112,7 @@ interface ChatContextType {
         img: string;
         url: string;
         likes: number;
+        timestamp: string;
     }[];
     setFilterSaved: Dispatch<
         SetStateAction<
@@ -124,6 +127,7 @@ interface ChatContextType {
                 img: string;
                 url: string;
                 likes: number;
+                timestamp: string;
             }[]
         >
     >;
