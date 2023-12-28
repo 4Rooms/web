@@ -46,7 +46,6 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     textarea = false,
     edit,
 }: FormInput<T, U>) {
-    console.log(edit && value === "title");
     const { t } = useTranslation("translation", { keyPrefix: "shared" });
     return textarea ? (
         <textarea
