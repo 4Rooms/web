@@ -38,9 +38,10 @@ export default function Chat() {
             id="chatContainer"
         >
             {imageURLs.length > 0
-                ? imageURLs?.map((image) => {
+                ? imageURLs?.map((image, index) => {
                       return (
                           <li
+                              key={index}
                               className={`${styles.item__photo} ${
                                   imageURLs?.length === 3
                                       ? styles.three__child

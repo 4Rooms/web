@@ -66,25 +66,27 @@ export default function MessageForm() {
                 new_text: update.text,
             };
             ws?.send(JSON.stringify(messageUser));
-            setUpdate(prevState => ({...prevState, edit: false}));
+            setUpdate((prevState) => ({ ...prevState, edit: false }));
         } else {
-            const messageUser = {
-                event_type: "chat_message",
-                message: {
-                    chat: chatId,
-                    text: message,
-                    attachments: await Promise.all(
-                        images.map(async (file) => ({
-                            name: file.name,
-                            content: await readFile(file),
-                        }))
-                    ),
-                },
-            };
-            setImages([]);
-            setImageURLs([]);
-            ws?.send(JSON.stringify(messageUser));
-            setMessage("");
+            if (message !== "") {
+                const messageUser = {
+                    event_type: "chat_message",
+                    message: {
+                        chat: chatId,
+                        text: message,
+                        attachments: await Promise.all(
+                            images.map(async (file) => ({
+                                name: file.name,
+                                content: await readFile(file),
+                            }))
+                        ),
+                    },
+                };
+                setImages([]);
+                setImageURLs([]);
+                ws?.send(JSON.stringify(messageUser));
+                setMessage("");
+            }
         }
     };
 
@@ -102,7 +104,7 @@ export default function MessageForm() {
         },
         [setUpdate, update.edit]
     );
-    
+
     return (
         <form className={styles.form__message} onSubmit={forSubmit}>
             <div className={styles.wrapper__icon}>

@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 export default function CreateChat() {
     const { t } = useTranslation("translation", { keyPrefix: "welcome" });
 
-    const { roomName, roomsList, setRoomsList } = useChat();
+    const { roomName, roomsList, setRoomsList, setToasterMessage, setShowToaster } = useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -112,6 +112,13 @@ export default function CreateChat() {
         const newData = await createChat(roomName, formData);
         if (newData.name !== "AxiosError") {
             setRoomsList([newData.chat, ...(roomsList || [])]);
+        } else {
+            setToasterMessage(
+                newData.response.data.errors.map(
+                    (err: { detail: string }) => err.detail
+                )
+            );
+            setShowToaster(true);
         }
         reset();
         setImageURL("");

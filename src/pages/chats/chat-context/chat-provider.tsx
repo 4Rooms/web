@@ -66,8 +66,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             timestamp: string;
         }[]
     >([]);
+    const [showToaster, setShowToaster] = useState(false);
     const [createChat, setCreateChat] = useState<Result>([]);
     const [filterCreate, setFilterCreate] = useState<Result>([]);
+    const [toasterMessage, setToasterMessage] = useState<string[]>([]);
 
     return (
         <ChatContext.Provider
@@ -102,6 +104,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setFilterCreate,
                 filterSaved,
                 setFilterSaved,
+                showToaster,
+                setShowToaster,
+                toasterMessage, 
+                setToasterMessage
             }}
         >
             {children}

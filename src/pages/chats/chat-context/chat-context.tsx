@@ -135,6 +135,10 @@ interface ChatContextType {
     setFilterCreate: Dispatch<SetStateAction<Result>>;
     createChat: Result;
     setCreateChat: Dispatch<SetStateAction<Result>>;
+    showToaster: boolean;
+    setShowToaster: Dispatch<SetStateAction<boolean>>;
+    toasterMessage: string[];
+    setToasterMessage: Dispatch<SetStateAction<string[]>>;
 }
 
 export const ChatContext = createContext<ChatContextType>(

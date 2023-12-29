@@ -24,8 +24,17 @@ export default function Chats() {
         deleteChat,
         online,
     } = useChat();
-    const {roomName, setRoomName, setRoomsList, chatOpen, setWs, ws, setSavedChats } =
-        useChat();
+    const {
+        setToasterMessage,
+        setShowToaster,
+        roomName,
+        setRoomName,
+        setRoomsList,
+        chatOpen,
+        setWs,
+        ws,
+        setSavedChats,
+    } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const cookieString = document.cookie;
@@ -119,7 +128,8 @@ export default function Chats() {
                 });
             });
         } else {
-            console.log(msgData);
+            setToasterMessage([msgData.error_message]);
+            setShowToaster(true);
         }
     }
     useEffect(() => {
