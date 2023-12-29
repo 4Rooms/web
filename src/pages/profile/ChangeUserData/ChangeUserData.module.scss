@@ -34,6 +34,15 @@
         }
     }
 }
+.reset__user_avatar {
+    width: 100px;
+    height: 80px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    position: absolute;
+    cursor: pointer;
+}
 
 .modal {
     display: flex;
@@ -113,7 +122,7 @@
 
 .focus {
     background-color: var(--OTHER-accent);
-    color: var(--LIGHT_THEME-Other-background_light);
+    color: var(--background-other);
     border-radius: 3px;
     padding: 2px 5px;
     font-size: 10px;

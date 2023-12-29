@@ -1,22 +1,20 @@
 import React, { ChangeEvent, useState } from "react";
-import {
-    InputChangeDataKeys,
-    InputsChangeData,
-    InputsValidChangeData,
-} from "../../../App.types";
+import { InputChangeDataKeys, InputsChangeData, InputsValidChangeData, } from "../../../App.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useValidation from "../../../shared/use-validate/use-validate";
 import changeDataSchema from "./changeData-schema";
-import styles from "./ChangeUserData.module.css";
+import styles from "./ChangeUserData.module.scss";
 import Button from "../../../shared/button/button";
 import { AddPhoto, Edit, Error, IconOkey } from "../../../assets/icons";
 import FormInput from "../../../shared/auth-input/form-Input";
 import { useTranslation } from "react-i18next";
+import authService from "../../../services/auth/auth.service.tsx";
+import Toaster from "../../../shared/toaster/toaster.tsx";
 
 export default function ChangeUserData() {
     const inputArray: InputChangeDataKeys[] = ["username", "email"];
-    const [, setImageURL] = useState<string>("");
+    const [imageUrl, setImageURL] = useState<string>("");
     const [, setImageError] = useState<null | string>(null);
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [openInput, setOpenInput] = useState<InputsValidChangeData>({
@@ -34,14 +32,16 @@ export default function ChangeUserData() {
         }
     );
     const [open] = useState<boolean>(false);
-    const { t } = useTranslation('translation');
+    const [endpointsError, setEndpointsError] = useState<string[]>([''])
+    const [showToaster, setShowToaster] = useState(false);
+    const {t} = useTranslation('translation');
 
     const {
         register,
         handleSubmit,
         setError,
         clearErrors,
-        formState: { errors },
+        formState: {errors},
     } = useForm<InputsChangeData>({
         defaultValues: {
             username: "",
@@ -63,11 +63,16 @@ export default function ChangeUserData() {
             } else {
                 setImageError(null);
                 setImageURL(URL.createObjectURL(file));
+                authService.updateUserAvatar(e.target.files[0]).catch((error) => {
+                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                    setShowToaster(true);
+                });
+
             }
         }
     };
 
-    const { formStateValid, validateField } =
+    const {formStateValid, validateField} =
         useValidation<InputsValidChangeData>({
             schema: changeDataSchema,
             formSubmitted,
@@ -92,11 +97,21 @@ export default function ChangeUserData() {
         validateField(type, value);
     };
     const deliveryFormAuth: SubmitHandler<InputsChangeData> = async (data) => {
-        console.log(data);
-        setOpenInput({
-            username: false,
-            email: false,
-        });
+        try {
+            if (data) {
+                await authService.updateUserData(data).catch((error) => {
+                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                    setShowToaster(true);
+                });
+            }
+            setOpenInput({
+                username: false,
+                email: false,
+            });
+        } catch (error: any) {
+            setEndpointsError(error);
+            setShowToaster(true);
+        }
     };
     return (
         <>
@@ -108,7 +123,9 @@ export default function ChangeUserData() {
                                 type="file"
                                 onChange={handleImageChange}
                             />
-                            <AddPhoto />
+                            {imageUrl ?
+                                <img className={styles.reset__user_avatar} src={imageUrl} alt="User avatar"/> :
+                                <AddPhoto/>}
                         </label>
                     </div>
                     {inputArray.map((value) =>
@@ -128,7 +145,7 @@ export default function ChangeUserData() {
                                 />
 
                                 {!errors[value] && formStateValid[value] && (
-                                    <IconOkey className={styles.okey} />
+                                    <IconOkey className={styles.okey}/>
                                 )}
 
                                 {errors[value] && !formStateValid[value] && (
@@ -136,7 +153,7 @@ export default function ChangeUserData() {
                                         <p className={styles.text__error}>
                                             {errors[value]?.message}
                                         </p>
-                                        <Error className={styles.error} />
+                                        <Error className={styles.error}/>
                                     </>
                                 )}
 
@@ -151,7 +168,7 @@ export default function ChangeUserData() {
                             </label>
                         ) : (
                             <div
-                            className={`${styles.data__user} ${value === "email" ? `${styles.data__user_last}` : ""}`}
+                                className={`${styles.data__user} ${value === "email" ? `${styles.data__user_last}` : ""}`}
                                 key={value}
                             >
                                 <div>
@@ -169,7 +186,7 @@ export default function ChangeUserData() {
                                     type="button"
                                     className={styles.edit__button}
                                 >
-                                    <Edit />
+                                    <Edit/>
                                 </button>
                             </div>
                         )
@@ -183,6 +200,11 @@ export default function ChangeUserData() {
                     </Button>
                 </form>
             </div>
+            <Toaster
+                messages={endpointsError}
+                isVisible={showToaster}
+                onHide={() => setShowToaster(false)}
+            />
         </>
     );
 }

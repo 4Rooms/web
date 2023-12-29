@@ -4,15 +4,17 @@ import BlockNotificationSaved from "../../Components/BlockNotificationSaved/Bloc
 import { Edit } from "../../assets/icons";
 import styles from "./MyChats.module.css";
 import { useChat } from "../chats/chat-context/use-chat";
+import { useTranslation } from "react-i18next";
 
 export default function MyChats() {
+    const { t } = useTranslation("translation");
     const [open, setOpen] = useState(false);
     const changeOpen = () => {
         setOpen(prevState => !prevState);
     }
     const { filterCreate } = useChat();
     return (
-        <BasedNotificationSaved title="My Chats">
+        <BasedNotificationSaved title={t('my-chart.page-title')}>
             {filterCreate.map((chat) => {
                 return (
                     <li key={chat.id} className={styles.item}>

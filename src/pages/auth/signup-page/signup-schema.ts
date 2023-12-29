@@ -1,4 +1,7 @@
 import * as yup from "yup";
+const forbiddenEmailDomains = [
+    'mail.ru', 'yandex.ru', 'bk.ru', 'inbox.ru', 'list.ru', 'rambler.ru', 'vk.com'
+];
 
 export default yup.object().shape({
     username: yup
@@ -16,6 +19,15 @@ export default yup.object().shape({
         .matches(
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
             'validEmailTextError'
+        )
+        .test(
+            'forbiddenDomainCheck',
+            'forbiddenEmailDomainError',
+            (value) => {
+                if (!value) return true;
+                const domain = value.split('@')[1];
+                return !forbiddenEmailDomains.includes(domain);
+            }
         )
         .required('emailRequired'),
     password: yup

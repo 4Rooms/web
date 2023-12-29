@@ -47,7 +47,7 @@
 
 .list__chats {
   position: absolute;
-  background-color: var(--LIGHT_THEME-Other-background_light);
+  background-color: var(--background-other);
   right: 0;
   top: 80%;
   width: 360px;
@@ -151,7 +151,7 @@
   margin-bottom: 32px;
 }
 .menu__container > div > button > a > p {
-  color: var(--LIGHT_THEME-Other-background_light);
+  color: var(--background-other);
   font-size: 14px;
   font-weight: 400;
   padding: 2px 8px;

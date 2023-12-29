@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import styles from "./LogOut.module.css";
+import styles from "./LogOut.module.scss";
 import Button from "../../../shared/button/button";
 import Modal from "../../../Components/Modal/Modal";
 import { useTranslation } from "react-i18next";
 export default function LogOut() {
     const [open, setOpen] = useState<boolean>(false);
-    const onClickChangeOpenModal = (): void => {
-        setOpen((prevOpen): boolean => {
-            return !prevOpen;
-        });
+    const performLogout = async () => {
+        try {
+            localStorage.clear();
+            setOpen(false);
+            document.location.reload();
+        } catch (error) {
+            console.error('An unexpected error occurred:', error);
+        }
+    }
+        const onClickChangeOpenModal = (): void => {
+        setOpen((prevOpen): boolean => !prevOpen);
     };
     const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
 
@@ -30,9 +37,7 @@ export default function LogOut() {
                         <h2>{t('logout')}</h2>
                         <p>{t('logout description')}</p>
                         <Button
-                            onClick={() => {
-                                setOpen(true);
-                            }}
+                            onClick={performLogout}
                             type="submit"
                             className="accent"
                         >

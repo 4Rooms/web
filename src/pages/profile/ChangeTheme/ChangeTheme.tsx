@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./ChangeTheme.module.css";
-import Button from "../../../shared/button/button";
 import Switch from "../../../Components/Switch/Switch";
 import WhiteTheme from "../../../assets/whiteTheme.jpg";
 import BlackTheme from "../../../assets/blackTheme.jpg";
@@ -9,19 +8,13 @@ export default function ChangeTheme() {
     const [selectedOption, setSelectedOption] = useState("White");
     const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
 
-    const handleLanguageChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        if (event.target.value === "White" && selectedOption === "White") {
-            setSelectedOption("Black");
-        } else if (
-            event.target.value === "Black" &&
-            selectedOption === "Black"
-        ) {
-            setSelectedOption("White");
-        } else {
-            setSelectedOption(event.target.value);
-        }
+    const handleLanguageChange = () => {
+        const newTheme = selectedOption === "White" ? "Black" : "White";
+
+        setSelectedOption(newTheme);
+
+        const themeAttribute = newTheme === "White" ? "light" : "dark";
+        document.documentElement.setAttribute('data-theme', themeAttribute);
     };
     return (
         <div className={styles.theme__container}>
@@ -49,9 +42,6 @@ export default function ChangeTheme() {
                     </div>
                 </div>
             </div>
-            <Button className="accent" type="button">
-                {t('save')}
-            </Button>
         </div>
     );
 }

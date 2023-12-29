@@ -39,7 +39,7 @@
             border-radius: 20px;
             position: relative;
             & > p {
-                color: var(--LIGHT_THEME-Other-background_light);
+                color: var(--background-other);
                 font-size: 32px;
                 font-weight: 600;
                 line-height: 150%;
@@ -53,7 +53,7 @@
                     width: 26px;
                     height: 6px;
                     & > path {
-                        fill: var(--LIGHT_THEME-Other-background_light);
+                        fill: var(--background-other);
                     }
                 }
             }
@@ -64,7 +64,7 @@
                 background-color: var(--ROOMS-Games-main);
             }
             &.cinema {
-                background-color: var(--ROOMS-Cinema-main);
+                background-color: var(--background-cinema);
             }
             &.music {
                 background-color: var(--ROOMS-Music-main);
@@ -123,7 +123,7 @@
                     width: 360px;
                     padding: 12px 16px;
                     padding-right: 36px;
-                    background: var(--LIGHT_THEME-Other-background_light);
+                    background: var(--background-other);
                     border: transparent;
                     color: var(--OTHER-inactive_text);
                     font-size: 16px;
@@ -148,11 +148,11 @@
                     border-radius: 10px;
                 }
                 &::-webkit-scrollbar-track {
-                    background-color: var(--LIGHT_THEME-Other-background_light);
+                    background-color: var(--background-other);
                     border-radius: 10px;
                 }
                 @media screen and (max-width: 500px) {
-                    padding-right: 0px;
+                    padding-right: 0;
                     &::-webkit-scrollbar {
                         width: 1px;
                     }

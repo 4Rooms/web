@@ -1,5 +1,5 @@
 .container__information {
-  background-color: var(--LIGHT_THEME-Other-background_light);
+  background-color: var(--background-other);
   display: flex;
   padding: 12px 20px;
   justify-content: left;

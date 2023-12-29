@@ -52,19 +52,19 @@
   padding-bottom: 20px;
 }
 .container.books {
-  background: url(./assets/background_books@1x.png);
+  background: var(--background-books);
 }
 @media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .container.books {
-    background: url(./assets/background_books@1x.png);
+    background: var(--background-books);
   }
 }
 .container.cinema {
-  background: url(./assets/background_cinema@1x.png);
+  background: var(--background-cinemas);
 }
 @media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .container.cinema {
-    background: url(./assets/background_cinema@1x.png);
+    background: var(--background-cinemas);
   }
 }
 .container.music {
