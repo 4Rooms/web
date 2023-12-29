@@ -4,6 +4,7 @@ import BlockNotificationSaved from "../../Components/BlockNotificationSaved/Bloc
 import { Edit } from "../../assets/icons";
 import styles from "./MyChats.module.css";
 import { useChat } from "../chats/chat-context/use-chat";
+import { useTranslation } from "react-i18next";
 
 export default function MyChats() {
     const { t } = useTranslation("translation");
