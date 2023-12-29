@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./Online.module.css";
 import { CloseModal } from "../../../../assets/icons";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function Online() {
     const [isSmallScreen, setIsSmallScreen] = useState("");
     const { online } = useChat();
+    const { t } = useTranslation("translation");
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -40,7 +42,7 @@ export default function Online() {
     };
     return (
         <div className={styles.container__online}>
-            <p className={styles.online__text}>Online now:</p>
+            <p className={styles.online__text}>{t('online.online')}</p>
             <ul className={styles.online__list}>
                 {users.map((user) => {
                     return (

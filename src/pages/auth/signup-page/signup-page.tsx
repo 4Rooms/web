@@ -101,7 +101,7 @@ export default function SignupPage() {
             .catch((error: { errors: string[]; }) => {
                 setError(type, {type: "manual", message: error.errors[0]});
             });
-    }, 500);
+    }, 1000);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: InputSignupKeys) => {
         const value = e.target.value;

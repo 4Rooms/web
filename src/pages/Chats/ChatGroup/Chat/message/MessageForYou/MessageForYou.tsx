@@ -5,6 +5,7 @@ import { Delete, Edit } from "../../../../../../assets/icons";
 import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
 import { countBy } from "lodash";
 import { Message } from "../../../../../../App.types";
+import { useTranslation } from "react-i18next";
 
 export default function MessageForYou({ message }: { message: Message }) {
     const { username } = useAuth();
@@ -49,6 +50,8 @@ export default function MessageForYou({ message }: { message: Message }) {
         }
         return styles.message__photo;
     };
+    const { t } = useTranslation("translation");
+
 
     return (
         <li
@@ -99,7 +102,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                     <p className={styles.user__text}>
                         {message.is_deleted ? (
                             <>
-                                <Delete /> The message is deleted
+                                <Delete /> {t('menu-modal.was deleted')}
                             </>
                         ) : (
                             message.text
@@ -149,7 +152,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                                             });
                                         }}
                                     >
-                                        <Edit /> Edit
+                                        <Edit /> {t('menu-modal.edit')}
                                     </button>
                                     <button
                                         type="button"
@@ -157,7 +160,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                                             deleteMessageUser();
                                         }}
                                     >
-                                        <Delete /> Delete
+                                        <Delete /> {t('menu-modal.delete')}
                                     </button>
                                 </>
                             )}

@@ -18,6 +18,7 @@ import {
 } from "../../../assets/icons";
 import FormInput from "../../../shared/auth-input/form-Input";
 import { useTranslation } from "react-i18next";
+import authService from "../../../services/auth/auth.service.tsx";
 
 export default function ResetPassword() {
     const inputArray: InputResetPasswordKeys[] = ["oldPassword", "newPassword"];
@@ -87,7 +88,8 @@ export default function ResetPassword() {
     const deliveryFormAuth: SubmitHandler<InputsResetPassword> = async (
         data
     ) => {
-        console.log(data);
+        setFormSubmitted(true);
+        await authService.changePassword(data)
     };
     return (
         <>

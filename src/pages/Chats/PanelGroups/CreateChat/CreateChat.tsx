@@ -18,7 +18,7 @@ import { createChat } from "../../../../services/chat/chat.service.tsx";
 import { useTranslation } from "react-i18next";
 
 export default function CreateChat() {
-    const { t } = useTranslation("translation", { keyPrefix: "welcome" });
+    const { t } = useTranslation("translation");
 
     const { roomName, roomsList, setRoomsList } = useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -126,32 +126,29 @@ export default function CreateChat() {
                     roomName ? styles[roomName] : ""
                 }`}
             >
-                {t("createChat")}
+                {t("welcome.createChat")}
             </button>
             {openModal && (
                 <Modal className="create__chat" onOpen={onClickChangeOpenModal}>
                     <>
                         <h1 className={styles.title__modal}>
-                            Create a new chat
+                            {t("create-chat.title")}
                         </h1>
                         <form
                             onSubmit={handleSubmit(deliveryFormAuth)}
-                            className={styles.form__auth}
-                        >
+                            className={styles.form__auth}>
                             <div className={styles.wrapper__add}>
                                 <label className={styles.label__auth}>
                                     <input
                                         className={styles.add__image}
                                         type="file"
                                         onChange={handleImageChange}
-                                        required
-                                    />
+                                        required/>
                                     {!imageURL && <AddPhoto />}
                                     {imageURL && (
                                         <img
                                             className={styles.user__img}
-                                            src={imageURL}
-                                        />
+                                            src={imageURL}/>
                                     )}
                                 </label>
                             </div>
@@ -159,8 +156,7 @@ export default function CreateChat() {
                                 <label
                                     className={styles.label__auth}
                                     key={value}
-                                    htmlFor={value}
-                                >
+                                    htmlFor={value}>
                                     <FormInput<InputsCreateKeys, InputsCreate>
                                         value={value}
                                         register={register}
@@ -175,8 +171,7 @@ export default function CreateChat() {
                                                 ? "textarea"
                                                 : "create"
                                         }
-                                        onFocusInput={onFocusInput}
-                                    />
+                                        onFocusInput={onFocusInput}/>
                                     {!errors[value as keyof InputsCreate] &&
                                         formStateValid[
                                             value as keyof InputsCreate
@@ -229,9 +224,8 @@ export default function CreateChat() {
                                     setFormSubmitted(true);
                                 }}
                                 type="submit"
-                                className="accent"
-                            >
-                                Create
+                                className="accent">
+                                {t('create-chat.button')}
                             </Button>
                         </form>
                     </>

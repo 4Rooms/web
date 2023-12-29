@@ -38,6 +38,6 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: var(--LIGHT_THEME-Other-background_light);
+  background-color: var(--background-other);
   transition: all 0.4s;
 }/*# sourceMappingURL=Switch.module.css.map */

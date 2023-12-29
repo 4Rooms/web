@@ -4,6 +4,7 @@ import { optionDashboard } from "../../utils/optionDashboard";
 import { MoreInformation, SearchRooms } from "../../assets/icons";
 import { getCreateChat, getSavedChats } from "../../services/chat/chat.service";
 import { useChat } from "../../pages/chats/chat-context/use-chat";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     children: React.ReactNode;
@@ -29,6 +30,7 @@ export default function BasedNotificationSaved({ children, title }: Props) {
         games: false,
         music: false,
     });
+    const { t } = useTranslation("translation");
 
     return (
         <div className={styles.container}>
@@ -49,7 +51,7 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                 } 
                                 `}
                             >
-                                <p>{option.name}</p>
+                                <p>{t(`dashboard.${option.name.toLowerCase()}`)}</p>
                                 <button
                                     onClick={async () => {
                                         setOpenSection((prevState) => {
@@ -95,7 +97,7 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                     >
                                         <label>
                                             <input
-                                                placeholder="Search"
+                                                placeholder={t('shared.search')}
                                                 className={
                                                     styles.navigation__input
                                                 }
