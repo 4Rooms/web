@@ -100,7 +100,7 @@ export interface Message {
     user_name: string;
     user_avatar: string;
     reactions?: {
-        id: number; 
+        id: number;
         user_name: string;
         reaction: string;
         timestamp: string;
@@ -110,9 +110,21 @@ export interface Message {
     text: string;
     timestamp: string;
     is_deleted: boolean;
-    chat: number; 
+    chat: number;
     user: number;
-    attachments: [string]
+    attachments: [string];
 }
 
 export type MessageList = Message[];
+
+export type Result = {
+    id: number;
+    title: string;
+    room: string;
+    img: string;
+    user: string;
+    description: string;
+    url: string;
+    likes: number;
+    timestamp: string;
+}[];

@@ -3,13 +3,13 @@ import styles from "./Groups.module.css";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 
 export default function Groups() {
-    const { roomName, roomsList, setChatOpen, setChatId, chatId, setDeleteChat } =
+    const { roomName, roomsList, setChatOpen, setChatId, chatId, setDeleteChat, setMessage } =
         useChat();
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
 
         if (text?.length > 15) {
-            modifiedText = text.substring(0, 10) + "...";
+            modifiedText = text.substring(0, 25) + "...";
         } else {
             modifiedText = text;
         }
@@ -18,6 +18,7 @@ export default function Groups() {
     const onClickSetChat = (id: number) => {
         setChatOpen(true);
         setChatId(id);
+        setMessage([]);
         setDeleteChat({
             name: "",
             delete: false,

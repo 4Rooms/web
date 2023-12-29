@@ -9,12 +9,16 @@ export const getChatsRoom = async (
 ) => {
     try {
         const categoryMap = {
-            "нові": "new",
-            "популярні": "popular",
-            "старі": "old"
+            нові: "new",
+            популярні: "popular",
+            старі: "old",
         };
 
-        const { data } = await secureApi.get(`/chat/get/${room}/${categoryMap[category as keyof typeof categoryMap] || category}/`);
+        const { data } = await secureApi.get(
+            `/chat/get/${room}/${
+                categoryMap[category as keyof typeof categoryMap] || category
+            }/`
+        );
         return data;
     } catch (error) {
         return error;
@@ -50,7 +54,9 @@ export const getAllMessages = async (chatId: number | undefined) => {
 
 export const getSavedChats = async (roomName: string | undefined) => {
     try {
-        const { data } = await secureApi.get(`/chat/saved_chats/get/${roomName}/`);
+        const { data } = await secureApi.get(
+            `/chat/saved_chats/get/${roomName}/`
+        );
         return data;
     } catch (error) {
         return error;
@@ -79,7 +85,39 @@ export const postSavedChat = async (chat_id: number) => {
 
 export const deleteSavedChat = async (chat_id: number) => {
     try {
-        const { data } = await secureApi.delete(`/chat/saved_chats/delete/${chat_id}/`);
+        const { data } = await secureApi.delete(
+            `/chat/saved_chats/delete/${chat_id}/`
+        );
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const getCreateChat = async (roomName: string | undefined) => {
+    try {
+        const { data } = await secureApi.get(`/chat/my_chats/get/${roomName}/`);
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const updateCreateChat = async (
+    chat_ID: number | undefined,
+    formData:
+        | {
+              img: Blob;
+              title: string;
+              description: string;
+          }
+        | FormData
+) => {
+    try {
+        const { data } = await secureApi.patch(
+            `/chat/update/${chat_ID}/`,
+            formData
+        );
         return data;
     } catch (error) {
         return error;
@@ -93,5 +131,5 @@ export const chatService = {
     deleteChat,
     deleteSavedChat,
     postSavedChat,
-    getSavedChats
+    getSavedChats,
 };

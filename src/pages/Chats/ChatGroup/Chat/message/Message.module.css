@@ -32,8 +32,6 @@
   width: 100%;
   gap: 8px;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   display: grid;
 }
 @media screen and (max-width: 500px) {
@@ -45,6 +43,7 @@
   border-radius: 20px 0px 20px 20px;
 }
 .message__user.deleted {
+
   background-color: var(--background-other);
   color: var(--OTHER-inactive_text);
   font-size: 8px;
@@ -134,9 +133,11 @@
 .user__text {
   font-size: 14px;
   line-height: 23px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   gap: 4px;
+  overflow: hidden;
+  display: flex;
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 .user__text > svg {
   width: 20px;

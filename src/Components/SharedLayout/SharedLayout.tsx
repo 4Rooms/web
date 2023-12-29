@@ -5,6 +5,7 @@ import styles from "./SharedLayout.module.css";
 import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 import { AuthContext } from "../../pages/auth/signup-page/auth-context/auth-context.tsx";
 import { localStorageService } from "../../services/local-storage/local-storage.ts";
+import { useChat } from "../../pages/chats/chat-context/use-chat.tsx";
 
 type Props = {
     user: string | null;
@@ -15,6 +16,7 @@ type Props = {
 export default function SharedLayout({user, showHeader}: Props) {
     const location = useLocation();
     const navigate = useNavigate();
+    const { setChatOpen, setChatId } = useChat()
     const { setUsername, setIsAuthenticated } = useContext(AuthContext);
     const is_verif = localStorageService?.get("user");
 
@@ -37,13 +39,12 @@ export default function SharedLayout({user, showHeader}: Props) {
         }
         
     }, []);
-
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //       // Викликати перезавантаження тільки якщо користувач аутентифікований
-    //       window.location.reload();
-    //     }
-    //   }, [isAuthenticated]);
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setChatOpen(false);
+            setChatId(0)
+        }
+    }, [location, setChatId, setChatOpen])
 
 
     return <>

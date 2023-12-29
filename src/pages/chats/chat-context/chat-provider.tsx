@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { ChatContext } from "./chat-context";
-import { MessageList } from "../../../App.types";
+import { MessageList, Result } from "../../../App.types";
 
 export function ChatProvider({ children }: { children: ReactNode }) {
     const [roomName, setRoomName] = useState<string | undefined>(undefined);
@@ -48,8 +48,26 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             img: string;
             url: string;
             likes: number;
+            timestamp: string;
         }[]
     >([]);
+    const [filterSaved, setFilterSaved] = useState<
+        {
+            id: number;
+            user: number;
+            chat: number;
+            title: string;
+            room: string;
+            description: string;
+            chat_creator: string;
+            img: string;
+            url: string;
+            likes: number;
+            timestamp: string;
+        }[]
+    >([]);
+    const [createChat, setCreateChat] = useState<Result>([]);
+    const [filterCreate, setFilterCreate] = useState<Result>([]);
 
     return (
         <ChatContext.Provider
@@ -78,6 +96,12 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setDeleteChat,
                 setSavedChats,
                 savedChats,
+                setCreateChat,
+                createChat,
+                filterCreate,
+                setFilterCreate,
+                filterSaved,
+                setFilterSaved,
             }}
         >
             {children}

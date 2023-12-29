@@ -9,6 +9,7 @@
   border-radius: 12px;
   height: 52px;
   width: 52px;
+  cursor: pointer;
 }
 @media screen and (max-width: 500px) {
   .item > button {

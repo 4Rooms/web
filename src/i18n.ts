@@ -64,7 +64,7 @@ const resources = {
                 'acceptAll': 'Accept all',
                 'description': {
                     'firstPart': 'We use files cookies only to collect information for functional. By clicking ',
-                    'boldPart': ' Accept All',
+                    'boldPart': ' "Accept All"',
                     'lastPart': ', you consent to data collection for the above purposes'
                 }
             },
@@ -221,9 +221,9 @@ const resources = {
                 'header': 'Згода на використання файлів cookie',
                 'acceptAll': 'Прийняти всі',
                 'description': {
-                    'firstPart': 'Ми використовуємо файли cookie лише для збору інформації з функціональною метою. Натискаючи',
-                    'boldPart': '«Прийняти всі»',
-                    'lastPart': ', ви даєте згоду на збір даних для вказаних цілей'
+                    'firstPart': 'Ми використовуємо файли cookie лише для збору інформації з функціональною метою. Натискаючи ',
+                    'boldPart': ' «Прийняти всі»',
+                    'lastPart': ', ви даєте згоду на збір даних для вказаних цілей.'
                 }
             },
             'dashboard': {

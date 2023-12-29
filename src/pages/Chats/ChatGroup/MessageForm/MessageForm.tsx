@@ -89,7 +89,8 @@ export default function MessageForm() {
     };
 
     const handleChange = useCallback(
-        ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+        (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            const value = e.target.value;
             if (update.edit) {
                 setUpdate((prevState) => ({
                     ...prevState,
@@ -101,6 +102,7 @@ export default function MessageForm() {
         },
         [setUpdate, update.edit]
     );
+    
     return (
         <form className={styles.form__message} onSubmit={forSubmit}>
             <div className={styles.wrapper__icon}>
@@ -133,10 +135,9 @@ export default function MessageForm() {
                 </button>
             </div>
             <label className={styles.wrapper__input}>
-                <input
+                <textarea
                     className={styles.input__message}
                     placeholder="Type something..."
-                    type="text"
                     value={update.edit ? update.text : message}
                     onChange={(e) => handleChange(e)}
                 />

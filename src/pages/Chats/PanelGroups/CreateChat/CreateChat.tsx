@@ -96,7 +96,6 @@ export default function CreateChat() {
     };
 
     const deliveryFormAuth: SubmitHandler<InputsCreate> = async (data) => {
-        console.log(21321321)
         const formData = new FormData();
         const chatOptions = {
             ...data,

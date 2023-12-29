@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./BasedNotificationSaved.module.css";
 import { optionDashboard } from "../../utils/optionDashboard";
 import { MoreInformation, SearchRooms } from "../../assets/icons";
+import { getCreateChat, getSavedChats } from "../../services/chat/chat.service";
+import { useChat } from "../../pages/chats/chat-context/use-chat";
 import { useTranslation } from "react-i18next";
 
 type Props = {
@@ -14,6 +16,14 @@ type OpenSectionType = {
 };
 
 export default function BasedNotificationSaved({ children, title }: Props) {
+    const {
+        setFilterCreate,
+        setCreateChat,
+        setFilterSaved,
+        createChat,
+        savedChats,
+        setSavedChats,
+    } = useChat();
     const [openSection, setOpenSection] = useState<OpenSectionType>({
         cinema: false,
         books: false,
@@ -43,15 +53,33 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                             >
                                 <p>{t(`dashboard.${option.name.toLowerCase()}`)}</p>
                                 <button
-                                    onClick={() =>
-                                        setOpenSection((prevState) => ({
-                                            ...prevState,
-                                            [option.name.toLocaleLowerCase()]:
-                                                !prevState[
-                                                    option.name.toLocaleLowerCase()
-                                                ],
-                                        }))
-                                    }
+                                    onClick={async () => {
+                                        setOpenSection((prevState) => {
+                                            const updatedState = Object.keys(prevState).reduce((acc: OpenSectionType, key) => {
+                                                acc[key] = false;
+                                                return acc;
+                                            }, {});
+                                        
+                                            return {
+                                                ...updatedState,
+                                                [option.name.toLocaleLowerCase()]: !prevState[option.name.toLocaleLowerCase()],
+                                            };
+                                        });
+                                        
+                                        if (title === "My Chats") {
+                                            const chats = await getCreateChat(
+                                                option.name.toLocaleLowerCase()
+                                            );
+                                            setFilterCreate(chats.results);
+                                            setCreateChat(chats.results);
+                                        } else {
+                                            const chats = await getSavedChats(
+                                                option.name.toLocaleLowerCase()
+                                            );
+                                            setSavedChats(chats.results);
+                                            setFilterSaved(chats.results);
+                                        }
+                                    }}
                                 >
                                     <MoreInformation />
                                 </button>
@@ -73,11 +101,32 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                                 className={
                                                     styles.navigation__input
                                                 }
+                                                onChange={(e) => {
+                                                    if (createChat && title === "My Chats") {
+                                                        setFilterCreate(
+                                                            createChat?.filter(
+                                                                (room) =>
+                                                                    room.title.includes(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                            )
+                                                        );
+                                                    } else {
+                                                        setFilterSaved(
+                                                            savedChats?.filter(
+                                                                (room) =>
+                                                                    room.title.includes(
+                                                                        e.target
+                                                                            .value
+                                                                    )
+                                                            )
+                                                        );
+                                                    }
+                                                }}
                                                 type="text"
                                             />
-                                            <button
-                                                type="button"
-                                            >
+                                            <button type="button">
                                                 <SearchRooms />
                                             </button>
                                         </label>
