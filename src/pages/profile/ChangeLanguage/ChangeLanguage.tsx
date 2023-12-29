@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import styles from "./ChangeLanguage.module.css";
-import Button from "../../../shared/button/button";
+import styles from "./ChangeLanguage.module.scss";
 import Switch from "../../../Components/Switch/Switch";
 import { changeLanguage } from "../../../utils/language-selector/language-selector.ts";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
@@ -45,9 +44,6 @@ export default function ChangeLanguage() {
                     </div>
                 </div>
             </div>
-            <Button className="accent" type="button">
-                {t('save')}
-            </Button>
         </div>
     );
 }

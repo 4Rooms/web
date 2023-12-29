@@ -17,6 +17,8 @@
     --background-books: url(./assets/background_books@1x.png);
     --background-cinemas: url(./assets/background_cinema@1x.png);
     --profile-section: rgba(234, 234, 234, 0.7);
+    --profile-icon: #212121;
+    --input-icon: #212121;
     color: var(--color-text);
     background-color: var(--color-backgrounds);
 
@@ -41,6 +43,8 @@
     --background-books: url(./assets/dark_background_books@1x.png);
     --background-cinemas: url(./assets/dark_background_cinema@1x.png);
     --profile-section: rgba(0, 0, 0, 0.1);
+    --profile-icon: #eaeaea;
+    --input-icon: rgba(0, 0, 0, 0.1);
 }
 
 #root {

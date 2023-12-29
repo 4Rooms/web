@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./ChangeTheme.module.css";
-import Button from "../../../shared/button/button";
 import Switch from "../../../Components/Switch/Switch";
 import WhiteTheme from "../../../assets/whiteTheme.jpg";
 import BlackTheme from "../../../assets/blackTheme.jpg";
@@ -43,9 +42,6 @@ export default function ChangeTheme() {
                     </div>
                 </div>
             </div>
-            <Button className="accent" type="button">
-                {t('save')}
-            </Button>
         </div>
     );
 }
