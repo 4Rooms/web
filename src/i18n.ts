@@ -131,8 +131,8 @@ const resources = {
             },
             'my-profile': {
                 'page-title': 'My profile',
-                'charts': 'My Charts',
-                'saved': 'Saved Charts',
+                'charts': 'My Chats',
+                'saved': 'Saved Chats',
                 'menu': {
                     'editprofile': 'Edit Profile',
                     'editpassword': 'Edit Password',
