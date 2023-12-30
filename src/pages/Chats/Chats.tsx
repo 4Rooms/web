@@ -14,9 +14,8 @@ import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 import DeleteChat from "../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
 
 export default function Chats() {
-    const { room } = useParams();
+    const { room, chatId } = useParams();
     const {
-        chatId,
         setMessage,
         setOnline,
         category,
@@ -27,7 +26,6 @@ export default function Chats() {
     const {
         setToasterMessage,
         setShowToaster,
-        roomName,
         setRoomName,
         setRoomsList,
         chatOpen,
@@ -158,15 +156,15 @@ export default function Chats() {
             "/" +
             "?token=" +
             extractToken(cookieString);
-        if (chatOpen) {
+        if (chatId) {
             if (ws) {
                 ws?.close();
             }
             const wss = new WebSocket(socketUrl);
             setWs(wss);
             const getMessagesandSavedChats = async () => {
-                const messages = await getAllMessages(chatId);
-                const savedChats = await getSavedChats(roomName);
+                const messages = await getAllMessages(Number(chatId));
+                const savedChats = await getSavedChats(room);
                 setMessage(messages.results);
                 setSavedChats(savedChats.results);
             };
@@ -193,7 +191,7 @@ export default function Chats() {
         <>
             {isSmallScreen ? (
                 <div className={styles.container__chatInformation}>
-                    {chatOpen ? (
+                    {chatId ? (
                         <ChatGroup isSmallScreen={isSmallScreen} />
                     ) : (
                         <div>

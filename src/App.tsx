@@ -37,6 +37,8 @@ export default function App() {
         "/confirm-email",
     ];
     const pathsForShowBackGround = ["cinema", "books", "games", "music"];
+    console.log( pathsForShowBackGround.includes(location.pathname.split("/")[2]));
+    // console.log(location.pathname.split("/").pop());
     setInitialLanguage();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
 
@@ -52,10 +54,8 @@ export default function App() {
     return (
         <div
             className={
-                pathsForShowBackGround.includes(
-                    location.pathname.split("/").pop() ?? ""
-                )
-                    ? `container ${location.pathname.split("/").pop()}`
+                pathsForShowBackGround.includes(location.pathname.split("/")[2])
+                    ? `container ${location.pathname.split("/")[2]}`
                     : !isAuthenticated
                     ? "container padding"
                     : "container"
@@ -74,7 +74,10 @@ export default function App() {
                 >
                     <Route element={<GuardRoutes redirectTo="/auth" />}>
                         <Route index element={<DashboardPage />} />
-                        <Route path="/chat/:room" element={<Chats />} />
+                        <Route
+                            path="/chat/:room/:chatId?"
+                            element={<Chats />}
+                        />
                         <Route path="/saved" element={<Saved />} />
                         <Route path="/my-chats" element={<MyChats />} />
                         <Route path="/profile" element={<Profile />}>

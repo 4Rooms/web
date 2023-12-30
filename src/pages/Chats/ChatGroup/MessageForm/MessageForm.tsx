@@ -9,9 +9,11 @@ import {
 import styles from "./MessageForm.module.scss";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import EmojiPicker from "emoji-picker-react";
+import { useParams } from "react-router-dom";
 
 export default function MessageForm() {
-    const { ws, chatId, setImageURLs, imageURLs, update, setUpdate } =
+    const { chatId } = useParams();
+    const { ws, setImageURLs, imageURLs, update, setUpdate } =
         useChat();
     const [message, setMessage] = useState("");
     const [isPickerVisible, setIsPickerVisible] = useState(false);

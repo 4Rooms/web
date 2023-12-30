@@ -16,6 +16,7 @@ import {
     deleteSavedChat,
     postSavedChat,
 } from "../../../../services/chat/chat.service.tsx";
+import { useParams } from "react-router-dom";
 
 interface InfrotmationProps {
     title: string;
@@ -36,13 +37,13 @@ export default function Infrotmation({
     user,
     likes,
 }: InfrotmationProps) {
+    const { chatId } = useParams();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
     const {
         setChatOpen,
         ws,
         setDeleteChat,
-        chatId,
         savedChats,
         setSavedChats,
     } = useChat();
@@ -98,14 +99,14 @@ export default function Infrotmation({
         ws?.send(JSON.stringify(messageUser));
     };
     const submitSavedChat = async () => {
-        const chatTets = savedChats.find((item) => item.chat === chatId);
+        const chatTets = savedChats.find((item) => item.chat === Number(chatId));
         if (chatTets) {
             await deleteSavedChat(chatTets.id);
             setSavedChats((prevState) =>
-                prevState.filter((item) => item.chat !== chatId)
+                prevState.filter((item) => item.chat !== Number(chatId))
             );
         } else {
-            const { saved_chat } = await postSavedChat(chatId);
+            const { saved_chat } = await postSavedChat(Number(chatId));
             setSavedChats((prevState) => [...prevState, { ...saved_chat }]);
         }
     };
@@ -175,7 +176,7 @@ export default function Infrotmation({
                                         onClick={submitSavedChat}
                                     >
                                         {savedChats.find(
-                                            (item) => item.chat === chatId
+                                            (item) => item.chat === Number(chatId)
                                         ) ? (
                                             <SavedChatsTrue />
                                         ) : (

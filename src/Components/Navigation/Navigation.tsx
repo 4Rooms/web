@@ -8,7 +8,7 @@ import {
     SearchRooms,
 } from "../../assets/icons";
 import styles from "./Navigation.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useChat } from "../../pages/chats/chat-context/use-chat";
 import { useTranslation } from "react-i18next";
 
@@ -20,16 +20,18 @@ export default function Navigation({
     showHeader: boolean;
 }) {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const navigate = useNavigate();
     const { roomsList, setChatId, setChatOpen } = useChat();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenSearch, setIsOpenSearch] = useState(false);
-    const [inputValue, setInputValue] = useState("");
     const { room } = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const chatName = searchParams.get("chatName") ?? "";
     const pathsForShowBackGround = ["cinema", "books", "games", "music"];
     const filterList =
-        inputValue !== "" &&
-        roomsList?.filter((room) => room.title.includes(inputValue));
-    const { t } = useTranslation('translation');
+        chatName !== "" &&
+        roomsList?.filter((room) => room.title.includes(chatName));
+    const { t } = useTranslation("translation");
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -58,9 +60,9 @@ export default function Navigation({
                                 isOpenSearch && styles.open
                             }`}
                             type="text"
-                            value={inputValue}
+                            value={chatName}
                             onChange={(e) => {
-                                setInputValue(e.target.value);
+                                setSearchParams({ chatName: e.target.value });
                                 e.target.value.length > 0
                                     ? setIsOpenSearch(true)
                                     : setIsOpenSearch(false);
@@ -81,9 +83,9 @@ export default function Navigation({
                                     <li key={item.id}>
                                         <button
                                             onClick={() => {
-                                                setInputValue("");
+                                                setSearchParams({});
                                                 setChatOpen(true);
-                                                setChatId(item.id);
+                                                navigate(`/chat/${room}/${item.id}`);
                                                 setIsOpenSearch(false);
                                             }}
                                         >
@@ -108,19 +110,19 @@ export default function Navigation({
                     <div>
                         <button type="button" onClick={() => setIsOpen(false)}>
                             <Link to="my-chats">
-                                <p>{t('my-profile.charts')}</p>
+                                <p>{t("my-profile.charts")}</p>
                                 <MyChats />
                             </Link>
                         </button>
                         <button type="button" onClick={() => setIsOpen(false)}>
                             <Link to="saved">
-                                <p>{t('my-profile.saved')}</p>
+                                <p>{t("my-profile.saved")}</p>
                                 <SavedChats />
                             </Link>
                         </button>
                         <button type="button" onClick={() => setIsOpen(false)}>
                             <Link to="/profile">
-                                <p>{t('my-profile.page-title')}</p>
+                                <p>{t("my-profile.page-title")}</p>
                                 <img
                                     className={styles.avatar__user}
                                     src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"

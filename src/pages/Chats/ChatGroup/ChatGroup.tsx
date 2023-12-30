@@ -7,13 +7,15 @@ import MessageForm from "./MessageForm/MessageForm";
 import Welcome from "./Welcome/Welcome";
 import { useChat } from "../../chats/chat-context/use-chat.tsx";
 import DeleteChat from "../../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
+import { useParams } from "react-router-dom";
 
 interface ProfileContextType {
     isSmallScreen?: boolean;
 }
 
 export default function ChatGroup({ isSmallScreen }: ProfileContextType) {
-    const { chatOpen, chatId, roomsList, deleteChat } = useChat();
+    const { chatId } = useParams();
+    const { chatOpen, roomsList, deleteChat } = useChat();
     const [chat, setChat] = useState<{
         id?: number;
         title?: string;
@@ -37,13 +39,13 @@ export default function ChatGroup({ isSmallScreen }: ProfileContextType) {
                 url: string;
                 timestamp: string;
                 likes: number;
-            }) => chat.id === chatId
+            }) => chat.id === Number(chatId)
         );
         setChat(selectedChat || {});
     }, [chatId, roomsList]);
     return (
         <div className={styles.container__chatGroups}>
-            {!chatOpen && !isSmallScreen ? (
+            {!chatId && !isSmallScreen ? (
                 deleteChat.delete ? (
                     <DeleteChat />
                 ) : (

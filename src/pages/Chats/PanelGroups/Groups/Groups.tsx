@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./Groups.module.css";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Groups() {
-    const { roomName, roomsList, setChatOpen, setChatId, chatId, setDeleteChat, setMessage } =
+    const {chatId} = useParams();
+    const { roomName, roomsList, setChatOpen, setChatId, setDeleteChat, setMessage } =
         useChat();
+        const navigate = useNavigate();
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
 
@@ -36,6 +39,7 @@ export default function Groups() {
                             }`}
                             onClick={() => {
                                 onClickSetChat(group.id);
+                                navigate(`/chat/${roomName}/${group.id.toString()}`);
                             }}
                         >
                             <img
@@ -45,7 +49,7 @@ export default function Groups() {
                             />
                             <p
                                 className={`${styles.group__text} ${
-                                    group.id === chatId &&
+                                    group.id === Number(chatId) &&
                                     roomName &&
                                     styles[roomName]
                                 }`}
