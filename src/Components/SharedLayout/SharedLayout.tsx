@@ -42,7 +42,7 @@ export default function SharedLayout({user, showHeader}: Props) {
     useEffect(() => {
         if (location.pathname === '/') {
             setChatOpen(false);
-            setChatId(0)
+            setChatId(null)
         }
     }, [location, setChatId, setChatOpen])
 

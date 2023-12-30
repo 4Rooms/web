@@ -57,6 +57,41 @@ export default function MessageForm() {
         });
     }
 
+    const handleKeyDown = async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            if (update.edit) {
+                const messageUser = {
+                    event_type: "message_was_updated",
+                    id: update.id,
+                    new_text: update.text,
+                };
+                ws?.send(JSON.stringify(messageUser));
+                setUpdate((prevState) => ({ ...prevState, edit: false }));
+            } else {
+                if (message !== "") {
+                    const messageUser = {
+                        event_type: "chat_message",
+                        message: {
+                            chat: chatId,
+                            text: message,
+                            attachments: await Promise.all(
+                                images.map(async (file) => ({
+                                    name: file.name,
+                                    content: await readFile(file),
+                                }))
+                            ),
+                        },
+                    };
+                    setImages([]);
+                    setImageURLs([]);
+                    ws?.send(JSON.stringify(messageUser));
+                    setMessage("");
+                }
+            }
+        }
+    };
+
     const forSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (update.edit) {
@@ -142,6 +177,7 @@ export default function MessageForm() {
                     placeholder="Type something..."
                     value={update.edit ? update.text : message}
                     onChange={(e) => handleChange(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
                 />
                 {update.edit && (
                     <div>

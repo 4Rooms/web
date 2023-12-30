@@ -6,8 +6,8 @@ import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useTranslation } from "react-i18next";
 
 export default function FilterGroup() {
-    const { t } = useTranslation('translation', { keyPrefix: 'filter' });
-    const { roomName, setChatOpen, setCategory } = useChat();
+    const { t } = useTranslation("translation", { keyPrefix: "filter" });
+    const { roomName, setChatOpen, setCategory, setChatId } = useChat();
     const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
@@ -18,7 +18,7 @@ export default function FilterGroup() {
     );
     useEffect(() => {
         setCategory(categoryChat.toLocaleLowerCase());
-    }, [categoryChat, setCategory])
+    }, [categoryChat, setCategory]);
     return (
         <div>
             <ul className={styles.container__filterFroups}>
@@ -35,7 +35,10 @@ export default function FilterGroup() {
                                         ? styles.active
                                         : ""
                                 }`}
-                                onClick={() => setChatOpen(false)}
+                                onClick={() => {
+                                    setChatOpen(false);
+                                    setChatId(null);
+                                }}
                             >
                                 {t(text.toLocaleLowerCase())}
                             </NavLink>
@@ -53,7 +56,7 @@ export default function FilterGroup() {
                         roomName ? styles[roomName] : ""
                     }`}
                 >
-                    {t(`${categoryChat}`).replace('filter.', '')}
+                    {t(`${categoryChat}`).replace("filter.", "")}
                     <RowBelow />
                 </button>
                 {show && (
@@ -69,7 +72,7 @@ export default function FilterGroup() {
                                     }}
                                     className={styles.button__category_change}
                                 >
-                                    {t(category).replace('filter.', '')}
+                                    {t(category).replace("filter.", "")}
                                 </button>
                             </li>
                         ))}

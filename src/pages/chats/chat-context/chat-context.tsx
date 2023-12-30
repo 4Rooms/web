@@ -35,8 +35,8 @@ interface ChatContextType {
     >;
     chatOpen: boolean;
     setChatOpen: Dispatch<SetStateAction<boolean>>;
-    chatId: number;
-    setChatId: Dispatch<SetStateAction<number>>;
+    chatId: number | null;
+    setChatId: Dispatch<SetStateAction<number | null>>;
     ws: WebSocket | null;
     setWs: Dispatch<SetStateAction<WebSocket | null>>;
     message: MessageList | [];
