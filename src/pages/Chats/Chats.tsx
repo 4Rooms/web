@@ -12,6 +12,7 @@ import {
 import Footer from "../../Components/Footer/Footer.tsx";
 import Welcome from "./ChatGroup/Welcome/Welcome.tsx";
 import DeleteChat from "../chats/ChatGroup/DeleteChat/DeleteChat.tsx";
+import { socketUrl } from "../../utils/webSocket/webSocket.tsx";
 
 export default function Chats() {
     const { room, chatId } = useParams();
@@ -34,14 +35,6 @@ export default function Chats() {
         setSavedChats,
     } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const cookieString = document.cookie;
-    function extractToken(cookieString: string) {
-        const pattern = /4roomToken=([^;]+)/;
-        const match = cookieString.match(pattern);
-        return match ? match[1] : null;
-    }
-    setRoomName(room);
     function handleMessages(e: MessageEvent) {
         const msgData = JSON.parse(e.data);
         if (msgData.event_type === "chat_message") {
@@ -133,12 +126,8 @@ export default function Chats() {
     useEffect(() => {
         window.scrollTo(0, 0);
         const getAllChatsRoom = async () => {
-            try {
-                const data = await getChatsRoom(room, category);
-                setRoomsList(data.results);
-            } catch (error) {
-                console.log(error);
-            }
+            const data = await getChatsRoom(room, category);
+            setRoomsList(data.results);
         };
         getAllChatsRoom();
         const checkScreenSize = () => {
@@ -146,21 +135,11 @@ export default function Chats() {
         };
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
-        const socketUrl =
-            "wss:" +
-            "//back.4rooms.pro" +
-            "/ws/chat/" +
-            room +
-            "/" +
-            chatId +
-            "/" +
-            "?token=" +
-            extractToken(cookieString);
         if (chatId) {
             if (ws) {
                 ws?.close();
             }
-            const wss = new WebSocket(socketUrl);
+            const wss = new WebSocket(socketUrl(room, chatId));
             setWs(wss);
             const getMessagesandSavedChats = async () => {
                 const messages = await getAllMessages(Number(chatId));
@@ -178,8 +157,6 @@ export default function Chats() {
     }, [
         chatId,
         chatOpen,
-        cookieString,
-        protocol,
         room,
         category,
         setMessage,

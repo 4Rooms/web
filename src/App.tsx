@@ -38,7 +38,6 @@ export default function App() {
     ];
     const pathsForShowBackGround = ["cinema", "books", "games", "music"];
     console.log( pathsForShowBackGround.includes(location.pathname.split("/")[2]));
-    // console.log(location.pathname.split("/").pop());
     setInitialLanguage();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
 
