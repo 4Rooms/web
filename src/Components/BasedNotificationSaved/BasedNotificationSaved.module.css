@@ -171,7 +171,7 @@
 }
 @media screen and (max-width: 500px) {
   .container__wrapper_chats > ul {
-    padding-right: 0px;
+    padding-right: 0;
   }
   .container__wrapper_chats > ul::-webkit-scrollbar {
     width: 1px;

@@ -6,10 +6,12 @@ import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
 import { countBy } from "lodash";
 import { Message } from "../../../../../../App.types";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 export default function MessageForYou({ message }: { message: Message }) {
+    const {room} = useParams();
     const { username } = useAuth();
-    const { ws, setUpdate, roomName } = useChat();
+    const { ws, setUpdate } = useChat();
     const [open, setOpen] = useState(false);
     const uniqueReactions = countBy(message.reactions, "reaction");
     function formatTime(time: string) {
@@ -121,7 +123,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                                             onClick={(e) => clickReaction(e)}
                                             type="button"
                                             className={
-                                                roomName ? styles[roomName] : ""
+                                                room ? styles[room] : ""
                                             }
                                         >
                                             {reaction}{" "}

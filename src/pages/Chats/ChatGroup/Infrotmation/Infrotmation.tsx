@@ -16,7 +16,7 @@ import {
     deleteSavedChat,
     postSavedChat,
 } from "../../../../services/chat/chat.service.tsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface InfrotmationProps {
     title: string;
@@ -37,16 +37,12 @@ export default function Infrotmation({
     user,
     likes,
 }: InfrotmationProps) {
-    const { chatId } = useParams();
+    const { room, chatId } = useParams();
+    const navigate = useNavigate();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const {
-        setChatOpen,
-        ws,
-        setDeleteChat,
-        savedChats,
-        setSavedChats,
-    } = useChat();
+    const { setChatOpen, ws, setDeleteChat, savedChats, setSavedChats } =
+        useChat();
     const { username } = useAuth();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
@@ -66,9 +62,9 @@ export default function Infrotmation({
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
         if (text?.length > 15 && isSmallScreen) {
-            modifiedText = text.substring(0, 15) + "...";
+            modifiedText = text.substring(0, 10) + "...";
         } else if (text?.length > 15) {
-            modifiedText = text.substring(0, 25) + "...";
+            modifiedText = text.substring(0, 20) + "...";
         } else {
             modifiedText = text;
         }
@@ -86,7 +82,7 @@ export default function Infrotmation({
                 event_type: "chat_was_deleted",
             };
             ws?.send(JSON.stringify(messageUser));
-            setChatOpen(false);
+            navigate(`/chat/${room}`);
             setDeleteChat({ delete: true, name: title });
         } catch (error) {
             console.log(error);
@@ -99,7 +95,9 @@ export default function Infrotmation({
         ws?.send(JSON.stringify(messageUser));
     };
     const submitSavedChat = async () => {
-        const chatTets = savedChats.find((item) => item.chat === Number(chatId));
+        const chatTets = savedChats.find(
+            (item) => item.chat === Number(chatId)
+        );
         if (chatTets) {
             await deleteSavedChat(chatTets.id);
             setSavedChats((prevState) =>
@@ -117,7 +115,7 @@ export default function Infrotmation({
                     {isSmallScreen && (
                         <button
                             onClick={() => {
-                                setChatOpen(false);
+                                navigate(`/chat/${room}`)
                                 setDeleteChat({
                                     name: "",
                                     delete: false,
@@ -176,7 +174,8 @@ export default function Infrotmation({
                                         onClick={submitSavedChat}
                                     >
                                         {savedChats.find(
-                                            (item) => item.chat === Number(chatId)
+                                            (item) =>
+                                                item.chat === Number(chatId)
                                         ) ? (
                                             <SavedChatsTrue />
                                         ) : (
@@ -217,7 +216,7 @@ export default function Infrotmation({
                                         impossible.
                                     </p>
                                     <Button type="submit" className="accent">
-                                        fewfew
+                                        Delete
                                     </Button>
                                 </form>
                             </Modal>

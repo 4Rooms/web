@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./FilterGroup.module.css";
 import { RowBelow } from "../../../../assets/icons";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useTranslation } from "react-i18next";
 
 export default function FilterGroup() {
     const { t } = useTranslation("translation", { keyPrefix: "filter" });
-    const { roomName, setChatOpen, setCategory, setChatId } = useChat();
+    const {room } = useParams();
+    const { setChatOpen, setCategory, setChatId } = useChat();
     const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
@@ -28,7 +29,7 @@ export default function FilterGroup() {
                             <NavLink
                                 to={`/chat/${text.toLocaleLowerCase()}`}
                                 className={`${styles.button__filter} ${
-                                    roomName ? styles[roomName] : ""
+                                    room ? styles[room] : ""
                                 } ${
                                     location.pathname ===
                                     `/chat/${text.toLocaleLowerCase()}`
@@ -53,7 +54,7 @@ export default function FilterGroup() {
                         setShow((prevState) => !prevState);
                     }}
                     className={`${styles.button__new} ${
-                        roomName ? styles[roomName] : ""
+                        room ? styles[room] : ""
                     }`}
                 >
                     {t(`${categoryChat}`).replace("filter.", "")}

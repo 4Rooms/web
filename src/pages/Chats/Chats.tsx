@@ -196,7 +196,7 @@ export default function Chats() {
                     ) : (
                         <div>
                             {deleteChat.delete ? (
-                                <DeleteChat />
+                                <DeleteChat isSmallScreen={isSmallScreen} />
                             ) : (
                                 <Welcome isSmallScreen={isSmallScreen} />
                             )}

@@ -10,7 +10,7 @@
   }
 }
 .logout__container p {
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 48px;

@@ -5,29 +5,42 @@ import deleteChatCinema from "../../../../assets/deleteChatCinema.png";
 import deleteChatGame from "../../../../assets/deleteChatGame.png";
 import deleteChatMusic from "../../../../assets/deleteChatMusic.png";
 import deleteChatBooks from "../../../../assets/deleteChatBooks.png";
+import { useParams } from "react-router-dom";
 
-export default function DeleteChat() {
-    const { roomName, deleteChat } = useChat();
+export default function DeleteChat({ isSmallScreen }: { isSmallScreen?: boolean}) {
+    const {room} = useParams();
+    const { deleteChat } = useChat();
+    const cutTextFunction = (text: string) => {
+        let modifiedText = "";
+        if (text?.length > 15 && isSmallScreen) {
+            modifiedText = text.substring(0, 15) + "...";
+        } else if (text?.length > 15) {
+            modifiedText = text.substring(0, 25) + "...";
+        } else {
+            modifiedText = text;
+        }
+        return modifiedText;
+    };
     return (
         <div>
             <div
                 className={`${styles.welcome}  ${
-                    roomName ? styles[roomName] : ""
+                    room ? styles[room] : ""
                 }`}
             >
                 <img
                     src={
-                        roomName === "cinema"
+                        room === "cinema"
                             ? deleteChatCinema
-                            : roomName === "books"
+                            : room === "books"
                             ? deleteChatBooks
-                            : roomName === "music"
+                            : room === "music"
                             ? deleteChatMusic
                             : deleteChatGame
                     }
                 />
                 <h1 className={styles.welcome__title}>
-                    Sorry, chat “{deleteChat.name}” has been deleted :(
+                    Sorry, chat “{cutTextFunction(deleteChat.name)}” has been deleted :(
                 </h1>
             </div>
         </div>

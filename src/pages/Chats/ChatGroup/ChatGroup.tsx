@@ -15,7 +15,7 @@ interface ProfileContextType {
 
 export default function ChatGroup({ isSmallScreen }: ProfileContextType) {
     const { chatId } = useParams();
-    const { chatOpen, roomsList, deleteChat } = useChat();
+    const { roomsList, deleteChat } = useChat();
     const [chat, setChat] = useState<{
         id?: number;
         title?: string;

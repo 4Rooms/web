@@ -5,14 +5,15 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function Groups() {
     const {chatId} = useParams();
-    const { roomName, roomsList, setChatOpen, setChatId, setDeleteChat, setMessage } =
+    const {room} = useParams();
+    const { roomsList, setChatOpen, setChatId, setDeleteChat, setMessage } =
         useChat();
         const navigate = useNavigate();
     const cutTextFunction = (text: string) => {
+        console.log(text);
         let modifiedText = "";
-
         if (text?.length > 15) {
-            modifiedText = text.substring(0, 25) + "...";
+            modifiedText = text.substring(0, 17) + "...";
         } else {
             modifiedText = text;
         }
@@ -35,11 +36,11 @@ export default function Groups() {
                         <button
                             type="button"
                             className={`${styles.group} ${
-                                roomName ? styles[roomName] : ""
+                                room ? styles[room] : ""
                             }`}
                             onClick={() => {
                                 onClickSetChat(group.id);
-                                navigate(`/chat/${roomName}/${group.id.toString()}`);
+                                navigate(`/chat/${room}/${group.id.toString()}`);
                             }}
                         >
                             <img
@@ -50,8 +51,8 @@ export default function Groups() {
                             <p
                                 className={`${styles.group__text} ${
                                     group.id === Number(chatId) &&
-                                    roomName &&
-                                    styles[roomName]
+                                    room &&
+                                    styles[room]
                                 }`}
                             >
                                 {cutTextFunction(group.title)}
