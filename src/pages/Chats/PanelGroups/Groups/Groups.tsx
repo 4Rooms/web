@@ -10,7 +10,6 @@ export default function Groups() {
         useChat();
         const navigate = useNavigate();
     const cutTextFunction = (text: string) => {
-        console.log(text);
         let modifiedText = "";
         if (text?.length > 15) {
             modifiedText = text.substring(0, 17) + "...";

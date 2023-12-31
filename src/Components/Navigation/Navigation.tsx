@@ -21,7 +21,7 @@ export default function Navigation({
 }) {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const navigate = useNavigate();
-    const { roomsList, setChatId, setChatOpen } = useChat();
+    const { roomsList, setChatOpen } = useChat();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenSearch, setIsOpenSearch] = useState(false);
     const { room } = useParams();
@@ -32,7 +32,15 @@ export default function Navigation({
         chatName !== "" &&
         roomsList?.filter((room) => room.title.includes(chatName));
     const { t } = useTranslation("translation");
-
+    const cutTextFunction = (text: string) => {
+        let modifiedText = "";
+        if (text?.length > 15) {
+            modifiedText = text.substring(0, 35) + "...";
+        } else {
+            modifiedText = text;
+        }
+        return modifiedText;
+    };
     useEffect(() => {
         const checkScreenSize = () => {
             setIsSmallScreen(window.innerWidth < 871);
@@ -90,7 +98,7 @@ export default function Navigation({
                                             }}
                                         >
                                             <img src={item.img} />{" "}
-                                            <p>{item.title}</p>
+                                            <p>{cutTextFunction(item.title)}</p>
                                         </button>
                                     </li>
                                 );

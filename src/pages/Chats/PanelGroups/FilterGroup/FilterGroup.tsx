@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 export default function FilterGroup() {
     const { t } = useTranslation("translation", { keyPrefix: "filter" });
     const {room } = useParams();
-    const { setChatOpen, setCategory, setChatId } = useChat();
+    const { setChatOpen, setCategory, setChatId, setDeleteChat } = useChat();
     const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
@@ -39,6 +39,10 @@ export default function FilterGroup() {
                                 onClick={() => {
                                     setChatOpen(false);
                                     setChatId(null);
+                                    setDeleteChat({
+                                        name: "",
+                                        delete: false,
+                                    });
                                 }}
                             >
                                 {t(text.toLocaleLowerCase())}
