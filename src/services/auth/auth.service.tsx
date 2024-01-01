@@ -15,12 +15,7 @@ const signup = async (dataForm: InputsRegistraytion) => {
 };
 
 const login = async (dataForm: InputsLogin) => {
-    try {
-        const {data} = await axios.post("login/", dataForm)
-        return data;
-    } catch (err) {
-        return err;
-    }
+    return await axios.post("login/", dataForm)
 };
 
 const resetPassword = async (url: string, data: unknown) => {
