@@ -142,12 +142,12 @@ export default function LoginPage() {
         await authService
             .login(data)
             .then((response) => {
-                setUsername(response.user.username);
+                setUsername(response.data.user.username);
                 setIsAuthenticated(true);
-                const token = response.token;
+                const token = response.data.token;
                 const maxAge = 30 * 24 * 60 * 60;
                 document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
-                localStorageService.set("user", response.user);
+                localStorageService.set("user", response.data.user);
                 navigate("/");
             })
             .catch((error) => {
