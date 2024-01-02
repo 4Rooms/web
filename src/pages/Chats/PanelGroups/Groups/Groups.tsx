@@ -12,7 +12,7 @@ export default function Groups() {
     const cutTextFunction = (text: string) => {
         let modifiedText = "";
         if (text?.length > 15) {
-            modifiedText = text.substring(0, 17) + "...";
+            modifiedText = text.substring(0, 20) + "...";
         } else {
             modifiedText = text;
         }
