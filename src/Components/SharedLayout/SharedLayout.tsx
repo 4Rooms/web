@@ -43,6 +43,7 @@ export default function SharedLayout({user, showHeader}: Props) {
         if (location.pathname === '/') {
             setChatOpen(false);
             setChatId(null)
+            
         }
     }, [location, setChatId, setChatOpen])
 

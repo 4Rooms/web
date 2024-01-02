@@ -11,6 +11,7 @@ import styles from "./Navigation.module.css";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useChat } from "../../pages/chats/chat-context/use-chat";
 import { useTranslation } from "react-i18next";
+import { cutTextFunction } from "../../utils/cutTextFuncion/cutTextFunction";
 
 export default function Navigation({
     user,
@@ -32,15 +33,6 @@ export default function Navigation({
         chatName !== "" &&
         roomsList?.filter((room) => room.title.includes(chatName));
     const { t } = useTranslation("translation");
-    const cutTextFunction = (text: string) => {
-        let modifiedText = "";
-        if (text?.length > 15) {
-            modifiedText = text.substring(0, 35) + "...";
-        } else {
-            modifiedText = text;
-        }
-        return modifiedText;
-    };
     useEffect(() => {
         const checkScreenSize = () => {
             setIsSmallScreen(window.innerWidth < 871);
@@ -98,7 +90,7 @@ export default function Navigation({
                                             }}
                                         >
                                             <img src={item.img} />{" "}
-                                            <p>{cutTextFunction(item.title)}</p>
+                                            <p>{cutTextFunction(item.title, "navigation")}</p>
                                         </button>
                                     </li>
                                 );

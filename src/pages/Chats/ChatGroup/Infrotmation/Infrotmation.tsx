@@ -17,6 +17,7 @@ import {
     postSavedChat,
 } from "../../../../services/chat/chat.service.tsx";
 import { useNavigate, useParams } from "react-router-dom";
+import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -41,7 +42,7 @@ export default function Infrotmation({
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const { setChatOpen, ws, setDeleteChat, savedChats, setSavedChats } =
+    const { ws, setDeleteChat, savedChats, setSavedChats } =
         useChat();
     const { username } = useAuth();
     function formatDate(inputDate: string | undefined): string {
@@ -59,17 +60,6 @@ export default function Infrotmation({
 
         return `${formattedDay}.${formattedMonth}.${year}`;
     }
-    const cutTextFunction = (text: string) => {
-        let modifiedText = "";
-        if (text?.length > 15 && isSmallScreen) {
-            modifiedText = text.substring(0, 10) + "...";
-        } else if (text?.length > 15) {
-            modifiedText = text.substring(0, 20) + "...";
-        } else {
-            modifiedText = text;
-        }
-        return modifiedText;
-    };
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -127,7 +117,7 @@ export default function Infrotmation({
                     )}
                     <img className={styles.group__avatar} src={avatar} />
                     <p className={styles.group__name}>
-                        {cutTextFunction(title)}
+                        {cutTextFunction(title, "information", isSmallScreen)}
                     </p>
                     <button
                         onClick={onClickChangeOpenModal}
@@ -146,7 +136,7 @@ export default function Infrotmation({
                                 src={avatar}
                             />
                             <p className={styles.group__name__modal}>
-                                {cutTextFunction(title)}
+                                {cutTextFunction(title, "information", isSmallScreen)}
                             </p>
                         </div>
                         <div className={styles.wrapper}>
@@ -211,7 +201,7 @@ export default function Infrotmation({
                                     <h2>Delete your chat</h2>
                                     <p>
                                         Are you sure you want to delete{" "}
-                                        <b>“{cutTextFunction(title)}”</b> chat?
+                                        <b>“{cutTextFunction(title, "information", isSmallScreen)}”</b> chat?
                                         After this action, recovery will be
                                         impossible.
                                     </p>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.scss";
-import { profileSections } from "../../utils/profileSections";
 import TitleProfile from "../../shared/title-profile/TitleProfile";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { Back } from "../../assets/icons";
 import { useTranslation } from "react-i18next";
+import { profileSections } from "../../utils/arrays/arrays";
 
 export default function Profile() {
     const location = useLocation();

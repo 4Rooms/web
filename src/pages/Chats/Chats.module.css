@@ -11,6 +11,12 @@
   }
 }
 
+@media screen and (max-width: 871px) {
+  .width {
+    width: 100%;
+  }
+}
+
 .chats__footer {
   background-color: var(--LIGHT_THEME-Other-background_light);
   text-align: center;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./Chat.module.css";
-import MessageForYou from "./message/MessageForYou/MessageForYou";
+import MessageForYou from "./message/MessageForYou/Message.tsx";
 import { useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 

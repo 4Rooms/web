@@ -6,21 +6,11 @@ import deleteChatGame from "../../../../assets/deleteChatGame.png";
 import deleteChatMusic from "../../../../assets/deleteChatMusic.png";
 import deleteChatBooks from "../../../../assets/deleteChatBooks.png";
 import { useParams } from "react-router-dom";
+import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction";
 
 export default function DeleteChat({ isSmallScreen }: { isSmallScreen?: boolean}) {
     const {room} = useParams();
     const { deleteChat } = useChat();
-    const cutTextFunction = (text: string) => {
-        let modifiedText = "";
-        if (text?.length > 15 && isSmallScreen) {
-            modifiedText = text.substring(0, 15) + "...";
-        } else if (text?.length > 15) {
-            modifiedText = text.substring(0, 25) + "...";
-        } else {
-            modifiedText = text;
-        }
-        return modifiedText;
-    };
     return (
         <div>
             <div
@@ -40,7 +30,7 @@ export default function DeleteChat({ isSmallScreen }: { isSmallScreen?: boolean}
                     }
                 />
                 <h1 className={styles.welcome__title}>
-                    Sorry, chat “{cutTextFunction(deleteChat.name)}” has been deleted :(
+                    Sorry, chat “{cutTextFunction(deleteChat.name, "delete", isSmallScreen)}” has been deleted :(
                 </h1>
             </div>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Groups.module.css";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useNavigate, useParams } from "react-router-dom";
+import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction.tsx";
 
 export default function Groups() {
     const {chatId} = useParams();
@@ -9,15 +10,6 @@ export default function Groups() {
     const { roomsList, setChatOpen, setChatId, setDeleteChat, setMessage } =
         useChat();
         const navigate = useNavigate();
-    const cutTextFunction = (text: string) => {
-        let modifiedText = "";
-        if (text?.length > 15) {
-            modifiedText = text.substring(0, 20) + "...";
-        } else {
-            modifiedText = text;
-        }
-        return modifiedText;
-    };
     const onClickSetChat = (id: number) => {
         setChatOpen(true);
         setChatId(id);
@@ -54,7 +46,7 @@ export default function Groups() {
                                     styles[room]
                                 }`}
                             >
-                                {cutTextFunction(group.title)}
+                                {cutTextFunction(group.title, "groups")}
                             </p>
                         </button>
                     </li>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Dashboard.module.scss";
-import { optionDashboard } from "../../utils/optionDashboard";
 import { Link } from "react-router-dom";
 import CookieConsent from "../../shared/cookie-consent/cookie-consent.tsx";
 import { getInitialCookieConsent, updateCookieConsent } from "../../utils/cookie-consent/cookie-consent.tsx";
 import { useTranslation } from "react-i18next";
+import { optionDashboard } from "../../utils/arrays/arrays.tsx";
 
 export function DashboardPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'dashboard' });

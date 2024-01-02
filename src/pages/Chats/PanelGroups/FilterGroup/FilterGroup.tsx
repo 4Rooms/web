@@ -4,6 +4,7 @@ import { RowBelow } from "../../../../assets/icons";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useTranslation } from "react-i18next";
+import { filterButton } from "../../../../utils/arrays/arrays.tsx";
 
 export default function FilterGroup() {
     const { t } = useTranslation("translation", { keyPrefix: "filter" });
@@ -13,7 +14,6 @@ export default function FilterGroup() {
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
     const [categoryChat, setCategoryChat] = useState<string>("New");
-    const filterButton: string[] = ["Cinema", "Books", "Music", "Games"];
     const changeNameCategory = arrayCategory.filter(
         (category) => category !== categoryChat
     );
@@ -32,7 +32,7 @@ export default function FilterGroup() {
                                     room ? styles[room] : ""
                                 } ${
                                     location.pathname ===
-                                    `/chat/${text.toLocaleLowerCase()}`
+                                    `/chat/${text.toLocaleLowerCase()}` || room === text.toLocaleLowerCase()
                                         ? styles.active
                                         : ""
                                 }`}

@@ -171,7 +171,7 @@ export default function Chats() {
                     {chatId ? (
                         <ChatGroup isSmallScreen={isSmallScreen} />
                     ) : (
-                        <div>
+                        <div className={styles.width}>
                             {deleteChat.delete ? (
                                 <DeleteChat isSmallScreen={isSmallScreen} />
                             ) : (

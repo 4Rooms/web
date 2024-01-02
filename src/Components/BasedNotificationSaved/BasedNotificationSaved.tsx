@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styles from "./BasedNotificationSaved.module.css";
-import { optionDashboard } from "../../utils/optionDashboard";
 import { MoreInformation, SearchRooms } from "../../assets/icons";
 import { getCreateChat, getSavedChats } from "../../services/chat/chat.service";
 import { useChat } from "../../pages/chats/chat-context/use-chat";
 import { useTranslation } from "react-i18next";
+import { optionDashboard } from "../../utils/arrays/arrays";
 
 type Props = {
     children: React.ReactNode;

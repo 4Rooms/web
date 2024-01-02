@@ -23,23 +23,14 @@ import { setInitialLanguage } from "./utils/language-selector/language-selector.
 import Saved from "./pages/saved/Saved.tsx";
 import MyChats from "./pages/myChats/MyChats.tsx";
 import Dekanator from "./shared/dekanator/Dekanator.tsx";
+import { pathsForShowBackGround, pathsToHideHeader } from "./utils/arrays/arrays.tsx";
 
 export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();
     const location = useLocation();
-    const pathsToHideHeader = [
-        "/authentication",
-        "/auth",
-        "/create-account",
-        "/password-reset",
-        "/forgot-password",
-        "/account-confirmation",
-        "/confirm-email",
-    ];
-    const pathsForShowBackGround = ["cinema", "books", "games", "music"];
-    console.log( pathsForShowBackGround.includes(location.pathname.split("/")[2]));
-    setInitialLanguage();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
+    const showBackground = location.pathname.split("/")[2]
+    setInitialLanguage();
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -53,8 +44,8 @@ export default function App() {
     return (
         <div
             className={
-                pathsForShowBackGround.includes(location.pathname.split("/")[2])
-                    ? `container ${location.pathname.split("/")[2]}`
+                pathsForShowBackGround.includes(showBackground)
+                    ? `container ${showBackground}`
                     : !isAuthenticated
                     ? "container padding"
                     : "container"
