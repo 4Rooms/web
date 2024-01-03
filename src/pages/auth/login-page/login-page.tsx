@@ -1,4 +1,4 @@
-import styles from "../auth.module.css";
+import styles from "../auth.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Error, HiddenPassword, IconOkey, OpenPassword } from "../../../assets/icons.tsx";
 import {
@@ -142,15 +142,14 @@ export default function LoginPage() {
         await authService
             .login(data)
             .then((response) => {
-                setUsername(response.user.username);
-                if (response.user.is_email_confirmed) {
+                setUsername(response.data.user.username);
+                if (response.data.user.is_email_confirmed) {
                     setIsAuthenticated(true);
                 }
-                const token = response.token;
-                console.log(token);
+                const token = response.data.token;
                 const maxAge = 30 * 24 * 60 * 60;
                 document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
-                localStorageService.set("user", response.user);
+                localStorageService.set("user", response.data.user);
                 navigate("/");
             })
             .catch((error) => {
@@ -187,21 +186,26 @@ export default function LoginPage() {
                                 onChange={onChange}
                                 open={open}
                                 onFocusInput={onFocusInput}/>
-                            {formStateValid[value as keyof InputsLogin] && <IconOkey className={styles.okey__auth}/>}
-                            {!formStateValid[value as keyof InputsLogin] && formStateFocus[value as keyof InputsLogin] && !errors[value as keyof InputsLogin] &&
+                            {formStateValid[value] && value !== "password" && <IconOkey className={styles.okey__auth}/>}
+                            {!formStateValid[value] && formStateFocus[value] && !errors[value] &&
                                 <>
                                     <div className={styles.focus__block}>
                                         <p>{value}</p>
                                     </div>
                                     <p className={styles.text__info}>
-                                        {t(value)}
+                                        {value === 'password' ? <button
+                                            type="button"
+                                            className={styles.forgot__password__info}
+                                            onClick={onClickChangeOpenModal}>
+                                            {t('forgotPassword')}
+                                        </button> : t(value)}
                                     </p>
                                 </>
                             }
-                            {errors[value as keyof InputsLogin] &&
-                                !formStateValid[value as keyof InputsLogin] && (
+                            {errors[value] &&
+                                !formStateValid[value] && (
                                     <p className={styles.text__error}>
-                                        {t(`${errors[value as keyof InputsLogin]?.message}`)}
+                                        {t(`${errors[value]?.message}`)}
                                         {value === "password" &&
                                             <button
                                                 type="button"
@@ -212,12 +216,11 @@ export default function LoginPage() {
                                         }
                                     </p>
                                 )}
-                            {errors[value as keyof InputsLogin] &&
-                                !formStateValid[value as keyof InputsLogin] && (
+                            {errors[value] &&
+                                !formStateValid[value] && (
                                     <Error className={styles.error__auth}/>
                                 )}
-                            {value === "password" && formStateValue.password?.length > 0 && !errors[value] &&
-                                !formStateValid[value] &&
+                            {value === "password" && formStateValue.password?.length > 0 && formStateValid[value] &&
                                 <button className={styles.button__show} type="button"
                                         onClick={onClickChangeOpen}>
                                     {open ? <OpenPassword/> : <HiddenPassword/>}

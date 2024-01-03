@@ -10,10 +10,10 @@ export function setInitialLanguage(){
 
     const userLang = navigator.language.split('-')[0];
 
-    if (userLang === 'ua') {
-        i18n?.changeLanguage('ua');
-    } else {
+    if (userLang === 'en') {
         i18n?.changeLanguage('en');
+    } else {
+        i18n?.changeLanguage('ua');
     }
 }
 

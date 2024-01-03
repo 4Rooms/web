@@ -55,7 +55,7 @@ export default function Navigation({
                 {pathsForShowBackGround.includes(room || "") &&
                     !isSmallScreen && (
                         <input
-                            placeholder="Search"
+                            placeholder={t('shared.search')}
                             className={`${styles.navigation__input} ${
                                 isOpenSearch && styles.open
                             }`}

@@ -205,14 +205,22 @@
     right: 7px;
     cursor: pointer;
 }
-
-.forgot__password__error {
-    color: red;
+@mixin button-style($color) {
     font-size: 14px;
     background-color: transparent;
     border-color: transparent;
     text-decoration-line: underline;
     cursor: pointer;
+    color: $color;
+}
+.forgot__password {
+    &__error {
+        @include button-style(red);
+    }
+
+    &__info {
+        @include button-style(var(--color-text-main));
+    }
 }
 
 .text__confirm {

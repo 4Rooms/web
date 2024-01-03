@@ -4,7 +4,8 @@ export default yup.object().shape({
     username: yup
         .string()
         .min(1, 'minLengthErrorUsername')
-        .max(20, 'maxLengthErrorUsername')
+        .test('is-valid-username', 'maxLengthErrorUsername',
+            (value) => (value ?? '').split('@')[0].trim().length <= 20)
         .matches(
             /^([@#$_]*[a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9@#$_\s]+[@#$_]*)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
             'usernameRegexError'

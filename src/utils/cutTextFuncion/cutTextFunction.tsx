@@ -1,5 +1,15 @@
+type ConfigOptions = {
+    limit: number;
+    limitSmall?: number;
+    ellipse: boolean;
+};
+
+type Config = {
+    [key: string]: ConfigOptions;
+};
+
 export const cutTextFunction = (text: string, title: string, isSmallScreen?: boolean) => {
-    const config = {
+    const config: Config = {
       block: {
         limit: 10,
         ellipse: false,
@@ -30,7 +40,7 @@ export const cutTextFunction = (text: string, title: string, isSmallScreen?: boo
       return text; 
     }
   
-    let modifiedText = "";
+    let modifiedText: string;
   
     if (isSmallScreen && option.limitSmall) {
       modifiedText = text.substring(0, option.limitSmall);
