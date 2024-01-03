@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import styles from "../Message.module.css";
-import { useAuth } from "../../../../../auth/signup-page/auth-context/use-auth.tsx";
-import { Delete, Edit } from "../../../../../../assets/icons.tsx";
-import { useChat } from "../../../../chat-context/use-chat.tsx";
+import styles from "./Message.module.css";
+import { useAuth } from "../../../../auth/signup-page/auth-context/use-auth.tsx";
+import { Delete, Edit } from "../../../../../assets/icons.tsx";
+import { useChat } from "../../../chat-context/use-chat.tsx";
 import { countBy } from "lodash";
-import { Message } from "../../../../../../App.types.ts";
+import { Message } from "../../../../../App.types.ts";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { emojisResponse } from "../../../../../../utils/arrays/arrays.tsx";
-import { formatTime } from "../../../../../../utils/formatTime/formatTime.tsx";
+import { emojisResponse } from "../../../../../utils/arrays/arrays.tsx";
+import { formatTime } from "../../../../../utils/formatTime/formatTime.tsx";
 
 export default function MessageForYou({ message }: { message: Message }) {
     const { room } = useParams();

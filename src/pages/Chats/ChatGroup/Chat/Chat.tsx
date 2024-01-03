@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./Chat.module.css";
 import { useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
-import MessageForYou from "./message/Message/Message.tsx";
+import MessageForYou from "./Message/Message.tsx";
 
 export default function Chat() {
     const { room } = useParams();
