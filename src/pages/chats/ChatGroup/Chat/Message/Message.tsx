@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { emojisResponse } from "../../../../../utils/arrays/arrays.tsx";
 import { formatTime } from "../../../../../utils/formatTime/formatTime.tsx";
 
-export default function MessageForYou({ message }: { message: Message }) {
+export default function Message({ message }: { message: Message }) {
     const { room } = useParams();
     const { username } = useAuth();
     const { ws, setUpdate } = useChat();
