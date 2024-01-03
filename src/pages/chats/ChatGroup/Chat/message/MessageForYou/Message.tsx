@@ -8,6 +8,7 @@ import { Message } from "../../../../../../App.types.ts";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { emojisResponse } from "../../../../../../utils/arrays/arrays.tsx";
+import { formatTime } from "../../../../../../utils/formatTime/formatTime.tsx";
 
 export default function MessageForYou({ message }: { message: Message }) {
     const { room } = useParams();
@@ -15,14 +16,6 @@ export default function MessageForYou({ message }: { message: Message }) {
     const { ws, setUpdate } = useChat();
     const [open, setOpen] = useState(false);
     const uniqueReactions = countBy(message.reactions, "reaction");
-    function formatTime(time: string) {
-        const date = new Date(Number(time) * 1000);
-
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-
-        return hours + ":" + (minutes < 10 ? "0" : "") + minutes;
-    }
     const openMenuMessage = () => {
         setOpen((prevState) => !prevState);
     };

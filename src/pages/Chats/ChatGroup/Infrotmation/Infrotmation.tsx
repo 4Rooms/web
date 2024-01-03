@@ -18,6 +18,7 @@ import {
 } from "../../../../services/chat/chat.service.tsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction.tsx";
+import { formatTime } from "../../../../utils/formatTime/formatTime.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -45,21 +46,6 @@ export default function Infrotmation({
     const { ws, setDeleteChat, savedChats, setSavedChats } =
         useChat();
     const { username } = useAuth();
-    function formatDate(inputDate: string | undefined): string {
-        if (!inputDate) {
-            return "";
-        }
-        const date = new Date(inputDate);
-
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-
-        const formattedDay = day < 10 ? `0${day}` : day;
-        const formattedMonth = month < 10 ? `0${month}` : month;
-
-        return `${formattedDay}.${formattedMonth}.${year}`;
-    }
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -148,7 +134,7 @@ export default function Infrotmation({
                             </p>
                             <div className={styles.group__additional}>
                                 <p className={styles.time__additional}>
-                                    {formatDate(timestamp)}
+                                    {formatTime(timestamp, "information")}
                                 </p>
                                 <div className={styles.container__button}>
                                     <button
