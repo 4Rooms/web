@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import {
     AddFile,
     CloseModal,
@@ -18,6 +18,11 @@ export default function MessageForm() {
     const [message, setMessage] = useState("");
     const [isPickerVisible, setIsPickerVisible] = useState(false);
     const [images, setImages] = useState<File[]>([]);
+
+    useEffect(() => {
+        setImages([]);
+        setImageURLs([]);
+    }, [chatId, setImageURLs])
 
     const toggleEmojiPicker = () => {
         setIsPickerVisible(!isPickerVisible);
