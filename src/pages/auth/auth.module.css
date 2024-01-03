@@ -212,12 +212,20 @@
 }
 
 .forgot__password__error {
-  color: red;
   font-size: 14px;
   background-color: transparent;
   border-color: transparent;
   text-decoration-line: underline;
   cursor: pointer;
+  color: red;
+}
+.forgot__password__info {
+  font-size: 14px;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration-line: underline;
+  cursor: pointer;
+  color: var(--color-text-main);
 }
 
 .text__confirm {

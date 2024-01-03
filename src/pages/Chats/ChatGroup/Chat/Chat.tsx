@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./Chat.module.css";
 import { useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
-import MessageForYou from "../../../chats/ChatGroup/Chat/message/MessageForYou/Message.tsx";
+import Message from "./Message/Message.tsx";
 
 export default function Chat() {
     const { room } = useParams();
@@ -57,7 +57,7 @@ export default function Chat() {
                       );
                   })
                 : message?.map((result) => {
-                      return <MessageForYou key={result.id} message={result} />;
+                      return <Message key={result.id} message={result} />;
                   })}
         </ul>
     );

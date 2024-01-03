@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import styles from "./Message.module.scss";
-import { useAuth } from "../../../../../auth/signup-page/auth-context/use-auth.tsx";
-import { Delete, Edit } from "../../../../../../assets/icons.tsx";
-import { useChat } from "../../../../chat-context/use-chat.tsx";
+import styles from "./Message.module.css";
+import { useAuth } from "../../../../auth/signup-page/auth-context/use-auth.tsx";
+import { Delete, Edit } from "../../../../../assets/icons.tsx";
 import { countBy } from "lodash";
-import { Message } from "../../../../../../App.types.ts";
+import { Message } from "../../../../../App.types.ts";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { emojisResponse } from "../../../../../../utils/arrays/arrays.tsx";
+import { emojisResponse } from "../../../../../utils/arrays/arrays.tsx";
+import { formatTime } from "../../../../../utils/formatTime/formatTime.tsx";
+import { useChat } from "../../../../chats/chat-context/use-chat.tsx";
 
-export default function MessageForYou({ message }: { message: Message }) {
+export default function Message({ message }: { message: Message }) {
     const { room } = useParams();
     const { username } = useAuth();
     const { ws, setUpdate } = useChat();
     const [open, setOpen] = useState(false);
     const uniqueReactions = countBy(message.reactions, "reaction");
-    function formatTime(time: string) {
-        const date = new Date(Number(time) * 1000);
-
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-
-        return hours + ":" + (minutes < 10 ? "0" : "") + minutes;
-    }
     const openMenuMessage = () => {
         setOpen((prevState) => !prevState);
     };

@@ -1,10 +1,11 @@
 .button {
   --background: transparent;
   --hover: transparent;
+  --color: #eaeaea;
   display: inline-block;
   padding: 12px 44px;
   justify-content: center;
-  color: var(--background-other);
+  color: var(--color);
   align-items: center;
   border: none;
   border-radius: 10px;
@@ -39,8 +40,9 @@
   margin-bottom: 60px;
 }
 .button.disabled {
-  --background: var(--OTHER-inactive_text);
-  --hover: var(--OTHER-inactive_text);
+  --background: var(--disabled-button-background);
+  --hover: var(--disabled-button-background);
+  --color: var(--disabled-button-color);
   cursor: not-allowed;
   opacity: 0.7;
   transform: none;

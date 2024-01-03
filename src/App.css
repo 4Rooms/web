@@ -19,6 +19,8 @@
   --profile-section: rgba(234, 234, 234, 0.7);
   --profile-icon: #212121;
   --input-icon: #212121;
+  --disabled-button-background: #C7C7C7;
+  --disabled-button-color: #616161;
   color: var(--color-text);
   background-color: var(--color-backgrounds);
 }
@@ -43,6 +45,8 @@
   --profile-section: rgba(0, 0, 0, 0.1);
   --profile-icon: #eaeaea;
   --input-icon: rgba(0, 0, 0, 0.1);
+  --disabled-button-background: #7A7A7A;
+  --disabled-button-color: s#2C374C;
 }
 
 #root {
