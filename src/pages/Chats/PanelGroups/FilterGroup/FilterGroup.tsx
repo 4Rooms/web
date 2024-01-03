@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import styles from "./FilterGroup.module.css";
 import { RowBelow } from "../../../../assets/icons";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useTranslation } from "react-i18next";
+import { filterButton } from "../../../../utils/arrays/arrays.tsx";
 
 export default function FilterGroup() {
-    const { t } = useTranslation('translation', { keyPrefix: 'filter' });
-    const { roomName, setChatOpen, setCategory } = useChat();
+    const { t } = useTranslation("translation", { keyPrefix: "filter" });
+    const {room } = useParams();
+    const { setChatOpen, setCategory, setChatId, setDeleteChat } = useChat();
     const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
     const [categoryChat, setCategoryChat] = useState<string>("New");
-    const filterButton: string[] = ["Cinema", "Books", "Music", "Games"];
     const changeNameCategory = arrayCategory.filter(
         (category) => category !== categoryChat
     );
     useEffect(() => {
         setCategory(categoryChat.toLocaleLowerCase());
-    }, [categoryChat, setCategory])
+    }, [categoryChat, setCategory]);
     return (
         <div>
             <ul className={styles.container__filterFroups}>
@@ -28,14 +29,21 @@ export default function FilterGroup() {
                             <NavLink
                                 to={`/chat/${text.toLocaleLowerCase()}`}
                                 className={`${styles.button__filter} ${
-                                    roomName ? styles[roomName] : ""
+                                    room ? styles[room] : ""
                                 } ${
                                     location.pathname ===
-                                    `/chat/${text.toLocaleLowerCase()}`
+                                    `/chat/${text.toLocaleLowerCase()}` || room === text.toLocaleLowerCase()
                                         ? styles.active
                                         : ""
                                 }`}
-                                onClick={() => setChatOpen(false)}
+                                onClick={() => {
+                                    setChatOpen(false);
+                                    setChatId(null);
+                                    setDeleteChat({
+                                        name: "",
+                                        delete: false,
+                                    });
+                                }}
                             >
                                 {t(text.toLocaleLowerCase())}
                             </NavLink>
@@ -50,10 +58,10 @@ export default function FilterGroup() {
                         setShow((prevState) => !prevState);
                     }}
                     className={`${styles.button__new} ${
-                        roomName ? styles[roomName] : ""
+                        room ? styles[room] : ""
                     }`}
                 >
-                    {t(`${categoryChat}`).replace('filter.', '')}
+                    {t(`${categoryChat}`).replace("filter.", "")}
                     <RowBelow />
                 </button>
                 {show && (
@@ -69,7 +77,7 @@ export default function FilterGroup() {
                                     }}
                                     className={styles.button__category_change}
                                 >
-                                    {t(category).replace('filter.', '')}
+                                    {t(category).replace("filter.", "")}
                                 </button>
                             </li>
                         ))}

@@ -143,7 +143,9 @@ export default function LoginPage() {
             .login(data)
             .then((response) => {
                 setUsername(response.data.user.username);
-                setIsAuthenticated(true);
+                if (response.data.user.is_email_confirmed) {
+                    setIsAuthenticated(true);
+                }
                 const token = response.data.token;
                 const maxAge = 30 * 24 * 60 * 60;
                 document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;

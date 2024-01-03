@@ -1,3 +1,36 @@
+import { ReactElement } from "react";
+import {
+    EditProfile,
+    LanguageProfile,
+    LeaveProfile,
+    PasswordReset,
+    ThemeProfile,
+} from "../../assets/icons";
+import React from "react";
+
+export const profileSections: { icon: ReactElement; name: string }[] = [
+    {
+        icon: <EditProfile />,
+        name: "editprofile",
+    },
+    {
+        icon: <PasswordReset />,
+        name: "editpassword",
+    },
+    {
+        icon: <LanguageProfile />,
+        name: "language",
+    },
+    {
+        icon: <ThemeProfile />,
+        name: "theme",
+    },
+    {
+        icon: <LeaveProfile />,
+        name: "logout",
+    },
+];
+
 export const optionDashboard: {
     name: string;
     background: string;
@@ -34,3 +67,19 @@ export const optionDashboard: {
         text: "In this room, you can discover a lot of new musicians or even styles of music and tell about your preferences.",
     },
 ];
+
+export const pathsToHideHeader = [
+    "/authentication",
+    "/auth",
+    "/create-account",
+    "/password-reset",
+    "/forgot-password",
+    "/account-confirmation",
+    "/confirm-email",
+];
+
+export const pathsForShowBackGround = ["cinema", "books", "games", "music"];
+
+export const emojisResponse = ["😀", "😈", "😎", "💀", "❤️"];
+
+export const filterButton: string[] = ["Cinema", "Books", "Music", "Games"];

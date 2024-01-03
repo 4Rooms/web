@@ -27,7 +27,7 @@
 
 .message__user {
   background: var(--background-other);
-  border-radius: 0px 20px 20px 20px;
+  border-radius: 0 20px 20px 20px;
   padding: 10px 16px;
   width: 100%;
   gap: 8px;
@@ -40,11 +40,10 @@
   }
 }
 .message__user.from {
-  border-radius: 20px 0px 20px 20px;
+  border-radius: 20px 0 20px 20px;
 }
 .message__user.deleted {
-
-  background-color: var(--background-other);
+  background-color: var(--LIGHT_THEME-Other-text_second);
   color: var(--OTHER-inactive_text);
   font-size: 8px;
 }

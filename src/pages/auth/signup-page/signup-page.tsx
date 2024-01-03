@@ -114,7 +114,7 @@ export default function SignupPage() {
         await authService.signup(data)
             .then((response) => {
                 setUsername(response.data.username);
-                localStorageService.set("user", response);
+                localStorageService.set("user", response.data);
                 navigate("/account-confirmation", {state: {formData: data}});
             })
             .catch((error) => {

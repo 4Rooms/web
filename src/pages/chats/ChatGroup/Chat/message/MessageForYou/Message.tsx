@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import styles from "../Message.module.scss";
+import styles from "./Message.module.scss";
 import { useAuth } from "../../../../../auth/signup-page/auth-context/use-auth.tsx";
-import { Delete, Edit } from "../../../../../../assets/icons";
-import { useChat } from "../../../../../chats/chat-context/use-chat.tsx";
+import { Delete, Edit } from "../../../../../../assets/icons.tsx";
+import { useChat } from "../../../../chat-context/use-chat.tsx";
 import { countBy } from "lodash";
-import { Message } from "../../../../../../App.types";
+import { Message } from "../../../../../../App.types.ts";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+import { emojisResponse } from "../../../../../../utils/arrays/arrays.tsx";
 
 export default function MessageForYou({ message }: { message: Message }) {
+    const { room } = useParams();
     const { username } = useAuth();
-    const { ws, setUpdate, roomName } = useChat();
+    const { ws, setUpdate } = useChat();
     const [open, setOpen] = useState(false);
     const uniqueReactions = countBy(message.reactions, "reaction");
     function formatTime(time: string) {
@@ -52,7 +55,6 @@ export default function MessageForYou({ message }: { message: Message }) {
     };
     const { t } = useTranslation("translation");
 
-
     return (
         <li
             key={message.id}
@@ -84,7 +86,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                     >
                         {message.user_name}
                     </p>
-                    {message.attachments.length > 0 && (
+                    {!message.is_deleted && message.attachments.length > 0 && (
                         <div className={styles.message__photos}>
                             {message.attachments?.map((photo, index) => (
                                 <img
@@ -102,7 +104,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                     <p className={styles.user__text}>
                         {message.is_deleted ? (
                             <>
-                                <Delete /> {t('menu-modal.was deleted')}
+                                <Delete /> {t("menu-modal.was deleted")}
                             </>
                         ) : (
                             message.text
@@ -120,9 +122,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                                         <button
                                             onClick={(e) => clickReaction(e)}
                                             type="button"
-                                            className={
-                                                roomName ? styles[roomName] : ""
-                                            }
+                                            className={room ? styles[room] : ""}
                                         >
                                             {reaction}{" "}
                                             <span>
@@ -152,7 +152,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                                             });
                                         }}
                                     >
-                                        <Edit /> {t('menu-modal.edit')}
+                                        <Edit /> {t("menu-modal.edit")}
                                     </button>
                                     <button
                                         type="button"
@@ -160,7 +160,7 @@ export default function MessageForYou({ message }: { message: Message }) {
                                             deleteMessageUser();
                                         }}
                                     >
-                                        <Delete /> {t('menu-modal.delete')}
+                                        <Delete /> {t("menu-modal.delete")}
                                     </button>
                                 </>
                             )}
@@ -175,46 +175,20 @@ export default function MessageForYou({ message }: { message: Message }) {
                                 <></>
                             ) : (
                                 <ul className={styles.reaction}>
-                                    <li>
-                                        <button
-                                            onClick={(e) => clickReaction(e)}
-                                            type="button"
-                                        >
-                                            😀
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            onClick={(e) => clickReaction(e)}
-                                            type="button"
-                                        >
-                                            😈
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            onClick={(e) => clickReaction(e)}
-                                            type="button"
-                                        >
-                                            😎
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            onClick={(e) => clickReaction(e)}
-                                            type="button"
-                                        >
-                                            💀
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            onClick={(e) => clickReaction(e)}
-                                            type="button"
-                                        >
-                                            ❤️
-                                        </button>
-                                    </li>
+                                    {emojisResponse.map((response) => {
+                                        return (
+                                            <li key={response}>
+                                                <button
+                                                    onClick={(e) =>
+                                                        clickReaction(e)
+                                                    }
+                                                    type="button"
+                                                >
+                                                    {response}
+                                                </button>
+                                            </li>
+                                        );
+                                    })}
                                 </ul>
                             )}
                         </div>

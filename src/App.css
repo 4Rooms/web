@@ -1,3 +1,50 @@
+:root {
+  --color-text: #242424;
+  --color-background: #ebe8fa;
+  --background-other: #eaeaea;
+  --color-accent: #7b34d8;
+  --color-accent-light: #b187e8;
+  --color-text-secondary: #c7c7c7;
+  --color-text-main: #212121;
+  --color-invalid: #d83434;
+  --color-valid: #2ca129;
+  --color-background-block: rgba(234, 234, 234, 0.7);
+  --color-inactive-text: #616161;
+  --color-background-secondary: rgba(44, 55, 76, 0.70);
+  --background-cinema: #61c9a8;
+  --background-image-1x: url(./assets/background_image@1x.png);
+  --background-image-2x: url(./assets/background_image@2x.png);
+  --background-books: url(./assets/background_books@1x.png);
+  --background-cinemas: url(./assets/background_cinema@1x.png);
+  --profile-section: rgba(234, 234, 234, 0.7);
+  --profile-icon: #212121;
+  --input-icon: #212121;
+  color: var(--color-text);
+  background-color: var(--color-backgrounds);
+}
+
+[data-theme=dark] {
+  --color-text: #eaeaea;
+  --color-background: #2c374c;
+  --background-other: #2c374c;
+  --color-accent: #7b34d8;
+  --color-accent-light: #ad6bcb; /* Assuming this is the dark theme accent light */
+  --color-text-secondary: #a1a1a1;
+  --color-text-main: #eaeaea;
+  --color-invalid: #d83434;
+  --color-valid: #2ca129;
+  --color-background-block: rgba(44, 55, 76, 0.9); /* Assuming you want a darker block background */
+  --color-inactive-text: #616161;
+  --color-background-secondary: rgba(44, 55, 76, 0.90);
+  --background-image-1x: url(./assets/dark_background_image@1x.png);
+  --background-image-2x: url(./assets/dark_background_image@2x.png);
+  --background-books: url(./assets/dark_background_books@1x.png);
+  --background-cinemas: url(./assets/dark_background_cinema@1x.png);
+  --profile-section: rgba(0, 0, 0, 0.1);
+  --profile-icon: #eaeaea;
+  --input-icon: rgba(0, 0, 0, 0.1);
+}
+
 #root {
   overflow: auto;
   display: flex;
@@ -5,31 +52,31 @@
   flex-grow: 1;
   min-height: 100vh;
   background-size: cover;
-  background: transparent url(./assets/background_image@1x.png) no-repeat 100% 100%;
+  background: transparent var(--background-image-1x) no-repeat 100% 100%;
 }
 @media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   #root {
-    background: url(./assets/background_image@2x.png) 100%;
+    background: var(--background-image-2x) 100%;
   }
 }
 @media screen and (min-width: 768px) {
   #root {
-    background: url(./assets/background_image@1x.png) 100%;
+    background: var(--background-image-1x) 100%;
   }
 }
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
   #root {
-    background: url(./assets/background_image@2x.png) 100%;
+    background: var(--background-image-2x) 100%;
   }
 }
 @media screen and (min-width: 1280px) {
   #root {
-    background: url(./assets/background_image@1x.png) 100%;
+    background: var(--background-image-1x) 100%;
   }
 }
 @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (min-resolution: 192dpi), screen and (min-width: 1280px) and (min-resolution: 2dppx) {
   #root {
-    background: url(./assets/background_image@2x.png) 100%;
+    background: var(--background-image-2x) 100%;
   }
 }
 

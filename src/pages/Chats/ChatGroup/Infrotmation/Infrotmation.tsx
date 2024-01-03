@@ -16,6 +16,8 @@ import {
     deleteSavedChat,
     postSavedChat,
 } from "../../../../services/chat/chat.service.tsx";
+import { useNavigate, useParams } from "react-router-dom";
+import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction.tsx";
 
 interface InfrotmationProps {
     title: string;
@@ -36,16 +38,12 @@ export default function Infrotmation({
     user,
     likes,
 }: InfrotmationProps) {
+    const { room, chatId } = useParams();
+    const navigate = useNavigate();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
-    const {
-        setChatOpen,
-        ws,
-        setDeleteChat,
-        chatId,
-        savedChats,
-        setSavedChats,
-    } = useChat();
+    const { ws, setDeleteChat, savedChats, setSavedChats } =
+        useChat();
     const { username } = useAuth();
     function formatDate(inputDate: string | undefined): string {
         if (!inputDate) {
@@ -62,17 +60,6 @@ export default function Infrotmation({
 
         return `${formattedDay}.${formattedMonth}.${year}`;
     }
-    const cutTextFunction = (text: string) => {
-        let modifiedText = "";
-        if (text?.length > 15 && isSmallScreen) {
-            modifiedText = text.substring(0, 15) + "...";
-        } else if (text?.length > 15) {
-            modifiedText = text.substring(0, 25) + "...";
-        } else {
-            modifiedText = text;
-        }
-        return modifiedText;
-    };
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -85,7 +72,7 @@ export default function Infrotmation({
                 event_type: "chat_was_deleted",
             };
             ws?.send(JSON.stringify(messageUser));
-            setChatOpen(false);
+            navigate(`/chat/${room}`);
             setDeleteChat({ delete: true, name: title });
         } catch (error) {
             console.log(error);
@@ -98,14 +85,16 @@ export default function Infrotmation({
         ws?.send(JSON.stringify(messageUser));
     };
     const submitSavedChat = async () => {
-        const chatTets = savedChats.find((item) => item.chat === chatId);
+        const chatTets = savedChats.find(
+            (item) => item.chat === Number(chatId)
+        );
         if (chatTets) {
             await deleteSavedChat(chatTets.id);
             setSavedChats((prevState) =>
-                prevState.filter((item) => item.chat !== chatId)
+                prevState.filter((item) => item.chat !== Number(chatId))
             );
         } else {
-            const { saved_chat } = await postSavedChat(chatId);
+            const { saved_chat } = await postSavedChat(Number(chatId));
             setSavedChats((prevState) => [...prevState, { ...saved_chat }]);
         }
     };
@@ -116,7 +105,7 @@ export default function Infrotmation({
                     {isSmallScreen && (
                         <button
                             onClick={() => {
-                                setChatOpen(false);
+                                navigate(`/chat/${room}`)
                                 setDeleteChat({
                                     name: "",
                                     delete: false,
@@ -128,7 +117,7 @@ export default function Infrotmation({
                     )}
                     <img className={styles.group__avatar} src={avatar} />
                     <p className={styles.group__name}>
-                        {cutTextFunction(title)}
+                        {cutTextFunction(title, "information", isSmallScreen)}
                     </p>
                     <button
                         onClick={onClickChangeOpenModal}
@@ -147,7 +136,7 @@ export default function Infrotmation({
                                 src={avatar}
                             />
                             <p className={styles.group__name__modal}>
-                                {cutTextFunction(title)}
+                                {cutTextFunction(title, "information", isSmallScreen)}
                             </p>
                         </div>
                         <div className={styles.wrapper}>
@@ -175,7 +164,8 @@ export default function Infrotmation({
                                         onClick={submitSavedChat}
                                     >
                                         {savedChats.find(
-                                            (item) => item.chat === chatId
+                                            (item) =>
+                                                item.chat === Number(chatId)
                                         ) ? (
                                             <SavedChatsTrue />
                                         ) : (
@@ -211,12 +201,12 @@ export default function Infrotmation({
                                     <h2>Delete your chat</h2>
                                     <p>
                                         Are you sure you want to delete{" "}
-                                        <b>“{cutTextFunction(title)}”</b> chat?
+                                        <b>“{cutTextFunction(title, "information", isSmallScreen)}”</b> chat?
                                         After this action, recovery will be
                                         impossible.
                                     </p>
                                     <Button type="submit" className="accent">
-                                        fewfew
+                                        Delete
                                     </Button>
                                 </form>
                             </Modal>

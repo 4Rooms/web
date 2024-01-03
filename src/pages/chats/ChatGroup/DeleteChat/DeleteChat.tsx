@@ -5,29 +5,32 @@ import deleteChatCinema from "../../../../assets/deleteChatCinema.png";
 import deleteChatGame from "../../../../assets/deleteChatGame.png";
 import deleteChatMusic from "../../../../assets/deleteChatMusic.png";
 import deleteChatBooks from "../../../../assets/deleteChatBooks.png";
+import { useParams } from "react-router-dom";
+import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction";
 
-export default function DeleteChat() {
-    const { roomName, deleteChat } = useChat();
+export default function DeleteChat({ isSmallScreen }: { isSmallScreen?: boolean}) {
+    const {room} = useParams();
+    const { deleteChat } = useChat();
     return (
         <div>
             <div
                 className={`${styles.welcome}  ${
-                    roomName ? styles[roomName] : ""
+                    room ? styles[room] : ""
                 }`}
             >
                 <img
                     src={
-                        roomName === "cinema"
+                        room === "cinema"
                             ? deleteChatCinema
-                            : roomName === "books"
+                            : room === "books"
                             ? deleteChatBooks
-                            : roomName === "music"
+                            : room === "music"
                             ? deleteChatMusic
                             : deleteChatGame
                     }
                 />
                 <h1 className={styles.welcome__title}>
-                    Sorry, chat “{deleteChat.name}” has been deleted :(
+                    Sorry, chat “{cutTextFunction(deleteChat.name, "delete", isSmallScreen)}” has been deleted :(
                 </h1>
             </div>
         </div>

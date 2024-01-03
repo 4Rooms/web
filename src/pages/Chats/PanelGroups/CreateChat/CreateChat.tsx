@@ -16,11 +16,12 @@ import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import createSchema from "./create-schema.tsx";
 import { createChat } from "../../../../services/chat/chat.service.tsx";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 export default function CreateChat() {
     const { t } = useTranslation("translation");
-
-    const { roomName, roomsList, setRoomsList } = useChat();
+    const {room} = useParams();
+    const { roomsList, setRoomsList, setToasterMessage, setShowToaster } = useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -109,9 +110,16 @@ export default function CreateChat() {
                 );
             }
         }    
-        const newData = await createChat(roomName, formData);
+        const newData = await createChat(room, formData);
         if (newData.name !== "AxiosError") {
             setRoomsList([newData.chat, ...(roomsList || [])]);
+        } else {
+            setToasterMessage(
+                newData.response.data.errors.map(
+                    (err: { detail: string }) => err.detail
+                )
+            );
+            setShowToaster(true);
         }
         reset();
         setImageURL("");
@@ -123,7 +131,7 @@ export default function CreateChat() {
             <button
                 onClick={onClickChangeOpenModal}
                 className={`${styles.button__addChat} ${
-                    roomName ? styles[roomName] : ""
+                    room ? styles[room] : ""
                 }`}
             >
                 {t("welcome.createChat")}

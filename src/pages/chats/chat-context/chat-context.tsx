@@ -35,8 +35,8 @@ interface ChatContextType {
     >;
     chatOpen: boolean;
     setChatOpen: Dispatch<SetStateAction<boolean>>;
-    chatId: number;
-    setChatId: Dispatch<SetStateAction<number>>;
+    chatId: number | null;
+    setChatId: Dispatch<SetStateAction<number | null>>;
     ws: WebSocket | null;
     setWs: Dispatch<SetStateAction<WebSocket | null>>;
     message: MessageList | [];
@@ -135,6 +135,10 @@ interface ChatContextType {
     setFilterCreate: Dispatch<SetStateAction<Result>>;
     createChat: Result;
     setCreateChat: Dispatch<SetStateAction<Result>>;
+    showToaster: boolean;
+    setShowToaster: Dispatch<SetStateAction<boolean>>;
+    toasterMessage: string[];
+    setToasterMessage: Dispatch<SetStateAction<string[]>>;
 }
 
 export const ChatContext = createContext<ChatContextType>(

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./Chat.module.css";
-import MessageForYou from "./message/MessageForYou/MessageForYou";
 import { useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import MessageForYou from "../../../chats/ChatGroup/Chat/message/MessageForYou/Message.tsx";
 
 export default function Chat() {
     const { room } = useParams();
@@ -38,9 +38,10 @@ export default function Chat() {
             id="chatContainer"
         >
             {imageURLs.length > 0
-                ? imageURLs?.map((image) => {
+                ? imageURLs?.map((image, index) => {
                       return (
                           <li
+                              key={index}
                               className={`${styles.item__photo} ${
                                   imageURLs?.length === 3
                                       ? styles.three__child

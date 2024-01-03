@@ -28,6 +28,9 @@
   font-weight: 700;
   gap: 20px;
 }
+.cookie_consent__header h3 {
+  color: var(--color-text);
+}
 @media (min-width: 376px) {
   .cookie_consent__header {
     flex-direction: row;

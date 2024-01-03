@@ -15,6 +15,7 @@ import { updateCreateChat } from "../../services/chat/chat.service";
 import Modal from "../Modal/Modal";
 import FormInput from "../../shared/auth-input/form-Input";
 import Button from "../../shared/button/button";
+import { cutTextFunction } from "../../utils/cutTextFuncion/cutTextFunction";
 
 export default function BlockNotificationSaved({
     open,
@@ -136,16 +137,6 @@ export default function BlockNotificationSaved({
             changeOpen();
         }
     };
-    const cutTextFunction = (text: string) => {
-        let modifiedText = "";
-
-        if (text?.length > 15) {
-            modifiedText = text.substring(0, 10);
-        } else {
-            modifiedText = text;
-        }
-        return modifiedText;
-    };
     return (
         <>
             <div className={styles.block}>
@@ -155,7 +146,7 @@ export default function BlockNotificationSaved({
                 </div>
                 <p>{text}</p>
                 <div className={styles.block__below}>
-                    <span>{cutTextFunction(time)}</span>
+                    <span>{cutTextFunction(time, "block")}</span>
                     <div>
                         <div>
                             {likes}

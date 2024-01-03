@@ -7,10 +7,14 @@ export function AuthProvider({children}: { children: ReactNode }) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        const user = localStorage.getItem("user");
+        const user: string | null = localStorage.getItem("user");
         if (user) {
-            setIsAuthenticated(true);
-            setUsername(JSON.parse(user).username);
+            const parsedUser = JSON.parse(user);
+    
+            if (parsedUser.is_email_confirmed) {
+                setIsAuthenticated(true);
+                setUsername(parsedUser.username);
+            }
         }
         setIsLoading(false);
     }, []);

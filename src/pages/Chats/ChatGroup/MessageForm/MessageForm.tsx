@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import {
     AddFile,
     CloseModal,
@@ -9,13 +9,20 @@ import {
 import styles from "./MessageForm.module.scss";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import EmojiPicker from "emoji-picker-react";
+import { useParams } from "react-router-dom";
 
 export default function MessageForm() {
-    const { ws, chatId, setImageURLs, imageURLs, update, setUpdate } =
+    const { chatId } = useParams();
+    const { ws, setImageURLs, imageURLs, update, setUpdate } =
         useChat();
     const [message, setMessage] = useState("");
     const [isPickerVisible, setIsPickerVisible] = useState(false);
     const [images, setImages] = useState<File[]>([]);
+
+    useEffect(() => {
+        setImages([]);
+        setImageURLs([]);
+    }, [chatId, setImageURLs])
 
     const toggleEmojiPicker = () => {
         setIsPickerVisible(!isPickerVisible);
@@ -57,6 +64,41 @@ export default function MessageForm() {
         });
     }
 
+    const handleKeyDown = async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            if (update.edit) {
+                const messageUser = {
+                    event_type: "message_was_updated",
+                    id: update.id,
+                    new_text: update.text,
+                };
+                ws?.send(JSON.stringify(messageUser));
+                setUpdate((prevState) => ({ ...prevState, edit: false }));
+            } else {
+                if (message !== "") {
+                    const messageUser = {
+                        event_type: "chat_message",
+                        message: {
+                            chat: chatId,
+                            text: message,
+                            attachments: await Promise.all(
+                                images.map(async (file) => ({
+                                    name: file.name,
+                                    content: await readFile(file),
+                                }))
+                            ),
+                        },
+                    };
+                    setImages([]);
+                    setImageURLs([]);
+                    ws?.send(JSON.stringify(messageUser));
+                    setMessage("");
+                }
+            }
+        }
+    };
+
     const forSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (update.edit) {
@@ -66,25 +108,27 @@ export default function MessageForm() {
                 new_text: update.text,
             };
             ws?.send(JSON.stringify(messageUser));
-            setUpdate(prevState => ({...prevState, edit: false}));
+            setUpdate((prevState) => ({ ...prevState, edit: false }));
         } else {
-            const messageUser = {
-                event_type: "chat_message",
-                message: {
-                    chat: chatId,
-                    text: message,
-                    attachments: await Promise.all(
-                        images.map(async (file) => ({
-                            name: file.name,
-                            content: await readFile(file),
-                        }))
-                    ),
-                },
-            };
-            setImages([]);
-            setImageURLs([]);
-            ws?.send(JSON.stringify(messageUser));
-            setMessage("");
+            if (message !== "") {
+                const messageUser = {
+                    event_type: "chat_message",
+                    message: {
+                        chat: chatId,
+                        text: message,
+                        attachments: await Promise.all(
+                            images.map(async (file) => ({
+                                name: file.name,
+                                content: await readFile(file),
+                            }))
+                        ),
+                    },
+                };
+                setImages([]);
+                setImageURLs([]);
+                ws?.send(JSON.stringify(messageUser));
+                setMessage("");
+            }
         }
     };
 
@@ -102,7 +146,7 @@ export default function MessageForm() {
         },
         [setUpdate, update.edit]
     );
-    
+
     return (
         <form className={styles.form__message} onSubmit={forSubmit}>
             <div className={styles.wrapper__icon}>
@@ -140,6 +184,7 @@ export default function MessageForm() {
                     placeholder="Type something..."
                     value={update.edit ? update.text : message}
                     onChange={(e) => handleChange(e)}
+                    onKeyDown={(e) => handleKeyDown(e)}
                 />
                 {update.edit && (
                     <div>

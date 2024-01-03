@@ -22,22 +22,15 @@ import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
 import { setInitialLanguage } from "./utils/language-selector/language-selector.ts";
 import Saved from "./pages/saved/Saved.tsx";
 import MyChats from "./pages/myChats/MyChats.tsx";
+import Dekanator from "./shared/dekanator/Dekanator.tsx";
+import { pathsForShowBackGround, pathsToHideHeader } from "./utils/arrays/arrays.tsx";
 
 export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();
     const location = useLocation();
-    const pathsToHideHeader = [
-        "/authentication",
-        "/auth",
-        "/create-account",
-        "/password-reset",
-        "/forgot-password",
-        "/account-confirmation",
-        "/confirm-email",
-    ];
-    const pathsForShowBackGround = ["cinema", "books", "games", "music"];
-    setInitialLanguage();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
+    const showBackground = location.pathname.split("/")[2]
+    setInitialLanguage();
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -51,10 +44,8 @@ export default function App() {
     return (
         <div
             className={
-                pathsForShowBackGround.includes(
-                    location.pathname.split("/").pop() ?? ""
-                )
-                    ? `container ${location.pathname.split("/").pop()}`
+                pathsForShowBackGround.includes(showBackground)
+                    ? `container ${showBackground}`
                     : !isAuthenticated
                     ? "container padding"
                     : "container"
@@ -73,7 +64,10 @@ export default function App() {
                 >
                     <Route element={<GuardRoutes redirectTo="/auth" />}>
                         <Route index element={<DashboardPage />} />
-                        <Route path="/chat/:room" element={<Chats />} />
+                        <Route
+                            path="/chat/:room/:chatId?"
+                            element={<Chats />}
+                        />
                         <Route path="/saved" element={<Saved />} />
                         <Route path="/my-chats" element={<MyChats />} />
                         <Route path="/profile" element={<Profile />}>
@@ -120,6 +114,7 @@ export default function App() {
                     </Route>
                 </Route>
             </Routes>
+            <Dekanator />
         </div>
     );
 }

@@ -1,20 +1,15 @@
 import React from "react";
 import styles from "./Groups.module.css";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
+import { useNavigate, useParams } from "react-router-dom";
+import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction.tsx";
 
 export default function Groups() {
-    const { roomName, roomsList, setChatOpen, setChatId, chatId, setDeleteChat, setMessage } =
+    const {chatId} = useParams();
+    const {room} = useParams();
+    const { roomsList, setChatOpen, setChatId, setDeleteChat, setMessage } =
         useChat();
-    const cutTextFunction = (text: string) => {
-        let modifiedText = "";
-
-        if (text?.length > 15) {
-            modifiedText = text.substring(0, 25) + "...";
-        } else {
-            modifiedText = text;
-        }
-        return modifiedText;
-    };
+        const navigate = useNavigate();
     const onClickSetChat = (id: number) => {
         setChatOpen(true);
         setChatId(id);
@@ -32,10 +27,11 @@ export default function Groups() {
                         <button
                             type="button"
                             className={`${styles.group} ${
-                                roomName ? styles[roomName] : ""
+                                room ? styles[room] : ""
                             }`}
                             onClick={() => {
                                 onClickSetChat(group.id);
+                                navigate(`/chat/${room}/${group.id.toString()}`);
                             }}
                         >
                             <img
@@ -45,12 +41,12 @@ export default function Groups() {
                             />
                             <p
                                 className={`${styles.group__text} ${
-                                    group.id === chatId &&
-                                    roomName &&
-                                    styles[roomName]
+                                    group.id === Number(chatId) &&
+                                    room &&
+                                    styles[room]
                                 }`}
                             >
-                                {cutTextFunction(group.title)}
+                                {cutTextFunction(group.title, "groups")}
                             </p>
                         </button>
                     </li>
