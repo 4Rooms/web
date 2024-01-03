@@ -27,7 +27,6 @@ export default function Chats() {
     const {
         setToasterMessage,
         setShowToaster,
-        setRoomName,
         setRoomsList,
         chatOpen,
         setWs,
