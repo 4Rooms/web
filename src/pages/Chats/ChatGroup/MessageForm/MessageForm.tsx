@@ -13,16 +13,22 @@ import { useParams } from "react-router-dom";
 
 export default function MessageForm() {
     const { chatId } = useParams();
-    const { ws, setImageURLs, imageURLs, update, setUpdate } =
-        useChat();
+    const {
+        ws,
+        setImageURLs,
+        imageURLs,
+        update,
+        setUpdate,
+        images,
+        setImages,
+    } = useChat();
     const [message, setMessage] = useState("");
     const [isPickerVisible, setIsPickerVisible] = useState(false);
-    const [images, setImages] = useState<File[]>([]);
 
     useEffect(() => {
         setImages([]);
         setImageURLs([]);
-    }, [chatId, setImageURLs])
+    }, [chatId, setImageURLs, setImages]);
 
     const toggleEmojiPicker = () => {
         setIsPickerVisible(!isPickerVisible);
@@ -41,12 +47,18 @@ export default function MessageForm() {
     };
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement> | null) => {
-        if (e && e.target.files && e.target.files.length < 5) {
+        if (
+            e &&
+            e.target.files &&
+            e.target.files.length < 5 &&
+            e.target.files.length < 5 - imageURLs.length
+        ) {
             const selectedFiles = Array.from(e.target.files);
 
-            const imageUrls = selectedFiles.map((file) =>
-                URL.createObjectURL(file)
-            );
+            const imageUrls = selectedFiles.map((file) => ({
+                name: file.name,
+                url: URL.createObjectURL(file),
+            }));
 
             setImageURLs((prevImageURLs) => [...prevImageURLs, ...imageUrls]);
             setImages((prevImages) => [...prevImages, ...selectedFiles]);
@@ -64,7 +76,9 @@ export default function MessageForm() {
         });
     }
 
-    const handleKeyDown = async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const handleKeyDown = async (
+        e: React.KeyboardEvent<HTMLTextAreaElement>
+    ) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             if (update.edit) {
@@ -172,7 +186,7 @@ export default function MessageForm() {
                             accept="image/*"
                             onChange={handleImageChange}
                             multiple
-                            disabled={imageURLs.length > 0 || update.edit}
+                            disabled={imageURLs.length > 3 || update.edit}
                         />
                         <AddFile />
                     </label>

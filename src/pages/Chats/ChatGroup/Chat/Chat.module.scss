@@ -42,7 +42,19 @@
 .item__photo {
     width: calc(50% - 5px);
     height: calc(50% - 5px);
-    margin-top: auto;
+    position: relative;
+    & > button {
+        position: absolute;
+        background-color: red;
+        border: transparent;
+        border-radius: 20px;
+        padding: 5px;
+        right: 10px;
+        top: 10px;
+        & > svg > path {
+            fill: white;
+        }
+    }
     &.one__child {
         height: 100%;
         width: 100%;

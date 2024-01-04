@@ -26,7 +26,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         { id: number; username: string; avatar: string }[]
     >([]);
     const [category, setCategory] = useState("new");
-    const [imageURLs, setImageURLs] = useState<string[]>([]);
+    const [imageURLs, setImageURLs] = useState<{ name: string; url: string }[]>(
+        []
+    );
+    const [images, setImages] = useState<File[]>([]);
     const [update, setUpdate] = useState({
         edit: false,
         text: "",
@@ -106,8 +109,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 setFilterSaved,
                 showToaster,
                 setShowToaster,
-                toasterMessage, 
-                setToasterMessage
+                toasterMessage,
+                images,
+                setImages,
+                setToasterMessage,
             }}
         >
             {children}

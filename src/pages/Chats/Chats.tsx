@@ -118,7 +118,7 @@ export default function Chats() {
                 });
             });
         } else {
-            setToasterMessage([msgData.error_message]);
+            setToasterMessage(["Sorry, an error occurred"]);
             setShowToaster(true);
         }
     }

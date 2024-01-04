@@ -3,10 +3,11 @@ import styles from "./Chat.module.css";
 import { useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Message from "./Message/Message.tsx";
+import { Delete } from "../../../../assets/icons.tsx";
 
 export default function Chat() {
     const { room } = useParams();
-    const { message, imageURLs, chatOpen } = useChat();
+    const { message, imageURLs, chatOpen, setImageURLs, setImages } = useChat();
     const chatContainerRef = useRef<HTMLUListElement>(null);
     useEffect(() => {
         const chatContainer = chatContainerRef.current;
@@ -28,6 +29,13 @@ export default function Chat() {
             observer.disconnect();
         };
     }, [chatOpen]);
+
+    const clickDeletePhoto = (image: { name: string; url: string }) => {
+        setImageURLs((prevState) =>
+            prevState.filter((imageURL) => imageURL.url !== image.url)
+        );
+        setImages(prevState => prevState.filter(imageFile => imageFile.name !== image.name))
+    };
 
     return (
         <ul
@@ -52,7 +60,10 @@ export default function Chat() {
                                       : ""
                               }`}
                           >
-                              <img src={image} alt={image} />
+                              <img src={image.url} alt={image.name} />
+                              <button onClick={() => clickDeletePhoto(image)}>
+                                  <Delete />
+                              </button>
                           </li>
                       );
                   })
