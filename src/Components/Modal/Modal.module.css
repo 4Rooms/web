@@ -58,6 +58,26 @@
 .window.reset {
   width: 555px;
 }
+.window.full__image {
+  padding: 0;
+  border-radius: 5px;
+  background-color: transparent;
+  height: 60%;
+}
+.window.full__image > img {
+  border-radius: 10px;
+}
+.window.full__image > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: black;
+}
+.window.full__image > button > svg > path {
+  fill: white;
+}
 
 .close {
   position: absolute;
