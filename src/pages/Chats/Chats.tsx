@@ -118,7 +118,7 @@ export default function Chats() {
                 });
             });
         } else {
-            setToasterMessage([msgData.error_message]);
+            setToasterMessage(["Sorry, an error occurred"]);
             setShowToaster(true);
         }
     }
@@ -135,10 +135,11 @@ export default function Chats() {
         checkScreenSize();
         window.addEventListener("resize", checkScreenSize);
         if (chatId) {
+            const cookieString = document.cookie;
             if (ws) {
                 ws?.close();
             }
-            const wss = new WebSocket(socketUrl(room, chatId));
+            const wss = new WebSocket(socketUrl(room, chatId, cookieString));
             setWs(wss);
             const getMessagesandSavedChats = async () => {
                 const messages = await getAllMessages(Number(chatId));

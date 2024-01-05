@@ -47,8 +47,10 @@ interface ChatContextType {
     >;
     category: string;
     setCategory: Dispatch<SetStateAction<string>>;
-    imageURLs: string[];
-    setImageURLs: Dispatch<SetStateAction<string[]>>;
+    imageURLs: { name: string; url: string }[];
+    setImageURLs: Dispatch<SetStateAction<{ name: string; url: string }[]>>;
+    images: File[];
+    setImages: Dispatch<SetStateAction<File[]>>;
     update: {
         id: number;
         edit: boolean;

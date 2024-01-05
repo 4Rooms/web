@@ -18,7 +18,6 @@ export default function EmailConfirmPage() {
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get('token_id');
-        console.log(token)
 
         if (!token) {
             return console.error('Token is missing');
@@ -28,6 +27,9 @@ export default function EmailConfirmPage() {
             .then((response: EmailConfirmationResponse) => {
                 if (response.is_email_confirmed) {
                     const user = localStorageService.get("user");
+                    const token = response.token;
+                    const maxAge = 30 * 24 * 60 * 60;
+                    document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
                     localStorageService.set("user", {...user, is_email_confirmed: true}); 
                     setText(t('success'));
                     setTimeout(()=> {

@@ -87,6 +87,7 @@ export interface ErrorProps {
 }
 export type EmailConfirmationResponse = {
     is_email_confirmed: boolean;
+    token: string;
 };
 
 export type ChildrenModal = {
