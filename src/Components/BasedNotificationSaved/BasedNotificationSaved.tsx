@@ -5,6 +5,7 @@ import { getCreateChat, getSavedChats } from "../../services/chat/chat.service";
 import { useChat } from "../../pages/chats/chat-context/use-chat";
 import { useTranslation } from "react-i18next";
 import { optionDashboard } from "../../utils/arrays/arrays";
+import { Result } from "../../App.types";
 
 type Props = {
     children: React.ReactNode;
@@ -31,6 +32,22 @@ export default function BasedNotificationSaved({ children, title }: Props) {
         music: false,
     });
     const { t } = useTranslation("translation");
+
+    interface GetData {
+        (name: string): Promise<Result>;  
+      }
+    const fetchData = async (
+        name: string,
+        setMain: (chats: Result) => void,
+        setFilter: (chats: Result) => void,
+        getData: GetData
+    ) => {
+        setMain([]);
+        setFilter([]);
+        const chats = await getData(name.toLocaleLowerCase());
+        setMain(chats.results);
+        setFilter(chats.results);
+    };
 
     return (
         <div className={styles.container}>
@@ -74,17 +91,19 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                     });
 
                                     if (title === "My Chats") {
-                                        const chats = await getCreateChat(
-                                            option.name.toLocaleLowerCase()
+                                        fetchData(
+                                            option.name,
+                                            setCreateChat,
+                                            setFilterCreate,
+                                            getCreateChat
                                         );
-                                        setFilterCreate(chats.results);
-                                        setCreateChat(chats.results);
                                     } else {
-                                        const chats = await getSavedChats(
-                                            option.name.toLocaleLowerCase()
+                                        fetchData(
+                                            option.name,
+                                            setSavedChats,
+                                            setFilterSaved,
+                                            getSavedChats
                                         );
-                                        setSavedChats(chats.results);
-                                        setFilterSaved(chats.results);
                                     }
                                 }}
                             >

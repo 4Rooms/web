@@ -15,7 +15,7 @@ import { updateCreateChat } from "../../services/chat/chat.service";
 import Modal from "../Modal/Modal";
 import FormInput from "../../shared/auth-input/form-Input";
 import Button from "../../shared/button/button";
-import { cutTextFunction } from "../../utils/cutTextFuncion/cutTextFunction";
+import { formatTime } from "../../utils/formatTime/formatTime";
 
 export default function BlockNotificationSaved({
     open,
@@ -146,7 +146,7 @@ export default function BlockNotificationSaved({
                 </div>
                 <p>{text}</p>
                 <div className={styles.block__below}>
-                    <span>{cutTextFunction(time, "block")}</span>
+                    <span> {formatTime(time, "information")}</span>
                     <div>
                         <div>
                             {likes}
@@ -156,7 +156,14 @@ export default function BlockNotificationSaved({
                 </div>
             </div>
             {open && (
-                <Modal className="create__chat"  onOpen={changeOpen ? changeOpen : () => console.log("Default action")}>
+                <Modal
+                    className="create__chat"
+                    onOpen={
+                        changeOpen
+                            ? changeOpen
+                            : () => console.log("Default action")
+                    }
+                >
                     <>
                         <h1 className={styles.title__modal}>Edit your chat</h1>
                         <form
