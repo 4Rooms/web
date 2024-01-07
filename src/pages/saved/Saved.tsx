@@ -23,7 +23,7 @@ export default function Saved() {
         }
     };
     return (
-        <BasedNotificationSaved title={t('saved-chats.page-title')}>
+        <BasedNotificationSaved title={t("saved-chats.page-title")}>
             {filterSaved.map((chat) => {
                 return (
                     <li key={chat.id} className={styles.item}>
@@ -35,7 +35,13 @@ export default function Saved() {
                             text={chat.description}
                             img={chat.img}
                         />
-                        <button onClick={() => submitSavedChat(chat.chat)}>
+                        <button
+                            onClick={() => {
+                                if (chat.chat) {
+                                    submitSavedChat(chat.chat);
+                                }
+                            }}
+                        >
                             <SavedChatsTrue />
                         </button>
                     </li>
