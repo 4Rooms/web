@@ -1,7 +1,7 @@
 import axios from "axios";
 import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 
-axios.defaults.baseURL = "https://back.4rooms.pro/api";
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 export const getChatsRoom = async (
     room: string | undefined,

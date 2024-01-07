@@ -1,10 +1,9 @@
 import React from "react";
-// import { testServerURL } from "../apiUrls/apiUrls";
 
 export default function Home({ username }: { username: string | null }) {
   const getImg = () => {
-    const URL = "https://back.4rooms.pro/api/profile/";
-    // const URL = `${import.meta.env.TEST_URL}profile/avatar/`;
+    const URL = `${import.meta.env.VITE_API_URL}/profile/`;
+
     try {
       fetch(URL, {
         method: "GET",
