@@ -33,14 +33,11 @@ export default function BasedNotificationSaved({ children, title }: Props) {
     });
     const { t } = useTranslation("translation");
 
-    interface GetData {
-        (name: string): Promise<Result>;  
-      }
     const fetchData = async (
         name: string,
         setMain: (chats: Result) => void,
         setFilter: (chats: Result) => void,
-        getData: GetData
+        getData: (name: string) => Promise<{ results: Result }>
     ) => {
         setMain([]);
         setFilter([]);
