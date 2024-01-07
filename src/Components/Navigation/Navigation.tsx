@@ -14,10 +14,8 @@ import { useTranslation } from "react-i18next";
 import { cutTextFunction } from "../../utils/cutTextFuncion/cutTextFunction";
 
 export default function Navigation({
-    user,
     showHeader,
 }: {
-    user: string | null;
     showHeader: boolean;
 }) {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -142,7 +140,6 @@ export default function Navigation({
                         <SavedChats />
                     </Link>
                     <Link to="/profile" className={styles.link__button}>
-                        {user}
                         <img
                             className={styles.avatar__user}
                             src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"

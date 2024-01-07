@@ -49,6 +49,27 @@
     &.reset {
         width: 555px;
     }
+
+    &.full__image {
+        padding: 0;
+        border-radius: 5px;
+        background-color: transparent;
+        height: 60%;
+        & > img {
+            border-radius: 10px;
+        }
+        & > button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            border-radius: 20px;
+            background-color: black;
+            & > svg > path {
+                fill: white;
+            }
+        }
+    }
 }
 
 .close {

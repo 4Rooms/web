@@ -128,4 +128,6 @@ export type Result = {
     url: string;
     likes: number;
     timestamp: string;
+    chat_creator?: string;
+    chat?: number;
 }[];

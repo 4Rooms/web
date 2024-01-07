@@ -73,64 +73,16 @@ interface ChatContextType {
             delete: boolean;
         }>
     >;
-    savedChats: {
-        id: number;
-        user: number;
-        chat: number;
-        title: string;
-        room: string;
-        description: string;
-        chat_creator: string;
-        img: string;
-        url: string;
-        likes: number;
-        timestamp: string;
-    }[];
+    savedChats: Result;
     setSavedChats: Dispatch<
         SetStateAction<
-            {
-                id: number;
-                user: number;
-                chat: number;
-                title: string;
-                room: string;
-                description: string;
-                chat_creator: string;
-                img: string;
-                url: string;
-                likes: number;
-                timestamp: string;
-            }[]
+        Result
         >
     >;
-    filterSaved: {
-        id: number;
-        user: number;
-        chat: number;
-        title: string;
-        room: string;
-        description: string;
-        chat_creator: string;
-        img: string;
-        url: string;
-        likes: number;
-        timestamp: string;
-    }[];
+    filterSaved: Result;
     setFilterSaved: Dispatch<
         SetStateAction<
-            {
-                id: number;
-                user: number;
-                chat: number;
-                title: string;
-                room: string;
-                description: string;
-                chat_creator: string;
-                img: string;
-                url: string;
-                likes: number;
-                timestamp: string;
-            }[]
+        Result
         >
     >;
     filterCreate: Result;

@@ -39,36 +39,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         name: "",
         delete: false,
     });
-    const [savedChats, setSavedChats] = useState<
-        {
-            id: number;
-            user: number;
-            chat: number;
-            title: string;
-            room: string;
-            description: string;
-            chat_creator: string;
-            img: string;
-            url: string;
-            likes: number;
-            timestamp: string;
-        }[]
-    >([]);
-    const [filterSaved, setFilterSaved] = useState<
-        {
-            id: number;
-            user: number;
-            chat: number;
-            title: string;
-            room: string;
-            description: string;
-            chat_creator: string;
-            img: string;
-            url: string;
-            likes: number;
-            timestamp: string;
-        }[]
-    >([]);
+    const [savedChats, setSavedChats] = useState<Result>([]);
+    const [filterSaved, setFilterSaved] = useState<Result>([]);
     const [showToaster, setShowToaster] = useState(false);
     const [createChat, setCreateChat] = useState<Result>([]);
     const [filterCreate, setFilterCreate] = useState<Result>([]);

@@ -1,14 +1,22 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.css";
 import { useParams } from "react-router-dom";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Message from "./Message/Message.tsx";
 import { Delete } from "../../../../assets/icons.tsx";
+import Modal from "../../../../Components/Modal/Modal.tsx";
 
 export default function Chat() {
     const { room } = useParams();
     const { message, imageURLs, chatOpen, setImageURLs, setImages } = useChat();
     const chatContainerRef = useRef<HTMLUListElement>(null);
+    const [open, setOpen] = useState({
+        url: "",
+        modal: false,
+    });
+    const setOpenModal = () => {
+        setOpen(prevState => ({...prevState, modal: !open.modal}))
+    }
     useEffect(() => {
         const chatContainer = chatContainerRef.current;
 
@@ -34,7 +42,9 @@ export default function Chat() {
         setImageURLs((prevState) =>
             prevState.filter((imageURL) => imageURL.url !== image.url)
         );
-        setImages(prevState => prevState.filter(imageFile => imageFile.name !== image.name))
+        setImages((prevState) =>
+            prevState.filter((imageFile) => imageFile.name !== image.name)
+        );
     };
 
     return (
@@ -47,29 +57,32 @@ export default function Chat() {
         >
             {imageURLs.length > 0
                 ? imageURLs?.map((image, index) => {
-                      return (
-                          <li
-                              key={index}
-                              className={`${styles.item__photo} ${
-                                  imageURLs?.length === 3
-                                      ? styles.three__child
-                                      : imageURLs?.length === 1
-                                      ? styles.one__child
-                                      : imageURLs?.length === 2
-                                      ? styles.two__child
-                                      : ""
-                              }`}
-                          >
-                              <img src={image.url} alt={image.name} />
-                              <button onClick={() => clickDeletePhoto(image)}>
-                                  <Delete />
-                              </button>
-                          </li>
-                      );
-                  })
+                    return (
+                        <li
+                            key={index}
+                            className={`${styles.item__photo} ${
+                                imageURLs?.length === 3
+                                    ? styles.three__child
+                                    : imageURLs?.length === 1
+                                    ? styles.one__child
+                                    : imageURLs?.length === 2
+                                    ? styles.two__child
+                                    : ""
+                            }`}
+                        >
+                            <img onClick={() => setOpen({url: image.url, modal: true})} src={image.url} alt={image.name} />
+                            <button onClick={() => clickDeletePhoto(image)}>
+                                <Delete />
+                            </button>
+                            {open.modal && <Modal onOpen={setOpenModal} className="full__image" >
+                                <img src={open.url} />
+                            </Modal>}
+                        </li>
+                    );
+                })
                 : message?.map((result) => {
-                      return <Message key={result.id} message={result} />;
-                  })}
+                    return <Message key={result.id} message={result} />;
+                })}
         </ul>
     );
 }

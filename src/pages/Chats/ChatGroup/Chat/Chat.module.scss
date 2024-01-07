@@ -45,6 +45,7 @@
     position: relative;
     & > button {
         position: absolute;
+        cursor: pointer;
         background-color: red;
         border: transparent;
         border-radius: 20px;
