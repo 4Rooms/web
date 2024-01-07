@@ -13,7 +13,7 @@ type Props = {
     showHeader: boolean;
 };
 
-export default function SharedLayout({user, showHeader}: Props) {
+export default function SharedLayout({ showHeader}: Props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { setChatOpen, setChatId } = useChat()
@@ -42,14 +42,13 @@ export default function SharedLayout({user, showHeader}: Props) {
         if (location.pathname === '/') {
             setChatOpen(false);
             setChatId(null)
-            
         }
     }, [location, setChatId, setChatOpen])
 
 
     return <>
         <header className={`${styles.header__user} ${is_verif?.is_email_confirmed && styles.authenticated}`}>
-            <Navigation user={user} showHeader={showHeader}/>
+            <Navigation showHeader={showHeader}/>
         </header>
         <Outlet/>
     </>
