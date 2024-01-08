@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export default yup.object().shape({
-    username: yup
+    profileUsername: yup
         .string()
         .min(1, "Name should have at least 1 character")
         .max(20, "Name should not exceed 20 characters")
@@ -10,7 +10,7 @@ export default yup.object().shape({
             "Name should contain only letters, digits, and spaces"
         )
         .required("Name is required"),
-    email: yup
+    profileEmail: yup
         .string()
         .email("Enter a valid email address")
         .matches(

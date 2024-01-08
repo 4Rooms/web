@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     EmailConfirmationResponse,
-    InputsChangeData,
+    InputsChangeUserData,
     InputsLogin,
     InputsRegistraytion,
     InputsResetPassword
@@ -54,8 +54,8 @@ const sendSecondEmail = async (email: string) => {
 const changePassword = async (dataForm: InputsResetPassword) => {
     return secureApi.put('user/change-password/', dataForm)
 }
-const updateUserData = async (data: InputsChangeData) => {
-    return secureApi.put('user/', data);
+const updateUserData = async (data: InputsChangeUserData) => {
+    return secureApi.put('user/', {username: data.profileUsername, email: data.profileEmail});
 };
 
 const updateUserAvatar = async (file:  File | null) => {
@@ -66,6 +66,9 @@ const updateUserAvatar = async (file:  File | null) => {
     formData.append('avatar', file);
     return secureApi.put('profile/', formData);
 };
+async function getProfile() {
+    return secureApi.get('profile/');
+}
 
 const authService = {
     signup,
@@ -76,7 +79,8 @@ const authService = {
     sendSecondEmail,
     changePassword,
     updateUserData,
-    updateUserAvatar
+    updateUserAvatar,
+    getProfile
 };
 
 export default authService;

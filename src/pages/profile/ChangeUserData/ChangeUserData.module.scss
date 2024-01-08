@@ -35,13 +35,14 @@
     }
 }
 .reset__user_avatar {
-    width: 100px;
+    width: 80px;
     height: 80px;
     margin: auto;
     top: 0;
     left: 0;
     position: absolute;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .modal {

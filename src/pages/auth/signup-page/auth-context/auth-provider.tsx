@@ -5,6 +5,7 @@ export function AuthProvider({children}: { children: ReactNode }) {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [username, setUsername] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [userIcon, setUserIcon] = useState<string | null>(null);
 
     useEffect(() => {
         const user: string | null = localStorage.getItem("user");
@@ -22,7 +23,7 @@ export function AuthProvider({children}: { children: ReactNode }) {
     if (isLoading) return null;
 
     return (
-        <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, username, setUsername}}>
+        <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, username, setUsername, userIcon, setUserIcon}}>
             {children}
         </AuthContext.Provider>
     );

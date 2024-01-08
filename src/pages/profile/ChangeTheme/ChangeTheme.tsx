@@ -4,6 +4,7 @@ import Switch from "../../../Components/Switch/Switch";
 import WhiteTheme from "../../../assets/whiteTheme.jpg";
 import BlackTheme from "../../../assets/blackTheme.jpg";
 import { useTranslation } from "react-i18next";
+import { localStorageService } from "../../../services/local-storage/local-storage.ts";
 export default function ChangeTheme() {
     const [selectedOption, setSelectedOption] = useState("White");
     const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
@@ -15,6 +16,7 @@ export default function ChangeTheme() {
 
         const themeAttribute = newTheme === "White" ? "light" : "dark";
         document.documentElement.setAttribute('data-theme', themeAttribute);
+        localStorageService.set('theme', themeAttribute)
     };
     return (
         <div className={styles.theme__container}>

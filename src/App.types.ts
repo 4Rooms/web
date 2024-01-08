@@ -28,6 +28,11 @@ export type InputsChangeData = {
     username: string;
 };
 
+export type InputsChangeUserData = {
+    profileEmail: string;
+    profileUsername: string;
+};
+
 export type InputSignupKeys = "email" | "username" | "password";
 export type InputLoginKeys = "username" | "password";
 export type ResetEmailKeys = "resetEmail";
@@ -35,6 +40,7 @@ export type ForgotKeys = "password";
 export type InputsCreateKeys = "title" | "description";
 export type InputResetPasswordKeys = "oldPassword" | "newPassword";
 export type InputChangeDataKeys = "username" | "email";
+export type InputChangeUserDataKeys = "profileUsername" | "profileEmail";
 
 export type InputsReset = {
     password: string;
@@ -76,6 +82,11 @@ export type InputsCreateValid = {
 export type InputsValidChangeData = {
     email: boolean;
     username: boolean;
+};
+
+export type InputsValidUserChangeData = {
+    profileEmail: boolean;
+    profileUsername: boolean;
 };
 
 export interface LogoProps {
