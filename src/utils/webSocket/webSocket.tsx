@@ -6,8 +6,7 @@ function extractToken(cookieString: string) {
 
 export const socketUrl = (room: string | undefined, chatId: string, cookieString: string) => {
     return (
-        "wss:" +
-        "//back.4rooms.pro" +
+        import.meta.env.VITE_WEBSOCKET_URL +
         "/ws/chat/" +
         room +
         "/" +

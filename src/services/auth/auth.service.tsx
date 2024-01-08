@@ -8,7 +8,7 @@ import {
 } from "../../App.types";
 import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 
-axios.defaults.baseURL = 'https://back.4rooms.pro/api/';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const signup = async (dataForm: InputsRegistraytion) => {
     return await axios.post("register/", dataForm);
@@ -40,7 +40,7 @@ async function logout() {
 }
 
 async function confirmEmail(token: string): Promise<EmailConfirmationResponse> {
-        const response = await axios.get<EmailConfirmationResponse>('https://back.4rooms.pro/api/confirm-email/', {
+        const response = await axios.get<EmailConfirmationResponse>(`${import.meta.env.VITE_API_URL}/confirm-email/`, {
             params: {
                 token_id: token
             }
