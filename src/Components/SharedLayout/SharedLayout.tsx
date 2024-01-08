@@ -6,6 +6,7 @@ import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 import { AuthContext } from "../../pages/auth/signup-page/auth-context/auth-context.tsx";
 import { localStorageService } from "../../services/local-storage/local-storage.ts";
 import { useChat } from "../../pages/chats/chat-context/use-chat.tsx";
+import authService from "../../services/auth/auth.service.tsx";
 
 type Props = {
     user: string | null;
@@ -17,7 +18,7 @@ export default function SharedLayout({ showHeader}: Props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { setChatOpen, setChatId } = useChat()
-    const { setUsername, setIsAuthenticated } = useContext(AuthContext);
+    const { setUsername, setIsAuthenticated, setUserIcon } = useContext(AuthContext);
     const is_verif = localStorageService?.get("user");
 
 
@@ -36,7 +37,9 @@ export default function SharedLayout({ showHeader}: Props) {
                 navigate('/')
             });
         }
-        
+        authService.getProfile().then((response) => {
+            setUserIcon(response.data.avatar);
+        })
     }, []);
     useEffect(() => {
         if (location.pathname === '/') {

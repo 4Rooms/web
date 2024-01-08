@@ -83,7 +83,7 @@
   line-height: 24px;
   padding: 10.5px 16px;
   border-color: transparent;
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   caret-color: var(--LIGHT_THEME-Other-text_main);
   border-radius: 12px;
   background-color: var(--LIGHT_THEME-Other-text_second);

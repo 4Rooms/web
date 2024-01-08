@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import {
     AddFile,
     CloseModal,
@@ -12,6 +12,7 @@ import EmojiPicker from "emoji-picker-react";
 import { useParams } from "react-router-dom";
 
 export default function MessageForm() {
+    const pickerRef = useRef<HTMLDivElement | null>(null);
     const { chatId } = useParams();
     const {
         ws,
@@ -29,6 +30,19 @@ export default function MessageForm() {
         setImages([]);
         setImageURLs([]);
     }, [chatId, setImageURLs, setImages]);
+    useEffect(() => {
+        function handleClickOutside(event: any) {
+            if (pickerRef.current && !pickerRef.current.contains(event.target) && isPickerVisible) {
+                setIsPickerVisible(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isPickerVisible]);
 
     const toggleEmojiPicker = () => {
         setIsPickerVisible(!isPickerVisible);
@@ -172,9 +186,9 @@ export default function MessageForm() {
                     >
                         <Smile />
                     </button>
-                    <div className={styles.emoji_picker}>
+                    <div className={styles.emoji_picker} ref={pickerRef}>
                         {isPickerVisible && (
-                            <EmojiPicker onEmojiClick={onEmojiClick} />
+                            <EmojiPicker onEmojiClick={onEmojiClick}  />
                         )}
                     </div>
                 </div>

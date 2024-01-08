@@ -35,13 +35,13 @@
   background-color: var(--ROOMS-Music-light);
 }
 .welcome__title {
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   font-size: 32px;
   font-weight: 700;
   line-height: 150%;
 }
 .welcome__text {
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   font-size: 20px;
   font-weight: 400;
   line-height: 150%;
@@ -52,7 +52,7 @@
   }
 }
 .welcome__span {
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   font-size: 20px;
   font-weight: 700;
   line-height: 150%;

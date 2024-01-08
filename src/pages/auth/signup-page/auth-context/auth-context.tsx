@@ -9,6 +9,8 @@ interface AuthContextType {
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
   username: string | null;
   setUsername: Dispatch<SetStateAction<string | null>>;
+  userIcon: string | null;
+  setUserIcon: Dispatch<SetStateAction<string | null>>;
 }
 
 export const AuthContext = createContext<AuthContextType>(

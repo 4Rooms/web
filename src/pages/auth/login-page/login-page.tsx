@@ -29,10 +29,11 @@ import debounce from "../../../utils/debounce/debounce.ts";
 
 export default function LoginPage() {
     const {t} = useTranslation('translation', {keyPrefix: 'sign-in-page'});
+
     const allFieldsValid = () => {
         return Object.values(formStateValid).every(value => value);
     };
-    const {setUsername, setIsAuthenticated} = useContext(AuthContext);
+    const {setUsername, setIsAuthenticated, setUserIcon} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
@@ -75,6 +76,13 @@ export default function LoginPage() {
             ...prevFocus,
             [type]: true,
         }));
+    };
+    const onMouseLeaveInput = (type: keyof InputsValidLogin) => {
+        setFormStateFocus((prevFocus) => ({
+            ...prevFocus,
+            [type]: false,
+        }));
+
     };
 
     const onClickChangeOpen = (): void => {
@@ -158,6 +166,9 @@ export default function LoginPage() {
                     setShowToaster(true);
                 }
             });
+        await authService.getProfile().then((response) => {
+            setUserIcon(response.data.avatar);
+        })
     };
 
     return (
@@ -185,8 +196,9 @@ export default function LoginPage() {
                                 formStateValue={formStateValue}
                                 onChange={onChange}
                                 open={open}
+                                onMouseLeave={onMouseLeaveInput}
                                 onFocusInput={onFocusInput}/>
-                            {formStateValid[value] && value !== "password" && <IconOkey className={styles.okey__auth}/>}
+                            {formStateValid[value] && !formStateFocus[value] && <IconOkey className={styles.okey__auth}/>}
                             {!formStateValid[value] && formStateFocus[value] && !errors[value] &&
                                 <>
                                     <div className={styles.focus__block}>
@@ -220,7 +232,7 @@ export default function LoginPage() {
                                 !formStateValid[value] && (
                                     <Error className={styles.error__auth}/>
                                 )}
-                            {value === "password" && formStateValue.password?.length > 0 && formStateValid[value] &&
+                            {value === "password" && formStateFocus[value] && formStateValue.password?.length > 0 && formStateValid[value] &&
                                 <button className={styles.button__show} type="button"
                                         onClick={onClickChangeOpen}>
                                     {open ? <OpenPassword/> : <HiddenPassword/>}

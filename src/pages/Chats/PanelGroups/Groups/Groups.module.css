@@ -28,7 +28,7 @@
 
 .group {
   display: flex;
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   flex-wrap: nowrap;
   gap: 20px;
   align-items: center;

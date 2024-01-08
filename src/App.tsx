@@ -24,6 +24,7 @@ import Saved from "./pages/saved/Saved.tsx";
 import MyChats from "./pages/myChats/MyChats.tsx";
 import Dekanator from "./shared/dekanator/Dekanator.tsx";
 import { pathsForShowBackGround, pathsToHideHeader } from "./utils/arrays/arrays.tsx";
+import { localStorageService } from "./services/local-storage/local-storage.ts";
 
 export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();
@@ -39,6 +40,8 @@ export default function App() {
             const loggedInUsername = foundUser.username;
             setUsername(loggedInUsername);
         }
+        const theme = localStorageService.get('theme');
+        document.documentElement.setAttribute('data-theme', theme ? theme : 'light');
     }, []);
 
     return (

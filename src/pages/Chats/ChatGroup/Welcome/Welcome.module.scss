@@ -30,13 +30,13 @@
         background-color: var(--ROOMS-Music-light);
     }
     &__title {
-        color: var(--LIGHT_THEME-Other-text_main);
+        color: var(--color-text);
         font-size: 32px;
         font-weight: 700;
         line-height: 150%;
     }
     &__text {
-        color: var(--LIGHT_THEME-Other-text_main);
+        color: var(--color-text);
         font-size: 20px;
         font-weight: 400;
         line-height: 150%;
@@ -45,7 +45,7 @@
         }
     }
     &__span {
-        color: var(--LIGHT_THEME-Other-text_main);
+        color: var(--color-text);
         font-size: 20px;
         font-weight: 700;
         line-height: 150%;

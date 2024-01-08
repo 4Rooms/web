@@ -64,7 +64,7 @@
 }
 
 .title__modal {
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   text-align: center;
   font-size: 36px;
   font-weight: 700;

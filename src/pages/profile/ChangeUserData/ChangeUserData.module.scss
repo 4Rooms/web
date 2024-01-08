@@ -35,13 +35,14 @@
     }
 }
 .reset__user_avatar {
-    width: 100px;
+    width: 80px;
     height: 80px;
     margin: auto;
     top: 0;
     left: 0;
     position: absolute;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .modal {
@@ -49,7 +50,7 @@
     flex-wrap: wrap;
     justify-content: center;
     & > h2 {
-        color: var(--LIGHT_THEME-Other-text_main);
+        color: var(--color-text);
         font-size: 24px;
         line-height: 150%;
         margin-bottom: 20px;
@@ -96,7 +97,7 @@
 
 
 .delete__button {
-    color: var(--LIGHT_THEME-Other-text_main);
+    color: var(--color-text);
     font-size: 18px;
     line-height: 150%;
     text-align: left;
@@ -121,8 +122,8 @@
 }
 
 .focus {
-    background-color: var(--OTHER-accent);
-    color: var(--background-other);
+    background-color: var(--color-accent);
+    color: var(--color-text);
     border-radius: 3px;
     padding: 2px 5px;
     font-size: 10px;

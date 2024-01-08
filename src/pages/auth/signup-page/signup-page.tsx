@@ -29,7 +29,7 @@ export default function SignupPage() {
     const allFieldsValid = () => {
         return Object.values(formStateValid).every(value => value);
     };
-    const {setUsername} = useContext(AuthContext);
+    const {setUsername, setUserIcon} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkLocation = useRef(location.state?.from ?? "/");
@@ -69,6 +69,14 @@ export default function SignupPage() {
             ...prevFocus,
             [type]: true,
         }));
+    };
+
+    const onMouseLeaveInput = (type: keyof InputsValidRegistration) => {
+        setFormStateFocus((prevFocus) => ({
+            ...prevFocus,
+            [type]: false,
+        }));
+
     };
 
     const onClickChangeOpen = (): void => {
@@ -123,6 +131,9 @@ export default function SignupPage() {
                     setShowToaster(true);
                 }
             });
+        await authService.getProfile().then((response) => {
+            setUserIcon(response.data.avatar);
+        })
     };
     const [showToaster, setShowToaster] = useState(false);
 
@@ -150,12 +161,12 @@ export default function SignupPage() {
                         open={open}
                         onChange={onChange}
                         onFocusInput={onFocusInput}
+                        onMouseLeave={onMouseLeaveInput}
                     />
 
-                    {!errors[value] && formStateValid[value] && <IconOkey className={styles.okey__auth}/>}
+                    {formStateValid[value] && !formStateFocus[value] && <IconOkey className={styles.okey__auth}/>}
 
-                    {value === "password" && formStateValue.password?.length > 0 && !errors[value] &&
-                        !formStateValid[value] &&
+                    {value === "password" && formStateFocus[value] && formStateValue.password?.length > 0 && formStateValid[value] &&
                         <button className={styles.button__show} type="button"
                                 onClick={onClickChangeOpen}>
                             {open ? <OpenPassword/> : <HiddenPassword/>}
