@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Groups.module.css";
+import styles from "./Groups.module.scss";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction.tsx";

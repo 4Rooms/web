@@ -118,7 +118,7 @@ export default function ChangeUserData() {
     return (
         <>
             <div className={styles.reset__container}>
-                <form onSubmit={handleSubmit(deliveryFormAuth)}>
+                <form onSubmit={handleSubmit(deliveryFormAuth)} autoComplete="off">
                     <div className={styles.wrapper__photo}>
                         <label>
                             <input

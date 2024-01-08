@@ -63,7 +63,7 @@
 }
 .dashboard__item:hover > a > div > p {
   opacity: 1;
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   position: static;
 }
 .dashboard__item:hover > a > div > .dashboard__text {

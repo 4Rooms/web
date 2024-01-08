@@ -42,7 +42,7 @@
   --background-image-2x: url(./assets/dark_background_image@2x.png);
   --background-books: url(./assets/dark_background_books@1x.png);
   --background-cinemas: url(./assets/dark_background_cinema@1x.png);
-  --profile-section: rgba(0, 0, 0, 0.1);
+  --profile-section: #2c374c;
   --profile-icon: #eaeaea;
   --input-icon: rgba(0, 0, 0, 0.1);
   --disabled-button-background: #7A7A7A;

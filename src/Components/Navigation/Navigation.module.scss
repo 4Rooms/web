@@ -6,7 +6,7 @@
 }
 
 .logo__name {
-    color: var(--LIGHT_THEME-Other-text_main);
+    color: var(--color-text);
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -66,7 +66,7 @@
             width: 100%;
             background-color: transparent;
             border: transparent;
-            color: var(--LIGHT_THEME-Other-text_main);
+            color: var(--color-text);
             align-items: center;
             gap: 8px;
             & > img {
@@ -145,12 +145,12 @@
                     margin-bottom: 32px;
                 }
                 & > p {
-                    color: var(--background-other);
+                    color: var(--color-text);
                     font-size: 14px;
                     font-weight: 400;
                     padding: 2px 8px;
                     border-radius: 4px;
-                    background-color: var(--OTHER-accent);
+                    background-color: var(--color-accent);
                 }
             }
         }

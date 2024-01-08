@@ -29,7 +29,7 @@
 
 .group {
     display: flex;
-    color: var(--LIGHT_THEME-Other-text_main);
+    color: var(--color-text);
     flex-wrap: nowrap;
     gap: 20px;
     align-items: center;
@@ -60,6 +60,7 @@
 
 .group__text {
     font-size: 16px;
+    color: var(--color-text);
     @media screen and (min-width:370px) and (max-width: 871px) {
         font-size: 20px;
     }
