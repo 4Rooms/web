@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Logo,
     MobileMenu,
@@ -12,12 +12,14 @@ import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { useChat } from "../../pages/chats/chat-context/use-chat";
 import { useTranslation } from "react-i18next";
 import { cutTextFunction } from "../../utils/cutTextFuncion/cutTextFunction";
+import { AuthContext } from "../../pages/auth/signup-page/auth-context/auth-context.tsx";
 
 export default function Navigation({
     showHeader,
 }: {
     showHeader: boolean;
 }) {
+    const {username, userIcon} = useContext(AuthContext);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const navigate = useNavigate();
     const { roomsList, setChatOpen } = useChat();
@@ -123,7 +125,7 @@ export default function Navigation({
                                 <p>{t("my-profile.page-title")}</p>
                                 <img
                                     className={styles.avatar__user}
-                                    src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                                    src={userIcon ? userIcon : "https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"}
                                     alt=""
                                 />
                             </Link>
@@ -140,9 +142,10 @@ export default function Navigation({
                         <SavedChats />
                     </Link>
                     <Link to="/profile" className={styles.link__button}>
+                        {username}
                         <img
                             className={styles.avatar__user}
-                            src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"
+                            src={userIcon ? userIcon : "https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"}
                             alt=""
                         />
                     </Link>

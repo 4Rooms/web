@@ -44,7 +44,7 @@
   line-height: 150%;
   background-color: transparent;
   border-color: transparent;
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
 }
 
 .wrapper__online__show {
@@ -85,7 +85,7 @@
 
 .text__online__show {
   font-size: 16px;
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   line-height: 150%;
   font-weight: 600;
 }

@@ -21,7 +21,12 @@
     --input-icon: #212121;
     --disabled-button-background: #C7C7C7;
     --disabled-button-color: #616161;
+    --cookie-background: rgba(234, 234, 234, 0.7);
+    --OTHER-inactive_text: #616161;
+    --background-music: url(./assets/background_music@1x.png);
+    --background-games: url(./assets/background_games@1x.png);
     color: var(--color-text);
+    --ROOMS-Games-dark: #CC0000;
     background-color: var(--color-backgrounds);
 }
 
@@ -29,7 +34,7 @@
     --color-text: #eaeaea;
     --color-background: #2c374c;
     --background-other: #2c374c;
-    --color-accent: #7b34d8;
+    --color-accent: #B187E8;
     --color-accent-light: #ad6bcb; /* Assuming this is the dark theme accent light */
     --color-text-secondary: #a1a1a1;
     --color-text-main: #eaeaea;
@@ -42,11 +47,16 @@
     --background-image-2x: url(./assets/dark_background_image@2x.png);
     --background-books: url(./assets/dark_background_books@1x.png);
     --background-cinemas: url(./assets/dark_background_cinema@1x.png);
-    --profile-section: rgba(0, 0, 0, 0.1);
+    --profile-section: rgba(44, 55, 76, 0.70);
     --profile-icon: #eaeaea;
     --input-icon: rgba(0, 0, 0, 0.1);
     --disabled-button-background: #7A7A7A;
     --disabled-button-color: s#2C374C;
+    --cookie-background: #2C374C;
+    --OTHER-inactive_text: #A6A6A6;
+    --ROOMS-Games-dark: #D28181;
+    --background-music: url(./assets/background_dark_music@1x.png);
+    --background-games: url(./assets/background_dark_games@1x.png);
 }
 
 #root {
@@ -112,19 +122,19 @@
         }
     }
     &.music {
-        background: url(./assets/background_music@1x.png);
+        background: var(--background-music);
         @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-            background: url(./assets/background_music@1x.png);
+            background: var(--background-music);
         }
     }
     &.games {
-        background: url(./assets/background_games@1x.png);
+        background: var(--background-games);
         @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-            background: url(./assets/background_games@1x.png);
+            background: var(--background-games);
         }
     }
 }

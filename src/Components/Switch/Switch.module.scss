@@ -10,7 +10,7 @@
         width: 0;
         opacity: 0;
         &:checked + .switch__slider {
-            background-color: var(--OTHER-accent);
+            background-color: var(--color-accent);
         }
         &:checked + .switch__slider::before {
             transform: translateX(20px);

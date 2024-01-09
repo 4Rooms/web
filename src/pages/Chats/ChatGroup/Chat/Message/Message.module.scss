@@ -12,7 +12,7 @@
     & > .wrapper__message {
         background-color: transparent;
         border: transparent;
-        color: var(--LIGHT_THEME-Other-text_main);
+        color: var(--color-text);
         text-align: left;
         position: relative;
         display: inline-flex;
@@ -50,7 +50,7 @@
         width: 100%;
         & > input {
             border: transparent;
-            color: var(--LIGHT_THEME-Other-text_main);
+            color: var(--color-text);
             padding: 4px 8px;
             border: 1px solid var(--LIGHT_THEME-Other-text_main);
             border-radius: 16px;
@@ -88,7 +88,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--LIGHT_THEME-Other-text_main);
+            color: var(--color-text);
             font-size: 14px;
         }
         & > .reaction {
@@ -107,13 +107,13 @@
     background-color: transparent;
     border: 1px solid var(--LIGHT_THEME-Other-text_main);
     border-radius: 10px;
-    color: var(--LIGHT_THEME-Other-text_main);
+    color: var(--color-text);
     padding: 4px 8px;
 }
 
 .user__name {
     font-size: 12px;
-    color: var(--LIGHT_THEME-Other-text_main);
+    color: var(--color-text);
     line-height: 150%;
     &.gray {
         color: var(--OTHER-inactive_text);
@@ -170,7 +170,7 @@
             font-size: 15px;
             & > span {
                 font-size: 10px;
-                color: var(--LIGHT_THEME-Other-text_main);
+                color: var(--color-text);
             }
         }
 

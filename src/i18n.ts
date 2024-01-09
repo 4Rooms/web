@@ -104,7 +104,9 @@ const resources = {
             },
             'shared': {
                 'email': 'Enter your email',
+                'profileEmail': 'Edit your email',
                 'username': 'Enter your username',
+                'profileUsername': 'Edit your username',
                 'password': 'Enter your password',
                 'default': 'Enter your email',
                 'search': 'Search',
@@ -168,7 +170,7 @@ const resources = {
                 'welcome': 'Вітаємо, ласкаво просимо до 4Rooms!',
                 'account': 'Натисніть \'Увійти\', якщо у вас є обліковий запис або \'Зареєструватися\', щоб створити його.',
                 'sign in': 'Увійти',
-                'sign up': 'Зареєструйтесь',
+                'sign up': 'Зареєструватися',
                 'sign up with google': 'Зареєструйтеся в Google:',
                 'googleSignUp': 'Зареєструватися за допомогою пошти:',
                 'createAccount': 'Створити аккаунт',
@@ -263,7 +265,9 @@ const resources = {
             },
             'shared': {
                 'email': 'Введіть свою пошту',
+                'profileEmail': 'Змініть свою пошту',
                 'username': 'Введіть своє ім\'я',
+                'profileUsername': 'Змініть своє ім\'я',
                 'password': 'Введіть свій пароль',
                 'default': 'Введіть свою електронну пошту',
                 'search': 'Пошук',

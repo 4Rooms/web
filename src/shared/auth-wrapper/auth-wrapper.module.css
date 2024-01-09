@@ -37,7 +37,7 @@
 }
 
 .title__auth {
-  color: var(--LIGHT_THEME-Other-text_main);
+  color: var(--color-text);
   font-size: 32px;
   font-weight: 700;
   line-height: 150%;

@@ -29,6 +29,7 @@ interface FormInput<T extends Path<U>, U extends FieldValues> {
     className?: string | undefined;
     textarea?: boolean;
     edit?: boolean;
+    onMouseLeave?: (type: T) => void;
 }
 
 export default function FormInput<T extends Path<U>, U extends FieldValues>({
@@ -45,6 +46,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
     className = "",
     textarea = false,
     edit,
+    onMouseLeave,
 }: FormInput<T, U>) {
     const { t } = useTranslation("translation", { keyPrefix: "shared" });
     return textarea ? (
@@ -69,6 +71,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                 onChangeInputValue && onChangeInputValue(e, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
+            onMouseLeave={() => onMouseLeave && onMouseLeave(value)}
         />
     ) : (
         <input
@@ -106,6 +109,7 @@ export default function FormInput<T extends Path<U>, U extends FieldValues>({
                 onChangeInputValue && onChangeInputValue(e, value);
             }}
             onFocus={() => onFocusInput && onFocusInput(value)}
+            onMouseLeave={() => onMouseLeave && onMouseLeave(value)}
         />
     );
 }
