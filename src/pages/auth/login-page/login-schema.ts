@@ -4,13 +4,13 @@ export default yup.object().shape({
     username: yup
         .string()
         .min(1, 'minLengthErrorUsername')
-        .test('is-valid-username', 'maxLengthErrorUsername',
-            (value) => (value ?? '').split('@')[0].trim().length <= 20)
+        .test('is-valid-username-or-email', 'maxLengthErrorUsernameOrEmail',
+            (value) => (value ?? '').split('@')[0].trim().length <= 128)
         .matches(
             /^([@#$_]*[a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9@#$_\s]+[@#$_]*)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
             'usernameRegexError'
         )
-        .required('requiredUsername'),
+        .required('requiredUsernameOrEmail'),
         password: yup
         .string()
         .min(8, 'passwordMinError')
