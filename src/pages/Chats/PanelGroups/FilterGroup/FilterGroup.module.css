@@ -41,7 +41,7 @@
   align-items: center;
   width: 103px;
   text-align: left;
-  color: var(--color-text);
+  color: var(--background-other);
   font-size: 12px;
   font-weight: 400;
   line-height: 150%;
@@ -68,6 +68,9 @@
 }
 .button__new.music {
   background-color: var(--ROOMS-Music-dark);
+}
+.button__new > svg > path {
+  fill: var(--background-other);
 }
 
 .wrapper__new {

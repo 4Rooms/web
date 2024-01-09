@@ -5,16 +5,16 @@
     background: var(--button--color);
     overflow-y: auto;
     &.books {
-        background: rgba(238, 215, 140, 0.7);
+        background: var(--ROOMS-Books-transperent-main);
     }
     &.games {
-        background: rgba(242, 181, 181, 0.7);
+        background: var(--ROOMS-Games-transperent-main);
     }
     &.cinema {
-        background: rgba(179, 220, 207, 0.7);
+        background: var(--ROOMS-Cinema-transperent-main);
     }
     &.music {
-        background: rgba(223, 184, 241, 0.7);
+        background: var(--ROOMS-Music-transperent-main);
     }
     &.image {
         gap: 10px;

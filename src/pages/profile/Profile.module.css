@@ -67,22 +67,22 @@
   cursor: pointer;
 }
 .profile_sections ul > li a:hover {
-  color: var(--OTHER-accent);
+  color: var(--color-accent);
 }
 .profile_sections ul > li a:hover svg > g > path {
-  fill: var(--OTHER-accent);
+  fill: var(--color-accent);
 }
 .profile_sections ul > li a:hover svg > path {
-  fill: var(--OTHER-accent);
+  fill: var(--color-accent);
 }
 .profile_sections ul > li a.active {
-  color: var(--OTHER-accent);
+  color: var(--color-accent);
 }
 .profile_sections ul > li a.active svg > g > path {
-  fill: var(--OTHER-accent);
+  fill: var(--color-accent);
 }
 .profile_sections ul > li a.active svg > path {
-  fill: var(--OTHER-accent);
+  fill: var(--color-accent);
 }
 .profile_section {
   background: var(--profile-section);

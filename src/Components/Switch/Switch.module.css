@@ -11,7 +11,7 @@
   opacity: 0;
 }
 .switch__input:checked + .switch__slider {
-  background-color: var(--OTHER-accent);
+  background-color: var(--color-accent);
 }
 .switch__input:checked + .switch__slider::before {
   transform: translateX(20px);

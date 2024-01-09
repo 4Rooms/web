@@ -28,6 +28,9 @@
   background-color: transparent;
   border-color: transparent;
 }
+.group > button > svg > path {
+  fill: var(--color-text);
+}
 
 .group__avatar {
   width: 49px;

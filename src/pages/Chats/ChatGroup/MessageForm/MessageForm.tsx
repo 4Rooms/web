@@ -181,7 +181,7 @@ export default function MessageForm() {
                 <div className={styles.emoji_container}>
                     <button
                         type="button"
-                        className={styles.button__message}
+                        className={`${styles.button__message} ${styles.smile}`}
                         onClick={toggleEmojiPicker}
                     >
                         <Smile />
@@ -217,7 +217,7 @@ export default function MessageForm() {
                 {update.edit && (
                     <div>
                         <Edit />
-                        <p>{update.text}</p>
+                        <p>{update.text ? update.text : "Type something..."}</p>
                         <button
                             onClick={() =>
                                 setUpdate((prevState) => ({

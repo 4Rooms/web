@@ -47,14 +47,14 @@
   padding: 8px 16px;
   border-radius: 12px;
   white-space: pre-line;
-  background-color: var(--LIGHT_THEME-Other-text_second);
+  background-color: var(--disabled-button-background);
 }
 .wrapper__input > div > svg {
   width: 10px;
   height: 10px;
 }
 .wrapper__input > div > p {
-  color: var(--OTHER-inactive_text);
+  color: var(--color-text);
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -73,6 +73,9 @@
   height: 12px;
   cursor: pointer;
 }
+.wrapper__input > div > button > svg > path {
+  fill: var(--color-text);
+}
 
 .input__message {
   width: 100%;
@@ -84,9 +87,9 @@
   padding: 10.5px 16px;
   border-color: transparent;
   color: var(--color-text);
-  caret-color: var(--LIGHT_THEME-Other-text_main);
+  caret-color: white;
   border-radius: 12px;
-  background-color: var(--LIGHT_THEME-Other-text_second);
+  background-color: var(--disabled-button-background);
   resize: none;
   overflow-y: scroll;
 }
@@ -102,11 +105,20 @@
 .input__message:focus {
   outline: none;
 }
+.input__message::-moz-placeholder {
+  color: var(--color-text);
+}
+.input__message::placeholder {
+  color: var(--color-text);
+}
 
 .button__message {
   border-color: transparent;
   background-color: transparent;
   cursor: pointer;
+}
+.button__message.smile > svg > path {
+  fill: var(--color-text);
 }
 
 .wrapper__icon {
@@ -121,6 +133,9 @@
 }
 .add__photo > label {
   position: relative;
+}
+.add__photo > label > svg > path {
+  fill: var(--color-text);
 }
 .add__photo > label > input {
   width: 20px;

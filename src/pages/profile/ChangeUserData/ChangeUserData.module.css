@@ -37,13 +37,14 @@
 }
 
 .reset__user_avatar {
-  width: 100px;
+  width: 80px;
   height: 80px;
   margin: auto;
   top: 0;
   left: 0;
   position: absolute;
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .modal {
@@ -120,7 +121,7 @@
 }
 
 .focus {
-  background-color: var(--OTHER-accent);
+  background-color: var(--color-accent);
   color: var(--color-text);
   border-radius: 3px;
   padding: 2px 5px;

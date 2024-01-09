@@ -59,6 +59,7 @@
 
 .group__text {
   font-size: 16px;
+  color: var(--color-text);
   font-weight: 600;
   line-height: 150%;
 }

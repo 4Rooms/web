@@ -96,6 +96,9 @@
   color: var(--color-text);
   font-size: 14px;
 }
+.message__user > .menu__message > button > svg > path {
+  fill: var(--color-text);
+}
 .message__user > .menu__message > .reaction {
   overflow: auto;
   display: flex;

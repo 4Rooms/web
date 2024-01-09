@@ -57,13 +57,13 @@
 }
 
 .button__in {
-  color: var(--color-text);
+  color: var(--background-other);
   font-size: 18px;
   font-weight: 500;
   line-height: 150%;
   padding: 4px 43px;
   border: 1px solid var(--LIGHT_THEME-Other-text_main);
-  background-color: var(--LIGHT_THEME-Other-text_main);
+  background-color: var(--color-text);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
@@ -81,13 +81,13 @@
 }
 
 .button__up {
-  color: var(--color-text);
+  color: var(--background-other);
   font-size: 18px;
   font-weight: 500;
   line-height: 150%;
   padding: 4px 43px;
   border: transparent;
-  background: var(--OTHER-accent);
+  background: var(--color-accent);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
