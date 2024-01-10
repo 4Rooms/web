@@ -124,13 +124,17 @@ const resources = {
             'menu-modal': {
                 'edit': 'Edit',
                 'delete': 'Delete',
-                'was deleted': 'The message is deleted'
+                'was-deleted': 'The message is deleted'
             },
             'my-chart': {
                 'page-title': 'My Chats',
             },
             'saved-chats': {
                 'page-title': 'Saved Chats',
+            },
+            'message' : {
+                "message": "Type something...",
+                "delete": "The message is deleted"
             },
             'my-profile': {
                 'page-title': 'My profile',
@@ -286,13 +290,17 @@ const resources = {
             'menu-modal': {
                 'edit': 'Редагувати',
                 'delete': 'Видалити',
-                'was deleted': 'Повідомлення видалено'
+                'was-deleted': 'Це повідомлення видалено'
             },
             'my-chart': {
                 'page-title': 'Мої чати',
             },
             'saved-chats': {
                 'page-title': 'Збережені чати',
+            },
+            'message' : {
+                "message": "Введіть ваше повідомлення",
+                "delete": "Це повідомлення видалено"
             },
             'my-profile': {
                 'page-title': 'Мій профіль',

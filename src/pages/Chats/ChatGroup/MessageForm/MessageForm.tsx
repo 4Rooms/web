@@ -10,8 +10,10 @@ import styles from "./MessageForm.module.scss";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import EmojiPicker from "emoji-picker-react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function MessageForm() {
+    const {t} = useTranslation('translation', {keyPrefix: 'message'});
     const pickerRef = useRef<HTMLDivElement | null>(null);
     const { chatId } = useParams();
     const {
@@ -209,7 +211,7 @@ export default function MessageForm() {
             <label className={styles.wrapper__input}>
                 <textarea
                     className={styles.input__message}
-                    placeholder="Type something..."
+                    placeholder={t('message')}
                     value={update.edit ? update.text : message}
                     onChange={(e) => handleChange(e)}
                     onKeyDown={(e) => handleKeyDown(e)}
@@ -217,7 +219,7 @@ export default function MessageForm() {
                 {update.edit && (
                     <div>
                         <Edit />
-                        <p>{update.text ? update.text : "Type something..."}</p>
+                        <p>{update.text ? update.text : t('message')}</p>
                         <button
                             onClick={() =>
                                 setUpdate((prevState) => ({

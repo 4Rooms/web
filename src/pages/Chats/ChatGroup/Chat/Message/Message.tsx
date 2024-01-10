@@ -116,7 +116,7 @@ export default function Message({
                     <p className={styles.user__text}>
                         {message.is_deleted ? (
                             <>
-                                <Delete /> {t("menu-modal.was deleted")}
+                                <Delete /> {t("menu-modal.was-deleted")}
                             </>
                         ) : (
                             message.text
