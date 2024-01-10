@@ -15,7 +15,6 @@ import AuthWrapper from "../../../shared/auth-wrapper/auth-wrapper.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useValidation from "../../../shared/use-validate/use-validate.tsx";
-import authSchema from "../signup-page/signup-schema.ts";
 import authService from "../../../services/auth/auth.service.tsx";
 import { localStorageService } from "../../../services/local-storage/local-storage.ts";
 import FormInput from "../../../shared/auth-input/form-Input.tsx";
@@ -92,7 +91,7 @@ export default function LoginPage() {
     };
 
     const {formStateValid, validateField} = useValidation<InputsValidLogin>({
-        schema: authSchema,
+        schema: loginSchema,
         formSubmitted,
         setError,
         clearErrors,
