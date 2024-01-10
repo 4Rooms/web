@@ -80,8 +80,8 @@ export default function Chat() {
                         </li>
                     );
                 })
-                : message?.map((result) => {
-                    return <Message key={result.id} message={result} />;
+                : message?.map((result, index) => {
+                    return <Message key={result.id} message={result} index={index} />;
                 })}
         </ul>
     );

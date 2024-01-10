@@ -10,11 +10,24 @@ import { emojisResponse } from "../../../../../utils/arrays/arrays.tsx";
 import { formatTime } from "../../../../../utils/formatTime/formatTime.tsx";
 import { useChat } from "../../../../chats/chat-context/use-chat.tsx";
 
-export default function Message({ message }: { message: Message }) {
+export default function Message({
+    message,
+    index,
+}: {
+    message: Message;
+    index: number;
+}) {
     const { room } = useParams();
     const { username } = useAuth();
     const { ws, setUpdate } = useChat();
     const [open, setOpen] = useState(false);
+    const reactions =
+        message.reactions?.find(
+            (reaction) => reaction.user_name === username
+        ) ||
+        message.reactions?.find(
+            (reaction) => reaction.user.toString() === username
+        );
     const uniqueReactions = countBy(message.reactions, "reaction");
     const openMenuMessage = () => {
         setOpen((prevState) => !prevState);
@@ -80,18 +93,24 @@ export default function Message({ message }: { message: Message }) {
                         {message.user_name}
                     </p>
                     {!message.is_deleted && message.attachments.length > 0 && (
-                        <div className={styles.message__photos}>
+                        <ul className={styles.message__photos}>
                             {message.attachments?.map((photo, index) => (
-                                <img
+                                <li
                                     key={index}
-                                    src={photo}
                                     className={getPhotoClassName(
                                         message.attachments.length
                                     )}
-                                    alt={`Photo ${index + 1}`}
-                                />
+                                >
+                                    <img
+                                        src={photo}
+                                        className={getPhotoClassName(
+                                            message.attachments.length
+                                        )}
+                                        alt={`Photo ${index + 1}`}
+                                    />
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     )}
 
                     <p className={styles.user__text}>
@@ -127,10 +146,14 @@ export default function Message({ message }: { message: Message }) {
                             })}
                         </ul>
                     )}
-                    {open && !message.is_deleted && (
+                    {open && !message.is_deleted && (!reactions && username !== message.user_name || username === message.user_name) && (
                         <div
                             className={`${styles.menu__message} ${
                                 message.text.length > 50 && styles.more
+                            } ${
+                                username === message.user_name && styles.another
+                            } ${reactions && styles.reactions} ${
+                                index === 0 && styles.first
                             }`}
                         >
                             {username === message.user_name && (
@@ -158,15 +181,7 @@ export default function Message({ message }: { message: Message }) {
                                 </>
                             )}
 
-                            {message.reactions?.find(
-                                (reaction) => reaction.user_name === username
-                            ) ||
-                            message.reactions?.find(
-                                (reaction) =>
-                                    reaction.user.toString() === username
-                            ) ? (
-                                <></>
-                            ) : (
+                            {!reactions && (
                                 <ul className={styles.reaction}>
                                     {emojisResponse.map((response) => {
                                         return (
