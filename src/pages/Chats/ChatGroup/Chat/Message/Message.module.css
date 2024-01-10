@@ -68,7 +68,8 @@
 }
 .message__user > .menu__message {
   position: absolute;
-  top: -10px;
+  top: -50px;
+  left: 0;
   border-radius: 12px;
   padding: 8px 12px;
   display: flex;
@@ -78,13 +79,14 @@
   z-index: 1;
   width: 134px;
 }
-@media screen and (max-width: 580px) {
-  .message__user > .menu__message {
-    left: -40px;
-  }
+.message__user > .menu__message.another {
+  top: -120px;
 }
-.message__user > .menu__message.more {
-  left: -10px;
+.message__user > .menu__message.reactions {
+  top: -85px;
+}
+.message__user > .menu__message.first {
+  top: 0;
 }
 .message__user > .menu__message > button {
   cursor: pointer;
@@ -160,7 +162,6 @@
   flex-wrap: wrap;
   gap: 5px;
   max-width: 365px;
-  justify-content: right;
 }
 
 .list__reactions {
@@ -199,11 +200,19 @@
   width: 180px;
   height: 120px;
 }
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 476px) {
   .message__photo {
     width: calc(50% - 5px);
   }
 }
-.message__photo.three__child:nth-child(3) {
+@media screen and (min-width: 871px) and (max-width: 1105px) {
+  .message__photo {
+    width: calc(50% - 5px);
+  }
+}
+.message__photo.three__child:nth-of-type(3) {
+  width: 100%;
+}
+.message__photo.three__child:nth-of-type(3) > img {
   width: 100%;
 }/*# sourceMappingURL=Message.module.css.map */
