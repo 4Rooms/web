@@ -23,6 +23,9 @@
     & > button {
         background-color: transparent;
         border-color: transparent;
+        & > svg > path {
+            fill: var(--color-text);
+        }
     }
 }
 

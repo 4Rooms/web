@@ -79,4 +79,8 @@
     background-color: transparent;
     border-color: transparent;
     cursor: pointer;
+
+    & > svg > path {
+        fill: var(--color-text);
+    }
 }

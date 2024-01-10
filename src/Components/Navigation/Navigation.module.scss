@@ -89,6 +89,9 @@
     cursor: pointer;
     & > .icons__width {
         height: 18px;
+        & > svg > path {
+            fill: var(--color-text);
+        }
     }
 }
 
@@ -97,6 +100,7 @@
     border-color: transparent;
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .avatar__user {
@@ -145,12 +149,15 @@
                     margin-bottom: 32px;
                 }
                 & > p {
-                    color: var(--color-text);
+                    color: var(--background-other);
                     font-size: 14px;
                     font-weight: 400;
                     padding: 2px 8px;
                     border-radius: 4px;
                     background-color: var(--color-accent);
+                }
+                & > svg > path {
+                    fill: var(--color-text);
                 }
             }
         }

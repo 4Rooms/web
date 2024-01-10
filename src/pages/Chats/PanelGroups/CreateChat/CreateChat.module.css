@@ -1,7 +1,7 @@
 .button__addChat {
   background-color: var(--button--color);
   border: transparent;
-  color: var(--color-text);
+  color: var(--background-other);
   border-radius: 10px;
   padding: 12px 33px;
   font-size: 16px;
@@ -86,7 +86,7 @@
 }
 
 .focus__block {
-  background-color: var(--OTHER-accent);
+  background-color: var(--color-accent);
   color: var(--color-text);
   border-radius: 3px;
   padding: 2px 5px;

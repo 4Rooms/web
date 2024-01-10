@@ -90,6 +90,9 @@
             gap: 8px;
             color: var(--color-text);
             font-size: 14px;
+            & > svg > path {
+                fill: var(--color-text);
+            }
         }
         & > .reaction {
             overflow: auto;

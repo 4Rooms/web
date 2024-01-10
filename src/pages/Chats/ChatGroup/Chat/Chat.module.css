@@ -6,16 +6,16 @@
   overflow-y: auto;
 }
 .container__chat.books {
-  background: rgba(238, 215, 140, 0.7);
+  background: var(--ROOMS-Books-transperent-main);
 }
 .container__chat.games {
-  background: rgba(242, 181, 181, 0.7);
+  background: var(--ROOMS-Games-transperent-main);
 }
 .container__chat.cinema {
-  background: rgba(179, 220, 207, 0.7);
+  background: var(--ROOMS-Cinema-transperent-main);
 }
 .container__chat.music {
-  background: rgba(223, 184, 241, 0.7);
+  background: var(--ROOMS-Music-transperent-main);
 }
 .container__chat.image {
   gap: 10px;

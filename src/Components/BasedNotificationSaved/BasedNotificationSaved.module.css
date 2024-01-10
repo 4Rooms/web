@@ -46,7 +46,7 @@
   position: relative;
 }
 .container__wrapper_block > p {
-  color: var(--color-text);
+  color: var(--background-other);
   font-size: 32px;
   font-weight: 600;
   line-height: 150%;
