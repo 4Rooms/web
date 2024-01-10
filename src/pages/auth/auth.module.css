@@ -144,8 +144,8 @@
 }
 
 .focus__block {
-  background-color: var(--OTHER-accent);
-  color: var(--color-text);
+  background-color: var(--color-accent);
+  color: var(--background-other);
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 10px;
@@ -181,7 +181,7 @@
   line-height: 150%;
   padding: 4px 20px;
   border: transparent;
-  background: var(--OTHER-accent);
+  background: var(--color-accent);
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;

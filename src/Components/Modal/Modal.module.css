@@ -86,4 +86,7 @@
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
+}
+.close > svg > path {
+  fill: var(--color-text);
 }/*# sourceMappingURL=Modal.module.css.map */
