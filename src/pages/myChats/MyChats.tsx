@@ -18,7 +18,7 @@ export default function MyChats() {
             {filterCreate.map((chat) => {
                 return (
                     <li key={chat.id} className={styles.item}>
-                        <BlockNotificationSaved changeOpen={changeOpen} id={chat.id} open={open} time={chat.timestamp} title={chat.title} likes={chat.likes} text={chat.description} img={chat.img} />
+                        <BlockNotificationSaved changeOpen={changeOpen} room={chat.room} id={chat.id} open={open} time={chat.timestamp} title={chat.title} likes={chat.likes} text={chat.description} img={chat.img} />
                         <button onClick={changeOpen}>
                             <Edit />
                         </button>

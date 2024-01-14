@@ -42,6 +42,7 @@ export default function BasedNotificationSaved({ children, title }: Props) {
         setMain([]);
         setFilter([]);
         const chats = await getData(name.toLocaleLowerCase());
+        console.log(chats);
         setMain(chats.results);
         setFilter(chats.results);
     };

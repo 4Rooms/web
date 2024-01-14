@@ -16,6 +16,7 @@ import Modal from "../Modal/Modal";
 import FormInput from "../../shared/auth-input/form-Input";
 import Button from "../../shared/button/button";
 import { formatTime } from "../../utils/formatTime/formatTime";
+import { Link } from "react-router-dom";
 
 export default function BlockNotificationSaved({
     open,
@@ -26,6 +27,7 @@ export default function BlockNotificationSaved({
     time,
     changeOpen,
     id,
+    room
 }: {
     img: string;
     text: string;
@@ -35,6 +37,7 @@ export default function BlockNotificationSaved({
     open?: boolean;
     changeOpen?: () => void;
     id?: number;
+    room: string;
 }) {
     const { setFilterCreate } = useChat();
     const inputArray: InputsCreateKeys[] = ["title", "description"];
@@ -142,7 +145,7 @@ export default function BlockNotificationSaved({
             <div className={styles.block}>
                 <div className={styles.block__up}>
                     <img src={img} />
-                    <h2>{title}</h2>
+                    {room ? <Link to={`/chat/${room}/${id}`}>{title}</Link> : <h2>{title}</h2>}
                 </div>
                 <p>{text}</p>
                 <div className={styles.block__below}>

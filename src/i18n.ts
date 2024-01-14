@@ -162,7 +162,7 @@ const resources = {
                 'save': 'Save',
                 'light theme': 'Light theme',
                 'dark theme': 'Dark theme',
-                'logout description': 'Are you sure you want to leave 4ROOM?',
+                'logout description': 'Are you sure you want to leave 4ROOMS?',
                 'logout': 'Log Out'
             }
         }
@@ -328,7 +328,7 @@ const resources = {
                 'save': 'Зберегти',
                 'light theme': 'Cвітла тема',
                 'dark theme': 'Темна тема',
-                'logout description': 'Ви впевнені, що хочете покинути 4ROOM?',
+                'logout description': 'Ви впевнені, що хочете покинути 4ROOMS?',
                 'logout': 'Вийти'
             }
         }

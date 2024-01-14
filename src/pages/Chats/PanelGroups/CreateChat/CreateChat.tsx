@@ -150,8 +150,7 @@ export default function CreateChat() {
                                     <input
                                         className={styles.add__image}
                                         type="file"
-                                        onChange={handleImageChange}
-                                        required/>
+                                        onChange={handleImageChange}/>
                                     {!imageURL && <AddPhoto />}
                                     {imageURL && (
                                         <img
