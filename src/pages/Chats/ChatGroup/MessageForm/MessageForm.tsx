@@ -140,7 +140,7 @@ export default function MessageForm() {
             ws?.send(JSON.stringify(messageUser));
             setUpdate((prevState) => ({ ...prevState, edit: false }));
         } else {
-            if (message !== "") {
+            if (message !== "" || images.length > 0) {
                 const messageUser = {
                     event_type: "chat_message",
                     message: {
