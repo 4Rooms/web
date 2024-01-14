@@ -37,7 +37,7 @@ export default function BlockNotificationSaved({
     open?: boolean;
     changeOpen?: () => void;
     id?: number;
-    room: string;
+    room?: string;
 }) {
     const { setFilterCreate } = useChat();
     const inputArray: InputsCreateKeys[] = ["title", "description"];
