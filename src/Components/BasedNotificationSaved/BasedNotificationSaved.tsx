@@ -88,7 +88,8 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                         };
                                     });
 
-                                    if (title === "My Chats") {
+                                    if (title === "My Chats" || title === "Мої чати") {
+                                        console.log(title)
                                         fetchData(
                                             option.name,
                                             setCreateChat,

@@ -51,7 +51,6 @@ export default function ForgotPassword() {
             password: false,
         },
     });
-    console.log(formStateValid);
 
     const onFocusInput = (type: keyof InputsValidReset) => {
         setFormStateFocus((prevFocus) => ({

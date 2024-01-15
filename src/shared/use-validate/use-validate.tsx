@@ -6,9 +6,10 @@ import ForgetSchema from './../../pages/auth/login-page/forgot-password/forgot-s
 import resetPasswordSchema from "../../pages/profile/ResetPassword/resetPassword-schema.ts";
 import changeDataSchema from "../../pages/profile/ChangeUserData/changeData-schema.ts";
 import createSchema from "../../pages/Chats/PanelGroups/CreateChat/create-schema.tsx";
+import mySchema from "../../pages/myChats/my-schema.tsx";
 
 type ValidationProps<T> = {
-    schema: typeof LoginSchema | typeof SignupSchema | typeof ForgetSchema | typeof createSchema | typeof resetPasswordSchema | typeof changeDataSchema;
+    schema: typeof LoginSchema | typeof SignupSchema | typeof ForgetSchema | typeof createSchema | typeof resetPasswordSchema | typeof changeDataSchema | typeof mySchema;
     formSubmitted: boolean;
     setError: (name: keyof T, error: { message: string }) => void;
     clearErrors: (name: keyof T) => void;

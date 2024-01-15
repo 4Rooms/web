@@ -103,7 +103,19 @@ export type EmailConfirmationResponse = {
 
 export type ChildrenModal = {
     children: React.ReactElement;
-    onOpen: () => void;
+    onOpen: () =>
+        | void
+        | ((prevModalState: {
+              open: boolean;
+              title: string;
+              description: string;
+              image: string;
+          }) => {
+              open: boolean;
+              title: string;
+              description: string;
+              image: string;
+          });
     className?: string;
 };
 
