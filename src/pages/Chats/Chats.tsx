@@ -22,7 +22,6 @@ export default function Chats() {
         category,
         setDeleteChat,
         deleteChat,
-        online,
     } = useChat();
     const {
         setToasterMessage,
