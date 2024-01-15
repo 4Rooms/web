@@ -304,7 +304,7 @@ export default function MyChats() {
                                                         >
                                                             <p>
                                                                 {
-                                                                    value as keyof InputsCreate
+                                                                    t(`shared.${value as keyof InputsCreate}`)
                                                                 }
                                                             </p>
                                                         </div>

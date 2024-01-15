@@ -83,7 +83,7 @@
 
 .focus__block {
   background-color: var(--color-accent);
-  color: var(--LIGHT_THEME-Other-background_light);
+  color: var(--background-other);
   border-radius: 3px;
   padding: 2px 5px;
   font-size: 10px;

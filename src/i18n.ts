@@ -113,6 +113,8 @@ const resources = {
                 'create new password': 'Create new password',
                 'title': "Enter title name",
                 'description': "Enter chat description ",
+                "oldPassword": "Enter your old password",
+                "newPassword": "Enter your new password",
             },
             'create-chat': {
                 'title': 'Create a new chat',
@@ -164,7 +166,7 @@ const resources = {
                 'dark theme': 'Dark theme',
                 'logout description': 'Are you sure you want to leave 4ROOMS?',
                 'logout': 'Log Out'
-            }
+            },
         }
     },
     ua: {
