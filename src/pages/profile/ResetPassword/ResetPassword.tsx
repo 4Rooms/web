@@ -33,7 +33,7 @@ export default function ResetPassword() {
             newPassword: false,
         });
     const [open, setOpen] = useState<boolean>(false);
-    const { t } = useTranslation('translation', { keyPrefix: 'my-profile' });
+    const { t } = useTranslation('translation');
 
     const {
         register,
@@ -94,7 +94,7 @@ export default function ResetPassword() {
     return (
         <>
                 <p className={styles.reset__warning}>
-                    {t('change-password-description')}
+                    {t('my-profile.change-password-description')}
                 </p>
             <div className={styles.reset__container}>
                 <form onSubmit={handleSubmit(deliveryFormAuth)}>
@@ -143,9 +143,7 @@ export default function ResetPassword() {
                                 formStateValue[value].length > 0 && (
                                     <div className={styles.focus}>
                                         <p>
-                                            {value !== "oldPassword"
-                                                ? "New Password"
-                                                : "Old Password"}
+                                        {t(`shared.${value}`)}
                                         </p>
                                     </div>
                                 )}

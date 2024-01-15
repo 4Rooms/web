@@ -27,7 +27,7 @@ import { ISchema, reach } from 'yup';
 import debounce from "../../../utils/debounce/debounce.ts";
 
 export default function LoginPage() {
-    const {t} = useTranslation('translation', {keyPrefix: 'sign-in-page'});
+    const { t } = useTranslation('translation');
 
     const allFieldsValid = () => {
         return Object.values(formStateValid).every(value => value);
@@ -171,14 +171,14 @@ export default function LoginPage() {
     };
 
     return (
-        <AuthWrapper title={t('title')} link={backLinkLocation.current}>
+        <AuthWrapper title={t('sign-in-page.title')} link={backLinkLocation.current}>
             <form
                 className={styles.form__auth}
                 onSubmit={handleSubmit(deliveryFormAuth)}
             >
-                <GoogleAuthButton translation={t('googleSignIn')}/>
+                <GoogleAuthButton translation={t('sign-in-page.googleSignIn')}/>
                 <h2 className={styles.text__form}>
-                    {t('orSignInWithCredentials')}
+                    {t('sign-in-page.orSignInWithCredentials')}
                 </h2>
                 {inputArray.map((value) => {
                     return (
@@ -201,28 +201,28 @@ export default function LoginPage() {
                             {!formStateValid[value] && formStateFocus[value] && !errors[value] &&
                                 <>
                                     <div className={styles.focus__block}>
-                                        <p>{value}</p>
+                                        <p>{t(`shared.${value}`)}</p>
                                     </div>
                                     <p className={styles.text__info}>
                                         {value === 'password' ? <button
                                             type="button"
                                             className={styles.forgot__password__info}
                                             onClick={onClickChangeOpenModal}>
-                                            {t('forgotPassword')}
-                                        </button> : t(value)}
+                                            {t('sign-in-page.forgotPassword')}
+                                        </button> : t(`sign-in-page.${value}`)}
                                     </p>
                                 </>
                             }
                             {errors[value] &&
                                 !formStateValid[value] && (
                                     <p className={styles.text__error}>
-                                        {t(`${errors[value]?.message}`)}
+                                        {t(`sign-in-page.${errors[value]?.message}`)}
                                         {value === "password" &&
                                             <button
                                                 type="button"
                                                 className={styles.forgot__password__error}
                                                 onClick={onClickChangeOpenModal}>
-                                                {t('forgotPassword')}
+                                                {t('sign-in-page.forgotPassword')}
                                             </button>
                                         }
                                     </p>
@@ -271,7 +271,7 @@ export default function LoginPage() {
                         className="accent"
                         type="submit"
                         onClick={() => setFormSubmitted(true)}>
-                        {t('signInButton')}
+                        {t('sign-in-page.signInButton')}
                     </Button>
                 </div>
                 <Toaster

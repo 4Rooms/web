@@ -42,6 +42,7 @@ export default function BasedNotificationSaved({ children, title }: Props) {
         setMain([]);
         setFilter([]);
         const chats = await getData(name.toLocaleLowerCase());
+        console.log(chats);
         setMain(chats.results);
         setFilter(chats.results);
     };
@@ -87,7 +88,8 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                                         };
                                     });
 
-                                    if (title === "My Chats") {
+                                    if (title === "My Chats" || title === "Мої чати") {
+                                        console.log(title)
                                         fetchData(
                                             option.name,
                                             setCreateChat,

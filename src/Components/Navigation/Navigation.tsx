@@ -125,7 +125,7 @@ export default function Navigation({
                                 <p>{t("my-profile.page-title")}</p>
                                 <img
                                     className={styles.avatar__user}
-                                    src={userIcon ? userIcon : "https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"}
+                                    src={userIcon ? userIcon : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSymjxHoVB2hlH41ioYDjkzOd7oVPhJu-uIeQ&usqp=CAU"}
                                     alt=""
                                 />
                             </Link>
@@ -145,7 +145,7 @@ export default function Navigation({
                         {username}
                         <img
                             className={styles.avatar__user}
-                            src={userIcon ? userIcon : "https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true"}
+                            src={userIcon ? userIcon : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSymjxHoVB2hlH41ioYDjkzOd7oVPhJu-uIeQ&usqp=CAU"}
                             alt=""
                         />
                     </Link>

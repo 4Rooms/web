@@ -22,7 +22,6 @@ export default function Chats() {
         category,
         setDeleteChat,
         deleteChat,
-        online,
     } = useChat();
     const {
         setToasterMessage,
@@ -63,7 +62,6 @@ export default function Chats() {
             );
         } else if (msgData.event_type === "connected_user") {
             setOnline((prevState) => [...prevState, msgData.user]);
-            console.log(online);
         } else if (msgData.event_type === "disconnected_user") {
             setOnline((prevState) =>
                 prevState.filter((user) => user.id !== msgData.user.id)

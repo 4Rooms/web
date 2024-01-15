@@ -113,6 +113,8 @@ const resources = {
                 'create new password': 'Create new password',
                 'title': "Enter title name",
                 'description': "Enter chat description ",
+                "oldPassword": "Enter your old password",
+                "newPassword": "Enter your new password",
             },
             'create-chat': {
                 'title': 'Create a new chat',
@@ -162,9 +164,9 @@ const resources = {
                 'save': 'Save',
                 'light theme': 'Light theme',
                 'dark theme': 'Dark theme',
-                'logout description': 'Are you sure you want to leave 4ROOM?',
+                'logout description': 'Are you sure you want to leave 4ROOMS?',
                 'logout': 'Log Out'
-            }
+            },
         }
     },
     ua: {
@@ -328,7 +330,7 @@ const resources = {
                 'save': 'Зберегти',
                 'light theme': 'Cвітла тема',
                 'dark theme': 'Темна тема',
-                'logout description': 'Ви впевнені, що хочете покинути 4ROOM?',
+                'logout description': 'Ви впевнені, що хочете покинути 4ROOMS?',
                 'logout': 'Вийти'
             }
         }

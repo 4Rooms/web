@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { emojisResponse } from "../../../../../utils/arrays/arrays.tsx";
 import { formatTime } from "../../../../../utils/formatTime/formatTime.tsx";
 import { useChat } from "../../../../chats/chat-context/use-chat.tsx";
+import Modal from "../../../../../Components/Modal/Modal.tsx";
 
 export default function Message({
     message,
@@ -21,6 +22,10 @@ export default function Message({
     const { username } = useAuth();
     const { ws, setUpdate } = useChat();
     const [open, setOpen] = useState(false);
+    const [openPhoto, setOpenPhoto] = useState({
+        url: "",
+        modal: false,
+    });
     const reactions =
         message.reactions?.find(
             (reaction) => reaction.user_name === username
@@ -31,6 +36,12 @@ export default function Message({
     const uniqueReactions = countBy(message.reactions, "reaction");
     const openMenuMessage = () => {
         setOpen((prevState) => !prevState);
+    };
+    const setOpenModalPhoto = () => {
+        setOpenPhoto((prevState) => ({
+            ...prevState,
+            modal: !prevState.modal,
+        }));
     };
     const deleteMessageUser = () => {
         const messageUser = {
@@ -106,6 +117,12 @@ export default function Message({
                                         className={getPhotoClassName(
                                             message.attachments.length
                                         )}
+                                        onClick={() =>
+                                            setOpenPhoto({
+                                                url: photo,
+                                                modal: true,
+                                            })
+                                        }
                                         alt={`Photo ${index + 1}`}
                                     />
                                 </li>
@@ -146,63 +163,72 @@ export default function Message({
                             })}
                         </ul>
                     )}
-                    {open && !message.is_deleted && (!reactions && username !== message.user_name || username === message.user_name) && (
-                        <div
-                            className={`${styles.menu__message} ${
-                                message.text.length > 50 && styles.more
-                            } ${
-                                username === message.user_name && styles.another
-                            } ${reactions && styles.reactions} ${
-                                index === 0 && styles.first
-                            }`}
-                        >
-                            {username === message.user_name && (
-                                <>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setUpdate({
-                                                edit: true,
-                                                text: message.text,
-                                                id: message.id,
-                                            });
-                                        }}
-                                    >
-                                        <Edit /> {t("menu-modal.edit")}
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            deleteMessageUser();
-                                        }}
-                                    >
-                                        <Delete /> {t("menu-modal.delete")}
-                                    </button>
-                                </>
-                            )}
+                    {open &&
+                        !message.is_deleted &&
+                        ((!reactions && username !== message.user_name) ||
+                            username === message.user_name) && (
+                            <div
+                                className={`${styles.menu__message} ${
+                                    message.text.length > 50 && styles.more
+                                } ${
+                                    username === message.user_name &&
+                                    styles.another
+                                } ${reactions && styles.reactions} ${
+                                    index === 0 && styles.first
+                                }`}
+                            >
+                                {username === message.user_name && (
+                                    <>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setUpdate({
+                                                    edit: true,
+                                                    text: message.text,
+                                                    id: message.id,
+                                                });
+                                            }}
+                                        >
+                                            <Edit /> {t("menu-modal.edit")}
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                deleteMessageUser();
+                                            }}
+                                        >
+                                            <Delete /> {t("menu-modal.delete")}
+                                        </button>
+                                    </>
+                                )}
 
-                            {!reactions && (
-                                <ul className={styles.reaction}>
-                                    {emojisResponse.map((response) => {
-                                        return (
-                                            <li key={response}>
-                                                <button
-                                                    onClick={(e) =>
-                                                        clickReaction(e)
-                                                    }
-                                                    type="button"
-                                                >
-                                                    {response}
-                                                </button>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            )}
-                        </div>
-                    )}
+                                {!reactions && (
+                                    <ul className={styles.reaction}>
+                                        {emojisResponse.map((response) => {
+                                            return (
+                                                <li key={response}>
+                                                    <button
+                                                        onClick={(e) =>
+                                                            clickReaction(e)
+                                                        }
+                                                        type="button"
+                                                    >
+                                                        {response}
+                                                    </button>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
+                            </div>
+                        )}
                 </span>
             </div>
+            {openPhoto.modal && (
+                <Modal onOpen={setOpenModalPhoto} className="full__image">
+                    <img src={openPhoto.url} />
+                </Modal>
+            )}
         </li>
     );
 }

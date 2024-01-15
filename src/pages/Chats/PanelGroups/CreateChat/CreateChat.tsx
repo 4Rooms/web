@@ -20,8 +20,9 @@ import { useParams } from "react-router-dom";
 
 export default function CreateChat() {
     const { t } = useTranslation("translation");
-    const {room} = useParams();
-    const { roomsList, setRoomsList, setToasterMessage, setShowToaster } = useChat();
+    const { room } = useParams();
+    const { roomsList, setRoomsList, setToasterMessage, setShowToaster } =
+        useChat();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const inputArray: InputsCreateKeys[] = ["title", "description"];
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -43,7 +44,7 @@ export default function CreateChat() {
         setError,
         clearErrors,
         formState: { errors },
-        reset
+        reset,
     } = useForm({
         defaultValues: {
             title: "",
@@ -106,10 +107,12 @@ export default function CreateChat() {
             if (chatOptions[key as keyof typeof chatOptions] !== undefined) {
                 formData.append(
                     key,
-                    chatOptions[key as keyof typeof chatOptions] as string | Blob
+                    chatOptions[key as keyof typeof chatOptions] as
+                        | string
+                        | Blob
                 );
             }
-        }    
+        }
         const newData = await createChat(room, formData);
         if (newData.name !== "AxiosError") {
             setRoomsList([newData.chat, ...(roomsList || [])]);
@@ -144,19 +147,21 @@ export default function CreateChat() {
                         </h1>
                         <form
                             onSubmit={handleSubmit(deliveryFormAuth)}
-                            className={styles.form__auth}>
+                            className={styles.form__auth}
+                        >
                             <div className={styles.wrapper__add}>
                                 <label className={styles.label__auth}>
                                     <input
                                         className={styles.add__image}
                                         type="file"
                                         onChange={handleImageChange}
-                                        required/>
+                                    />
                                     {!imageURL && <AddPhoto />}
                                     {imageURL && (
                                         <img
                                             className={styles.user__img}
-                                            src={imageURL}/>
+                                            src={imageURL}
+                                        />
                                     )}
                                 </label>
                             </div>
@@ -164,7 +169,8 @@ export default function CreateChat() {
                                 <label
                                     className={styles.label__auth}
                                     key={value}
-                                    htmlFor={value}>
+                                    htmlFor={value}
+                                >
                                     <FormInput<InputsCreateKeys, InputsCreate>
                                         value={value}
                                         register={register}
@@ -179,7 +185,8 @@ export default function CreateChat() {
                                                 ? "textarea"
                                                 : "create"
                                         }
-                                        onFocusInput={onFocusInput}/>
+                                        onFocusInput={onFocusInput}
+                                    />
                                     {!errors[value as keyof InputsCreate] &&
                                         formStateValid[
                                             value as keyof InputsCreate
@@ -201,11 +208,7 @@ export default function CreateChat() {
                                             <div
                                                 className={styles.focus__block}
                                             >
-                                                <p>
-                                                    {
-                                                        value as keyof InputsCreate
-                                                    }
-                                                </p>
+                                                <p>{t(`shared.${value as keyof InputsCreate}`)}</p>
                                             </div>
                                         )}
                                     {errors[value] &&
@@ -232,8 +235,9 @@ export default function CreateChat() {
                                     setFormSubmitted(true);
                                 }}
                                 type="submit"
-                                className="accent">
-                                {t('create-chat.button')}
+                                className="accent"
+                            >
+                                {t("create-chat.button")}
                             </Button>
                         </form>
                     </>

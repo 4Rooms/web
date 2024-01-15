@@ -20,3 +20,88 @@
         }
     }
 }
+
+.title__modal {
+    color: var(--color-text);
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 150%; 
+}
+
+.input__auth {
+    color: var(--OTHER-inactive_text);
+    font-size: 18px;
+    width: 90%;
+    padding: 10px 15px;
+    padding-right: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--OTHER-inactive_text);
+    &:focus {
+        outline: transparent;
+    }
+}
+
+.label__auth {
+    width: 100%;
+    position: relative;
+}
+
+.form__auth {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.wrapper__add {
+    width: 100%;
+}
+
+.add__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.text__error {
+    color: var(--OTHER-invalid);
+    font-size: 14px;
+    position: absolute;
+    top: 110%;
+}
+
+.error__auth {
+    position: absolute;
+    right: 15px;
+    top: 35%;
+}
+
+.focus__block {
+    background-color: var(--color-accent);
+    color: var(--background-other);
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: 600;
+    position: absolute;
+    top: -15%;
+    left: 15px;
+}
+
+.okey__auth {
+    position: absolute;
+    right: 15px;
+    top: 45%;
+}
+
+.user__img {
+    width: 80px;
+    height: 80px;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    position: absolute;
+}

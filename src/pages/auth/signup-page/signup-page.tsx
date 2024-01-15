@@ -25,7 +25,7 @@ import { ISchema, reach } from "yup";
 import debounce from "../../../utils/debounce/debounce.ts";
 
 export default function SignupPage() {
-    const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
+    const { t } = useTranslation('translation');
     const allFieldsValid = () => {
         return Object.values(formStateValid).every(value => value);
     };
@@ -137,13 +137,13 @@ export default function SignupPage() {
     };
     const [showToaster, setShowToaster] = useState(false);
 
-    return <AuthWrapper title={t('createAccount')} link={backLinkLocation.current}>
+    return <AuthWrapper title={t('auth-page.createAccount')} link={backLinkLocation.current}>
         <form
             className={styles.form__auth}
             onSubmit={handleSubmit(deliveryFormAuth)}>
             <div>
-                <GoogleAuthButton translation={t('sign up with google')}/>
-                <h2 className={styles.text__form}>{t('googleSignUp')}</h2>
+                <GoogleAuthButton translation={t('auth-page.sign up with google')}/>
+                <h2 className={styles.text__form}>{t('auth-page.googleSignUp')}</h2>
             </div>
 
             {inputArray.map((value) =>
@@ -176,17 +176,17 @@ export default function SignupPage() {
                     {!formStateValid[value as keyof InputsLogin] && formStateFocus[value as keyof InputsLogin] && !errors[value as keyof InputsLogin] &&
                         <>
                             <div className={styles.focus__block}>
-                                <p>{value}</p>
+                                <p>{t(`shared.${value}`)}</p>
                             </div>
                             <p className={styles.text__info}>
-                                {t(value)}
+                                {t(`auth-page.${value}`)}
                             </p>
                         </>
                     }
 
                     {errors[value] && !formStateValid[value] &&
                         <>
-                            <p className={styles.text__error}>{t(`${errors[value]?.message}`)}</p>
+                            <p className={styles.text__error}>{t(`auth-page.${errors[value]?.message}`)}</p>
                             <Error className={styles.error__auth}/>
                         </>
                     }
@@ -194,7 +194,7 @@ export default function SignupPage() {
             )}
             <div className={styles.wrapper__buttons}>
                 <Button disabled={!allFieldsValid()} className='accent' type='submit' onClick={() => setFormSubmitted(true)}>
-                    {t('sign up')}
+                    {t('auth-page.sign up')}
                 </Button>
             </div>
 
