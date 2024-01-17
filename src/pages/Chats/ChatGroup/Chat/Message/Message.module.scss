@@ -158,6 +158,21 @@
     flex-wrap: wrap;
     gap: 5px;
     max-width: 365px;
+
+    & > li {
+        width: calc(50% - 5px);
+        &.three__child {
+            &:nth-of-type(3) {
+                width: 100%;
+                & > img {
+                    width: 100%;
+                }
+            }
+        }
+        &.one__child {
+            width: 100%;
+         }
+    }
 }
 
 .list__reactions {
@@ -196,21 +211,6 @@
 }
 
 .message__photo {
-    width: 180px;
+    width: 100%;
     height: 120px;
-    @media screen and (max-width: 476px) {
-        width: calc(50% - 5px);
-    }
-    @media screen and (min-width: 871px) and (max-width: 1105px) {
-        width: calc(50% - 5px);
-    }
-    &.three__child {
-        &:nth-of-type(3) {
-            width: 100%;
-            & > img {
-
-                width: 100%;
-            }
-        }
-    }
 }

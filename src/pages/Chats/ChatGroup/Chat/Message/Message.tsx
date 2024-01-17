@@ -67,6 +67,8 @@ export default function Message({
     const getPhotoClassName = (attachmentsLength: number) => {
         if (attachmentsLength === 3) {
             return `${styles.message__photo} ${styles.three__child}`;
+        } else if (attachmentsLength === 1) {
+            return `${styles.message__photo} ${styles.one__child}`;
         }
         return styles.message__photo;
     };

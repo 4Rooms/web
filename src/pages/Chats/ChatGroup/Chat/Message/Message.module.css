@@ -163,6 +163,18 @@
   gap: 5px;
   max-width: 365px;
 }
+.message__photos > li {
+  width: calc(50% - 5px);
+}
+.message__photos > li.three__child:nth-of-type(3) {
+  width: 100%;
+}
+.message__photos > li.three__child:nth-of-type(3) > img {
+  width: 100%;
+}
+.message__photos > li.one__child {
+  width: 100%;
+}
 
 .list__reactions {
   display: flex;
@@ -197,22 +209,6 @@
 }
 
 .message__photo {
-  width: 180px;
+  width: 100%;
   height: 120px;
-}
-@media screen and (max-width: 476px) {
-  .message__photo {
-    width: calc(50% - 5px);
-  }
-}
-@media screen and (min-width: 871px) and (max-width: 1105px) {
-  .message__photo {
-    width: calc(50% - 5px);
-  }
-}
-.message__photo.three__child:nth-of-type(3) {
-  width: 100%;
-}
-.message__photo.three__child:nth-of-type(3) > img {
-  width: 100%;
 }/*# sourceMappingURL=Message.module.css.map */

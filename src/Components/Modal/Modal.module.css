@@ -59,30 +59,43 @@
   width: 555px;
 }
 .window.full__image {
-  padding: 0;
+  padding: 20px;
   border-radius: 5px;
   background-color: transparent;
   overflow-y: auto;
-  width: 50%;
-  height: 70%;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+  scrollbar-width: none;
 }
 .window.full__image::-webkit-scrollbar {
   background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  scrollbar-width: none;
+  display: none;
 }
 .window.full__image::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  scrollbar-width: none;
 }
 .window.full__image::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  scrollbar-width: none;
 }
 .window.full__image > img {
   border-radius: 10px;
+  max-width: 100%;
+  max-height: 100%;
 }
 .window.full__image > button {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
+  top: 30px;
+  right: 25px;
   border-radius: 20px;
   background-color: black;
 }
