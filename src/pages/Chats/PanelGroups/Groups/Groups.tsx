@@ -19,6 +19,7 @@ export default function Groups() {
             delete: false,
         });
     };
+    console.log(roomsList)
     return (
         <ul className={styles.container__groups}>
             {roomsList?.map((group) => {
