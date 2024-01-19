@@ -15,6 +15,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
               url: string;
               timestamp: string;
               likes: number;
+              user_id: number;
           }>
         | undefined
     >(undefined);

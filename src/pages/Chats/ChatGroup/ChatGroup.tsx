@@ -13,36 +13,31 @@ interface ProfileContextType {
     isSmallScreen?: boolean;
 }
 
+interface ChatType {
+    id?: number;
+    title?: string;
+    room?: string;
+    img?: string;
+    user?: string;
+    description?: string;
+    url?: string;
+    timestamp?: string;
+    likes?: number;
+    user_id: number;
+}
+
 export default function ChatGroup({ isSmallScreen }: ProfileContextType) {
     const { chatId } = useParams();
     const { roomsList, deleteChat } = useChat();
-    const [chat, setChat] = useState<{
-        id?: number;
-        title?: string;
-        room?: string;
-        img?: string;
-        user?: string;
-        description?: string;
-        url?: string;
-        timestamp?: string;
-        likes?: number;
-    }>({});
+    const [chat, setChat] = useState<ChatType | undefined>(undefined);
+
     useEffect(() => {
         const selectedChat = roomsList?.find(
-            (chat: {
-                id: number;
-                title: string;
-                room: string;
-                img: string;
-                user: string;
-                description: string;
-                url: string;
-                timestamp: string;
-                likes: number;
-            }) => chat.id === Number(chatId)
+            (chat: ChatType) => chat.id === Number(chatId)
         );
-        setChat(selectedChat || {});
+        setChat(selectedChat);
     }, [chatId, roomsList]);
+
     return (
         <div className={styles.container__chatGroups}>
             {!chatId && !isSmallScreen ? (
@@ -54,13 +49,14 @@ export default function ChatGroup({ isSmallScreen }: ProfileContextType) {
             ) : (
                 <>
                     <Infrotmation
-                        user={chat.user}
+                        user={chat?.user}
                         isSmallScreen={isSmallScreen}
-                        avatar={chat.img}
+                        avatar={chat?.img}
                         title={chat?.title ?? ""}
-                        description={chat.description}
-                        timestamp={chat.timestamp}
-                        likes={chat.likes}
+                        description={chat?.description ?? ""}
+                        timestamp={chat?.timestamp ?? ""}
+                        likes={chat?.likes ?? 0}
+                        user_id={chat?.user_id ?? 0}
                     />
                     <Online />
                     <Chat />

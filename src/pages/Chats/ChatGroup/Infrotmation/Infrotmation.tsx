@@ -19,6 +19,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { cutTextFunction } from "../../../../utils/cutTextFuncion/cutTextFunction.tsx";
 import { formatTime } from "../../../../utils/formatTime/formatTime.tsx";
+import { localStorageService } from "../../../../services/local-storage/local-storage.ts";
 
 interface InfrotmationProps {
     title: string;
@@ -28,6 +29,7 @@ interface InfrotmationProps {
     isSmallScreen: boolean | undefined;
     user: string | undefined;
     likes: number | undefined;
+    user_id: number | undefined;
 }
 
 export default function Infrotmation({
@@ -38,6 +40,7 @@ export default function Infrotmation({
     isSmallScreen,
     user,
     likes,
+    user_id
 }: InfrotmationProps) {
     const { room, chatId } = useParams();
     const navigate = useNavigate();
@@ -45,7 +48,7 @@ export default function Infrotmation({
     const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
     const { ws, setDeleteChat, savedChats, setSavedChats } =
         useChat();
-    const { username } = useAuth();
+    const { id } = localStorageService.get("user");
     const onClickChangeOpenModal = (): void => {
         setOpenModal((prevOpen): boolean => {
             return !prevOpen;
@@ -161,7 +164,7 @@ export default function Infrotmation({
                                 </div>
                             </div>
                         </div>
-                        {username === user && (
+                        {id === user_id && (
                             <button
                                 onClick={() => {
                                     setOpenModalDelete(true);

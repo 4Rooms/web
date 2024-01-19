@@ -1,30 +1,32 @@
-import React, { useEffect } from "react";
+import React, { lazy, useEffect } from "react";
 import "./App.scss";
-import ForgotPassword from "./pages/auth/login-page/forgot-password/forgot-password.tsx";
-import PasswordReset from "./pages/auth/login-page/forgot-password/forgot-password.tsx";
 import { useAuth } from "./pages/auth/signup-page/auth-context/use-auth.tsx";
-import Chats from "./pages/Chats/Chats.tsx";
 import GuardRoutes from "./utils/guard-routes.tsx";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { AuthPage } from "./pages/auth/auth-page/auth-page.tsx";
-import EmailConfirmPage from "./pages/auth/email-confirm-page/email-confirm-page.tsx";
-import SignupPage from "./pages/auth/signup-page/signup-page.tsx";
-import SignupConfirmation from "./pages/auth/signup-page/signup-confirmation/signup-confirmation.tsx";
-import LoginPage from "./pages/auth/login-page/login-page.tsx";
-import { DashboardPage } from "./pages/dashboard/Dashboard.tsx";
-import Profile from "./pages/profile/Profile.tsx";
-import LogOut from "./pages/profile/LogOut/LogOut.tsx";
-import ChangeLanguage from "./pages/profile/ChangeLanguage/ChangeLanguage.tsx";
-import ChangeTheme from "./pages/profile/ChangeTheme/ChangeTheme.tsx";
-import ResetPassword from "./pages/profile/ResetPassword/ResetPassword.tsx";
-import ChangeUserData from "./pages/profile/ChangeUserData/ChangeUserData.tsx";
 import { setInitialLanguage } from "./utils/language-selector/language-selector.ts";
-import Saved from "./pages/saved/Saved.tsx";
-import MyChats from "./pages/myChats/MyChats.tsx";
 import Dekanator from "./shared/dekanator/Dekanator.tsx";
 import { pathsForShowBackGround, pathsToHideHeader } from "./utils/arrays/arrays.tsx";
 import { localStorageService } from "./services/local-storage/local-storage.ts";
+
+const Saved = lazy(() => import('./pages/saved/Saved.tsx'));
+const MyChats = lazy(() => import('./pages/myChats/MyChats.tsx'));
+const ChangeUserData = lazy(() => import('./pages/profile/ChangeUserData/ChangeUserData.tsx'));
+const ResetPassword = lazy(() => import('./pages/profile/ResetPassword/ResetPassword.tsx'));
+const ChangeTheme = lazy(() => import('./pages/profile/ChangeTheme/ChangeTheme.tsx'));
+const ChangeLanguage = lazy(() => import('./pages/profile/ChangeLanguage/ChangeLanguage.tsx'));
+const LogOut = lazy(() => import('./pages/profile/LogOut/LogOut.tsx'));
+const Profile = lazy(() => import('./pages/profile/Profile.tsx'));
+const DashboardPage = lazy(() => import("./pages/dashboard/Dashboard.tsx"));
+const LoginPage = lazy(() => import('./pages/auth/login-page/login-page.tsx'));
+const SignupConfirmation = lazy(() => import('./pages/auth/signup-page/signup-confirmation/signup-confirmation.tsx'));
+const SignupPage = lazy(() => import('./pages/auth/signup-page/signup-page.tsx'));
+const AuthPage = lazy(() => import('./pages/auth/auth-page/auth-page.tsx'));
+const Chats = lazy(() => import('./pages/Chats/Chats.tsx'));
+const ForgotPassword = lazy(() => import('./pages/auth/login-page/forgot-password/forgot-password.tsx'));
+const PasswordReset = lazy(() => import('./pages/auth/login-page/forgot-password/forgot-password.tsx'));
+const EmailConfirmPage = lazy(() => import('./pages/auth/email-confirm-page/email-confirm-page.tsx'));
+
 
 export default function App() {
     const { isAuthenticated, username, setUsername } = useAuth();

@@ -110,6 +110,8 @@
     font-weight: 700;
     line-height: 150%;
     margin-right: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .group__modal {
