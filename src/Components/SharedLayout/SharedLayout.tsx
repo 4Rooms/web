@@ -1,12 +1,12 @@
 import React, { Suspense, useContext, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import styles from "./SharedLayout.module.css";
 import { AuthContext } from "../../pages/auth/signup-page/auth-context/auth-context.tsx";
 import { localStorageService } from "../../services/local-storage/local-storage.ts";
 import { useChat } from "../../pages/chats/chat-context/use-chat.tsx";
 import authService from "../../services/auth/auth.service.tsx";
-import { Vortex } from 'react-loader-spinner'
+import loader from "../../assets/white-shy.gif";
 
 type Props = {
     user: string | null;
@@ -17,8 +17,9 @@ type Props = {
 export default function SharedLayout({ showHeader }: Props) {
     const location = useLocation();
     const { setChatOpen, setChatId } = useChat();
-    const { setUserIcon } = useContext(AuthContext);
+    const { setUserIcon, setIsAuthenticated } = useContext(AuthContext);
     const is_verif = localStorageService?.get("user");
+    const navigate = useNavigate();
 
     useEffect(() => {
         authService.getProfile().then((response) => {
@@ -26,11 +27,18 @@ export default function SharedLayout({ showHeader }: Props) {
         });
     }, []);
     useEffect(() => {
+        if (!document.cookie && is_verif !== null && is_verif.is_email_confirmed) {
+            if (localStorageService.get("user")) {
+                localStorageService.remove("user");
+                navigate("/")
+            }
+            setIsAuthenticated(false);
+        }
         if (location.pathname === "/") {
             setChatOpen(false);
             setChatId(null);
         }
-    }, [location, setChatId, setChatOpen]);
+    }, [is_verif, location, navigate, setChatId, setChatOpen, setIsAuthenticated]);
 
     return (
         <>
@@ -43,19 +51,20 @@ export default function SharedLayout({ showHeader }: Props) {
             </header>
             <Suspense
                 fallback={
-                    <Vortex
-                        visible={true}
-                        height="80"
-                        width="80"
-                        ariaLabel="vortex-loading"
-                        wrapperClass="vortex-wrapper"
-                        colors={['red', 'green', "purple", "red", 'orange', 'purple']}
-                        wrapperStyle={{
-                            position: 'fixed',
-                            top: '50%',
-                            left: '50%',
-                            zIndex: '999'  
+                    <img
+                        className="bear"
+                        src={loader}
+                        style={{
+                            position: "fixed",
+                            top: "50%",
+                            left: "50%",
+                            zIndex: "999",
+                            transform: "translate(-50%,-50%)",
+                            width: 100,
+                            height: 100,
                         }}
+                        alt="Gif"
+                        crossOrigin="anonymous"
                     />
                 }
             >
