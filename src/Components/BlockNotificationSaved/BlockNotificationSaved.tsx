@@ -11,6 +11,7 @@ export default function BlockNotificationSaved({
     likes,
     time,
     room,
+    id,
 }: {
     img: string;
     text: string;
@@ -19,6 +20,7 @@ export default function BlockNotificationSaved({
     time: string;
     id?: number;
     room?: string;
+    chat?: number | undefined;
 }) {
     const url = `/chat/${room}/${id}`;
     return (
