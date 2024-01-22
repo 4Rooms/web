@@ -46,8 +46,8 @@ export default function SharedLayout({ showHeader }: Props) {
             if (localStorageService.get("user")) {
                 localStorageService.remove("user");
                 navigate("/")
+                setIsAuthenticated(false);
             }
-            setIsAuthenticated(false);
         }
         if (location.pathname === "/") {
             setChatOpen(false);
