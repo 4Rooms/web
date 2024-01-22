@@ -165,6 +165,7 @@ export default function MyChats() {
         setFormSubmitted(false);
     }, [open, reset]);
 
+    console.log(filterCreate)
     return (
         <BasedNotificationSaved title={t("my-chart.page-title")}>
             {filterCreate.map((chat) => {

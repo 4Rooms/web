@@ -12,7 +12,6 @@ export default function BlockNotificationSaved({
     time,
     id,
     room,
-    chat,
 }: {
     img: string;
     text: string;
@@ -21,15 +20,15 @@ export default function BlockNotificationSaved({
     time: string;
     id?: number;
     room?: string;
-    chat?: number;
 }) {
+    const url = `/chat/${room}/${id}`;
     return (
         <>
             <div className={styles.block}>
                 <div className={styles.block__up}>
                     <img src={img} />
                     {room ? (
-                        <Link to={`/chat/${room}/${chat}`}>{title}</Link>
+                        <Link to={url}>{title}</Link>
                     ) : (
                         <h2>{title}</h2>
                     )}

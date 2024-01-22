@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import styles from "./BasedNotificationSaved.module.css";
 import { MoreInformation, SearchRooms } from "../../assets/icons";
 import { getCreateChat, getSavedChats } from "../../services/chat/chat.service";
@@ -6,14 +7,14 @@ import { useChat } from "../../pages/chats/chat-context/use-chat";
 import { useTranslation } from "react-i18next";
 import { optionDashboard } from "../../utils/arrays/arrays";
 import { Result } from "../../App.types";
+import {
+    openSection,
+    updatedState,
+} from "../../utils/functionOpenChats/functionOpenChats";
 
 type Props = {
     children: React.ReactNode;
     title: string;
-};
-
-type OpenSectionType = {
-    [key: string]: boolean;
 };
 
 export default function BasedNotificationSaved({ children, title }: Props) {
@@ -25,13 +26,38 @@ export default function BasedNotificationSaved({ children, title }: Props) {
         savedChats,
         setSavedChats,
     } = useChat();
-    const [openSection, setOpenSection] = useState<OpenSectionType>({
-        cinema: false,
-        books: false,
-        games: false,
-        music: false,
-    });
     const { t } = useTranslation("translation");
+    const [isButtonClick, setIsButtonClick] = useState(false);
+
+    function handleButtonClick(
+        option: string,
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) {
+        updatedState(option);
+        setIsButtonClick((prevState) => !prevState);
+        e.stopPropagation();
+    }
+
+    const onWindowClick = (e: MouseEvent) => {
+        if (
+            (isButtonClick && e.target === document.getElementById("root")) ||
+            (isButtonClick && e.target === document.getElementById("container")) ||
+            (isButtonClick && e.target === document.querySelector("h2"))
+        ) {
+            updatedState("root");
+            setIsButtonClick(false);
+            console.log(e.currentTarget);
+            console.log(e.target);
+        }
+    };
+
+    useEffect(() => {
+        if (isButtonClick) {
+            window.addEventListener("click", (e) => {
+                onWindowClick(e);
+            });
+        }
+    }, [isButtonClick, onWindowClick]);
 
     const fetchData = async (
         name: string,
@@ -47,7 +73,7 @@ export default function BasedNotificationSaved({ children, title }: Props) {
     };
 
     return (
-        <div className={styles.container}>
+        <div         id="container" className={styles.container}>
             <h2>{title}</h2>
             <div className={styles.container__wrapper}>
                 {optionDashboard.map((option, index) => {
@@ -66,29 +92,17 @@ export default function BasedNotificationSaved({ children, title }: Props) {
                         >
                             <p>{t(`dashboard.${option.name.toLowerCase()}`)}</p>
                             <button
-                                onClick={async () => {
-                                    setOpenSection((prevState) => {
-                                        const updatedState = Object.keys(
-                                            prevState
-                                        ).reduce(
-                                            (acc: OpenSectionType, key) => {
-                                                acc[key] = false;
-                                                return acc;
-                                            },
-                                            {}
-                                        );
+                                onClick={async (e) => {
+                                    handleButtonClick(
+                                        option.name.toLowerCase(),
+                                        e
+                                    );
 
-                                        return {
-                                            ...updatedState,
-                                            [option.name.toLocaleLowerCase()]:
-                                                !prevState[
-                                                    option.name.toLocaleLowerCase()
-                                                ],
-                                        };
-                                    });
-
-                                    if (title === "My Chats" || title === "Мої чати") {
-                                        console.log(title)
+                                    if (
+                                        title === "My Chats" ||
+                                        title === "Мої чати"
+                                    ) {
+                                        console.log(title);
                                         fetchData(
                                             option.name,
                                             setCreateChat,
