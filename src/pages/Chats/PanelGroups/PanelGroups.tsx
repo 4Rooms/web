@@ -4,10 +4,15 @@ import FilterGroup from "./FilterGroup/FilterGroup";
 import Groups from "./Groups/Groups";
 import CreateChat from "./CreateChat/CreateChat";
 
-export default function PanelGroups() {
+interface ProfileContextType {
+    isSmallScreen?: boolean;
+}
+
+
+export default function PanelGroups({ isSmallScreen }: ProfileContextType) {
     return (
         <div className={styles.container__chatGroups}>
-            <FilterGroup />
+            <FilterGroup isSmallScreen={isSmallScreen} />
             <Groups />
             <CreateChat />
         </div>

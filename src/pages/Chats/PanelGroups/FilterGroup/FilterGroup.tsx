@@ -6,7 +6,11 @@ import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useTranslation } from "react-i18next";
 import { filterButton } from "../../../../utils/arrays/arrays.tsx";
 
-export default function FilterGroup() {
+interface ProfileContextType {
+    isSmallScreen?: boolean;
+}
+
+export default function FilterGroup({ isSmallScreen }: ProfileContextType) {
     const { t } = useTranslation("translation", { keyPrefix: "filter" });
     const { room } = useParams();
     const { setChatOpen, setCategory, setChatId, setDeleteChat } = useChat();
@@ -22,12 +26,12 @@ export default function FilterGroup() {
         setCategory(categoryChat.toLocaleLowerCase());
     }, [categoryChat, setCategory]);
     useEffect(() => {
-        if (scroll) {
+        if (scroll && isSmallScreen) {
             setTimeout(() => {
                 window.scrollTo({top: 875, left: 0, behavior: "smooth"}); 
               }, 100);
         }
-    }, [scroll]);
+    }, [scroll, isSmallScreen]);
     return (
         <div>
             <ul className={styles.container__filterFroups}>
