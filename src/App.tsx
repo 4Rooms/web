@@ -33,7 +33,6 @@ export default function App() {
     const location = useLocation();
     const showHeader = !pathsToHideHeader.includes(location.pathname);
     const showBackground = location.pathname.split("/")[2]
-    setInitialLanguage();
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
@@ -44,6 +43,7 @@ export default function App() {
         }
         const theme = localStorageService.get('theme');
         document.documentElement.setAttribute('data-theme', theme ? theme : 'light');
+        setInitialLanguage();
     }, []);
 
     return (
