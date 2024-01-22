@@ -29,7 +29,7 @@ export const cutTextFunction = (text: string, title: string, isSmallScreen?: boo
         ellipse: true,
       },
       groups: {
-        limit: 19,
+        limit: 18,
         ellipse: true,
       },
     };

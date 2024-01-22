@@ -15,6 +15,7 @@ interface ChatContextType {
               url: string;
               timestamp: string;
               likes: number;
+              user_id: number;
           }>
         | undefined;
     setRoomsList: Dispatch<
@@ -29,6 +30,7 @@ interface ChatContextType {
                   url: string;
                   timestamp: string;
                   likes: number;
+                  user_id: number;
               }>
             | undefined
         >

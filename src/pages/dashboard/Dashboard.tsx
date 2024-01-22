@@ -6,7 +6,7 @@ import { getInitialCookieConsent, updateCookieConsent } from "../../utils/cookie
 import { useTranslation } from "react-i18next";
 import { optionDashboard } from "../../utils/arrays/arrays.tsx";
 
-export function DashboardPage() {
+export default function DashboardPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'dashboard' });
 
     const [cookieConsent, setCookieConsent] = useState(() => getInitialCookieConsent());

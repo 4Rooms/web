@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./auth-page.module.css";
 import { useTranslation } from "react-i18next";
 
-export function AuthPage() {
+export default function AuthPage() {
     const { t } = useTranslation('translation', { keyPrefix: 'auth-page' });
     const location = useLocation();
 

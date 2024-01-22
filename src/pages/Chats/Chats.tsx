@@ -175,7 +175,7 @@ export default function Chats() {
                             ) : (
                                 <Welcome isSmallScreen={isSmallScreen} />
                             )}
-                            <PanelGroups />
+                            <PanelGroups isSmallScreen={isSmallScreen} />
                         </div>
                     )}
                 </div>

@@ -6,20 +6,32 @@ import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import { useTranslation } from "react-i18next";
 import { filterButton } from "../../../../utils/arrays/arrays.tsx";
 
-export default function FilterGroup() {
+interface ProfileContextType {
+    isSmallScreen?: boolean;
+}
+
+export default function FilterGroup({ isSmallScreen }: ProfileContextType) {
     const { t } = useTranslation("translation", { keyPrefix: "filter" });
-    const {room } = useParams();
+    const { room } = useParams();
     const { setChatOpen, setCategory, setChatId, setDeleteChat } = useChat();
     const arrayCategory: string[] = [t("New"), t("Popular"), t("Old")];
     const location = useLocation();
     const [show, setShow] = useState<boolean>(false);
     const [categoryChat, setCategoryChat] = useState<string>("New");
+    const [scroll, setScroll] = useState<boolean | string>(false);
     const changeNameCategory = arrayCategory.filter(
         (category) => category !== categoryChat
     );
     useEffect(() => {
         setCategory(categoryChat.toLocaleLowerCase());
     }, [categoryChat, setCategory]);
+    useEffect(() => {
+        if (scroll && isSmallScreen) {
+            setTimeout(() => {
+                window.scrollTo({top: 875, left: 0, behavior: "smooth"}); 
+              }, 100);
+        }
+    }, [scroll, isSmallScreen]);
     return (
         <div>
             <ul className={styles.container__filterFroups}>
@@ -32,7 +44,8 @@ export default function FilterGroup() {
                                     room ? styles[room] : ""
                                 } ${
                                     location.pathname ===
-                                    `/chat/${text.toLocaleLowerCase()}` || room === text.toLocaleLowerCase()
+                                        `/chat/${text.toLocaleLowerCase()}` ||
+                                    room === text.toLocaleLowerCase()
                                         ? styles.active
                                         : ""
                                 }`}
@@ -43,6 +56,7 @@ export default function FilterGroup() {
                                         name: "",
                                         delete: false,
                                     });
+                                    setScroll(text.toLocaleLowerCase())
                                 }}
                             >
                                 {t(text.toLocaleLowerCase())}

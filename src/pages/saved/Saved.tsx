@@ -34,6 +34,8 @@ export default function Saved() {
                             likes={chat.likes}
                             text={chat.description}
                             img={chat.img}
+                            room={chat.room}
+                            chat={chat.chat}
                         />
                         <button
                             onClick={() => {

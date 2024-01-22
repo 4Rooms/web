@@ -55,6 +55,8 @@
   color: var(--color-text);
   font-size: 16px;
   line-height: 150%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .group__additional {
@@ -113,6 +115,8 @@
   font-weight: 700;
   line-height: 150%;
   margin-right: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .group__modal {

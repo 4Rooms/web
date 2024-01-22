@@ -62,6 +62,8 @@
   color: var(--color-text);
   font-weight: 600;
   line-height: 150%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media screen and (min-width: 370px) and (max-width: 871px) {
   .group__text {
