@@ -4,7 +4,6 @@ import {
     InputsChangeUserData,
     InputsLogin,
     InputsRegistraytion,
-    InputsResetPassword,
 } from "../../App.types";
 import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 
