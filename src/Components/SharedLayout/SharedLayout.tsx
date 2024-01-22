@@ -7,6 +7,7 @@ import { localStorageService } from "../../services/local-storage/local-storage.
 import { useChat } from "../../pages/chats/chat-context/use-chat.tsx";
 import authService from "../../services/auth/auth.service.tsx";
 import loader from "../../assets/white-shy.gif";
+import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 
 type Props = {
     user: string | null;
@@ -17,7 +18,7 @@ type Props = {
 export default function SharedLayout({ showHeader }: Props) {
     const location = useLocation();
     const { setChatOpen, setChatId } = useChat();
-    const { setUserIcon, setIsAuthenticated } = useContext(AuthContext);
+    const { setUsername, setUserIcon, setIsAuthenticated } = useContext(AuthContext);
     const is_verif = localStorageService?.get("user");
     const navigate = useNavigate();
 
@@ -27,6 +28,20 @@ export default function SharedLayout({ showHeader }: Props) {
         });
     }, []);
     useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const token = queryParams.get('token');
+        if (token) {
+            const maxAge = 30 * 24 * 60 * 60;
+            document.cookie = `4roomToken=${token};path=/;max-age=${maxAge}`;
+            secureApi.get('user/').then((response) => {
+                setUsername(response.data.username);
+                localStorageService.set("user", response.data);
+                if (response.data.is_email_confirmed) {
+                    setIsAuthenticated(true);
+                }
+                navigate('/')
+            });
+        }
         if (!document.cookie && is_verif !== null && is_verif.is_email_confirmed) {
             if (localStorageService.get("user")) {
                 localStorageService.remove("user");
