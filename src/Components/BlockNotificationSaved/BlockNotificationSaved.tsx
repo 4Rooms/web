@@ -10,7 +10,6 @@ export default function BlockNotificationSaved({
     title = "",
     likes,
     time,
-    id,
     room,
 }: {
     img: string;

@@ -11,7 +11,6 @@ import {
 import Modal from "../../../../Components/Modal/Modal";
 import { useChat } from "../../../chats/chat-context/use-chat.tsx";
 import Button from "../../../../shared/button/button.tsx";
-import { useAuth } from "../../../auth/signup-page/auth-context/use-auth.tsx";
 import {
     deleteSavedChat,
     postSavedChat,
@@ -38,7 +37,6 @@ export default function Infrotmation({
     timestamp,
     avatar,
     isSmallScreen,
-    user,
     likes,
     user_id
 }: InfrotmationProps) {
