@@ -4,7 +4,7 @@
     display: flex;
 }
 .container__auth {
-    background-color: rgba(234, 234, 234, 0.7);
+    background-color: var(--background-color-MAIN-block);
     padding: 40px 8px;
     display: flex;
     flex-direction: column;
@@ -26,8 +26,11 @@
     margin-bottom: 48px;
     height: fit-content;
     @media (min-width: 391px) {
-      margin-bottom: 80px;
-  }
+        margin-bottom: 80px;
+    }
+    & > a > svg > path {
+        fill: var(--color-text);
+    }
 }
 
 .title__auth {
@@ -39,6 +42,6 @@
         font-size: 26px;
     }
     @media (min-width: 473px) {
-      font-size: 36px;
-  }
+        font-size: 36px;
+    }
 }

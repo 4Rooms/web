@@ -1,5 +1,5 @@
 import React, { lazy, useEffect } from "react";
-import "./App.scss";
+import "./App.css";
 import { useAuth } from "./pages/auth/signup-page/auth-context/use-auth.tsx";
 import GuardRoutes from "./utils/guard-routes.tsx";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
@@ -42,7 +42,7 @@ export default function App() {
             setUsername(loggedInUsername);
         }
         const theme = localStorageService.get('theme');
-        document.documentElement.setAttribute('data-theme', theme ? theme : 'light');
+        document.documentElement.setAttribute('data-theme', theme ? theme : 'dark');
         setInitialLanguage();
     }, []);
 

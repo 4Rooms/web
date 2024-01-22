@@ -10,7 +10,7 @@
     --color-valid: #2ca129;
     --color-background-block: rgba(234, 234, 234, 0.7);
     --color-inactive-text: #616161;
-    --color-background-secondary: rgba(44, 55, 76, 0.70);
+    --color-background-secondary: rgba(44, 55, 76, 0.7);
     --background-cinema: #61c9a8;
     --background-image-1x: url(./assets/background_image@1x.png);
     --background-image-2x: url(./assets/background_image@2x.png);
@@ -19,14 +19,14 @@
     --profile-section: rgba(234, 234, 234, 0.7);
     --profile-icon: #212121;
     --input-icon: #212121;
-    --disabled-button-background: #C7C7C7;
+    --disabled-button-background: #c7c7c7;
     --disabled-button-color: #616161;
     --cookie-background: rgba(234, 234, 234, 0.7);
     --OTHER-inactive_text: #616161;
     --background-music: url(./assets/background_music@1x.png);
     --background-games: url(./assets/background_games@1x.png);
     color: var(--color-text);
-    --ROOMS-Games-dark: #CC0000;
+    --ROOMS-Games-dark: #cc0000;
     background-color: var(--color-backgrounds);
     --ROOMS-Cinema-light: #b3dccf;
     --ROOMS-Books-light: #eed78c;
@@ -36,43 +36,50 @@
     --ROOMS-Books-transperent-main: rgba(238, 215, 140, 0.7);
     --ROOMS-Music-transperent-main: rgba(223, 184, 241, 0.7);
     --ROOMS-Games-transperent-main: rgba(242, 181, 181, 0.7);
+    --background-color-MAIN-block: rgba(234, 234, 234, 0.7);
 }
 
 [data-theme="dark"] {
     --color-text: #eaeaea;
     --color-background: #2c374c;
     --background-other: #2c374c;
-    --color-accent: #B187E8;
+    --color-accent: #b187e8;
     --color-accent-light: #ad6bcb; /* Assuming this is the dark theme accent light */
     --color-text-secondary: #a1a1a1;
     --color-text-main: #eaeaea;
     --color-invalid: #d83434;
     --color-valid: #2ca129;
-    --color-background-block: rgba(44, 55, 76, 0.9); /* Assuming you want a darker block background */
+    --color-background-block: rgba(
+        44,
+        55,
+        76,
+        0.9
+    ); /* Assuming you want a darker block background */
     --color-inactive-text: #616161;
-    --color-background-secondary: rgba(44, 55, 76, 0.90);
+    --color-background-secondary: rgba(44, 55, 76, 0.9);
     --background-image-1x: url(./assets/dark_background_image@1x.png);
     --background-image-2x: url(./assets/dark_background_image@2x.png);
     --background-books: url(./assets/dark_background_books@1x.png);
     --background-cinemas: url(./assets/dark_background_cinema@1x.png);
-    --profile-section: rgba(44, 55, 76, 0.70);
+    --profile-section: rgba(44, 55, 76, 0.7);
     --profile-icon: #eaeaea;
     --input-icon: rgba(0, 0, 0, 0.1);
-    --disabled-button-background: #7A7A7A;
+    --disabled-button-background: #7a7a7a;
     --disabled-button-color: s#2C374C;
-    --cookie-background: #2C374C;
-    --OTHER-inactive_text: #A6A6A6;
-    --ROOMS-Games-dark: #D28181;
-    --ROOMS-Cinema-light: #61C9A8;
-    --ROOMS-Books-light: #CC9C00;
-    --ROOMS-Music-light: #AD6BCB;
-    --ROOMS-Games-light: #D28181;
-    --ROOMS-Cinema-transperent-main: rgba(97, 201, 168, 0.70);
-    --ROOMS-Books-transperent-main: rgba(245, 187, 0, 0.70);
-    --ROOMS-Music-transperent-main: rgba(208, 110, 253, 0.70);
-    --ROOMS-Games-transperent-main: rgba(255, 102, 102, 0.70);
+    --cookie-background: #2c374c;
+    --OTHER-inactive_text: #a6a6a6;
+    --ROOMS-Games-dark: #d28181;
+    --ROOMS-Cinema-light: #61c9a8;
+    --ROOMS-Books-light: #cc9c00;
+    --ROOMS-Music-light: #ad6bcb;
+    --ROOMS-Games-light: #d28181;
+    --ROOMS-Cinema-transperent-main: rgba(97, 201, 168, 0.7);
+    --ROOMS-Books-transperent-main: rgba(245, 187, 0, 0.7);
+    --ROOMS-Music-transperent-main: rgba(208, 110, 253, 0.7);
+    --ROOMS-Games-transperent-main: rgba(255, 102, 102, 0.7);
     --background-music: url(./assets/background_dark_music@1x.png);
     --background-games: url(./assets/background_dark_games@1x.png);
+    --background-color-MAIN-block: rgba(44, 55, 76, 0.7);
 }
 
 #root {
@@ -81,15 +88,18 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 100vh;
-    background-size: cover;
     background: transparent var(--background-image-1x) no-repeat 100% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
     @media (min-device-pixel-ratio: 2),
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
         background: var(--background-image-2x) 100%;
     }
     @media screen and (min-width: 768px) {
-        background: var(--background-image-1x)  100%;
+        background: var(--background-image-1x) 100%;
+        background-size: cover;
+        background-size: cover;
         @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
@@ -97,11 +107,13 @@
         }
     }
     @media screen and (min-width: 1280px) {
-        background: var(--background-image-1x)  100%;
+        background: var(--background-image-1x) 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
         @media (min-device-pixel-ratio: 2),
             (min-resolution: 192dpi),
             (min-resolution: 2dppx) {
-            background: var(--background-image-2x)  100%;
+            background: var(--background-image-2x) 100%;
         }
     }
 }
