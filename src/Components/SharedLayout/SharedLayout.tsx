@@ -45,8 +45,8 @@ export default function SharedLayout({ showHeader }: Props) {
         if (!document.cookie && is_verif !== null && is_verif.is_email_confirmed) {
             if (localStorageService.get("user")) {
                 localStorageService.remove("user");
-                navigate("/")
                 setIsAuthenticated(false);
+                navigate("/")
             }
         }
         if (location.pathname === "/") {
