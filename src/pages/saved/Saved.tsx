@@ -21,7 +21,7 @@ export default function Saved() {
                 prevState.filter((item) => item.chat !== id)
             );
         }
-    };
+    };console.log(filterSaved)
     return (
         <BasedNotificationSaved title={t("saved-chats.page-title")}>
             {filterSaved.map((chat) => {
