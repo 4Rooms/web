@@ -33,23 +33,23 @@ export default function Chats() {
         setSavedChats,
     } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-    function updateMessagesWithNewMessage(prevState, newMessage) {
+    function updateMessagesWithNewMessage(prevState: any, newMessage: any) {
         return [...prevState, newMessage];
     }
 
-    function updateMessagesWithDeletedFlag(prevMessages, id) {
+    function updateMessagesWithDeletedFlag(prevMessages: any[], id: any) {
         return prevMessages.map((message) =>
             message.id === id ? { ...message, is_deleted: true } : message
         );
     }
 
-    function updateMessagesWithUpdatedText(prevMessages, id, newText) {
+    function updateMessagesWithUpdatedText(prevMessages: any[], id: any, newText: any) {
         return prevMessages.map((message) =>
             message.id === id ? { ...message, text: newText } : message
         );
     }
 
-    function updateMessagesWithReaction(prevState, reactionData) {
+    function updateMessagesWithReaction(prevState: any[], reactionData: { id: any; }) {
         return prevState.map((message) => {
             if (message.id === reactionData.id) {
                 message.reactions?.push(reactionData);
@@ -58,11 +58,11 @@ export default function Chats() {
         });
     }
 
-    function removeUserReaction(prevState, msgData) {
+    function removeUserReaction(prevState: any[], msgData: { id: any; user: any; }) {
         return prevState.map((message) => {
             if (message.id === msgData.id && message.reactions) {
                 const newReactions = message.reactions.filter(
-                    (reaction) => reaction.user_name !== msgData.user && reaction.user !== msgData.user
+                    (reaction: { user_name: any; user: any; }) => reaction.user_name !== msgData.user && reaction.user !== msgData.user
                 );
                 return { ...message, reactions: newReactions };
             }
@@ -70,7 +70,7 @@ export default function Chats() {
         });
     }
 
-    function updateChatLikes(prevRoomList, msgData, increment) {
+    function updateChatLikes(prevRoomList: any[] | undefined, msgData: { id: any; }, increment: boolean) {
         return prevRoomList?.map((chat) => {
             if (chat.id === Number(msgData.id)) {
                 return { ...chat, likes: chat.likes + (increment ? 1 : -1) };
@@ -79,7 +79,7 @@ export default function Chats() {
         });
     }
 
-    function handleMessages(e) {
+    function handleMessages(e: { data: string; }) {
         const msgData = JSON.parse(e.data);
         const eventHandlers = {
             "chat_message": () => setMessage(prev => updateMessagesWithNewMessage(prev, msgData.message)),
@@ -103,7 +103,7 @@ export default function Chats() {
             }
         };
 
-        // Выполняем функцию обработки события, соответствующую типу события
+        //@ts-ignore
         const handleEvent = eventHandlers[msgData.event_type] || eventHandlers['default'];
         handleEvent();
     }
