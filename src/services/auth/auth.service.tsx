@@ -83,6 +83,14 @@ async function getProfile() {
     return secureApi.get("profile/");
 }
 
+async function  requestChangePasswordLink(email: string) {
+    return await axios.post("user/password/request-reset/", {email});
+}
+
+async function changePasswordNew(password: string, token_id: string) {
+    return await axios.post("user/password/reset/", {password, token_id});
+}
+
 const authService = {
     signup,
     login,
@@ -94,6 +102,8 @@ const authService = {
     updateUserData,
     updateUserAvatar,
     getProfile,
+    requestChangePasswordLink,
+    changePasswordNew
 };
 
 export default authService;
