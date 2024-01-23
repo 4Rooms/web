@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styles from "../../auth.module.css";
 import {
     ForgotKeys,
@@ -80,7 +80,7 @@ export default function ForgotPassword() {
         validateField(type, value);
     };
 
-    async function deliveryFormAuth(data) {
+    async function deliveryFormAuth(data: any) {
         await authService.changePasswordNew(data.password, token)
             .then(() => {
                 navigate("/");
