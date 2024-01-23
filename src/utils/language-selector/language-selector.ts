@@ -9,15 +9,16 @@ export function setInitialLanguage(){
     }
 
     const userLang = navigator.language.split('-')[0];
+    const supportedLangs = ['en', 'ua'];
 
-    if (userLang === 'en') {
-        i18n?.changeLanguage('en');
+    if (supportedLangs.includes(userLang)) {
+        i18n?.changeLanguage(userLang);
     } else {
-        i18n?.changeLanguage('ua');
+        i18n?.changeLanguage('en');
     }
 }
 
 export function changeLanguage(lang: string){
-    i18n?.changeLanguage(lang);
+    i18n.changeLanguage(lang);
     localStorageService.set("4RoomLanguage", lang);
 }
