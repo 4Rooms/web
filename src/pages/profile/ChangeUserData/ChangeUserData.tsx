@@ -63,14 +63,14 @@ export default function ChangeUserData() {
     };
     const handleImageChange = (e: ChangeEvent<HTMLInputElement> | null) => {
         if (e && e.target.files && e.target.files.length > 0) {
-            const file = e.target.files[0];
+            const file = e.target?.files[0];
             if (file.size > 3 * 1024 * 1024) {
                 setImageError("Image size should be less than 3MB");
             } else {
                 setImageError(null);
                 setImageURL(URL.createObjectURL(file));
                 authService
-                    .updateUserAvatar(e.target.files[0])
+                    .updateUserAvatar(e.target?.files[0])
                     .then((response) => {
                         setUserIcon(response.data.avatar);
                     })
@@ -129,9 +129,6 @@ export default function ChangeUserData() {
             setShowToaster(true);
         }
     };
-    if (!user) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <>
