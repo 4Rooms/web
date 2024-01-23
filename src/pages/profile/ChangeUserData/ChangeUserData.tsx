@@ -50,8 +50,8 @@ export default function ChangeUserData() {
         formState: { errors },
     } = useForm<InputsChangeUserData>({
         defaultValues: {
-            profileUsername: user.username,
-            profileEmail: user.email,
+            profileUsername: user?.username,
+            profileEmail: user?.email,
         },
         resolver: yupResolver(changeDataSchema),
     });
@@ -183,7 +183,7 @@ export default function ChangeUserData() {
                                 !errors[value] &&
                                 formStateValue?.[value]?.length > 0 && (
                                     <div className={styles.focus}>
-                                        <p>{t(`shared.${value ?? ''}`)}</p>
+                                        <p>{t(`shared.${value}`)}</p>
                                     </div>
                                 )}
                         </label>
