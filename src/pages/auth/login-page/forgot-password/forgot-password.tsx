@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styles from "../../auth.module.css";
 import {
     ForgotKeys,
@@ -14,6 +14,8 @@ import forgotSchema from "./forgot-schema.tsx";
 import useValidation from "../../../../shared/use-validate/use-validate.tsx";
 import FormInput from "../../../../shared/auth-input/form-Input.tsx";
 import Button from "../../../../shared/button/button.tsx";
+import authService from "../../../../services/auth/auth.service.tsx";
+import Toaster from "../../../../shared/toaster/toaster.tsx";
 
 export default function ForgotPassword() {
     const inputArray: string[] = ["password"];
@@ -24,6 +26,11 @@ export default function ForgotPassword() {
     const [formStateValue, setFormStateValue] = useState<InputsReset>({
         password: "",
     });
+    const [endpointsError, setEndpointsError] = useState<string[]>([''])
+    const [showToaster, setShowToaster] = useState(false);
+    const [searchParams] = useSearchParams();
+    const token = searchParams.get('token');
+
 
     const [formStateFocus, setFormStateFocus] = useState<InputsValidReset>({
         password: false,
@@ -73,12 +80,18 @@ export default function ForgotPassword() {
         validateField(type, value);
     };
 
-    const deliveryFormAuth: SubmitHandler<InputsReset> = async (data) => {
-        // const response = await authService.signup(data);
-        // localStorageService.set("user", response);
-        console.log(data);
-        navigate("/");
-    };
+    async function deliveryFormAuth(data: any) {
+        await authService.changePasswordNew(data?.password, token ?? '')
+            .then(() => {
+                navigate("/");
+            })
+            .catch((error) => {
+            if (error.response && error.response.status === 400) {
+                setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                setShowToaster(true);
+            }
+        });
+    }
 
     return (
         <AuthWrapper title={"Forgot password"} link={backLinkLocation.current}>
@@ -145,6 +158,12 @@ export default function ForgotPassword() {
                     </Button>
                 </div>
             </form>
+
+            <Toaster
+                messages={endpointsError}
+                isVisible={showToaster}
+                onHide={() => setShowToaster(false)}
+            />
         </AuthWrapper>
     );
 }

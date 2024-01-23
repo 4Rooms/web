@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Message.module.css";
+import styles from "./Message.module.scss";
 import { useAuth } from "../../../../auth/signup-page/auth-context/use-auth.tsx";
 import { Delete, Edit } from "../../../../../assets/icons.tsx";
 import { countBy } from "lodash";

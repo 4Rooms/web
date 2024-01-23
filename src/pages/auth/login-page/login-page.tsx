@@ -107,19 +107,25 @@ export default function LoginPage() {
         });
     };
 
-    const onSubmitModal = () => {
+    const onSubmitModal = async () => {
         if (
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(resetEmail)
         ) {
             onClickChangeOpenModal();
-            navigate("/forgot-password", {state: {from: location}});
+            await authService.requestChangePasswordLink(resetEmail)
+                .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                    setShowToaster(true);
+                }
+            });
         } else {
             console.log("error");
         }
     };
 
     const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        resetEmail = e.target.value;
+        resetEmail = e.target.value
     }
     const debouncedValidation = debounce((type: InputLoginKeys, value: string) => {
         setFormStateValue((prevState) => ({
