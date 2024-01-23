@@ -182,7 +182,7 @@ export default function ChangeUserData() {
                             {formStateFocus[value] &&
                                 !formStateValid[value] &&
                                 !errors[value] &&
-                                formStateValue[value]?.length > 0 && (
+                                formStateValue?.[value]?.length && (
                                     <div className={styles.focus}>
                                         <p>{t(`shared.${value}`)}</p>
                                     </div>
