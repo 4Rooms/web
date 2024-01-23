@@ -129,6 +129,10 @@ export default function ChangeUserData() {
             setShowToaster(true);
         }
     };
+    if (!user) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <>
             <div className={styles.reset__container}>
