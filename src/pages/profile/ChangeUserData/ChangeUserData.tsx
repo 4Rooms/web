@@ -178,15 +178,14 @@ export default function ChangeUserData() {
                                     <Error className={styles.error} />
                                 </>
                             )}
-
-                            {formStateFocus[value] &&
+                            {formStateValue?.[value]?.length > 0 && formStateFocus[value] &&
                                 !formStateValid[value] &&
-                                !errors[value] &&
-                                formStateValue?.[value]?.length > 0 && (
-                                    <div className={styles.focus}>
-                                        <p>{t(`shared.${value}`)}</p>
-                                    </div>
-                                )}
+                                !errors[value] && (
+                                <div className={styles.focus}>
+                                    <p>{t(`shared.${value ?? ''}`)}</p>
+                                </div>
+                            )}
+
                         </label>
                     ))}
                     <Button
