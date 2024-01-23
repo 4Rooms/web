@@ -8,14 +8,12 @@ export default yup.object().shape({
         .matches(
             /^[a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9\s]+$/,
             "Name should contain only letters, digits, and spaces"
-        )
-        .required("Name is required"),
+        ),
     profileEmail: yup
         .string()
         .email("Enter a valid email address")
         .matches(
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
             "Must be a valid email address"
-        )
-        .required("Email is required"),
+        ),
 });

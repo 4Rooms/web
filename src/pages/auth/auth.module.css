@@ -97,7 +97,7 @@
 }
 
 .input__auth {
-  color: var(--OTHER-inactive_text);
+  color: var(--color-text);
   font-size: 18px;
   width: 100%;
   padding: 10px 15px;

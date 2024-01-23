@@ -3,11 +3,12 @@ import styles from "./LogOut.module.scss";
 import Button from "../../../shared/button/button";
 import Modal from "../../../Components/Modal/Modal";
 import { useTranslation } from "react-i18next";
+import { localStorageService } from "../../../services/local-storage/local-storage";
 export default function LogOut() {
     const [open, setOpen] = useState<boolean>(false);
     const performLogout = async () => {
         try {
-            localStorage.clear();
+            localStorageService.remove("user");
             setOpen(false);
             document.location.reload();
         } catch (error) {
