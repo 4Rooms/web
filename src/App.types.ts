@@ -29,8 +29,8 @@ export type InputsChangeData = {
 };
 
 export type InputsChangeUserData = {
-    profileEmail: string;
-    profileUsername: string;
+    profileEmail?: string;
+    profileUsername?: string;
 };
 
 export type InputSignupKeys = "email" | "username" | "password";

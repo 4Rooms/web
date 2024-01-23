@@ -16,10 +16,14 @@ import { useTranslation } from "react-i18next";
 import authService from "../../../services/auth/auth.service.tsx";
 import Toaster from "../../../shared/toaster/toaster.tsx";
 import { AuthContext } from "../../auth/signup-page/auth-context/auth-context.tsx";
+import { localStorageService } from "../../../services/local-storage/local-storage.ts";
 
 export default function ChangeUserData() {
-    const inputArray: InputChangeUserDataKeys[] = ["profileUsername", "profileEmail"];
-    const {userIcon, setUserIcon} = useContext(AuthContext);
+    const inputArray: InputChangeUserDataKeys[] = [
+        "profileUsername",
+        "profileEmail",
+    ];
+    const { userIcon, setUserIcon } = useContext(AuthContext);
     const [imageUrl, setImageURL] = useState<string>(userIcon || "");
     const [, setImageError] = useState<null | string>(null);
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -27,27 +31,27 @@ export default function ChangeUserData() {
         profileUsername: "",
         profileEmail: "",
     });
-    const [formStateFocus, setFormStateFocus] = useState<InputsValidUserChangeData>(
-        {
+    const [formStateFocus, setFormStateFocus] =
+        useState<InputsValidUserChangeData>({
             profileUsername: false,
             profileEmail: false,
-        }
-    );
+        });
     const [open] = useState<boolean>(false);
-    const [endpointsError, setEndpointsError] = useState<string[]>([''])
+    const [endpointsError, setEndpointsError] = useState<string[]>([""]);
     const [showToaster, setShowToaster] = useState(false);
-    const {t} = useTranslation('translation');
+    const { t } = useTranslation("translation");
+    const user = localStorageService.get("user");
 
     const {
         register,
         handleSubmit,
         setError,
         clearErrors,
-        formState: {errors},
+        formState: { errors },
     } = useForm<InputsChangeUserData>({
         defaultValues: {
-            profileUsername: "",
-            profileEmail: "",
+            profileUsername: user.username,
+            profileEmail: user.email,
         },
         resolver: yupResolver(changeDataSchema),
     });
@@ -65,20 +69,24 @@ export default function ChangeUserData() {
             } else {
                 setImageError(null);
                 setImageURL(URL.createObjectURL(file));
-                authService.updateUserAvatar(e.target.files[0]).then(
-                    (response) => {
+                authService
+                    .updateUserAvatar(e.target.files[0])
+                    .then((response) => {
                         setUserIcon(response.data.avatar);
-                    }
-                ).catch((error) => {
-                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
-                    setShowToaster(true);
-                });
-
+                    })
+                    .catch((error) => {
+                        setEndpointsError(
+                            error.response.data.errors.map(
+                                (err: { detail: string }) => err.detail
+                            )
+                        );
+                        setShowToaster(true);
+                    });
             }
         }
     };
 
-    const {formStateValid, validateField} =
+    const { formStateValid, validateField } =
         useValidation<InputsValidUserChangeData>({
             schema: changeDataSchema,
             formSubmitted,
@@ -102,11 +110,17 @@ export default function ChangeUserData() {
         });
         validateField(type, value);
     };
-    const deliveryFormAuth: SubmitHandler<InputsChangeUserData> = async (data) => {
+    const deliveryFormAuth: SubmitHandler<InputsChangeUserData> = async (
+        data
+    ) => {
         try {
             if (data) {
                 await authService.updateUserData(data).catch((error) => {
-                    setEndpointsError(error.response.data.errors.map((err: { detail: string; }) => err.detail));
+                    setEndpointsError(
+                        error.response.data.errors.map(
+                            (err: { detail: string }) => err.detail
+                        )
+                    );
                     setShowToaster(true);
                 });
             }
@@ -118,19 +132,25 @@ export default function ChangeUserData() {
     return (
         <>
             <div className={styles.reset__container}>
-                <form onSubmit={handleSubmit(deliveryFormAuth)} autoComplete="off">
+                <form
+                    onSubmit={handleSubmit(deliveryFormAuth)}
+                    autoComplete="off"
+                >
                     <div className={styles.wrapper__photo}>
                         <label>
-                            <input
-                                type="file"
-                                onChange={handleImageChange}
-                            />
-                            {imageUrl ?
-                                <img className={styles.reset__user_avatar} src={imageUrl} alt="User avatar"/> :
-                                <AddPhoto/>}
+                            <input type="file" onChange={handleImageChange} />
+                            {imageUrl ? (
+                                <img
+                                    className={styles.reset__user_avatar}
+                                    src={imageUrl}
+                                    alt="User avatar"
+                                />
+                            ) : (
+                                <AddPhoto />
+                            )}
                         </label>
                     </div>
-                    {inputArray.map((value) =>
+                    {inputArray.map((value) => (
                         <label htmlFor={value} key={value}>
                             <FormInput
                                 value={value}
@@ -146,7 +166,7 @@ export default function ChangeUserData() {
                             />
 
                             {!errors[value] && formStateValid[value] && (
-                                <IconOkey className={styles.okey}/>
+                                <IconOkey className={styles.okey} />
                             )}
 
                             {errors[value] && !formStateValid[value] && (
@@ -154,26 +174,26 @@ export default function ChangeUserData() {
                                     <p className={styles.text__error}>
                                         {errors[value]?.message}
                                     </p>
-                                    <Error className={styles.error}/>
+                                    <Error className={styles.error} />
                                 </>
                             )}
 
                             {formStateFocus[value] &&
                                 !formStateValid[value] &&
                                 !errors[value] &&
-                                formStateValue[value].length > 0 && (
+                                formStateValue?.[value]?.length > 0 && (
                                     <div className={styles.focus}>
                                         <p>{t(`shared.${value}`)}</p>
                                     </div>
                                 )}
                         </label>
-                    )}
+                    ))}
                     <Button
                         className="accent"
                         type="submit"
                         onClick={() => setFormSubmitted(true)}
                     >
-                        {t('my-profile.save')}
+                        {t("my-profile.save")}
                     </Button>
                 </form>
             </div>

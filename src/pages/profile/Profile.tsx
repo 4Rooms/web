@@ -86,16 +86,16 @@ export default function Profile() {
                                                     .toLowerCase()}`
                                                     ? styles.active
                                                     : (value.name ===
-                                                          "edit-profile" &&
+                                                          "editprofile" &&
                                                           location.pathname ===
                                                               `/profile/`) ||
                                                       (location.pathname ===
                                                           `/profile` &&
                                                           value.name ===
-                                                              "edit-profile")
+                                                              "editprofile")
                                                     ? styles.active
                                                     : value.name ===
-                                                          "edit-password" &&
+                                                          "editpassword" &&
                                                       location.pathname ===
                                                           `/profile/password`
                                                     ? styles.active
