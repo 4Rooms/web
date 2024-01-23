@@ -4,7 +4,6 @@ import {
     InputsChangeUserData,
     InputsLogin,
     InputsRegistraytion,
-    InputsResetPassword
 } from "../../App.types";
 import secureApi from "../../utils/axios-inteseptor/axios-interseptes.ts";
 
@@ -15,7 +14,7 @@ const signup = async (dataForm: InputsRegistraytion) => {
 };
 
 const login = async (dataForm: InputsLogin) => {
-    return await axios.post("login/", dataForm)
+    return await axios.post("login/", dataForm);
 };
 
 const resetPassword = async (url: string, data: unknown) => {
@@ -33,41 +32,55 @@ async function logout() {
             localStorage.clear();
             return { success: true };
         }
-        return { success: false, message: 'Failed to logout' };
+        return { success: false, message: "Failed to logout" };
     } catch (error: any) {
-        return { success: false, message: error.response?.data?.detail || 'An error occurred during logout.' };
+        return {
+            success: false,
+            message:
+                error.response?.data?.detail ||
+                "An error occurred during logout.",
+        };
     }
 }
 
 async function confirmEmail(token: string): Promise<EmailConfirmationResponse> {
-        const response = await axios.get<EmailConfirmationResponse>(`${import.meta.env.VITE_API_URL}/confirm-email/`, {
+    const response = await axios.get<EmailConfirmationResponse>(
+        `${import.meta.env.VITE_API_URL}/confirm-email/`,
+        {
             params: {
-                token_id: token
-            }
-        });
-        return response.data;
+                token_id: token,
+            },
+        }
+    );
+    return response.data;
 }
 const sendSecondEmail = async (email: string) => {
-    return await axios.post("send-confirmation-email/", {email});
+    return await axios.post("send-confirmation-email/", { email });
 };
 
-const changePassword = async (dataForm: InputsResetPassword) => {
-    return secureApi.put('user/change-password/', dataForm)
-}
+const changePassword = async (dataForm: {
+    old_password: string;
+    new_password: string;
+}) => {
+    return secureApi.put("user/change-password/", dataForm);
+};
 const updateUserData = async (data: InputsChangeUserData) => {
-    return secureApi.put('user/', {username: data.profileUsername, email: data.profileEmail});
+    return secureApi.put("user/", {
+        username: data.profileUsername,
+        email: data.profileEmail,
+    });
 };
 
-const updateUserAvatar = async (file:  File | null) => {
+const updateUserAvatar = async (file: File | null) => {
     if (!file) {
         throw new Error("No file provided");
     }
     const formData = new FormData();
-    formData.append('avatar', file);
-    return secureApi.put('profile/', formData);
+    formData.append("avatar", file);
+    return secureApi.put("profile/", formData);
 };
 async function getProfile() {
-    return secureApi.get('profile/');
+    return secureApi.get("profile/");
 }
 
 const authService = {
@@ -80,7 +93,7 @@ const authService = {
     changePassword,
     updateUserData,
     updateUserAvatar,
-    getProfile
+    getProfile,
 };
 
 export default authService;

@@ -19,6 +19,7 @@ import {
 import FormInput from "../../../shared/auth-input/form-Input";
 import { useTranslation } from "react-i18next";
 import authService from "../../../services/auth/auth.service.tsx";
+import { useChat } from "../../chats/chat-context/use-chat.tsx";
 
 export default function ResetPassword() {
     const inputArray: InputResetPasswordKeys[] = ["oldPassword", "newPassword"];
@@ -33,7 +34,8 @@ export default function ResetPassword() {
             newPassword: false,
         });
     const [open, setOpen] = useState<boolean>(false);
-    const { t } = useTranslation('translation');
+    const { setToasterMessage, setShowToaster } = useChat();
+    const { t } = useTranslation("translation");
 
     const {
         register,
@@ -41,6 +43,7 @@ export default function ResetPassword() {
         setError,
         clearErrors,
         formState: { errors },
+        reset,
     } = useForm<InputsResetPassword>({
         defaultValues: {
             oldPassword: "",
@@ -88,14 +91,26 @@ export default function ResetPassword() {
     const deliveryFormAuth: SubmitHandler<InputsResetPassword> = async (
         data
     ) => {
+        const newData = {
+            old_password: data.oldPassword,
+            new_password: data.newPassword,
+        };
         setFormSubmitted(true);
-        await authService.changePassword(data)
+        try {
+            await authService.changePassword(newData);
+            reset();
+            setToasterMessage(["Password updated successfully"]);
+            setShowToaster(true);
+        } catch (e) {
+            setToasterMessage(["Wrong old password"]);
+            setShowToaster(true);
+        }
     };
     return (
         <>
-                <p className={styles.reset__warning}>
-                    {t('my-profile.change-password-description')}
-                </p>
+            <p className={styles.reset__warning}>
+                {t("my-profile.change-password-description")}
+            </p>
             <div className={styles.reset__container}>
                 <form onSubmit={handleSubmit(deliveryFormAuth)}>
                     {inputArray.map((value) => (
@@ -142,9 +157,7 @@ export default function ResetPassword() {
                                 !errors[value] &&
                                 formStateValue[value].length > 0 && (
                                     <div className={styles.focus}>
-                                        <p>
-                                        {t(`shared.${value}`)}
-                                        </p>
+                                        <p>{t(`shared.${value}`)}</p>
                                     </div>
                                 )}
 
@@ -164,7 +177,7 @@ export default function ResetPassword() {
                             type="submit"
                             onClick={() => setFormSubmitted(true)}
                         >
-                            {t('save')}
+                            {t("save")}
                         </Button>
                     </div>
                 </form>

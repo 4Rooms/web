@@ -45,9 +45,9 @@ export default function SharedLayout({ showHeader }: Props) {
         if (!document.cookie && is_verif !== null && is_verif.is_email_confirmed) {
             if (localStorageService.get("user")) {
                 localStorageService.remove("user");
+                setIsAuthenticated(false);
                 navigate("/")
             }
-            setIsAuthenticated(false);
         }
         if (location.pathname === "/") {
             setChatOpen(false);
