@@ -33,93 +33,81 @@ export default function Chats() {
         setSavedChats,
     } = useChat();
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-    function handleMessages(e: MessageEvent) {
-        const msgData = JSON.parse(e.data);
-        if (msgData.event_type === "chat_message") {
-            setMessage((prevState) => [...prevState, msgData.message]);
-        } else if (msgData.event_type === "online_user_list") {
-            setOnline(msgData.user_list);
-        } else if (msgData.event_type === "message_was_deleted") {
-            setMessage((prevMessages) =>
-                prevMessages.map((prevMessage) =>
-                    prevMessage.id === msgData.id
-                        ? { ...prevMessage, is_deleted: true }
-                        : prevMessage
-                )
-            );
-        } else if (msgData.event_type === "message_was_updated") {
-            setMessage((prevMessages) =>
-                prevMessages.map((prevMessage) =>
-                    prevMessage.id === msgData.id
-                        ? { ...prevMessage, text: msgData.new_text }
-                        : prevMessage
-                )
-            );
-        } else if (msgData.event_type === "chat_was_deleted") {
-            setDeleteChat((prevState) => ({ ...prevState, delete: true }));
-            setRoomsList((prevState) =>
-                prevState?.filter((room) => room.id !== msgData.id)
-            );
-        } else if (msgData.event_type === "connected_user") {
-            setOnline((prevState) => [...prevState, msgData.user]);
-        } else if (msgData.event_type === "disconnected_user") {
-            setOnline((prevState) =>
-                prevState.filter((user) => user.id !== msgData.user.id)
-            );
-        } else if (msgData.event_type === "message_reaction_was_posted") {
-            setMessage((prevState) =>
-                prevState.map((message) => {
-                    if (message.id === msgData.id) {
-                        message.reactions?.push(msgData);
-                    }
-                    return message;
-                })
-            );
-        } else if (msgData.event_type === "message_reaction_was_deleted") {
-            setMessage((prevState) =>
-                prevState.map((message) => {
-                    if (message.id === msgData.id && message.reactions) {
-                        const userReactionIndex = message.reactions.findIndex(
-                            (reaction) =>
-                                reaction.user_name === msgData.user ||
-                                reaction.user === msgData.user
-                        );
-
-                        if (userReactionIndex !== -1) {
-                            message.reactions.splice(userReactionIndex, 1);
-
-                            return {
-                                ...message,
-                                reactions: [...message.reactions],
-                            };
-                        }
-                    }
-                    return message;
-                })
-            );
-        } else if (msgData.event_type === "chat_was_liked") {
-            setRoomsList((prevRoomList) => {
-                return prevRoomList?.map((chat) => {
-                    if (chat.id === Number(msgData.id)) {
-                        return { ...chat, likes: chat.likes + 1 };
-                    }
-                    return chat;
-                });
-            });
-        } else if (msgData.event_type === "chat_was_unliked") {
-            setRoomsList((prevRoomList) => {
-                return prevRoomList?.map((chat) => {
-                    if (chat.id === Number(msgData.id)) {
-                        return { ...chat, likes: chat.likes - 1 };
-                    }
-                    return chat;
-                });
-            });
-        } else {
-            setToasterMessage([msgData.error_message]);
-            setShowToaster(true);
-        }
+    function updateMessagesWithNewMessage(prevState: any, newMessage: any) {
+        return [...prevState, newMessage];
     }
+
+    function updateMessagesWithDeletedFlag(prevMessages: any[], id: any) {
+        return prevMessages.map((message) =>
+            message.id === id ? { ...message, is_deleted: true } : message
+        );
+    }
+
+    function updateMessagesWithUpdatedText(prevMessages: any[], id: any, newText: any) {
+        return prevMessages.map((message) =>
+            message.id === id ? { ...message, text: newText } : message
+        );
+    }
+
+    function updateMessagesWithReaction(prevState: any[], reactionData: { id: any; }) {
+        return prevState.map((message) => {
+            if (message.id === reactionData.id) {
+                message.reactions?.push(reactionData);
+            }
+            return message;
+        });
+    }
+
+    function removeUserReaction(prevState: any[], msgData: { id: any; user: any; }) {
+        return prevState.map((message) => {
+            if (message.id === msgData.id && message.reactions) {
+                const newReactions = message.reactions.filter(
+                    (reaction: { user_name: any; user: any; }) => reaction.user_name !== msgData.user && reaction.user !== msgData.user
+                );
+                return { ...message, reactions: newReactions };
+            }
+            return message;
+        });
+    }
+
+    function updateChatLikes(prevRoomList: any[] | undefined, msgData: { id: any; }, increment: boolean) {
+        return prevRoomList?.map((chat) => {
+            if (chat.id === Number(msgData.id)) {
+                return { ...chat, likes: chat.likes + (increment ? 1 : -1) };
+            }
+            return chat;
+        });
+    }
+
+    function handleMessages(e: { data: string; }) {
+        const msgData = JSON.parse(e.data);
+        const eventHandlers = {
+            "chat_message": () => setMessage(prev => updateMessagesWithNewMessage(prev, msgData.message)),
+            "online_user_list": () => setOnline(msgData.user_list),
+            "message_was_deleted": () => setMessage(prev => updateMessagesWithDeletedFlag(prev, msgData.id)),
+            "message_was_updated": () => setMessage(prev => updateMessagesWithUpdatedText(prev, msgData.id, msgData.new_text)),
+            "chat_was_deleted": () => {
+                setDeleteChat(prev => ({ ...prev, delete: true }));
+                // TODO fix this))
+                setRoomsList(prev => prev?.filter(room => room.id !== msgData.id));
+            },
+            "connected_user": () => setOnline(prev => [...prev, msgData.user]),
+            "disconnected_user": () => setOnline(prev => prev.filter(user => user.id !== msgData.user.id)),
+            "message_reaction_was_posted": () => setMessage(prev => updateMessagesWithReaction(prev, msgData)),
+            "message_reaction_was_deleted": () => setMessage(prev => removeUserReaction(prev, msgData)),
+            "chat_was_liked": () => setRoomsList(prev => updateChatLikes(prev, msgData, true)),
+            "chat_was_unliked": () => setRoomsList(prev => updateChatLikes(prev, msgData, false)),
+            "default": () => {
+                setToasterMessage([msgData.error_message]);
+                setShowToaster(true);
+            }
+        };
+
+        //@ts-ignore
+        const handleEvent = eventHandlers[msgData.event_type] || eventHandlers['default'];
+        handleEvent();
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
         const getAllChatsRoom = async () => {
