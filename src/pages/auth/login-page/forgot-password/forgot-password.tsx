@@ -81,7 +81,7 @@ export default function ForgotPassword() {
     };
 
     async function deliveryFormAuth(data: any) {
-        await authService.changePasswordNew(data.password, token)
+        await authService.changePasswordNew(data?.password, token ?? '')
             .then(() => {
                 navigate("/");
             })
