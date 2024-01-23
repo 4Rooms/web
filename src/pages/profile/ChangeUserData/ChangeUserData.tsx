@@ -178,7 +178,7 @@ export default function ChangeUserData() {
                                     <Error className={styles.error} />
                                 </>
                             )}
-                            {formStateValue?.[value]?.length > 0 && formStateFocus[value] &&
+                            {formStateValue?.[value] && formStateValue?.[value]?.length > 0 && formStateFocus[value] &&
                                 !formStateValid[value] &&
                                 !errors[value] && (
                                 <div className={styles.focus}>
