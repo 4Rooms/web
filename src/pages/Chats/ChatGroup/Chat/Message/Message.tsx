@@ -10,6 +10,7 @@ import { emojisResponse } from "../../../../../utils/arrays/arrays.tsx";
 import { formatTime } from "../../../../../utils/formatTime/formatTime.tsx";
 import { useChat } from "../../../../chats/chat-context/use-chat.tsx";
 import Modal from "../../../../../Components/Modal/Modal.tsx";
+import { localStorageService } from "../../../../../services/local-storage/local-storage.ts";
 
 export default function Message({
     message,
@@ -26,6 +27,7 @@ export default function Message({
         url: "",
         modal: false,
     });
+    const user = localStorageService.get("user");
     const reactions =
         message.reactions?.find(
             (reaction) => reaction.user_name === username
@@ -73,15 +75,16 @@ export default function Message({
         return styles.message__photo;
     };
     const { t } = useTranslation("translation");
+    console.log(message)
 
     return (
         <li
             key={message.id}
             className={`${styles.message__container} ${
-                message.user_name === username && styles.from
+                message.user === user.id && styles.from
             }`}
         >
-            {message.user_name !== username && (
+            {message.user !== user.id && (
                 <img
                     className={styles.user__avatar}
                     src={message.user_avatar}
@@ -95,7 +98,7 @@ export default function Message({
             >
                 <span
                     className={`${styles.message__user} ${
-                        message.user_name === username && styles.from
+                        message.user === user.id && styles.from
                     } ${message.is_deleted ? styles.deleted : ""}`}
                 >
                     <p
