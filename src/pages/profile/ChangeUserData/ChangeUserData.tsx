@@ -23,7 +23,7 @@ export default function ChangeUserData() {
         "profileUsername",
         "profileEmail",
     ];
-    const { userIcon, setUserIcon } = useContext(AuthContext);
+    const { userIcon, setUserIcon, setUsername } = useContext(AuthContext);
     const [imageUrl, setImageURL] = useState<string>(userIcon || "");
     const [, setImageError] = useState<null | string>(null);
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -115,14 +115,32 @@ export default function ChangeUserData() {
     ) => {
         try {
             if (data) {
-                await authService.updateUserData(data).catch((error) => {
-                    setEndpointsError(
-                        error.response.data.errors.map(
-                            (err: { detail: string }) => err.detail
-                        )
-                    );
-                    setShowToaster(true);
-                });
+                await authService
+                    .updateUserData(data)
+                    .then(() => {
+                        if (data.profileUsername) {
+                            setUsername(data.profileUsername);
+                            localStorageService.set("user", {
+                                ...user,
+                                username: data.profileUsername,
+                            });
+                        }
+                        if (data.profileEmail) {
+                            setUsername(data.profileEmail);
+                            localStorageService.set("user", {
+                                ...user,
+                                email: data.profileEmail,
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        setEndpointsError(
+                            error.response.data.errors.map(
+                                (err: { detail: string }) => err.detail
+                            )
+                        );
+                        setShowToaster(true);
+                    });
             }
         } catch (error: any) {
             setEndpointsError(error);
@@ -181,7 +199,7 @@ export default function ChangeUserData() {
                             {formStateFocus[value] &&
                                 !formStateValid[value] &&
                                 !errors[value] &&
-                                formStateValue?.[value]?.length > 0 && (
+                                formStateValue[value].length > 0 && (
                                     <div className={styles.focus}>
                                         <p>{t(`shared.${value}`)}</p>
                                     </div>
