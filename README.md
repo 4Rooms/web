@@ -1,5 +1,5 @@
 # web
-4Rooms - chats for fans of movies, books, music, and games
+## 4Rooms - chats for fans of movies, books, music, and games.
 ### Authentication
 ![login](https://github.com/4Rooms/web/assets/5529216/c4c8e064-e836-4764-80b6-e49f4507cbf9)
 ![login2](https://github.com/4Rooms/web/assets/5529216/94582a63-020a-4689-9384-c0e77627c9d8)
